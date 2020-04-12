@@ -5,6 +5,8 @@
  */
 package uauction;
 
+import java.util.Date;
+
 /**
  *
  * @author Sukrit22
@@ -21,4 +23,14 @@ public class AuctionProduct {
     
     private java.util.Date datePosted;
     private java.util.Date dateEndBid;
+    
+    
+    AuctionProduct(String name,String descriotion,double startingBid,double minimumBid,long durationInMin){
+        this.name = name;
+        this.description = descriotion;
+        this.startingBid = startingBid;
+        this.minimumBid = minimumBid;
+        datePosted = new Date();
+        dateEndBid.setTime(durationInMin*60*1000);
+    }
 }
