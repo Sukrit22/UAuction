@@ -11,10 +11,14 @@ package uauction;
  */
 public class AuctionProduct {
     private javafx.scene.image.Image mainImage;
-    private java.util.ArrayList<javafx.scene.image.Image> additionalImage;
+    //private java.util.ArrayList<javafx.scene.image.Image> additionalImage;
     
     private String name;
     private String description;
     
-    private 
+    private Double startingBid;
+    private Double minimumBid;
+    
+    private java.util.Date datePosted;
+    private java.util.Date dateEndBid;
 }
