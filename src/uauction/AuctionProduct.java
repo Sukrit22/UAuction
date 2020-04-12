@@ -31,6 +31,7 @@ public class AuctionProduct {
         this.startingBid = startingBid;
         this.minimumBid = minimumBid;
         datePosted = new Date();
-        dateEndBid.setTime(durationInMin*60*1000);
+        dateEndBid.setTime(datePosted.getTime()+ durationInMin*60*1000);
+        
     }
 }
