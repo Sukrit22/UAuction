@@ -23,7 +23,7 @@ public  class Login {
     
    public static User getUser(String username) throws FileNotFoundException, IOException, ClassNotFoundException
    {
-       FileInputStream reader = new FileInputStream("C:/Users/USER/OneDrive - KMITL/AuctionDataBase/"+username+".txt");
+       FileInputStream reader = new FileInputStream("AuctionDataBase/"+username+".txt");
        ObjectInputStream input = new ObjectInputStream(reader);
        User user = (User)input.readObject();
        
@@ -41,7 +41,7 @@ public  class Login {
        
         try 
         {
-            reader = new FileInputStream("C:/Users/USER/OneDrive - KMITL/AuctionDataBase/"+username+".txt");
+            reader = new FileInputStream("AuctionDataBase/"+username+".txt");
             
             
            try {

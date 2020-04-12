@@ -27,7 +27,7 @@ public class Register {
         */
         
         
-        File file = new File("C:/Users/USER/OneDrive - KMITL/AuctionDataBase/"+username+".txt");
+        File file = new File("AuctionDataBase/"+username+".txt");
        
         
         /*File usernameFile = new File("C:/Users/USER/OneDrive - KMITL/AuctionDataBase/USERNAMES.txt");
