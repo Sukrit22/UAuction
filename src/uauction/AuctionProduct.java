@@ -32,6 +32,6 @@ public class AuctionProduct {
         this.minimumBid = minimumBid;
         datePosted = new Date();
         dateEndBid.setTime(datePosted.getTime()+ durationInMin*60*1000);
-        
+        //mainImage = new javafx.scene.image.Image();
     }
 }
