@@ -18,7 +18,7 @@ import java.util.Scanner;
  *
  * @author USER
  */
-public class main {
+public class TestLoginRegister {
     
     public static void main(String[] args) throws IOException, ClassNotFoundException {
        Scanner input = new Scanner (System.in);

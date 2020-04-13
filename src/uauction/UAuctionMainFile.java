@@ -9,7 +9,7 @@ package uauction;
  *
  * @author Sukrit22
  */
-public class UAuction {
+public class UAuctionMainFile {
 
     /**
      * @param args the command line arguments
