@@ -1,0 +1,4 @@
+*.class
+project.xml
+build-impl.xml
+*.properties
