@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class Register {
     
-    public static String register(String username,String password,String email) throws IOException, ClassNotFoundException
+    public static Boolean register(String username,String password,String email) throws IOException, ClassNotFoundException
     {
         Boolean chosen = false;
         /*
@@ -55,9 +55,9 @@ public class Register {
         }
         if(chosen)
         {
-           return username+" is Chosen...";
+           return false;
         }
-        return "Register Success...";
+        return true;
         
       
         
