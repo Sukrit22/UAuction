@@ -69,7 +69,7 @@ public class UI extends Application{
         //DataField
         //Label uAuctionBtn = new Label("LOGO");
         Button uAuctionBtn = new Button();
-        Image logo = new Image("res/logo.png");
+        Image logo = new Image("file:///"+System.getProperty("user.dir")+"/src/uauction/res/logo.png");
         ImageView viewLogo = new ImageView(logo);
         viewLogo.setFitHeight(60);
         viewLogo.setFitWidth(90);
