@@ -32,7 +32,9 @@ public class Database {
      */
     public static java.util.ArrayList<AuctionedProduct> auctionedProduct;//whenIt'sPassedItsEndBidDate
     
-    
+    public java.util.ArrayList<ActiveProduct> forSaveActiveProduct;
+            
+    public java.util.ArrayList<AuctionedProduct> forSaveAuctionedProduct;
     
     
 }

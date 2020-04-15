@@ -28,7 +28,7 @@ import javafx.stage.Stage;
  *
  * @author poomy
  */
-public class UI extends Application{
+public class UIByPoomRenamedByGame extends Application{
 
     public static void main(String[] args) {
         launch(args);
