@@ -23,8 +23,15 @@ public class ManageProduct {
      * @return whether the register is fail or succeed
      */
     public static boolean register(String name, String description, String image, Double startingBid, Double minimumBid){
+        boolean isSuccess = false;
+        //do what you want
         
         
+        
+        //after registered the product, add it to activeProduct in Database class
+        
+        if(isSuccess)
+            return true;
         return false;
     }
     
