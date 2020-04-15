@@ -24,7 +24,7 @@ public class Database {
     /**
      * Use to keep track of which product is on the market
      */
-    public static java.util.ArrayList<AuctionProduct> activeProduct;//whenIt'sOnTheMarket
+    public static java.util.ArrayList<ActiveProduct> activeProduct;//whenIt'sOnTheMarket
     
     /**
      * Use to keep track of which product is out of market
