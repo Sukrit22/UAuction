@@ -77,7 +77,7 @@ public class AuctionProduct {
         return dateEndBid;
     }
     public String getFileName(){
-        return this.MyFileName;
+        return this.myFileName;
     }
     public void setFileName(String fileName){
         this.myFileName = fileName;
