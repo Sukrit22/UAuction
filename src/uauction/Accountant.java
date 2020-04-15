@@ -5,17 +5,15 @@
  */
 package uauction;
 
-/**
+/**handle register and login of a user as well as to help user manage their account
  *
  * @author Sukrit22
  */
-public class UAuction {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class Accountant {
+    
+    public static boolean login(String username,String password){
+        
+        return false;
     }
     
 }

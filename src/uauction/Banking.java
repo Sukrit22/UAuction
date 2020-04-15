@@ -7,15 +7,8 @@ package uauction;
 
 /**
  *
- * @author Sukrit22
+ * @author USER
  */
-public class main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class Banking {
     
 }

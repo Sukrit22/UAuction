@@ -9,13 +9,10 @@ package uauction;
  *
  * @author Sukrit22
  */
-public class main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class ActiveProduct implements java.io.Serializable {
+    private java.util.ArrayList<String> biddingHistory;
+    private double currentBid;
+    
+    
     
 }

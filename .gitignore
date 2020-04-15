@@ -3,3 +3,5 @@
 *.properties
 
 nbproject/
+/build/
+src/uauction/TestFile.java
