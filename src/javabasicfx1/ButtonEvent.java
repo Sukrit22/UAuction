@@ -7,6 +7,12 @@ package javabasicfx1;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -31,24 +37,27 @@ public class ButtonEvent {
     //-----BUTTON----\\
     
     //-----BUTTON-OnSceneUnLogIn_LogIn-----\\
-    static public void setEvenOnSceneUnLogIn_LogIn(){
-        EventHandler<ActionEvent> logOut = (ActionEvent ActionEvent) -> {
+    static public void setEvenOnSceneUnLogIn_LogIn(){        
+        EventHandler<ActionEvent> logIn = (ActionEvent ActionEvent) -> {
             //Do code here
-            System.out.println("Log Out Button Click");
-            JavaBasicFX1.stage.setScene(JavaBasicFX1.sceneStorage.getHomeSceneUnLogInFromSS());
+            System.out.println("Log In Button Click");
+            //JavaBasicFX1.stage.setScene(JavaBasicFX1.sceneStorage.getHomeSceneAlreadyLogInFromSS());
+            JavaBasicFX1.stage.setOpacity(1);
+            LogInStage.runStage();
         };        
         //BUTTON Set even -> Event
-        
+        AllButton.login.getButton().setOnAction(logIn);
         
     }
     
     //-----BUTTON-OnSceneUnLogIn_LogOut-----\\
     static public void setEvenOnSceneUnLogIn_LogOut(){
-        EventHandler<ActionEvent> logIn = (ActionEvent ActionEvent) -> {
+        EventHandler<ActionEvent> logOut = (ActionEvent ActionEvent) -> {
             System.out.println("Log Out Button Click");
-            JavaBasicFX1.stage.setScene(JavaBasicFX1.sceneStorage.getHomeSceneAlreadyLogInFromSS());
+            JavaBasicFX1.stage.setScene(JavaBasicFX1.sceneStorage.getHomeSceneUnLogInFromSS());
         };       
         //BUTTON Set even -> Event
+        AllButton.logout.getButton().setOnAction(logOut);
 
     }
     

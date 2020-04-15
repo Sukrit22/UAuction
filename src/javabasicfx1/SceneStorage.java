@@ -5,6 +5,8 @@
  */
 package javabasicfx1;
 
+import javabasicfx1.Scene.HomeScene.HomeScene.HomeSceneAlreadyLogIn;
+import javabasicfx1.Scene.HomeScene.HomeScene.HomeSceneUnLogIn;
 import javafx.scene.Scene;
 
 /**
@@ -21,11 +23,11 @@ public class SceneStorage {
 
     public void createScene(){
         System.out.println("-----2-1-createScene - homeSceneLogOut");
-        HomeSceneUnLogIn homeSceneLogOut = new HomeSceneUnLogIn();
+        HomeSceneUnLogIn homeSceneUnLogIn = new HomeSceneUnLogIn();
         this.homeSceneUnLogInSS = new Scene(HomeSceneUnLogIn.getPaneLayor1());
         System.out.println("-----2-2-createScene - homeSceneLogIn");
-        HomeSceneAlreadyLogIn homeSceneLogIn = new HomeSceneAlreadyLogIn();
-        this.homeSceneAlreadyLogInSS = new Scene(HomeSceneAlreadyLogIn.getBorderPaneLayor1());
+        HomeSceneAlreadyLogIn homeSceneAlreadyLogIn = new HomeSceneAlreadyLogIn();
+        this.homeSceneAlreadyLogInSS = new Scene(homeSceneAlreadyLogIn.getPaneLayor1());
     }
     
     public Scene getHomeSceneUnLogInFromSS() {

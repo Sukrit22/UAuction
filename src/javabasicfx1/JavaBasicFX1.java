@@ -71,20 +71,17 @@ public class JavaBasicFX1 extends Application {
         bG.getChildren().add(vbox);*/
 
         
-        System.out.println("----1-javabasicfx1");
         //scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
         sceneStorage = new SceneStorage();
-        System.out.println("----2-javabasicfx1");
         sceneStorage.createScene();
         //System.out.println("working");
         JavaBasicFX1.stage.setScene(sceneStorage.getHomeSceneUnLogInFromSS());
-        System.out.println("----3-javabasicfx1");
         //JavaBasicFX1.stage.setScene(HomeSceneLogin.HomeSceneLogin());
         JavaBasicFX1.stage.setTitle("Auction");
         JavaBasicFX1.stage.setMaximized(true);
         JavaBasicFX1.stage.setResizable(true);
         JavaBasicFX1.stage.setMinWidth(1920);
-        JavaBasicFX1.stage.initStyle(StageStyle.UTILITY);
+        JavaBasicFX1.stage.initStyle(StageStyle.UNDECORATED);
         //stage.initStyle(StageStyle.DECORATED);
         //stage.initStyle(StageStyle.UNDECORATED);
         //stage.initStyle(StageStyle.TRANSPARENT);
