@@ -22,7 +22,7 @@ public class SceneStorage {
     public void createScene(){
         System.out.println("-----2-1-createScene - homeSceneLogOut");
         HomeSceneUnLogIn homeSceneLogOut = new HomeSceneUnLogIn();
-        this.homeSceneUnLogInSS = new Scene(HomeSceneUnLogIn.getBorderPaneLayor1());
+        this.homeSceneUnLogInSS = new Scene(HomeSceneUnLogIn.getPaneLayor1());
         System.out.println("-----2-2-createScene - homeSceneLogIn");
         HomeSceneAlreadyLogIn homeSceneLogIn = new HomeSceneAlreadyLogIn();
         this.homeSceneAlreadyLogInSS = new Scene(HomeSceneAlreadyLogIn.getBorderPaneLayor1());
