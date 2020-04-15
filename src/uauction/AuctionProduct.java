@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,7 @@ import javafx.scene.image.Image;
  *
  * @author Sukrit22
  */
-public class AuctionProduct {
+public class AuctionProduct implements Serializable{
     //private java.util.ArrayList<javafx.scene.image.Image> additionalImage;
     
     private File ImagePath = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductImage/"+this.name+".png");
@@ -39,7 +40,7 @@ public class AuctionProduct {
     
             
             
-    public AuctionProduct(String name, String description, Image image, double startingBid, double minimumBid){
+    public AuctionProduct(String name, String description, String image, double startingBid, double minimumBid){
         datePosted = new Date();
         this.name = name;
         this.description = description;
