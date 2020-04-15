@@ -22,7 +22,6 @@ import javafx.scene.image.Image;
  * @author Sukrit22
  */
 public class AuctionProduct {
-    private javafx.scene.image.Image mainImage;
     //private java.util.ArrayList<javafx.scene.image.Image> additionalImage;
     
     private File ImagePath = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductImage/"+this.name+".png");
@@ -30,57 +29,22 @@ public class AuctionProduct {
     
     private String name;
     private String description;
+    private String myFileName;
     
-    private Double startingBid;
-    private Double minimumBid;
+    private double startingBid;
+    private double minimumBid;
     
     private java.util.Date datePosted;
     private java.util.Date dateEndBid;
     
-    private boolean registable = false;
-    
             
             
-    public AuctionProduct(String name,String catalog,String descriotion,double startingBid,double minimumBid,long durationInMin){
-        if(registerProduct()){
+    public AuctionProduct(String name, String description, Image image, double startingBid, double minimumBid){
+        datePosted = new Date();
         this.name = name;
-        this.description = descriotion;
+        this.description = description;
         this.startingBid = startingBid;
         this.minimumBid = minimumBid;
-        datePosted = new Date();
-        dateEndBid.setTime(datePosted.getTime()+ durationInMin*60*1000);
-        registable = true;
-        }
-        else
-        {
-            registable = false;
-        }
-        
-        //mainImage = new javafx.scene.image.Image();
-    }
-    
-    public Boolean registerProduct()
-    {
-        boolean registed = false;
-        try 
-        {
-            FileOutputStream reader = new FileOutputStream(ImagePath);
-            try 
-            {
-                ObjectOutputStream objReader = new ObjectOutputStream(reader);
-            } 
-            catch (IOException ex) 
-            {
-                System.out.println(ex.toString());
-            }
-            
-        } 
-        catch (FileNotFoundException ex) 
-        {
-            System.out.println(ex.toString());
-        }
-        
-        return registed;
     }
     
     public void setImage()
@@ -104,13 +68,19 @@ public class AuctionProduct {
     {
         return description;
     }
-    public Date getDateposted()
+    public Date getDatePosted()
     {
         return datePosted;
     }
     public Date getDateEndBid()
     {
         return dateEndBid;
+    }
+    public String getFileName(){
+        return this.MyFileName;
+    }
+    public void setFileName(String fileName){
+        this.myFileName = fileName;
     }
     
 }
