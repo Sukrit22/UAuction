@@ -38,9 +38,9 @@ public class AuctionProduct implements java.io.Serializable {
     
             
             
-    public AuctionProduct(String name, String description, String imageName, double startingBid, double minimumBid,long durationInMin){
+    public AuctionProduct(String name, String description, String imageName, double startingBid, double minimumBid,Date endDate){
         datePosted = new Date();
-        dateEndBid.setTime(datePosted.getTime()+ durationInMin*60*1000);
+        dateEndBid = endDate;
         this.name = name;
         this.description = description;
         this.startingBid = startingBid;
