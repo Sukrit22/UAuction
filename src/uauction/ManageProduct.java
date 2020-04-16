@@ -5,6 +5,7 @@
  */
 package uauction;
 
+import java.util.Date;
 import javafx.scene.image.Image;
 
 /**
@@ -22,17 +23,16 @@ public class ManageProduct {
      * 
      * @return whether the register is fail or succeed
      */
-    public static boolean register(String name, String description, String image, Double startingBid, Double minimumBid){
-        boolean isSuccess = false;
+    public static boolean register(String name, String description, String image, Double startingBid, Double minimumBid, String username){
         //do what you want
-        
+        AuctionProduct ap = new AuctionProduct(name,description,image,startingBid,minimumBid);
+        String fileName = username + "." + ap.getDatePosted().getTime();
+        ap.setFileName(fileName);
+        SaveAndLoad.saveProduct(ap);
         
         
         //after registered the product, add it to activeProduct in Database class
-        
-        if(isSuccess)
-            return true;
-        return false;
+        return SaveAndLoad.saveProduct(ap);
     }
     
 }

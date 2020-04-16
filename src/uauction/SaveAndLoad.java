@@ -22,12 +22,46 @@ import java.util.logging.Logger;
  */
 public class SaveAndLoad {
 
-    public static void saveProduct(AuctionProduct ap) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static boolean saveProduct(AuctionProduct ap) {
+        boolean success;
+        File file;
+        FileOutputStream fileOut;
+        ObjectOutputStream output;
+        try {
+            file = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductDataBase/"+ 
+                   ap.getFileName() + "." + ap.getDatePosted().getTime() + ".txt");
+            fileOut = new FileOutputStream(file);
+            output = new ObjectOutputStream(fileOut);
+            output.writeObject(ap);
+            output.close();
+            fileOut.close();
+            success = true;
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            success = false;
+        }
+        return success;
     }
 
-    public static AuctionProduct loadProduct(String fileName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static AuctionProduct loadProduct(String fileName){
+        File file;
+        FileInputStream fileIn;
+        ObjectInputStream input;
+        try {
+            file = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductDataBase/"+ fileName);
+            fileIn = new FileInputStream(file);
+            input = new ObjectInputStream(fileIn);
+            AuctionProduct ap = (AuctionProduct) input.readObject();
+            input.close();
+            fileIn.close();
+            return ap;
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     public static boolean saveUser(User user) {
