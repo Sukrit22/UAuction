@@ -11,12 +11,12 @@ package uauction;
  */
 public interface SaveAndLoadAbility extends java.io.Serializable {
     void saveProduct(AuctionProduct ap);
-    AuctionProduct loadProduct();
+    AuctionProduct loadProduct(String fileName);
     
-    void saveUser(User user);
-    User loadUser();
+    boolean saveUser(User user);
+    User loadUser(String username);
     
-    void saveDatabase();
+    boolean saveDatabase();
     void loadDatabase();
     
 }
