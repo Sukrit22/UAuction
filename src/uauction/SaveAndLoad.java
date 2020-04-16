@@ -121,6 +121,7 @@ public class SaveAndLoad {
             
             //Write WHat
             Database d = new Database();
+            d.saveFromStatic();
             objectOutput.writeObject(d);
             objectOutput.close();
             fileOut.close();
