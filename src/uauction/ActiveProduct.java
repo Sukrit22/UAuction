@@ -29,6 +29,7 @@ public class ActiveProduct implements java.io.Serializable {
     ActiveProduct(AuctionProduct product){
         this.product = product;
         this.biddingHistory = new java.util.ArrayList<String>();
+        this.currentBid = this.product.getMinimumBid();
     }
     
     //=========================== method =======================
