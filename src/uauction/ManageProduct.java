@@ -23,9 +23,9 @@ public class ManageProduct {
      * 
      * @return whether the register is fail or succeed
      */
-    public static boolean register(String name, String description, String image, Double startingBid, Double minimumBid, String username){
+    public static boolean register(String name, String description, String image, Double startingBid, Double minimumBid, String username, long durationInMin){
         //do what you want
-        AuctionProduct ap = new AuctionProduct(name,description,image,startingBid,minimumBid);
+        AuctionProduct ap = new AuctionProduct(name,description,image,startingBid,minimumBid,durationInMin);
         String fileName = username + "." + ap.getDatePosted().getTime();
         ap.setFileName(fileName);
         SaveAndLoad.saveProduct(ap);
