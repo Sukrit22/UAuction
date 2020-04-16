@@ -41,17 +41,16 @@ public class Register {
         }
                
         else{
-        FileOutputStream writer = new FileOutputStream(file);
-        ObjectOutputStream output = new ObjectOutputStream(writer);
-        try{
-        output.writeObject(new User(username,password,email));
-        }
-        catch(IOException ex){
-            System.out.println(ex.getMessage());
-        }
-        output.close();
-        writer.close();
-        
+            FileOutputStream writer = new FileOutputStream(file);
+            ObjectOutputStream output = new ObjectOutputStream(writer);
+            try{
+                output.writeObject(new User(username,password,email));
+            }
+            catch(IOException ex){
+                System.out.println(ex.getMessage());
+            }
+            output.close();
+            writer.close();
         }
         if(chosen)
         {

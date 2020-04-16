@@ -20,20 +20,17 @@ import java.util.logging.Logger;
  *
  * @author Sukrit22
  */
-public class SaveAndLoad implements SaveAndLoadAbility {
+public class SaveAndLoad {
 
-    @Override
-    public void saveProduct(AuctionProduct ap) {
+    public static void saveProduct(AuctionProduct ap) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public AuctionProduct loadProduct(String fileName) {
+    public static AuctionProduct loadProduct(String fileName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public boolean saveUser(User user) {
+    public static boolean saveUser(User user) {
         boolean success = false;
         
         File filePath;
@@ -54,8 +51,7 @@ public class SaveAndLoad implements SaveAndLoadAbility {
         return success;
     }
 
-    @Override
-    public User loadUser(String username) {
+    public static User loadUser(String username) {
         File filePath;
         FileInputStream file;
         ObjectInputStream input;
@@ -64,6 +60,8 @@ public class SaveAndLoad implements SaveAndLoadAbility {
             file = new FileInputStream(filePath);
             input = new ObjectInputStream(file);
             User user = (User) input.readObject();
+            input.close();
+            
             return user;
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -74,44 +72,53 @@ public class SaveAndLoad implements SaveAndLoadAbility {
         }
     }
 
-    @Override
-    public boolean saveDatabase() {
+    public static boolean saveDatabase() {
         boolean success = false;
         
-        File filePath;
-        FileOutputStream file;
-        ObjectOutputStream output;
+        File file;
+        FileOutputStream fileOut;
+        ObjectOutputStream objectOutput;
         
         try {
-            filePath = new File(System.getProperty("user.dir")+"/AuctionDataBase/DatabaseDataBase/database.txt");
-            file = new FileOutputStream(filePath);
-            output = new ObjectOutputStream(file);
+            file = new File(System.getProperty("user.dir")+"/AuctionDataBase/DatabaseDataBase/database.txt");
+            fileOut = new FileOutputStream(file);
+            
+            objectOutput = new ObjectOutputStream(fileOut);
             
             //Write WHat
-            
-            output.close();
-            file.close();
-            
+            Database d = new Database();
+            objectOutput.writeObject(d);
+            objectOutput.close();
+            fileOut.close();
             success = true;
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+            
         }
-        
         return success;
     }
 
-    @Override
-    public void loadDatabase() {
-        File filePath;
-        FileInputStream file;
-        ObjectInputStream input;
+    public static boolean loadDatabase() {
+        File file;
+        FileInputStream fileInput;
+        ObjectInputStream objectInput;
+        Database database = new Database();
+        file = new File(System.getProperty("user.dir")+"/AuctionDataBase/DatabaseDataBase/database.txt");
         try {
-            filePath = new File(System.getProperty("user.dir")+"/AuctionDataBase/DatabaseDataBase/database.txt");
-            file = new FileInputStream(filePath);
-            input = new ObjectInputStream(file);
+            fileInput = new FileInputStream(file);
+            objectInput = new ObjectInputStream(fileInput);
+            database = (Database)objectInput.readObject();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+            System.out.println("IO");
+            return false;
+        } catch ( ClassNotFoundException ex){
+            System.out.println(ex.getMessage());
+            System.out.println("ClassNotFound");
+            return false;
         }
+        database.loadToStatic();
+        return true;
     }
     
 }
