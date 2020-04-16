@@ -13,7 +13,7 @@ public class AuctionedProduct implements java.io.Serializable {
     /**
      * this product
      */
-    public AuctionProduct auctionProduct;
+    public AuctionProduct product;
     /**
      * the most money bidden on this product
      */
@@ -25,7 +25,27 @@ public class AuctionedProduct implements java.io.Serializable {
     
     //=========================== Constructor =======================
     
-    
+    public AuctionedProduct(AuctionProduct product, double maxBid){
+        this.product = product;
+        this.maxBid = maxBid;
+        this.username = "";
+    }
     
     //=========================== method =======================
+    public String getWinner(){
+        return username;
+    }
+    public void setWinner(String username){
+        this.username = username;
+    }
+    public double getMaxBid(){
+        return this.maxBid;
+    }
+    public void setMaxBid(double maxBid){
+        this.maxBid = maxBid;
+    }
+    public AuctionProduct getProduct(){
+        return this.product;
+    }
+    
 }

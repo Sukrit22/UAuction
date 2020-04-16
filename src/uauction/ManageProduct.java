@@ -12,6 +12,8 @@ import javafx.scene.image.Image;
  * @author Sukrit22
  */
 public class ManageProduct {
+
+
     public ManageProduct(){
         
     }
@@ -22,16 +24,12 @@ public class ManageProduct {
      * 
      * @return whether the register is fail or succeed
      */
-    public static boolean register(String name, String description, String image, Double startingBid, Double minimumBid){
-        boolean isSuccess = false;
-        //do what you want
+    public static boolean register(String name, String description, String imageName, Double startingBid, Double minimumBid,String username){
+        AuctionProduct product = new AuctionProduct(name,description,imageName,startingBid,minimumBid);
+        String fileName = username+"."+product.getDatePosted().getTime();
+        product.setFileName(fileName);
         
-        
-        
-        //after registered the product, add it to activeProduct in Database class
-        
-        if(isSuccess)
-            return true;
+        System.out.println(fileName);
         return false;
     }
     

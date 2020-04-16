@@ -22,8 +22,9 @@ import java.util.logging.Logger;
  */
 public class SaveAndLoad {
 
-    public static void saveProduct(AuctionProduct ap) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static boolean saveProduct(AuctionProduct ap,String fileName) {
+        File file;
+        FileOutputStream file output
     }
 
     public static AuctionProduct loadProduct(String fileName) {
@@ -87,6 +88,7 @@ public class SaveAndLoad {
             
             //Write WHat
             Database d = new Database();
+            d.saveFromStatic();
             objectOutput.writeObject(d);
             objectOutput.close();
             fileOut.close();
@@ -102,7 +104,7 @@ public class SaveAndLoad {
         File file;
         FileInputStream fileInput;
         ObjectInputStream objectInput;
-        Database database = new Database();
+        Database database;
         file = new File(System.getProperty("user.dir")+"/AuctionDataBase/DatabaseDataBase/database.txt");
         try {
             fileInput = new FileInputStream(file);

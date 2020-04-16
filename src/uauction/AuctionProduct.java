@@ -68,4 +68,13 @@ public class AuctionProduct implements java.io.Serializable {
     public String getImageName(){
         return this.imageName;
     }
+
+    public double getStartingBid() {
+        return startingBid;
+    }
+
+    public double getMinimumBid() {
+        return minimumBid;
+    }
+    
 }
