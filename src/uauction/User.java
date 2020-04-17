@@ -31,10 +31,7 @@ public class User implements Serializable {
     double balance = 0;
     private boolean adminStatus;
     private Permission userPermission;
-    
-    public User(){
-        
-    }
+
     public User(String username,String password,String email){
         this.username = username;
         this.password = password;

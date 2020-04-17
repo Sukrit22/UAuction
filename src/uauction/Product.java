@@ -21,11 +21,10 @@ import javafx.scene.image.Image;
  *
  * @author Sukrit22
  */
-public class AuctionProduct {
+public class Product implements java.io.Serializable {
     //private java.util.ArrayList<javafx.scene.image.Image> additionalImage;
     
-    private File ImagePath = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductImage/"+this.name+".png");
-    private Image image;
+    private String imageName;
     
     private String name;
     private String description;
@@ -39,41 +38,26 @@ public class AuctionProduct {
     
             
             
-    public AuctionProduct(String name, String description, Image image, double startingBid, double minimumBid){
+    public Product(String name, String description, String imageName, double startingBid, double minimumBid,Date endDate){
         datePosted = new Date();
+        dateEndBid = endDate;
         this.name = name;
         this.description = description;
         this.startingBid = startingBid;
         this.minimumBid = minimumBid;
+        this.imageName = imageName;
     }
-    
-    public void setImage()
-    {
-        try 
-        {
-            FileInputStream input = new FileInputStream(ImagePath);
-            image = new Image(input);
-        } 
-        catch (FileNotFoundException ex) 
-        {
-            System.out.println(ex.toString());
-        }
-    }
-    
-    public String getName()
-    {
+
+    public String getName(){
         return name;
     }
-    public String getDescription()
-    {
+    public String getDescription(){
         return description;
     }
-    public Date getDatePosted()
-    {
+    public Date getDatePosted(){
         return datePosted;
     }
-    public Date getDateEndBid()
-    {
+    public Date getDateEndBid(){
         return dateEndBid;
     }
     public String getFileName(){
@@ -81,6 +65,17 @@ public class AuctionProduct {
     }
     public void setFileName(String fileName){
         this.myFileName = fileName;
+    }
+    public String getImageName(){
+        return this.imageName;
+    }
+
+    public double getStartingBid() {
+        return startingBid;
+    }
+
+    public double getMinimumBid() {
+        return minimumBid;
     }
     
 }

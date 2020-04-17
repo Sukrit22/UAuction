@@ -9,17 +9,43 @@ package uauction;
  *
  * @author Sukrit22
  */
-public class AuctionedProduct {
+public class AuctionedProduct implements java.io.Serializable {
     /**
      * this product
      */
-    public AuctionProduct auctionProduct;
+    public Product product;
     /**
-     * the most money bidded on this product
+     * the most money bidden on this product
      */
     public double maxBid;
     /**
      * Who win the auction of this product
      */
     public String username;
+    
+    //=========================== Constructor =======================
+    
+    public AuctionedProduct(Product product, double maxBid){
+        this.product = product;
+        this.maxBid = maxBid;
+        this.username = "";
+    }
+    
+    //=========================== method =======================
+    public String getWinner(){
+        return username;
+    }
+    public void setWinner(String username){
+        this.username = username;
+    }
+    public double getMaxBid(){
+        return this.maxBid;
+    }
+    public void setMaxBid(double maxBid){
+        this.maxBid = maxBid;
+    }
+    public Product getProduct(){
+        return this.product;
+    }
+    
 }
