@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Stage;
+package uauction.Stage;
 
-import Scene.SceneHomeAlreadyLogIn;
-import Scene.SceneHomeUnLogIn;
+import uauction.Scene.SceneHomeAlreadyLogIn;
+import uauction.Scene.SceneHomeUnLogIn;
 
 /**
  *

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Scene;
+package uauction.Scene;
 
-import AuctionMain.CreateButton;
-import AuctionMain.CreateTextField;
+import uauction.AuctionMain.CreateButton;
+import uauction.AuctionMain.CreateTextField;
 import javafx.scene.layout.Pane;
 
 /**

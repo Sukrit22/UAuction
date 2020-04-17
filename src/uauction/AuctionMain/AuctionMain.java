@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AuctionMain;
+package uauction.AuctionMain;
 
-import Scene.SceneHomeAlreadyLogIn;
-import Scene.SceneHomeUnLogIn;
-import Stage.SetUpStage;
-import Stage.StageStorage;
-import Stage.setSceneForStage;
+import uauction.Scene.SceneHomeAlreadyLogIn;
+import uauction.Scene.SceneHomeUnLogIn;
+import uauction.Stage.SetUpStage;
+import uauction.Stage.StageStorage;
+import uauction.Stage.setSceneForStage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

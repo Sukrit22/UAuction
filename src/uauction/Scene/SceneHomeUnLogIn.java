@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Scene;
+package uauction.Scene;
 
-import static AuctionMain.ButtonEvent.buttonEventForSceneHomeUnLogIn;
-import ScrollPaneFolder.PaneDefault;
-import AuctionMain.CreateButton;
-import AuctionMain.CreateTextField;
+import static uauction.AuctionMain.ButtonEvent.buttonEventForSceneHomeUnLogIn;
+import uauction.ScrollPaneFolder.PaneDefault;
+import uauction.AuctionMain.CreateButton;
+import uauction.AuctionMain.CreateTextField;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

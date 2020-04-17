@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Stage;
+package uauction.Stage;
 
-import Scene.SceneHomeUnLogIn;
+import uauction.Scene.SceneHomeUnLogIn;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -30,9 +30,10 @@ public class SetUpStage {
         StageStorage.Auction.setMaxHeight(1080);
         StageStorage.Auction.setMinWidth(1920);
         StageStorage.Auction.setMinHeight(1080);
-        StageStorage.Auction.setMaximized(true);
-        StageStorage.Auction.initStyle(StageStyle.UNDECORATED);
+        //StageStorage.Auction.setMaximized(true);
+        //StageStorage.Auction.initStyle(StageStyle.UNDECORATED);
         StageStorage.Auction.setTitle("Auction");
+        StageStorage.Auction.setY(100);
         //StageStorage.Auction.setScene(SceneHomeUnLogIn.sceneHomeUnLogIn());
 
     }

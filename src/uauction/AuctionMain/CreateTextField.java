@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AuctionMain;
+package uauction.AuctionMain;
 
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;

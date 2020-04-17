@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Effect;
+package uauction.Effect;
 
-import AuctionMain.CreateButton;
-import AuctionMain.CreateTextField;
-import Scene.SceneHomeUnLogIn;
+import uauction.AuctionMain.CreateButton;
+import uauction.AuctionMain.CreateTextField;
+import uauction.Scene.SceneHomeUnLogIn;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;

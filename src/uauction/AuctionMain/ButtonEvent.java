@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AuctionMain;
+package uauction.AuctionMain;
 
-import Effect.PopUp;
-import Scene.PaneCenter;
-import Scene.PaneLeft;
-import Scene.PaneTop;
-import Scene.SceneHomeUnLogIn;
-import Stage.setSceneForStage;
+import uauction.Effect.PopUp;
+import uauction.Scene.PaneCenter;
+import uauction.Scene.PaneLeft;
+import uauction.Scene.PaneTop;
+import uauction.Scene.SceneHomeUnLogIn;
+import uauction.Stage.setSceneForStage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import Scene.CategorisePane;
-import Scene.Product;
+import uauction.Scene.CategorisePane;
+import uauction.Scene.Product;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;

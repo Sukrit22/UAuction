@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AuctionMain;
+package uauction.AuctionMain;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

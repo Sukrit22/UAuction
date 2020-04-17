@@ -12,15 +12,18 @@ package uauction;
  */
 public class ServerUDPHandler {
 //======================= data field =============================
+    public static final int myPort = 6969;
 
 
-
+    
 //======================= Constructor ============================
 
 
 
 //======================= method =================================
 
-
+    public static void run(){
+    
+    }
 
 }
