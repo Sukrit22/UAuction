@@ -6,10 +6,10 @@
 
 package uauction;
 
-/**ActionCenter is a class that ..
+/**Client is a class that ..
  *
  * @author Sukrit22
  */
-public class ActionCenter {
+public class ClientUDPHandler {
 
 }

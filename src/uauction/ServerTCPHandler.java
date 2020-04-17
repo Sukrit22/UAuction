@@ -6,15 +6,12 @@
 
 package uauction;
 
-import javafx.application.Application;
-
-/**Server is a class that ..
+/**ServerTCP is a class that ..
  *
  * @author Sukrit22
  */
-public class Server {
+public class ServerTCPHandler {
 //======================= data field =============================
-
 
 
 //======================= Constructor ============================
