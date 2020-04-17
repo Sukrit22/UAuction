@@ -15,6 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.image.Image;
 
 /**SaveAndLoad is a class that ..
  *
@@ -154,6 +155,10 @@ public class SaveAndLoad {
         }
         database.loadToStatic();
         return true;
+    }
+    
+        public static Image load(String imageName){
+        return new Image("file:///"+System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName+".png");
     }
     
 }
