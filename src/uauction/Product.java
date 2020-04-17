@@ -21,7 +21,7 @@ import javafx.scene.image.Image;
  *
  * @author Sukrit22
  */
-public class AuctionProduct implements java.io.Serializable {
+public class Product implements java.io.Serializable {
     //private java.util.ArrayList<javafx.scene.image.Image> additionalImage;
     
     private String imageName;
@@ -38,7 +38,7 @@ public class AuctionProduct implements java.io.Serializable {
     
             
             
-    public AuctionProduct(String name, String description, String imageName, double startingBid, double minimumBid,Date endDate){
+    public Product(String name, String description, String imageName, double startingBid, double minimumBid,Date endDate){
         datePosted = new Date();
         dateEndBid = endDate;
         this.name = name;

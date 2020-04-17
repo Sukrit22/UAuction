@@ -25,11 +25,11 @@ public class ManageProduct {
      */
     public static boolean register(String name, String description, String image, Double startingBid, Double minimumBid, String username, Date endDate){
         //do what you want
-        AuctionProduct ap = new AuctionProduct(name,description,image,startingBid,minimumBid,endDate);
+        Product ap = new Product(name,description,image,startingBid,minimumBid,endDate);
         String fileName = username + "." + ap.getDatePosted().getTime();
         ap.setFileName(fileName);
         SaveAndLoad.saveProduct(ap);
-        
+        Database.activeProduct.add(new ActiveProduct(ap));
         
         //after registered the product, add it to activeProduct in Database class
         return SaveAndLoad.saveProduct(ap);

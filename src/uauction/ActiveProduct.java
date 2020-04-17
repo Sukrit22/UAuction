@@ -24,9 +24,9 @@ public class ActiveProduct implements java.io.Serializable {
     /**
      * the product to keep track
      */
-    private final AuctionProduct product;
+    private final Product product;
     //=========================== Constructor =======================
-    ActiveProduct(AuctionProduct product){
+    ActiveProduct(Product product){
         this.product = product;
         this.biddingHistory = new java.util.ArrayList<String>();
         this.currentBid = this.product.getStartingBid();
@@ -54,7 +54,7 @@ public class ActiveProduct implements java.io.Serializable {
         this.currentBid = currentBid;
     }
 
-    public AuctionProduct getProduct() {
+    public Product getProduct() {
         return product;
     }
 }

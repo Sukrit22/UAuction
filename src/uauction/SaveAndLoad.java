@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class SaveAndLoad {
 
-    public static boolean saveProduct(AuctionProduct ap) {
+    public static boolean saveProduct(Product ap) {
         boolean success;
         File file;
         FileOutputStream fileOut;
@@ -43,7 +43,7 @@ public class SaveAndLoad {
         return success;
     }
 
-    public static AuctionProduct loadProduct(String fileName){
+    public static Product loadProduct(String fileName){
         File file;
         FileInputStream fileIn;
         ObjectInputStream input;
@@ -51,7 +51,7 @@ public class SaveAndLoad {
             file = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductDataBase/"+ fileName);
             fileIn = new FileInputStream(file);
             input = new ObjectInputStream(fileIn);
-            AuctionProduct ap = (AuctionProduct) input.readObject();
+            Product ap = (Product) input.readObject();
             input.close();
             fileIn.close();
             return ap;
