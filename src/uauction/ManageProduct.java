@@ -6,6 +6,8 @@
 package uauction;
 
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.scene.image.Image;
 
 /**
@@ -29,10 +31,14 @@ public class ManageProduct {
         String fileName = username + "." + ap.getDatePosted().getTime();
         ap.setFileName(fileName);
         SaveAndLoad.saveProduct(ap);
-        Database.activeProduct.add(new ActiveProduct(ap));
+        if(SaveAndLoad.saveProduct(ap))
+            Database.activeProduct.add(new ActiveProduct(ap));
         
         //after registered the product, add it to activeProduct in Database class
         return SaveAndLoad.saveProduct(ap);
     }
     
+    public static Date updateEndBitTime(){
+        
+    }
 }

@@ -157,7 +157,7 @@ public class SaveAndLoad {
         return true;
     }
     
-        public static Image load(String imageName){
+        public static Image loadImage(String imageName){
         return new Image("file:///"+System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName+".png");
     }
     

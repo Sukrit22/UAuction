@@ -25,6 +25,8 @@ public class ActiveProduct implements java.io.Serializable {
      * the product to keep track
      */
     private final Product product;
+    
+    
     //=========================== Constructor =======================
     ActiveProduct(Product product){
         this.product = product;
