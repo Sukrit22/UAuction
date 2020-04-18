@@ -5,6 +5,7 @@
  */
 package uauction;
 
+import java.io.File;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,7 +29,7 @@ public class ManageProduct {
     public static boolean register(String name, String description, String image, Double startingBid, Double minimumBid, String username, Date endDate){
         //do what you want
         Product ap = new Product(name,description,image,startingBid,minimumBid,endDate);
-        String fileName = username + "." + ap.getDatePosted().getTime();
+        String fileName = username + "." + ap.getDatePosted().getTime() + ".txt";
         ap.setFileName(fileName);
         SaveAndLoad.saveProduct(ap);
         if(SaveAndLoad.saveProduct(ap))
@@ -38,7 +39,41 @@ public class ManageProduct {
         return SaveAndLoad.saveProduct(ap);
     }
     
-    public static Date updateEndBitTime(){
-        
+    public static void delete(ActiveProduct ap, Date deleteDate){
+        ProhibitProduct pp = new ProhibitProduct(ap, deleteDate);
+        Database.prohibitProduct.add(pp);
+    }
+    
+    /**
+     * These update function remove object form databaseArray and delete file after 1 hour
+     */ 
+    public static void updateProhibitProductArray(){
+        for (ProhibitProduct pp : Database.prohibitProduct) {
+            if((new Date()).getTime() - pp.getDeleteDate().getTime() <= 3_600_000){
+                //Remove prohibitProduct form DatabaseArray
+                Database.prohibitProduct.remove(pp);
+                
+                //Delete product file from ProductDatabase
+                File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/ProductDataBase/" + 
+                   pp.getActiveProduct().getProduct().getFileName());
+                if(file.exists())
+                    file.delete();
+            }
+        }
+    }
+    
+    public static void updateAuctionedProductArray(){
+        for (AuctionedProduct ap : Database.auctionedProduct) {
+            if((new Date()).getTime() - ap.finishedTime.getTime() <= 3_600_000){
+                //Remove auctionedProduct form DatabaseArray
+                Database.auctionedProduct.remove(ap);
+                
+                //Delete product file from ProductDatabase
+                File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/ProductDataBase/" + 
+                   ap.getProduct().getFileName());
+                if(file.exists())
+                    file.delete();
+            }
+        }
     }
 }

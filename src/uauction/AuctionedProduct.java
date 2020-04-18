@@ -5,6 +5,8 @@
  */
 package uauction;
 
+import java.util.Date;
+
 /**
  *
  * @author Sukrit22
@@ -22,13 +24,18 @@ public class AuctionedProduct implements java.io.Serializable {
      * Who win the auction of this product
      */
     public String username;
+    /**
+     * What the time when the bid is finished
+     */
+    public Date finishedTime;
     
     //=========================== Constructor =======================
     
-    public AuctionedProduct(ActiveProduct activeProduct, double maxBid){
+    public AuctionedProduct(ActiveProduct activeProduct, double maxBid, Date finishedTime){
         this.product = activeProduct.getProduct();
         this.maxBid = maxBid;
         this.username = "";
+        this.finishedTime = finishedTime;
     }
     
     //=========================== method =======================

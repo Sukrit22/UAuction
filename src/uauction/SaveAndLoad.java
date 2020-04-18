@@ -30,7 +30,7 @@ public class SaveAndLoad {
         ObjectOutputStream output;
         try {
             file = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductDataBase/"+ 
-                   ap.getFileName() + "." + ap.getDatePosted().getTime() + ".txt");
+                   ap.getFileName());
             fileOut = new FileOutputStream(file);
             output = new ObjectOutputStream(fileOut);
             output.writeObject(ap);

@@ -15,6 +15,7 @@ public class Database implements Serializable {
     Database(){
         this.forSaveActiveProduct = new java.util.ArrayList<ActiveProduct>();
         this.forSaveAuctionedProduct = new java.util.ArrayList<AuctionedProduct>();
+        this.forSaveProhibitProduct = new java.util.ArrayList<ProhibitProduct>();
     }
     /** keep registered product
      *
@@ -37,6 +38,10 @@ public class Database implements Serializable {
      */
     public static java.util.ArrayList<AuctionedProduct> auctionedProduct = new java.util.ArrayList<AuctionedProduct>();//whenIt'sPassedItsEndBidDate
     /**
+     * Use to keep track of which product is delete from market
+     */
+    public static java.util.ArrayList<ProhibitProduct> prohibitProduct = new java.util.ArrayList<ProhibitProduct>();//whenIt'sBeenDelete
+    /**
      * temporary data field used in saving and loading
      */
     private java.util.ArrayList<ActiveProduct> forSaveActiveProduct;
@@ -44,6 +49,10 @@ public class Database implements Serializable {
      * temporary data field used in saving and loading
      */            
     private java.util.ArrayList<AuctionedProduct> forSaveAuctionedProduct;
+    /**
+     * temporary data field used in saving and loading
+     */            
+    private java.util.ArrayList<ProhibitProduct> forSaveProhibitProduct;
     /**
      * use to load database in one command
      * @return whether load success or not
@@ -64,6 +73,7 @@ public class Database implements Serializable {
     public void loadToStatic(){
         Database.activeProduct = this.forSaveActiveProduct;
         Database.auctionedProduct = this.forSaveAuctionedProduct;
+        Database.prohibitProduct = this.forSaveProhibitProduct;
     }
     /**
      * transfer data in static database to data in object for saving
@@ -71,6 +81,7 @@ public class Database implements Serializable {
     public void saveFromStatic(){
         this.forSaveActiveProduct = Database.activeProduct;
         this.forSaveAuctionedProduct = Database.auctionedProduct;
+        this.forSaveProhibitProduct = Database.prohibitProduct;
     }
     
     
