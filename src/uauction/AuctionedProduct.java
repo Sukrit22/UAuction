@@ -48,4 +48,5 @@ public class AuctionedProduct implements java.io.Serializable {
         return this.product;
     }
     
+    
 }
