@@ -26,7 +26,8 @@ public class ManageProduct {
      * 
      * @return whether the register is fail or succeed
      */
-    public static boolean register(String name, String description, String image, Double startingBid, Double minimumBid, String username, Date endDate){
+    public static boolean registerProduct(String name, String description, String image, 
+            Double startingBid, Double minimumBid, String username, Date endDate){
         //do what you want
         Product ap = new Product(name,description,image,startingBid,minimumBid,endDate);
         String fileName = username + "." + ap.getDatePosted().getTime() + ".txt";
@@ -39,9 +40,18 @@ public class ManageProduct {
         return SaveAndLoad.saveProduct(ap);
     }
     
-    public static void delete(ActiveProduct ap, Date deleteDate){
+    public static void deleteProduct(ActiveProduct ap, Date deleteDate){
         ProhibitProduct pp = new ProhibitProduct(ap, deleteDate);
         Database.prohibitProduct.add(pp);
+        Database.activeProduct.remove(ap);
+    }
+    
+    public static void endBidding(ActiveProduct ap){
+        if(ap.getProduct().getDateEndBid().getTime() - ap.getProduct().getDatePosted().getTime() <= 0){
+            AuctionedProduct auctioned = new AuctionedProduct(ap, ap.getCurrentBid(), (new Date()));
+            Database.auctionedProduct.add(auctioned);
+            Database.activeProduct.remove(ap);
+        }
     }
     
     /**
