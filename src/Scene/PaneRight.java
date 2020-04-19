@@ -18,7 +18,7 @@ public class PaneRight {
 
     static public void setUp() {
 
-        pane.getChildren().add(CategorisePane.pane.get(0));
+        pane.getChildren().add(CategorisePane.paneArray.get(0));
 
     }
 }

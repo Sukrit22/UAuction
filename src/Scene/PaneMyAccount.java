@@ -5,7 +5,6 @@
  */
 package Scene;
 
-import AuctionMain.CreateButton;
 import AuctionMain.UserData;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,9 +34,9 @@ public class PaneMyAccount {
     static private Pane paneBla = new Pane();
     //static private Pane r = new Pane();
     static public Label name = new Label("Name");
-    static public Button b1 = new Button("ADD");
-    static public Button b2 = new Button("DELETE");
-    static public Button b3 = new Button("Back");
+    static public Button btnAdd = new Button("ADD");
+    static public Button btnDelete = new Button("DELETE");
+    static public Button btnBack = new Button("Back");
     static public Button pr = new Button("Profile");
     static public Button my = new Button("My _____");
     static public Button bl = new Button("Bla______");
@@ -49,10 +48,6 @@ public class PaneMyAccount {
             paneMyProfile.setVisible(true);
             scrollPaneMyObject.setVisible(false);
             paneBla.setVisible(false);
-            //System.out.println("Hello");
-            //System.out.println(paneRight.getChildren().size());
-            //paneRight.getChildren().remove(paneRight.getChildren().size());
-            //paneRight.getChildren().add(paneMyProfile);
         };
         PaneMyAccount.pr.setOnAction(my1);
 
@@ -62,7 +57,7 @@ public class PaneMyAccount {
             System.out.println(paneMyObject.getChildren().size());
             if (paneMyObject.getChildren().isEmpty()) {
                 System.out.println("Hello2");
-                paneMyObject.getChildren().add(UserData.userPane.get(UserData.Usernumber));
+                paneMyObject.getChildren().add(UserData.userPaneArray.get(UserData.ID_UserThatLogIn));
             }
             scrollPaneMyObject.setVisible(true);
             paneBla.setVisible(false);
@@ -90,7 +85,7 @@ public class PaneMyAccount {
         //paneMyObject.getChildren().addAll(new Label("My Object"), new Button("2"));
         paneBla.setVisible(false);
         VBox vbox0 = new VBox();
-        vbox0.getChildren().addAll(new Label("My________"), new Button("3"), b1, b2, b3);
+        vbox0.getChildren().addAll(new Label("My________"), new Button("3"), btnAdd, btnDelete, btnBack);
         paneBla.getChildren().addAll(vbox0);
 
         paneRight.setMinWidth(1700);

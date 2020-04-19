@@ -11,7 +11,6 @@ import AuctionMain.UserData;
 import Effect.PopUp;
 import Scene.PaneMyAccount;
 import Scene.PaneTop;
-import Scene.SceneHomeAlreadyLogIn;
 import Scene.SceneHomeUnLogIn;
 import Stage.setSceneForStage;
 
@@ -22,7 +21,6 @@ import Stage.setSceneForStage;
 public class MyFunction {
 
     static public void inti() {
-        SceneHomeAlreadyLogIn.sceneHomeAlreadyLogIn();
         SceneHomeUnLogIn.sceneHomeUnLogIn();
         setSceneForStage.stageSetHomeUnLogIn();
         PopUp.emailNotAvailable();
@@ -43,7 +41,7 @@ public class MyFunction {
                     logInSuccess = true;
                     UserData.user.get(i).setStatus(true);
                     PaneMyAccount.name.setText(UserData.user.get(i).getEmail());
-                    UserData.Usernumber = UserData.user.get(i).getId();
+                    UserData.ID_UserThatLogIn = UserData.user.get(i).getId();
                     System.out.println("ID " + UserData.user.get(i).getId());
                 }
             }
@@ -54,8 +52,8 @@ public class MyFunction {
         }
         //Log In Success
         if (logInSuccess) {
-            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOut);
-            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogIn);
+            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
         } else {
             if (SceneHomeUnLogIn.getStackPane().getChildren().size() != 3) {
@@ -94,11 +92,11 @@ public class MyFunction {
             //Okay
             if (CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())) {
                 UserData.user.add(new UserData(CreateTextField.email.getText(), CreateTextField.password.getText()));
-                PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOut);
-                PaneTop.getPane().getChildren().remove(CreateButton.buttonLogIn);
+                PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
                 SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
                 PaneMyAccount.name.setText(UserData.user.get(i).getEmail());
-                UserData.Usernumber = UserData.user.get(i).getId();
+                UserData.ID_UserThatLogIn = UserData.user.get(i).getId();
             } else {
                 //Password Not Same
                 PopUp.worng2.setVisible(true);

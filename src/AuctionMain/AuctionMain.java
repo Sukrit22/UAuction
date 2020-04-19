@@ -7,7 +7,6 @@ package AuctionMain;
 
 import Effect.PopUp;
 import Function.MyFunction;
-import Scene.SceneHomeAlreadyLogIn;
 import Scene.SceneHomeUnLogIn;
 import Stage.SetUpStage;
 import Stage.setSceneForStage;

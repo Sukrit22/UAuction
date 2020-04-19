@@ -15,10 +15,9 @@ import javafx.scene.layout.VBox;
  * @author Sitth
  */
 public class UserData {
-    private int id = 0;
-    static public int numbersdf = 0;
-    static public int number;
-    static public int Usernumber;
+    private int id;
+    static private int count = 0;
+    static public int ID_UserThatLogIn;
     private String password;
     private String email;
     private boolean status = false;
@@ -31,19 +30,17 @@ public class UserData {
         this.status = status;
     }
     static public ArrayList<UserData> user = new ArrayList<UserData>();
-    static public ArrayList<Pane> userPane = new ArrayList<Pane>();
-    static public ArrayList<VBox> vbox = new ArrayList<VBox>();
-    //static public ArrayList<int> numID = new ArrayList<int>();
+    static public ArrayList<Pane> userPaneArray = new ArrayList<Pane>();
+    static public ArrayList<VBox> vboxArray = new ArrayList<VBox>();
 
     public UserData(String email, String password) {
         this.password = password;
         this.email = email;       
-        number = id;
-        vbox.add(new VBox());
-        id = numbersdf;
-        userPane.add(new Pane(new Label(email), vbox.get(id)));
+        vboxArray.add(new VBox());
+        id = count;
+        userPaneArray.add(new Pane(new Label(email), vboxArray.get(id)));
         
-        numbersdf++;
+        count++;
         
     }
 

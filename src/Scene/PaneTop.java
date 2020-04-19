@@ -26,7 +26,7 @@ public class PaneTop {
         CreateTextField.search.setMinWidth(440);
         CreateTextField.search.setLayoutX(220);
         CreateTextField.search.setLayoutY(120);
-        pane.getChildren().addAll(CreateTextField.search, CreateButton.buttonSearch, CreateButton.buttonLogIn);
+        pane.getChildren().addAll(CreateTextField.search, CreateButton.buttonSearch, CreateButton.buttonLogInPaneTop);
         
     }
 

@@ -22,14 +22,14 @@ public class CreateButton {
     static public Button button = new Button("Test");
     static public Button button1 = new Button("Test 2");
     static public Button button3 = new Button("Test 3");
-    static public Group buttonPopUpCreateAccount = new Group();
+    static public Group buttonPopSwitchToSignUp = new Group();
+    static public Group buttonPopUpSwitchToLogIn = new Group();
     static public Group buttonPopUpLogIn = new Group();
-    static public Group buttonPopUpLogIn2 = new Group();
-    static public Group buttonPopUpSignUp = new Group();
+    static public Group buttonPopUpRegister = new Group();
     static public Group buttonSearch = new Group();
-    static public Group buttonLogIn = new Group();
+    static public Group buttonLogInPaneTop = new Group();
     static public Group buttonMyAccount = new Group();
-    static public Group buttonSignOut = new Group();
+    static public Group buttonSignOutTopPane = new Group();
 
     static public void buttonCreateAccount() {
         Rectangle test = new Rectangle(300, 0, 300, 140);
@@ -51,8 +51,8 @@ public class CreateButton {
         pane.setLayoutX(300);
         pane.setLayoutY(0);
         pane.getChildren().add(createAccount);
-        buttonPopUpCreateAccount = new Group();
-        buttonPopUpCreateAccount.getChildren().addAll(test, test2, test3, pane);
+        buttonPopSwitchToSignUp = new Group();
+        buttonPopSwitchToSignUp.getChildren().addAll(test, test2, test3, pane);
 
     }
 
@@ -74,8 +74,8 @@ public class CreateButton {
         StackPane pane = new StackPane();
         pane.setMinSize(300, 140);
         pane.getChildren().add(logIn);
-        buttonPopUpLogIn = new Group();
-        buttonPopUpLogIn.getChildren().addAll(test, test2, test3, pane);
+        buttonPopUpSwitchToLogIn = new Group();
+        buttonPopUpSwitchToLogIn.getChildren().addAll(test, test2, test3, pane);
 
     }
 
@@ -96,8 +96,8 @@ public class CreateButton {
         pane.setLayoutX(logIn.getBoundsInParent().getWidth() / 2 + 80 / 2);
         pane.setLayoutY(160 + 48 + 48 + 48);
 
-        buttonPopUpLogIn2 = new Group();
-        buttonPopUpLogIn2.getChildren().addAll(test, pane);
+        buttonPopUpLogIn = new Group();
+        buttonPopUpLogIn.getChildren().addAll(test, pane);
     }
 
     static public void buttonPopUpSignUp() {
@@ -117,8 +117,8 @@ public class CreateButton {
         pane.setLayoutX(logIn.getBoundsInParent().getWidth() / 2 + 80 / 2);
         pane.setLayoutY(160 + 48 + 48 + 48 + 48 + 24);
 
-        buttonPopUpSignUp = new Group();
-        buttonPopUpSignUp.getChildren().addAll(test, pane);
+        buttonPopUpRegister = new Group();
+        buttonPopUpRegister.getChildren().addAll(test, pane);
 
     }
 
@@ -159,7 +159,7 @@ public class CreateButton {
         //System.out.println(logIn.getBoundsInParent().getWidth() + " " + logIn.getBoundsInParent().getHeight());
         //pane.setLayoutX(logIn.getBoundsInParent().getWidth() / 2);
 
-        buttonLogIn = new Group(test, pane);
+        buttonLogInPaneTop = new Group(test, pane);
     }
     
     static public void buttonMyAccount() {
@@ -200,7 +200,7 @@ public class CreateButton {
         //System.out.println(logIn.getBoundsInParent().getWidth() + " " + logIn.getBoundsInParent().getHeight());
         //pane.setLayoutX(logIn.getBoundsInParent().getWidth() / 2);
 
-        buttonSignOut = new Group(test, pane);
+        buttonSignOutTopPane = new Group(test, pane);
     }
 
 }
