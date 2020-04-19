@@ -39,7 +39,7 @@ public final class Product implements java.io.Serializable {
     private java.util.Date datePosted;
     private java.util.Date dateEndBid;
     
-    private ImageIcon image;
+    private Image image;
             
             
     public Product(String name, String description, String imageName, double startingBid, double minimumBid,Date endDate){
@@ -50,7 +50,7 @@ public final class Product implements java.io.Serializable {
         this.startingBid = startingBid;
         this.minimumBid = minimumBid;
         this.imageName = imageName;
-        image = new ImageIcon(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+ this.getImageName()+ ".jpg");
+        image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+ this.getImageName()+ ".jpg");
         
     }
     public Product(String name, String description, String imageName,String initImagePath, double startingBid, double minimumBid,Date endDate){
@@ -62,22 +62,13 @@ public final class Product implements java.io.Serializable {
         this.startingBid = startingBid;
         this.minimumBid = minimumBid;
         this.imageName = imageName;
-        writeImportedImageFile(initImagePath);
-        image = new ImageIcon(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+ this.getImageName()+ ".jpg");
-    }
-    
-    
-    public void writeImportedImageFile(String initPath){
+        ManageProduct.writeImportedImageFile(initImagePath,imageName);
+        image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName+ ".jpg");
         
-        File initImage = new File(initPath);
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(initImage);
-            ImageIO.write(image,"jpg",new File(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+ this.getImageName()+ ".jpg"));
-        } catch (IOException ex) {
-            System.out.println(ex.toString());
-        }
     }
+    
+    
+    
     
     public void setImage(String imageName)
     {
