@@ -7,9 +7,7 @@ package AuctionMain;
 
 import Effect.PopUp;
 import Function.MyFunction;
-import Scene.SceneHomeUnLogIn;
 import Stage.SetUpStage;
-import Stage.setSceneForStage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

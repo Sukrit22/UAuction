@@ -5,7 +5,6 @@
  */
 package Stage;
 
-import Scene.SceneHomeUnLogIn;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 

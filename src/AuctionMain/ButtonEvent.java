@@ -9,21 +9,13 @@ import Effect.PopUp;
 import Scene.PaneMyAccount;
 import Scene.PaneTop;
 import Scene.SceneHomeUnLogIn;
-import Stage.setSceneForStage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import Scene.CategorisePane;
 import Scene.Product;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.control.Label;
-import javafx.scene.shape.Rectangle;
 import Function.MyFunction;
 import static Scene.PaneMyAccount.paneMyObject;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 
 /**
  *
@@ -174,6 +166,7 @@ public class ButtonEvent {
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PaneMyAccount.getPaneMyAcclayer1());
         };
         PaneMyAccount.btnBack.setOnAction(back);
+        PaneMyAccount.btnBack2.setOnAction(back);
 
     }
 }

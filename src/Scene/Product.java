@@ -5,7 +5,6 @@
  */
 package Scene;
 
-import AuctionMain.UserData;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -49,6 +48,7 @@ public class Product {
             //UserData.vboxArray.get(UserData.ID_UserThatLogIn).getChildren().remove(position - 1);
             //UserData.vboxArray.get(UserData.ID_UserThatLogIn).getChildren().get(id - 1).setDisable(true);
             CategorisePane.vbox1.getChildren().get(id-1).setDisable(true);
+            //CategorisePane.vbox1.getChildren().remove(id-1);
             /*if(id-1>0)
             for(int i = id - 1 ; i<productArray.size(); i++){
             productArray.get(i).position -= 1;

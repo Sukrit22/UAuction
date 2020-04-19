@@ -9,7 +9,6 @@ import AuctionMain.CreateButton;
 import AuctionMain.CreateTextField;
 import Scene.SceneHomeUnLogIn;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
