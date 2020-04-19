@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -64,8 +65,17 @@ public class User implements Serializable {
         return password;
     }
 
-   
+    //Methods
+    boolean canBuy(){
+        if (userPermission.equals(Permission.seller)||userPermission.equals(Permission.both))
+            return true;
+        return false;
+    }
+    boolean canSell(){
+        if (userPermission.equals(Permission.seller)||userPermission.equals(Permission.both))
+            return true;
+        return false;
+    }
 
-    
     
 }

@@ -25,18 +25,9 @@ public class Register {
         /*
         if condition check for any same account
         */
-        
-        
         File file = new File(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+username+".txt");
-       
         
-        /*File usernameFile = new File("C:/Users/USER/OneDrive - KMITL/AuctionDataBase/USERNAMES.txt");
-        File pathFile = new File("C:/Users/USER/OneDrive - KMITL/AuctionDataBase/PATH.txt");*/
-        
-       
-        
-        if(file.exists())
-        {
+        if(file.exists()){
             chosen = true;
         }
                
@@ -57,10 +48,6 @@ public class Register {
            return false;
         }
         return true;
-        
-      
-        
-        
     }
     public static boolean search(File dirPath,String name)
     {

@@ -39,60 +39,38 @@ public  class Login {
        ObjectInputStream input = null;
        User user = null;
        
-        try 
-        {
-            reader = new FileInputStream(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+username+".txt");
-            
-            
+        try {
+           reader = new FileInputStream(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+username+".txt");
            try {
                input = new ObjectInputStream(reader);
            } 
            catch (IOException ex) {
                System.out.println(ex.getMessage());
            }
-        }
-        catch(FileNotFoundException ex)
-        {
-            found =false;
+        } catch(FileNotFoundException ex) {
+            found = false;
             System.out.println(ex.getMessage());
         }
         
-        if(found)
-        {
+        if(found) {
+            try {
+                user = (User)input.readObject();
             
-            try
-            {
-            user = (User)input.readObject();
-            
-                
-                
-            if(user.password.matches(password))
-            {
-                System.out.println("that rigth");
-                loginStatus = true;
-            }
-            else
-            {
-                loginStatus = false;
-            }
-            }
-            catch(IOException ex)
-            {
+                if(user.password.matches(password)) {
+                    System.out.println("that rigth");
+                    loginStatus = true;
+                }
+                else {
+                    loginStatus = false;
+                } 
+            } catch(IOException ex) {
                 System.out.println("can not read the Object");
-            }
-            catch(ClassNotFoundException ex)
-            {
+            } catch(ClassNotFoundException ex) {
                 System.out.println("can not find the class");
             }
-            
-            
         }
-            
-        
-                
-    
-   return loginStatus;
-}
+        return loginStatus;
+    }
 }
 
 

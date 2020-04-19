@@ -129,7 +129,6 @@ public class SaveAndLoad {
             success = true;
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-            
         }
         return success;
     }

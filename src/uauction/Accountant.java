@@ -20,17 +20,51 @@ import java.util.logging.Logger;
  * @author Sukrit22
  */
 public class Accountant {
+    public static boolean login(String username, String password){
+        Boolean loginStatus = false;
     
-    public static boolean login(String username,String password){
-        if(true){
-            return true;
+        Boolean found = true;
+        FileInputStream reader = null;
+        ObjectInputStream input = null;
+        User user = null;
+       
+        try {
+           reader = new FileInputStream(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+username+".txt");
+           try {
+               input = new ObjectInputStream(reader);
+           } 
+           catch (IOException ex) {
+               System.out.println(ex.getMessage());
+           }
+        } catch(FileNotFoundException ex) {
+            found = false;
+            System.out.println(ex.getMessage());
         }
-        System.out.println("A");
-        return false;
+        
+        if(found) {
+            try {
+                user = (User)input.readObject();
+            
+                if(user.password.matches(password)) {
+                    System.out.println("that rigth");
+                    loginStatus = true;
+                }
+                else {
+                    loginStatus = false;
+                } 
+            } catch(IOException ex) {
+                System.out.println("can not read the Object");
+            } catch(ClassNotFoundException ex) {
+                System.out.println("can not find the class");
+            }
+        }
+        return loginStatus;
     }
     
-    public static boolean register(String username,String password,String email){
-        return true;
+    public static boolean register(String username,String password,String email) throws IOException, ClassNotFoundException{
+        File dirPath = new File(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+ username +".txt");
+        if(dirPath.exists())
+            return false;
+        return SaveAndLoad.saveUser(new User(username, password, email));
     }
-    
 }
