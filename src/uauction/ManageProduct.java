@@ -5,11 +5,14 @@
  */
 package uauction;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -84,6 +87,18 @@ public class ManageProduct {
                 if(file.exists())
                     file.delete();
             }
+        }
+    }
+    
+    public static void writeImportedImageFile(String initPath,String imageName){
+        
+        File initImage = new File(initPath);
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(initImage);
+            ImageIO.write(image,"jpg",new File(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName+ ".jpg"));
+        } catch (IOException ex) {
+            System.out.println(ex.toString());
         }
     }
 }

@@ -64,7 +64,22 @@ public class User implements Serializable {
     {
         return password;
     }
-
+    public void setToSeller()
+    {
+         userPermission = Permission.seller;
+    }
+    public void setToBuyer()
+    {
+        userPermission = Permission.buyer;
+    }
+    public void setToBoth()
+    {
+        userPermission = Permission.both;
+    }
+    public void bid(double cash)
+    {
+        this.balance -= cash;
+    }
     //Methods
     boolean canBuy(){
         if (userPermission.equals(Permission.seller)||userPermission.equals(Permission.both))
