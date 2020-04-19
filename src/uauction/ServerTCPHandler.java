@@ -22,11 +22,13 @@ private BufferedReader in;
     
 
 //======================= Constructor ============================
-
+ServerTCPHandler(){
+    
+}
 
 
 //======================= method =================================
-public void start(int port) {
+public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
         out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -40,8 +42,8 @@ public void start(int port) {
             }
     }
 
-public void stop() {
-        in.close();
+public void stop() throws IOException {
+         in.close();
         out.close();
         clientSocket.close();
         serverSocket.close();
