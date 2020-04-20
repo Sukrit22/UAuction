@@ -127,10 +127,10 @@ public class PopUp {
 
         Font font2 = new Font(24);
 
-        CreateTextField.email.setFont(font2);
-        CreateTextField.email.setLayoutX(80);
-        CreateTextField.email.setLayoutY(160);
-        CreateTextField.email.setMinWidth(600 - 160);
+        CreateTextField.username.setFont(font2);
+        CreateTextField.username.setLayoutX(80);
+        CreateTextField.username.setLayoutY(160);
+        CreateTextField.username.setMinWidth(600 - 160);
 
         CreateTextField.password.setFont(font2);
         CreateTextField.password.setLayoutX(80);
@@ -142,7 +142,7 @@ public class PopUp {
         CreateTextField.passwordC.setLayoutY(160 + 48 + 48 + 48);
         CreateTextField.passwordC.setMinWidth(600 - 160);
 
-        pane1 = new Pane(popUpBackground, CreateTextField.email, CreateTextField.password, CreateTextField.passwordC, paneLogIn, CreateButton.buttonPopUpLogIn, pane, CreateButton.buttonPopSwitchToSignUp, CreateButton.buttonPopUpSwitchToLogIn, worng, CreateButton.buttonPopUpRegister , worng1, worng2);
+        pane1 = new Pane(popUpBackground, CreateTextField.username, CreateTextField.password, CreateTextField.passwordC, paneLogIn, CreateButton.buttonPopUpLogIn, pane, CreateButton.buttonPopSwitchToSignUp, CreateButton.buttonPopUpSwitchToLogIn, worng, CreateButton.buttonPopUpRegister , worng1, worng2);
         pane1.setMaxWidth(600);
         pane1.setMaxHeight(460);
         //pane1.setMinWidth(600);

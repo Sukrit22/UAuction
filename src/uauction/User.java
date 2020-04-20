@@ -33,10 +33,9 @@ public class User implements Serializable {
     private boolean adminStatus;
     private Permission userPermission;
 
-    public User(String username,String password,String email){
+    public User(String username,String password){
         this.username = username;
         this.password = password;
-        this.email = email;
         this.dateCreated = new Date();   
         this.adminStatus = false;
         this.userPermission = Permission.none;

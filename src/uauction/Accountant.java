@@ -61,10 +61,12 @@ public class Accountant {
         return loginStatus;
     }
     
-    public static boolean register(String username,String password,String email) throws IOException, ClassNotFoundException{
+    public static boolean register(String username,String password, String passwordCheck){
         File dirPath = new File(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+ username +".txt");
-        if(dirPath.exists())
+        //No file occurs
+        if(dirPath.exists() || password != passwordCheck)
             return false;
-        return SaveAndLoad.saveUser(new User(username, password, email));
+        Database.userHashMap.put(username, password);
+        return SaveAndLoad.saveUser(new User(username, password));
     }
 }

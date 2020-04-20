@@ -24,7 +24,18 @@ private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
  
-    public void startConnection(String ip, int port) {
+    
+
+
+//======================= Constructor ============================
+
+    ClientTCPHandler(){
+        
+    }
+
+//======================= method =================================
+
+public void startConnection(String ip, int port) {
         try {
             clientSocket = new Socket(ip, port);
             out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -54,14 +65,5 @@ private Socket clientSocket;
             Logger.getLogger(ClientTCPHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-
-//======================= Constructor ============================
-
-
-
-//======================= method =================================
-
-
 
 }
