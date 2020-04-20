@@ -89,7 +89,7 @@ public class ButtonEvent {
             System.out.println("buttonPopUpLogIn");
             
             //if login success shoew this GUI
-            if(Accountant.login(CreateTextField.username.getText(), CreateTextField.password.getText())){
+            if(Accountant.login(CreateTextField.username.getText(), CreateTextField.password.getText()).equals("")){ // fix this
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
                 PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
                 SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
@@ -110,7 +110,7 @@ public class ButtonEvent {
             PopUp.worng2.setVisible(false);
             
             //if register success do this GUI
-            if(Accountant.register(CreateTextField.username.getText(), CreateTextField.password.getText(), CreateTextField.passwordC.getText())){
+            if(Accountant.register(CreateTextField.username.getText(), CreateTextField.password.getText()).equals("")){ //fix this
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
                 PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
                 SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
