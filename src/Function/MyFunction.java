@@ -29,7 +29,7 @@ public class MyFunction {
     }
 
     static public void checkLogIn() {
-        String x = CreateTextField.email.getText();
+        String x = CreateTextField.username.getText();
         boolean check = true;
         boolean logInSuccess = false;
         int i = 0;
@@ -67,7 +67,7 @@ public class MyFunction {
         PopUp.worng.setVisible(false);
         PopUp.worng1.setVisible(false);
         PopUp.worng2.setVisible(false);
-        String x = CreateTextField.email.getText();
+        String x = CreateTextField.username.getText();
         boolean check = true;
         boolean emailIsAvailable = true;
         int i = 0;
@@ -91,7 +91,7 @@ public class MyFunction {
         if (emailIsAvailable) {
             //Okay
             if (CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())) {
-                UserData.user.add(new UserData(CreateTextField.email.getText(), CreateTextField.password.getText()));
+                UserData.user.add(new UserData(CreateTextField.username.getText(), CreateTextField.password.getText()));
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
                 PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
                 SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());

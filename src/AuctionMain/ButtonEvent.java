@@ -16,6 +16,7 @@ import Scene.CategorisePane;
 import Scene.Product;
 import Function.MyFunction;
 import static Scene.PaneMyAccount.paneMyObject;
+import uauction.Accountant;
 
 /**
  *
@@ -25,16 +26,16 @@ public class ButtonEvent {
 
     static public void buttonEventForSceneHomeUnLogIn() {
         EventHandler<ActionEvent> logIn = (ActionEvent ActionEvent) -> {
-            //Do code here
+            //Do code here (GUI)
             System.out.println("button");
             CreateButton.buttonPopUpSwitchToLogIn.setVisible(false);
             CreateButton.buttonPopSwitchToSignUp.setVisible(true);
-            CreateTextField.email.setVisible(true);
+            CreateTextField.username.setVisible(true);
             CreateTextField.password.setVisible(true);
             CreateTextField.passwordC.setVisible(false);
             CreateButton.buttonPopUpLogIn.setVisible(true);
             CreateButton.buttonPopUpRegister.setVisible(false);
-            CreateTextField.email.setText("");
+            CreateTextField.username.setText("");
             CreateTextField.password.setText("");
             CreateTextField.passwordC.setText("");
             PopUp.worng.setVisible(false);
@@ -70,7 +71,7 @@ public class ButtonEvent {
             //Do code here
             CreateButton.buttonPopSwitchToSignUp.setVisible(true);
             CreateButton.buttonPopUpSwitchToLogIn.setVisible(false);
-            CreateTextField.email.setVisible(true);
+            CreateTextField.username.setVisible(true);
             CreateTextField.password.setVisible(true);
             CreateTextField.passwordC.setVisible(false);
             CreateButton.buttonPopUpLogIn.setVisible(true);
@@ -81,30 +82,64 @@ public class ButtonEvent {
         };
         CreateButton.buttonPopUpSwitchToLogIn.setOnMouseClicked(mci);
 
+        
+        //===================================LOGIN PART========================================//
         EventHandler<MouseEvent> logInOnPopUp = (MouseEvent ActionEvent) -> {
-            //Do code here         
+            //Debug
             System.out.println("buttonPopUpLogIn");
-            MyFunction.checkLogIn();
+            
+            //if login success shoew this GUI
+            if(Accountant.login(CreateTextField.username.getText(), CreateTextField.password.getText())){
+                PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+            }
+            else{
+                if (SceneHomeUnLogIn.getStackPane().getChildren().size() != 3)
+                    PopUp.worng.setVisible(true);
+            }
         };
         CreateButton.buttonPopUpLogIn.setOnMouseClicked(logInOnPopUp);
 
+        //====================================REGISTER PART====================================//
         EventHandler<MouseEvent> register = (MouseEvent ActionEvent) -> {
             System.out.println("Register");
-            MyFunction.register();
+            
+            PopUp.worng.setVisible(false);
+            PopUp.worng1.setVisible(false);
+            PopUp.worng2.setVisible(false);
+            
+            //if register success do this GUI
+            if(Accountant.register(CreateTextField.username.getText(), CreateTextField.password.getText(), CreateTextField.passwordC.getText())){
+                PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+                PaneMyAccount.name.setText(CreateTextField.username.getText());
+            }
+            else {
+                //Password repeat incorrect
+                if(CreateTextField.password != CreateTextField.passwordC)
+                    PopUp.worng2.setVisible(true);
+                //Username Has been used
+                else
+                    PopUp.worng1.setVisible(true);
+            }
         };
         CreateButton.buttonPopUpRegister.setOnMouseClicked(register);
 
+        
+        //========================================================================================
         EventHandler<MouseEvent> logInJaJA = (MouseEvent ActionEvent) -> {
             //Do code here
             System.out.println("buttonLogInPaneTop");
             CreateButton.buttonPopUpSwitchToLogIn.setVisible(false);
             CreateButton.buttonPopSwitchToSignUp.setVisible(true);
-            CreateTextField.email.setVisible(true);
+            CreateTextField.username.setVisible(true);
             CreateTextField.password.setVisible(true);
             CreateTextField.passwordC.setVisible(false);
             CreateButton.buttonPopUpLogIn.setVisible(true);
             CreateButton.buttonPopUpRegister.setVisible(false);
-            CreateTextField.email.setText("");
+            CreateTextField.username.setText("");
             CreateTextField.password.setText("");
             CreateTextField.passwordC.setText("");
             PopUp.worng.setVisible(false);
@@ -118,12 +153,12 @@ public class ButtonEvent {
             System.out.println("buttonSignOutTopPane");
             CreateButton.buttonPopUpSwitchToLogIn.setVisible(false);
             CreateButton.buttonPopSwitchToSignUp.setVisible(true);
-            CreateTextField.email.setVisible(true);
+            CreateTextField.username.setVisible(true);
             CreateTextField.password.setVisible(true);
             CreateTextField.passwordC.setVisible(false);
             CreateButton.buttonPopUpLogIn.setVisible(true);
             CreateButton.buttonPopUpRegister.setVisible(false);
-            CreateTextField.email.setText("");
+            CreateTextField.username.setText("");
             CreateTextField.password.setText("");
             CreateTextField.passwordC.setText("");
             PopUp.worng.setVisible(false);
