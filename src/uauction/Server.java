@@ -10,7 +10,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
+import java.io.*;
+import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**Server is a class that ..
  *
  * @author Sukrit22
@@ -18,11 +21,41 @@ import javafx.stage.Stage;
 public class Server extends Application{
 //======================= data field =============================
     
-    
+    ServerSocket ss;
 
 //======================= Constructor ============================
-
-    public static void main(String[] args) {
+public void openServer()
+{
+        try {
+            ss = new ServerSocket(5555);
+            Socket server = ss.accept();
+            
+        } catch (IOException ex) {
+            
+        }
+}
+   
+public static void main(String[] args) throws Exception {
+        ServerSocket ss = new ServerSocket(5555) ;
+        Socket server = ss.accept();
+          
+        
+                
+                
+        
+        
+        System.out.println("Client coming....");
+        
+        
+        InputStreamReader in = new InputStreamReader (server.getInputStream());
+        BufferedReader reader = new BufferedReader(in);
+        
+        String client = reader.readLine();
+        System.out.println("Client Said : " + client); 
+        
+        PrintStream writer = new PrintStream(server.getOutputStream(),true);
+        writer.println("Server : "+  client+ "YOUR ASS!!!!");
+        
         
     }
 
