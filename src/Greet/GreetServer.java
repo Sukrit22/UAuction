@@ -25,17 +25,23 @@ public class GreetServer {
     private BufferedReader in;
  
     public void start(int port) throws IOException {
+        System.out.println("goint to open port");
         serverSocket = new ServerSocket(port);
+        System.out.println("wait for client");
         clientSocket = serverSocket.accept();
+        System.out.println("assign out and in");
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        String greeting = in.readLine();
-            if ("hello server".equals(greeting)) {
+        String fromClient = in.readLine();
+        System.out.println(fromClient);
+            if ("hello server".equals(fromClient)) {
                 out.println("hello client");
             }
             else {
-                out.println("unrecognised greeting");
+                out.println("? what is this?.. why tell me \""+fromClient+"\"? I don't understand a thing");
             }
+            
+        System.out.println("end");
     }
  
     public void stop() throws IOException {
