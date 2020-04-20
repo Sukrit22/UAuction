@@ -32,6 +32,7 @@ public class GreetServer {
         System.out.println("assign out and in");
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        
         String fromClient = in.readLine();
         System.out.println(fromClient);
             if ("hello server".equals(fromClient)) {

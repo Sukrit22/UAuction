@@ -50,9 +50,10 @@ public final class Product implements java.io.Serializable {
         this.startingBid = startingBid;
         this.minimumBid = minimumBid;
         this.imageName = imageName;
-        image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+ this.getImageName()+ ".jpg");
-        
+        //image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+ this.getImageName()+ ".jpg"); บอกว่าไม่เอา
+        //ใช้ imageName ไปหา ถ้าไม่เจอจะขอจากเซิฟ
     }
+    /*
     public Product(String name, String description, String imageName,String initImagePath, double startingBid, double minimumBid,Date endDate){
     
         datePosted = new Date();
@@ -65,17 +66,16 @@ public final class Product implements java.io.Serializable {
         ManageProduct.writeImportedImageFile(initImagePath,imageName);
         image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName+ ".jpg");
         
-    }
-    
-    
+    }*/ //ไม่จำเป็น
     
     
     public void setImage(String imageName)
     {
-            
-        
+        this.imageName = imageName;
     }
-    
+    public String getImageName(){
+        return this.imageName;
+    }
     public String getName(){
         return name;
     }
@@ -94,17 +94,10 @@ public final class Product implements java.io.Serializable {
     public void setFileName(String fileName){
         this.myFileName = fileName;
     }
-    public String getImageName(){
-        return this.imageName;
-    }
-
     public double getStartingBid() {
         return startingBid;
     }
-
     public double getMinimumBid() {
         return minimumBid;
     }
-   
-    
 }
