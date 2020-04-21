@@ -21,7 +21,7 @@ public NewServer()
 {
     try
     {
-        server = new ServerSocket(1234);
+        server = new ServerSocket(1233);
         System.out.println("Server Started..........");
         
             client = server.accept();

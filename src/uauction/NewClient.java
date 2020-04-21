@@ -32,7 +32,7 @@ public class NewClient
     
     
     public static void main(String[] args) throws Exception {
-         Socket server = new Socket("localhost",1234);
+         Socket server = new Socket("171.6.209.126",1233);
         while(true)
     {
        
