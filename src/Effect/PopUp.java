@@ -32,9 +32,9 @@ public class PopUp {
     static public Pane incorrecypassPane = new Pane();
     static public Pane emailUsedPane = new Pane();
     static public Pane passwordNotSamePane = new Pane();
-    private static final Label incorrecypass = new Label("*Maybe your Email or Password is incorrect*");
-    private static final Label emailUsed = new Label("*This Email*");
-    private static final Label passwordNotSame = new Label("*Paswwdfl fjkldsfjdslk*");
+    private static final Label incorrecypass = new Label("*Maybe your Username or Password is incorrect*");
+    private static final Label emailUsed = new Label("*This Username Alread Used*");
+    private static final Label passwordNotSame = new Label("*Your Passwords are not match*");
 
     static public void setUpPopUp(){
         popUp();
@@ -68,7 +68,7 @@ public class PopUp {
         emailUsed.setFont(font);
         emailUsed.setStyle("-fx-focus-color:rgba( 2, 2, 2, 1.0); -fx-text-fill:rgba( 255, 0, 0, 1.0); -fx-faint-focus-color:rgba( 0, 255, 0, 0.0) ; -fx-inner-border:rgba( 255, 0, 0, 1.0); -fx-body-color:rgba( 255, 255, 255, 1.0); -fx-font-size: 20px;");
         emailUsedPane.setLayoutX(80);
-        emailUsedPane.setLayoutY(160 + 48 + 48 + 48 + 48 + 12);
+        emailUsedPane.setLayoutY(160+48);
         emailUsed.setMinWidth(600 - 160);
         emailUsedPane.getChildren().add(emailUsed);
         emailUsedPane.setVisible(false);
@@ -79,7 +79,7 @@ public class PopUp {
         passwordNotSame.setFont(font);
         passwordNotSame.setStyle("-fx-focus-color:rgba( 2, 2, 2, 1.0); -fx-text-fill:rgba( 255, 0, 0, 1.0); -fx-faint-focus-color:rgba( 0, 255, 0, 0.0) ; -fx-inner-border:rgba( 255, 0, 0, 1.0); -fx-body-color:rgba( 255, 255, 255, 1.0); -fx-font-size: 20px;");
         passwordNotSamePane.setLayoutX(80);
-        passwordNotSamePane.setLayoutY(160 + 48 + 48 + 48 + 48 + 12);
+        passwordNotSamePane.setLayoutY(160 + 48 + 48 + 48 + 48);
         passwordNotSame.setMinWidth(600 - 160);
         passwordNotSamePane.getChildren().add(passwordNotSame);
         passwordNotSamePane.setVisible(false);
@@ -101,6 +101,9 @@ public class PopUp {
 
         EventHandler<MouseEvent> mcc = (MouseEvent ActionEvent) -> {
             //Do code here
+            PopUp.incorrecypassPane.setVisible(false);
+            PopUp.passwordNotSamePane.setVisible(false);
+            PopUp.emailUsedPane.setVisible(false);
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
             System.out.println("Click");
 

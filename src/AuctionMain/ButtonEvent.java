@@ -25,7 +25,7 @@ public class ButtonEvent {
     static public void buttonEventForSceneHomeUnLogIn() {
 
         EventHandler<MouseEvent> logInOnPopUp = (MouseEvent ActionEvent) -> {
-            // TextField CreateTextField.email + CreateTextField.password
+            // TextField CreateTextField.userName + CreateTextField.password
             System.out.println("buttonPopUpLogIn");
             if (true) {
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
@@ -40,14 +40,14 @@ public class ButtonEvent {
         CreateButton.buttonPopUpLogIn.setOnMouseClicked(logInOnPopUp);
 
         EventHandler<MouseEvent> registerOnPopUpEV = (MouseEvent ActionEvent) -> {
-            // TextField CreateTextField.email + CreateTextField.password + CreateTextField.passwordC
+            // TextField CreateTextField.userName + CreateTextField.password + CreateTextField.passwordC
             System.out.println("Register");
-            if (true) {
+            if (false) {
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
                 PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
                 SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
             } else {
-                if (true) {
+                if (false) {
                     // UserName Aldread Use
                     PopUp.emailUsedPane.setVisible(true);
                 } else {
@@ -101,6 +101,8 @@ public class ButtonEvent {
             CreateButton.buttonPopUpLogIn.setVisible(true);
             CreateButton.buttonPopUpRegister.setVisible(false);
             PopUp.incorrecypassPane.setVisible(false);
+            PopUp.passwordNotSamePane.setVisible(false);
+            PopUp.emailUsedPane.setVisible(false);
             System.out.println("buttonPopUpSwitchToLogIn");
 
         };
@@ -120,6 +122,8 @@ public class ButtonEvent {
             CreateTextField.password.setText("");
             CreateTextField.passwordC.setText("");
             PopUp.incorrecypassPane.setVisible(false);
+            PopUp.passwordNotSamePane.setVisible(false);
+            PopUp.emailUsedPane.setVisible(false);
             SceneHomeUnLogIn.getStackPane().getChildren().add(PopUp.getStackPane());
 
         };
