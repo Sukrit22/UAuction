@@ -25,22 +25,36 @@ public class ButtonEvent {
     static public void buttonEventForSceneHomeUnLogIn() {
 
         EventHandler<MouseEvent> logInOnPopUp = (MouseEvent ActionEvent) -> {
-            //Do code here         
-            System.out.println("buttonPopUpLogIn");
-            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
-            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
-            SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
             // TextField CreateTextField.email + CreateTextField.password
+            System.out.println("buttonPopUpLogIn");
+            if (true) {
+                PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+            } else {
+                //Wrong Password
+                PopUp.incorrecypassPane.setVisible(true);
+            }
 
         };
         CreateButton.buttonPopUpLogIn.setOnMouseClicked(logInOnPopUp);
 
         EventHandler<MouseEvent> registerOnPopUpEV = (MouseEvent ActionEvent) -> {
-            System.out.println("Register");
-            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
-            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
-            SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
             // TextField CreateTextField.email + CreateTextField.password + CreateTextField.passwordC
+            System.out.println("Register");
+            if (true) {
+                PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+            } else {
+                if (true) {
+                    // UserName Aldread Use
+                    PopUp.emailUsedPane.setVisible(true);
+                } else {
+                    //Password Not Same
+                    PopUp.passwordNotSamePane.setVisible(true);
+                }
+            }
         };
         CreateButton.buttonPopUpRegister.setOnMouseClicked(registerOnPopUpEV);
 
@@ -81,7 +95,7 @@ public class ButtonEvent {
             //Do code here
             CreateButton.buttonPopSwitchToSignUp.setVisible(true);
             CreateButton.buttonPopUpSwitchToLogIn.setVisible(false);
-            CreateTextField.email.setVisible(true);
+            CreateTextField.userName.setVisible(true);
             CreateTextField.password.setVisible(true);
             CreateTextField.passwordC.setVisible(false);
             CreateButton.buttonPopUpLogIn.setVisible(true);
@@ -97,12 +111,12 @@ public class ButtonEvent {
             System.out.println("buttonLogInPaneTop");
             CreateButton.buttonPopUpSwitchToLogIn.setVisible(false);
             CreateButton.buttonPopSwitchToSignUp.setVisible(true);
-            CreateTextField.email.setVisible(true);
+            CreateTextField.userName.setVisible(true);
             CreateTextField.password.setVisible(true);
             CreateTextField.passwordC.setVisible(false);
             CreateButton.buttonPopUpLogIn.setVisible(true);
             CreateButton.buttonPopUpRegister.setVisible(false);
-            CreateTextField.email.setText("");
+            CreateTextField.userName.setText("");
             CreateTextField.password.setText("");
             CreateTextField.passwordC.setText("");
             PopUp.incorrecypassPane.setVisible(false);
@@ -116,12 +130,12 @@ public class ButtonEvent {
             System.out.println("buttonSignOutTopPane");
             CreateButton.buttonPopUpSwitchToLogIn.setVisible(false);
             CreateButton.buttonPopSwitchToSignUp.setVisible(true);
-            CreateTextField.email.setVisible(true);
+            CreateTextField.userName.setVisible(true);
             CreateTextField.password.setVisible(true);
             CreateTextField.passwordC.setVisible(false);
             CreateButton.buttonPopUpLogIn.setVisible(true);
             CreateButton.buttonPopUpRegister.setVisible(false);
-            CreateTextField.email.setText("");
+            CreateTextField.userName.setText("");
             CreateTextField.password.setText("");
             CreateTextField.passwordC.setText("");
             PopUp.incorrecypassPane.setVisible(false);

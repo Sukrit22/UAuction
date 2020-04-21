@@ -14,14 +14,14 @@ import javafx.scene.text.Font;
  * @author Sitth
  */
 public class CreateTextField {
-    static public TextField email = new TextField();
+    static public TextField userName = new TextField();
     static public PasswordField password = new PasswordField();
     static public PasswordField passwordC = new PasswordField();
     static public TextField search = new TextField();
     
     static public void createEmailField(){
         //.setText("Email");
-        email.setPromptText("Email");
+        userName.setPromptText("Email");
     }
     
     static public void createPasswordField(){
