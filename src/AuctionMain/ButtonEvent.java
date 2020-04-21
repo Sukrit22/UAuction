@@ -12,7 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import Scene.CategorisePane;
-import Scene.PaneMyAccount;
+import Scene.Home.MyAccount.PaneMyAccount;
 import Scene.ProductPaneInVbox;
 
 /**
@@ -72,6 +72,8 @@ public class ButtonEvent {
         PaneMyAccount.btnAdd.setOnAction(add);
 
         EventHandler<ActionEvent> delete = (ActionEvent ActionEvent) -> {
+            if(!CategorisePane.vboxArray.get(0).getChildren().isEmpty())
+            CategorisePane.vboxArray.get(0).getChildren().remove(CategorisePane.vboxArray.get(0).getChildren().size()-1);
             System.out.println("Delete");
         };
         PaneMyAccount.btnDelete.setOnAction(delete);
@@ -161,6 +163,14 @@ public class ButtonEvent {
         EventHandler<ActionEvent> back = (ActionEvent ActionEvent) -> {
             PaneTop.getPane().getChildren().add(CreateButton.buttonMyAccount);
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PaneMyAccount.getPaneMyAcclayer1());
+            if(CategorisePane.vboxArray.get(0).getChildren().isEmpty()){
+                CategorisePane.vboxArray.get(0).getChildren().add(CategorisePane.pane1);
+            }
+            if(CategorisePane.vboxArray.get(0).getChildren().size() >=1 ){
+                if(CategorisePane.vboxArray.get(0).getChildren().get(0) == CategorisePane.pane1){
+                    CategorisePane.vboxArray.get(0).getChildren().remove(CategorisePane.pane1);
+                }
+            }
         };
         PaneMyAccount.btnBack.setOnAction(back);
         PaneMyAccount.btnBack2.setOnAction(back);

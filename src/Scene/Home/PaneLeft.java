@@ -8,6 +8,7 @@ package Scene.Home;
 import AuctionMain.CreateButton;
 import static AuctionMain.CreateButton.buttonHelpPaneTop;
 import Scene.CategorisePane;
+import Scene.Home.MyAccount.PaneMyAccount;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -78,6 +79,14 @@ public class PaneLeft {
                 CategorisePane.paneArray.get(i).setVisible(false);
             }
             CategorisePane.paneArray.get(0).setVisible(true);
+            if (CategorisePane.vboxArray.get(0).getChildren().isEmpty()) {
+                CategorisePane.vboxArray.get(0).getChildren().add(CategorisePane.pane1);
+            }
+            if (CategorisePane.vboxArray.get(0).getChildren().size() > 1) {
+                if (CategorisePane.vboxArray.get(0).getChildren().get(0) == CategorisePane.pane1) {
+                    CategorisePane.vboxArray.get(0).getChildren().remove(CategorisePane.pane1);
+                }
+            }
 
         };
         titleGroup1.setOnMouseClicked(evTitle1);
@@ -99,6 +108,15 @@ public class PaneLeft {
                 CategorisePane.paneArray.get(i).setVisible(false);
             }
             CategorisePane.paneArray.get(1).setVisible(true);
+            int i = 1;
+            if (CategorisePane.vboxArray.get(i).getChildren().isEmpty()) {
+                CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane2);
+            }
+            if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
+                if (CategorisePane.vboxArray.get(i).getChildren().get(i) == CategorisePane.pane2) {
+                    CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane2);
+                }
+            }
         };
         titleGroup2.setOnMouseClicked(evTitle2);
 
@@ -119,6 +137,15 @@ public class PaneLeft {
                 CategorisePane.paneArray.get(i).setVisible(false);
             }
             CategorisePane.paneArray.get(2).setVisible(true);
+            int i = 2;
+            if (CategorisePane.vboxArray.get(i).getChildren().isEmpty()) {
+                CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane3);
+            }
+            if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
+                if (CategorisePane.vboxArray.get(i).getChildren().get(i) == CategorisePane.pane3) {
+                    CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane3);
+                }
+            }
         };
         titleGroup3.setOnMouseClicked(evTitle3);
 
@@ -139,6 +166,15 @@ public class PaneLeft {
                 CategorisePane.paneArray.get(i).setVisible(false);
             }
             CategorisePane.paneArray.get(3).setVisible(true);
+            int i = 3;
+            if (CategorisePane.vboxArray.get(i).getChildren().isEmpty()) {
+                CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane4);
+            }
+            if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
+                if (CategorisePane.vboxArray.get(i).getChildren().get(i) == CategorisePane.pane4) {
+                    CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane4);
+                }
+            }
         };
         titleGroup4.setOnMouseClicked(evTitle4);
 
@@ -167,11 +203,20 @@ public class PaneLeft {
                 CategorisePane.paneArray.get(i).setVisible(false);
             }
             CategorisePane.paneArray.get(4).setVisible(true);
+            int i = 4;
+            if (CategorisePane.vboxArray.get(i).getChildren().isEmpty()) {
+                CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane5);
+            }
+            if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
+                if (CategorisePane.vboxArray.get(i).getChildren().get(i) == CategorisePane.pane5) {
+                    CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane5);
+                }
+            }
 
         };
         titleGroup5.setOnMouseClicked(evTitle5);
 
-        pane.getChildren().add(titleVbox);
+        pane.getChildren().addAll(titleVbox);
     }
 
     static private void title1() {

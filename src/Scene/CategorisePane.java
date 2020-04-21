@@ -26,28 +26,34 @@ public class CategorisePane {
     static public VBox vbox3;
     static public VBox vbox4;
     static public VBox vbox5;
+    
+    static public StackPane pane1 = new StackPane();
+    static public StackPane pane2 = new StackPane();
+    static public StackPane pane3 = new StackPane();
+    static public StackPane pane4 = new StackPane();
+    static public StackPane pane5 = new StackPane();
 
     static public void setUp() {
 
         int page = 5;
 
-        vbox1 = new VBox(noProduct());
+        vbox1 = new VBox(noProduct(pane1));
         vbox1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vboxArray.add(vbox1);
         
-        vbox2 = new VBox(noProduct());
+        vbox2 = new VBox(noProduct(pane2));
         vbox2.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vboxArray.add(vbox2);
         
-        vbox3 = new VBox(noProduct());
+        vbox3 = new VBox(noProduct(pane3));
         vbox3.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vboxArray.add(vbox3);
         
-        vbox4 = new VBox(noProduct());
+        vbox4 = new VBox(noProduct(pane4));
         vbox4.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vboxArray.add(vbox4);
         
-        vbox5 = new VBox(noProduct());
+        vbox5 = new VBox(noProduct(pane5));
         vbox5.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vboxArray.add(vbox5);
 
@@ -66,9 +72,9 @@ public class CategorisePane {
                 
     }
     
-    static private StackPane noProduct(){
+    static private StackPane noProduct(StackPane pane){
         Text text = new Text("No Product");
-        StackPane pane = new StackPane(text);
+        pane.getChildren().add(text);
         pane.setMinSize(1920-220, 200);
         return pane;
     }
