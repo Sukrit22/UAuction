@@ -25,14 +25,6 @@ public class SceneHomeUnLogIn {
 
     static public void sceneHomeUnLogIn() {
         CreateTextField.searchField();
-        CreateButton.buttonSearch();
-        CreateButton.buttonCreateAccount();
-        CreateButton.buttonLogIn();
-        CreateButton.buttonPopUpLogIn2();
-        CreateButton.buttonPopUpSignUp();
-        CreateButton.buttonLogIn3();
-        CreateButton.buttonMyAccount();
-        CreateButton.buttonSignOut();
         CreateTextField.createEmailField();
         CreateTextField.createPasswordField();
         CreateTextField.createPasswordCField();
