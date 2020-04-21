@@ -14,7 +14,6 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import Scene.CategorisePane;
 import Scene.Product;
-import static Scene.PaneMyAccount.paneMyObject;
 
 /**
  *
@@ -23,49 +22,56 @@ import static Scene.PaneMyAccount.paneMyObject;
 public class ButtonEvent {
 
     static public void buttonEventForSceneHomeUnLogIn() {
-        EventHandler<ActionEvent> logIn = (ActionEvent ActionEvent) -> {
-            //Do code here
-            System.out.println("button");
-            CreateButton.buttonPopUpSwitchToLogIn.setVisible(false);
-            CreateButton.buttonPopSwitchToSignUp.setVisible(true);
-            CreateTextField.email.setVisible(true);
-            CreateTextField.password.setVisible(true);
-            CreateTextField.passwordC.setVisible(false);
-            CreateButton.buttonPopUpLogIn.setVisible(true);
-            CreateButton.buttonPopUpRegister.setVisible(false);
-            CreateTextField.email.setText("");
-            CreateTextField.password.setText("");
-            CreateTextField.passwordC.setText("");
-            PopUp.incorrecypassPane.setVisible(false);
-            SceneHomeUnLogIn.getStackPane().getChildren().add(PopUp.getStackPane());
-        };
-        CreateButton.button.setOnAction(logIn);
 
-        EventHandler<ActionEvent> Back = (ActionEvent ActionEvent) -> {
-            //Do code here
-            System.out.println("Test 1");
+        //----------------------------------------------------------------------
+        //----------------------------------------------------------------------
+        EventHandler<MouseEvent> logInOnPopUp = (MouseEvent ActionEvent) -> {
+            //Do code here         
+            System.out.println("buttonPopUpLogIn");
+            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+            //Log In Function
         };
-        CreateButton.button3.setOnAction(Back);
+        CreateButton.buttonPopUpLogIn.setOnMouseClicked(logInOnPopUp);
 
-        EventHandler<MouseEvent> mcc = (MouseEvent ActionEvent) -> {
+        //----------------------------------------------------------------------
+        //----------------------------------------------------------------------
+        EventHandler<MouseEvent> registerOnPopUp = (MouseEvent ActionEvent) -> {
+            System.out.println("Register");
+            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+            SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+            //Register Function
+        };        
+        CreateButton.buttonPopUpRegister.setOnMouseClicked(registerOnPopUp);
+
+        //----------------------------------------------------------------------
+        //----------------------------------------------------------------------
+        EventHandler<ActionEvent> add = (ActionEvent ActionEvent) -> {
+            System.out.println("Add from MyACC");
+            CategorisePane.vboxArray.get(0).getChildren().add(Product.Pane1());
+
+        };
+        PaneMyAccount.btnAdd.setOnAction(add);
+        
+        //Not thing to do anymore
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        EventHandler<MouseEvent> buttonPopSwitchToSignUpEV = (MouseEvent ActionEvent) -> {
             //Do code here
             CreateButton.buttonPopUpSwitchToLogIn.setVisible(true);
             CreateButton.buttonPopSwitchToSignUp.setVisible(false);
-            //CreateTextField.email.setVisible(false);
-            //CreateTextField.password.setVisible(false);
             CreateTextField.passwordC.setVisible(true);
             CreateButton.buttonPopUpLogIn.setVisible(false);
             CreateButton.buttonPopUpRegister.setVisible(true);
-            //SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
             PopUp.incorrecypassPane.setVisible(false);
-            //setSceneForStage.stageSetHomeAlreadyLogIn();
             System.out.println("buttonPopSwitchToSignUp");
 
         };
-        CreateButton.buttonPopSwitchToSignUp.setOnMouseClicked(mcc);
+        CreateButton.buttonPopSwitchToSignUp.setOnMouseClicked(buttonPopSwitchToSignUpEV);
 
-        EventHandler<MouseEvent> mci = (MouseEvent ActionEvent) -> {
+        EventHandler<MouseEvent> buttonPopUpSwitchToLogInEV = (MouseEvent ActionEvent) -> {
             //Do code here
             CreateButton.buttonPopSwitchToSignUp.setVisible(true);
             CreateButton.buttonPopUpSwitchToLogIn.setVisible(false);
@@ -76,26 +82,8 @@ public class ButtonEvent {
             CreateButton.buttonPopUpRegister.setVisible(false);
             PopUp.incorrecypassPane.setVisible(false);
             System.out.println("buttonPopUpSwitchToLogIn");
-
         };
-        CreateButton.buttonPopUpSwitchToLogIn.setOnMouseClicked(mci);
-
-        EventHandler<MouseEvent> logInOnPopUp = (MouseEvent ActionEvent) -> {
-            //Do code here         
-            System.out.println("buttonPopUpLogIn");
-            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
-            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
-            SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
-        };
-        CreateButton.buttonPopUpLogIn.setOnMouseClicked(logInOnPopUp);
-
-        EventHandler<MouseEvent> register = (MouseEvent ActionEvent) -> {
-            System.out.println("Register");
-            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
-            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
-            SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
-        };
-        CreateButton.buttonPopUpRegister.setOnMouseClicked(register);
+        CreateButton.buttonPopUpSwitchToLogIn.setOnMouseClicked(buttonPopUpSwitchToLogInEV);
 
         EventHandler<MouseEvent> logInJaJA = (MouseEvent ActionEvent) -> {
             //Do code here
@@ -133,7 +121,6 @@ public class ButtonEvent {
             PaneTop.getPane().getChildren().remove(CreateButton.buttonMyAccount);
             PaneTop.getPane().getChildren().remove(CreateButton.buttonSignOutTopPane);
             PaneTop.getPane().getChildren().add(CreateButton.buttonLogInPaneTop);
-            //paneMyObject.getChildren().remove(UserData.userPaneArray.get(UserData.ID_UserThatLogIn));
 
         };
         CreateButton.buttonSignOutTopPane.setOnMouseClicked(signOut);
@@ -144,15 +131,7 @@ public class ButtonEvent {
             PaneTop.getPane().getChildren().remove(CreateButton.buttonMyAccount);
             SceneHomeUnLogIn.getStackPane().getChildren().add(PaneMyAccount.getPaneMyAcclayer1());
         };
-
         CreateButton.buttonMyAccount.setOnMouseClicked(myAcc);
-
-        EventHandler<ActionEvent> add = (ActionEvent ActionEvent) -> {
-            System.out.println("Add from MyACC");
-            CategorisePane.vboxArray.get(0).getChildren().add(Product.Pane1());
-
-        };
-        PaneMyAccount.btnAdd.setOnAction(add);
 
         EventHandler<ActionEvent> delete = (ActionEvent ActionEvent) -> {
             System.out.println("Delete");
@@ -169,9 +148,6 @@ public class ButtonEvent {
         EventHandler<MouseEvent> helpEV = (MouseEvent ActionEvent) -> {
             //Do code here
             System.out.println("buttonHelpPaneTop");
-            
-        
-
         };
         CreateButton.buttonHelpPaneTop.setOnMouseClicked(helpEV);
 

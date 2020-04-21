@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
