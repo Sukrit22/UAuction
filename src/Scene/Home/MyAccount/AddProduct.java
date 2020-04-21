@@ -109,9 +109,9 @@ public class AddProduct {
             Stage stage = new Stage();
             File file = fileChooser.showOpenDialog(stage);
             System.out.println(file.toString());
-            Image image = new Image(file.toString());
-            ImageView imv = new ImageView(image);
-            pic.setClip(imv);
+            //Image image = new Image(file.toString());
+            //ImageView imv = new ImageView(image);
+            //pic.setClip(imv);
             /*if (file != null) {
                 openFile(file);
             }*/
