@@ -415,6 +415,7 @@ public class PaneMyAccount {
         productName.applyCss();
         //productName.setStyle("-fx-text-inner-color: red; -fx-background-radius:10; -fx-background-color:rgba( 125, 125, 125, 1.0); ");
 
+        
         startBid = new TextField();
         startBid.setPromptText("Start Bid");
         startBid.setMinHeight(40);
@@ -440,5 +441,33 @@ public class PaneMyAccount {
 
         pic = new Rectangle(150, 150);
 
+    }
+
+    public static TextField getProductName() {
+        return productName;
+    }
+
+    public static TextField getMinimumBid() {
+        return minimumBid;
+    }
+
+    public static TextArea getProductDescription() {
+        return productDescription;
+    }
+
+    public static DatePicker getDatePicker() {
+        return datePicker;
+    }
+
+    public static ComboBox getComboBoxHour() {
+        return comboBoxHour;
+    }
+
+    public static ComboBox getComboBoxAmPm() {
+        return comboBoxAmPm;
+    }
+
+    public static Text getSelectText() {
+        return selectText;
     }
 }
