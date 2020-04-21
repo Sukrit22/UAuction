@@ -9,7 +9,7 @@ import static AuctionMain.ButtonEvent.buttonEventForSceneHomeUnLogIn;
 import AuctionMain.CreateTextField;
 import Scene.CategorisePane;
 import Scene.Home.PaneLeft;
-import Scene.PaneMyAccount;
+import Scene.Home.MyAccount.PaneMyAccount;
 import Scene.Home.PaneTop;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -31,7 +31,6 @@ public class SceneHomeUnLogIn {
         CreateTextField.createEmailField();
         CreateTextField.createPasswordField();
         CreateTextField.createPasswordCField();
-        PaneMyAccount.makePane();
         CategorisePane.setUp();
 
         buttonEventForSceneHomeUnLogIn();

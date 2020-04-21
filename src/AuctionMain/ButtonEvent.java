@@ -12,7 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import Scene.CategorisePane;
-import Scene.PaneMyAccount;
+import Scene.Home.MyAccount.PaneMyAccount;
 import Scene.ProductPaneInVbox;
 
 /**
