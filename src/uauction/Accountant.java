@@ -20,10 +20,9 @@ import java.util.logging.Logger;
  * @author Sukrit22
  */
 public class Accountant {
-    public static boolean login(String username, String password){
-        Boolean loginStatus = false;
-    
-        Boolean found = true;
+    public static Object login(String username, String password){
+        //Boolean loginStatus = false;
+
         FileInputStream reader = null;
         ObjectInputStream input = null;
         User user = null;
@@ -35,38 +34,38 @@ public class Accountant {
            } 
            catch (IOException ex) {
                System.out.println(ex.getMessage());
+               return "tryagainlater";
            }
         } catch(FileNotFoundException ex) {
-            found = false;
             System.out.println(ex.getMessage());
+            return "wrongusername";
         }
-        
-        if(found) {
-            try {
-                user = (User)input.readObject();
-            
-                if(user.password.matches(password)) {
-                    System.out.println("that rigth");
-                    loginStatus = true;
-                }
-                else {
-                    loginStatus = false;
-                } 
-            } catch(IOException ex) {
-                System.out.println("can not read the Object");
-            } catch(ClassNotFoundException ex) {
-                System.out.println("can not find the class");
+        try {
+            user = (User)input.readObject();
+            if(password.equals(user.password)) {
+                System.out.println("that rigth");
+                return user;
             }
+        } catch(IOException ex) {
+            System.out.println("can not read the Object");
+            return "tryagainlater";
+        } catch(ClassNotFoundException ex) {
+            System.out.println("can not find the class");
+            return "tryagainlater";
         }
-        return loginStatus;
+        return "error";
     }
     
-    public static boolean register(String username,String password, String passwordCheck){
+    public static Object register(String username,String password){
         File dirPath = new File(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+ username +".txt");
         //No file occurs
-        if(dirPath.exists() || password != passwordCheck)
-            return false;
+        if(dirPath.exists())
+            return "this username already exit please use forget password to recover your account";
         Database.userHashMap.put(username, password);
-        return SaveAndLoad.saveUser(new User(username, password));
+        User user = new User(username, password);
+        boolean a = SaveAndLoad.saveUser(user);
+        if (!a)
+            return "";
+        return user;
     }
 }

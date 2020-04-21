@@ -156,8 +156,10 @@ public class SaveAndLoad {
         return true;
     }
     
-        public static Image loadImage(String imageName){
-        return new Image("file:///"+System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName+".png");
-    }
+        //public static Image loadImageClient(String imageName){ //ถ้ามีไฟล์จะโหลดขึ้นมาจาก imageName ถ้าไม่มีจะขอ server โดยส่งfileNameไป
+        //Image image = new Image("file:///"+System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName+".png");
+            
+        //return (new Image());
+    //}
     
 }
