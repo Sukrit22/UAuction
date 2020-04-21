@@ -30,6 +30,8 @@ public class ButtonEvent {
             PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
             PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+            // TextField CreateTextField.email + CreateTextField.password
+
         };
         CreateButton.buttonPopUpLogIn.setOnMouseClicked(logInOnPopUp);
 
@@ -38,6 +40,7 @@ public class ButtonEvent {
             PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
             PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+            // TextField CreateTextField.email + CreateTextField.password + CreateTextField.passwordC
         };
         CreateButton.buttonPopUpRegister.setOnMouseClicked(registerOnPopUpEV);
 
