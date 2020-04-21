@@ -40,7 +40,7 @@ public class Accountant {
            }
         } catch(FileNotFoundException ex) {
             System.out.println(ex.getMessage());
-            return "wrongusername";
+            return "there is no username matched";
         }
         try {
             user = (User)input.readObject();

@@ -25,6 +25,7 @@ public class SceneHomeUnLogIn {
 
     private static final StackPane stackPane = new StackPane();
     private static final Scene scene = new Scene(stackPane);
+    public static ScrollPane scrollPane;
 
     static public void sceneHomeUnLogIn() {
         CreateTextField.searchField();
@@ -58,7 +59,7 @@ public class SceneHomeUnLogIn {
             CategorisePane.paneArray.get(i).setVisible(false);
         }
         CategorisePane.paneArray.get(0).setVisible(true);
-        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane = new ScrollPane(pane);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setMinSize(1700, 1000 - 200);
