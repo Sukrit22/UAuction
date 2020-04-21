@@ -41,6 +41,7 @@ public class runTime {
                     // updating live UI object requires JavaFX App Thread
                     //SetTextShape.setTextShape(runTime.txtTime.getText(), 20);
                     txtTime.setText(time);
+                    CreateButton.timeText.setText(time);
                     //MyButton.btnTime1.setText(time);
                     //MyButton.btnTime2.setText(time);
 

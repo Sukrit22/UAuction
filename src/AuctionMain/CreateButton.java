@@ -30,8 +30,24 @@ public class CreateButton {
     static public Group buttonLogInPaneTop = new Group();
     static public Group buttonMyAccount = new Group();
     static public Group buttonSignOutTopPane = new Group();
+    static public Group buttonTime = new Group();
+    static public Group buttonHelpPaneTop = new Group();
+    static public Text timeText = new Text("dd/mm/yyyy hh:mm:ss a XXX");
 
-    static public void buttonCreateAccount() {
+    static public void setUpAllButton() {
+        buttonCreateAccount();
+        buttonHelp();
+        buttonLogIn();
+        buttonLogIn3();
+        buttonMyAccount();
+        buttonPopUpLogIn2();
+        buttonPopUpSignUp();
+        buttonSearch();
+        buttonSignOut();
+        buttonTime();
+    }
+
+    static private void buttonCreateAccount() {
         Rectangle test = new Rectangle(300, 0, 300, 140);
         test.setFill(Color.web("rgba( 240, 240, 240, 1.0)"));
         test.setArcWidth(140);
@@ -56,18 +72,15 @@ public class CreateButton {
 
     }
 
-    static public void buttonLogIn() {
+    static private void buttonLogIn() {
         Rectangle test = new Rectangle(0, 0, 300, 140);
         test.setFill(Color.web("rgba( 240, 240, 240, 1.0)"));
         test.setArcWidth(140);
         test.setArcHeight(140);
-
         Rectangle test2 = new Rectangle(150, 0, 150, 140);
         test2.setFill(Color.web("rgba( 240, 240, 240, 1.0)"));
-
         Rectangle test3 = new Rectangle(0, 70, 300, 70);
         test3.setFill(Color.web("rgba( 240, 240, 240, 1.0)"));
-
         Font font = new Font(32);
         Text logIn = new Text("LOG IN");
         logIn.setFont(font);
@@ -79,12 +92,9 @@ public class CreateButton {
 
     }
 
-    static public void buttonPopUpLogIn2() {
+    static private void buttonPopUpLogIn2() {
         Rectangle test = new Rectangle(80, 160 + 48 + 48 + 48, 600 - 160, 48);
         test.setFill(Color.web("rgba( 240, 240, 240, 1.0)"));
-        //test.setArcWidth(140);
-        //test.setArcHeight(140);
-
         Font font = new Font(24);
         Text logIn = new Text("LOG IN");
         logIn.setFont(font);
@@ -92,7 +102,6 @@ public class CreateButton {
         pane.setMinSize(600 - 160, 48);
         pane.getChildren().add(logIn);
         logIn.applyCss();
-        //System.out.println(logIn.getBoundsInParent().getWidth() + " " + logIn.getBoundsInParent().getHeight());
         pane.setLayoutX(logIn.getBoundsInParent().getWidth() / 2 + 80 / 2);
         pane.setLayoutY(160 + 48 + 48 + 48);
 
@@ -100,35 +109,26 @@ public class CreateButton {
         buttonPopUpLogIn.getChildren().addAll(test, pane);
     }
 
-    static public void buttonPopUpSignUp() {
+    static private void buttonPopUpSignUp() {
         Rectangle test = new Rectangle(80, 160 + 48 + 48 + 48 + 48 + 24, 600 - 160, 48);
         test.setFill(Color.web("rgba( 240, 240, 240, 1.0)"));
-        //test.setArcWidth(140);
-        //test.setArcHeight(140);
-
         Font font = new Font(24);
         Text logIn = new Text("REGISTER");
         logIn.setFont(font);
         StackPane pane = new StackPane();
         pane.setMinSize(600 - 160, 48);
         pane.getChildren().add(logIn);
-        logIn.applyCss();
-        //System.out.println(logIn.getBoundsInParent().getWidth() + " " + logIn.getBoundsInParent().getHeight());
         pane.setLayoutX(logIn.getBoundsInParent().getWidth() / 2 + 80 / 2);
         pane.setLayoutY(160 + 48 + 48 + 48 + 48 + 24);
-
         buttonPopUpRegister = new Group();
         buttonPopUpRegister.getChildren().addAll(test, pane);
 
     }
 
-    static public void buttonSearch() {
+    static private void buttonSearch() {
         Rectangle test = new Rectangle(100, 50);
         test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
-        //test.setArcWidth(140);
-        //test.setArcHeight(140);
-
         Font font = new Font(24);
         Text logIn = new Text("Search");
         logIn.setFont(font);
@@ -136,19 +136,14 @@ public class CreateButton {
         pane.setMinSize(100, 50);
         pane.getChildren().add(logIn);
         logIn.applyCss();
-        //System.out.println(logIn.getBoundsInParent().getWidth() + " " + logIn.getBoundsInParent().getHeight());
-        //pane.setLayoutX(logIn.getBoundsInParent().getWidth() / 2);
 
         buttonSearch = new Group(test, pane);
     }
-    
-    static public void buttonLogIn3() {
+
+    static private void buttonLogIn3() {
         Rectangle test = new Rectangle(150, 50);
         test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
-        //test.setArcWidth(140);
-        //test.setArcHeight(140);
-
         Font font = new Font(24);
         Text logIn = new Text("Log In");
         logIn.setFont(font);
@@ -156,19 +151,13 @@ public class CreateButton {
         pane.setMinSize(150, 50);
         pane.getChildren().add(logIn);
         logIn.applyCss();
-        //System.out.println(logIn.getBoundsInParent().getWidth() + " " + logIn.getBoundsInParent().getHeight());
-        //pane.setLayoutX(logIn.getBoundsInParent().getWidth() / 2);
-
         buttonLogInPaneTop = new Group(test, pane);
     }
-    
-    static public void buttonMyAccount() {
+
+    static private void buttonMyAccount() {
         Rectangle test = new Rectangle(150, 50);
         test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
-        //test.setArcWidth(140);
-        //test.setArcHeight(140);
-
         Font font = new Font(24);
         Text logIn = new Text("My Account");
         logIn.setFont(font);
@@ -176,13 +165,11 @@ public class CreateButton {
         pane.setMinSize(150, 50);
         pane.getChildren().add(logIn);
         logIn.applyCss();
-        //System.out.println(logIn.getBoundsInParent().getWidth() + " " + logIn.getBoundsInParent().getHeight());
-        //pane.setLayoutX(logIn.getBoundsInParent().getWidth() / 2);
 
         buttonMyAccount = new Group(test, pane);
     }
-    
-    static public void buttonSignOut() {
+
+    static private void buttonSignOut() {
         Rectangle test = new Rectangle(150, 0, 150, 50);
         test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
@@ -198,9 +185,42 @@ public class CreateButton {
         pane.getChildren().add(logIn);
         logIn.applyCss();
         //System.out.println(logIn.getBoundsInParent().getWidth() + " " + logIn.getBoundsInParent().getHeight());
-        //pane.setLayoutX(logIn.getBoundsInParent().getWidth() / 2);
+        //
 
         buttonSignOutTopPane = new Group(test, pane);
+    }
+
+    static private void buttonTime() {
+        Rectangle test = new Rectangle(1920 - 400, 0, 400, 50);
+        test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(24);
+        timeText.setFont(font);
+        StackPane pane = new StackPane();
+        pane.getChildren().add(timeText);
+        timeText.applyCss();
+        //pane.setLayoutX(300);
+        pane.setMinSize(400, 50);
+        timeText.applyCss();
+        //System.out.println(timeText.getBoundsInParent().getWidth());
+        pane.setLayoutX(1920 - 150 - 250);
+
+        buttonTime = new Group(test, pane);
+    }
+
+    static private void buttonHelp() {
+        Rectangle test = new Rectangle(1920 - 400 - 150, 0, 150, 50);
+        test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(24);
+        Text logIn = new Text("Help");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setMinSize(150, 50);
+        pane.getChildren().add(logIn);
+        pane.setLayoutX(1920 - 400 - 150);
+        logIn.applyCss();
+        buttonHelpPaneTop = new Group(test, pane);
     }
 
 }

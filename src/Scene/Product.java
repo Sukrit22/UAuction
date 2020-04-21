@@ -11,7 +11,11 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import Effect.PopUpProduct;
+import Scene.Home.SceneHomeUnLogIn;
 
 /**
  *
@@ -19,62 +23,52 @@ import javafx.scene.shape.Rectangle;
  */
 public class Product {
 
-    static private Rectangle a;
-    static private Label label;
-    static private Label labelID;
-    static private Pane pane;
-    static private Pane pane2;
-    static private Pane pane3;
-    static private Button delete;
-    static public int x = 0;
-    static public ArrayList<Product> productArray = new ArrayList<Product>();
-    public static int y = 0;
-    private int position = 0;
-    public int id = 0;
+    static private Pane productView1;
+    static private Pane productView2;
+    static private Pane productView3;
+    static private Pane productView4;
+    static public Button btnView;
 
-    static public Pane product(String productName, String userName) {
+    static public Pane Pane1() {
+        System.out.println("Product Added");
+        btnView = new Button("View");
+        EventHandler<ActionEvent> ev = (ActionEvent ActionEvent) -> {
+            //Do code here
+            System.out.println("buttonLogInPaneTop");
 
-        return pane;
-    }
+            SceneHomeUnLogIn.getStackPane().getChildren().add(PopUpProduct.getStackPane());
 
-    public Product(String productName, String userName, boolean bool) {
-        labelID = new Label("" + x);
-        id = x;
-        position = id;
-        delete = new Button("Delete");
-        delete.setLayoutX(350);
-        EventHandler<ActionEvent> eh = (ActionEvent ActionEvent) -> {
-            System.out.println("Delete " + id);
-            //UserData.vboxArray.get(UserData.ID_UserThatLogIn).getChildren().remove(position - 1);
-            //UserData.vboxArray.get(UserData.ID_UserThatLogIn).getChildren().get(id - 1).setDisable(true);
-            CategorisePane.vbox1.getChildren().get(id-1).setDisable(true);
-            //CategorisePane.vbox1.getChildren().remove(id-1);
-            /*if(id-1>0)
-            for(int i = id - 1 ; i<productArray.size(); i++){
-            productArray.get(i).position -= 1;
-            }*/
         };
-        delete.setOnAction(eh);
+        btnView.setOnAction(ev);
 
-        a = new Rectangle(150, 150);
-        label = new Label(productName + x);
-
-        label.setLayoutX(200);
-        Label label2 = new Label(userName);
-        label2.setLayoutX(200);
-        label2.setLayoutY(100);
-        pane = new Pane();
-        pane.setMinHeight(200);
-        if (bool) {
-            pane.getChildren().addAll(a, label, label2, delete);
-        } else {
-            pane.getChildren().addAll(a, label, label2);
-        }
-
+        Rectangle pic = new Rectangle(0, 0, 150, 150);
+        //Rectangle pic2 = new Rectangle(0, 0, 150, 150);
+        productView1 = new Pane(pic);
+        productView1.getChildren().add(btnView);
+        productView1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: red;");
+        productView1.setMinSize(1920 - 220, 200);
+        return productView1;
     }
 
-    public Pane getPane() {
-        return pane;
+    static public Pane Pane2() {
+        Rectangle pic = new Rectangle(150, 150);
+        productView2 = new Pane(pic);
+        productView2.setMinSize(1920 - 220, 200);
+        return productView2;
+    }
+
+    static public Pane Pane3() {
+        Rectangle pic = new Rectangle(150, 150);
+        productView3 = new Pane(pic);
+        productView3.setMinSize(1920 - 220, 200);
+        return productView3;
+    }
+
+    static public Pane Pane4() {
+        Rectangle pic = new Rectangle(150, 150);
+        productView4 = new Pane(pic);
+        productView4.setMinSize(1920 - 220, 200);
+        return productView4;
     }
 
 }

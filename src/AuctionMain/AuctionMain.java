@@ -22,8 +22,6 @@ public class AuctionMain extends Application {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        UserData.user.add(new UserData("Admin" , "Password"));
-        PopUp.incorrectPasswrod();
         runTime.timer.start();
         launch(args);
         System.exit(0);
@@ -31,10 +29,9 @@ public class AuctionMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        
+
         MyFunction.inti();
-        SetUpStage.setUpStage().show();
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SetUpStage.getStage().show();
 
     }
 

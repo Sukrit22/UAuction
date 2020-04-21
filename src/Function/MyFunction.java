@@ -9,9 +9,12 @@ import AuctionMain.CreateButton;
 import AuctionMain.CreateTextField;
 import AuctionMain.UserData;
 import Effect.PopUp;
+import Effect.PopUpProduct;
+import Scene.ActionPane;
 import Scene.PaneMyAccount;
-import Scene.PaneTop;
-import Scene.SceneHomeUnLogIn;
+import Scene.Home.PaneTop;
+import Scene.Home.SceneHomeUnLogIn;
+import Stage.SetUpStage;
 import Stage.setSceneForStage;
 
 /**
@@ -21,15 +24,20 @@ import Stage.setSceneForStage;
 public class MyFunction {
 
     static public void inti() {
+        PopUpProduct.createpopUpBackground();
+        SetUpStage.stageAuction();
+        CreateButton.setUpAllButton();
         SceneHomeUnLogIn.sceneHomeUnLogIn();
         setSceneForStage.stageSetHomeUnLogIn();
-        PopUp.emailNotAvailable();
-        PopUp.passwordNotSame();
+        PaneTop.getPane().getChildren().add(CreateButton.buttonTime);
+        PaneTop.getPane().getChildren().add(CreateButton.buttonHelpPaneTop);
+        PopUp.setUpPopUp();
         PaneMyAccount.setUpPane();
+        ActionPane.setUpPane();
     }
 
     static public void checkLogIn() {
-        String x = CreateTextField.username.getText();
+        String x = CreateTextField.email.getText();
         boolean check = true;
         boolean logInSuccess = false;
         int i = 0;
@@ -57,17 +65,17 @@ public class MyFunction {
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
         } else {
             if (SceneHomeUnLogIn.getStackPane().getChildren().size() != 3) {
-                PopUp.worng.setVisible(true);
+                PopUp.incorrecypassPane.setVisible(true);
             }
         }
     }
 
     static public void register() {
 
-        PopUp.worng.setVisible(false);
-        PopUp.worng1.setVisible(false);
-        PopUp.worng2.setVisible(false);
-        String x = CreateTextField.username.getText();
+        PopUp.incorrecypassPane.setVisible(false);
+        PopUp.emailUsedPane.setVisible(false);
+        PopUp.passwordNotSamePane.setVisible(false);
+        String x = CreateTextField.email.getText();
         boolean check = true;
         boolean emailIsAvailable = true;
         int i = 0;
@@ -91,7 +99,7 @@ public class MyFunction {
         if (emailIsAvailable) {
             //Okay
             if (CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())) {
-                UserData.user.add(new UserData(CreateTextField.username.getText(), CreateTextField.password.getText()));
+                UserData.user.add(new UserData(CreateTextField.email.getText(), CreateTextField.password.getText()));
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
                 PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
                 SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
@@ -99,11 +107,11 @@ public class MyFunction {
                 UserData.ID_UserThatLogIn = UserData.user.get(i).getId();
             } else {
                 //Password Not Same
-                PopUp.worng2.setVisible(true);
+                PopUp.passwordNotSamePane.setVisible(true);
             }
         } else {
             //User name already use
-            PopUp.worng1.setVisible(true);
+            PopUp.emailUsedPane.setVisible(true);
         }
     }
 

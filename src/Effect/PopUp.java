@@ -7,7 +7,7 @@ package Effect;
 
 import AuctionMain.CreateButton;
 import AuctionMain.CreateTextField;
-import Scene.SceneHomeUnLogIn;
+import Scene.Home.SceneHomeUnLogIn;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -25,112 +25,110 @@ import javafx.scene.text.Text;
 public class PopUp {
 
     static private StackPane stackPane;
-    static private StackPane stackPane2;
-    static private StackPane stackPane3;
+    static private StackPane containAllStackPane;
     static private Pane pane1;
-    static private Rectangle popUpBackground;
-    static private Rectangle fade;
-    static public Pane worng = new Pane();
-    static public Pane worng1 = new Pane();
-    static public Pane worng2 = new Pane();
+    static private Rectangle popUpRectangleShape;
+    static private Rectangle popUpFadeBackgroundRectangle;
+    static public Pane incorrecypassPane = new Pane();
+    static public Pane emailUsedPane = new Pane();
+    static public Pane passwordNotSamePane = new Pane();
     private static final Label incorrecypass = new Label("*Maybe your Email or Password is incorrect*");
     private static final Label emailUsed = new Label("*This Email*");
     private static final Label passwordNotSame = new Label("*Paswwdfl fjkldsfjdslk*");
 
-    static public StackPane popUp() {        
+    static public void setUpPopUp(){
+        popUp();
+        incorrectPasswrod();
+        emailNotAvailable();
+        passwordNotSame();
+        
+    }
+    
+    static private void popUp() {        
         createpopUpBackground();
         createStackPaneUpBackground();
-        stackPane = new StackPane(stackPane2);
-        return stackPane;
+        //stackPane = new StackPane(containAllStackPane);
 
     }
 
-    static public void incorrectPasswrod() {
+    static private void incorrectPasswrod() {
 
         Font font = new Font(16);
         incorrecypass.setFont(font);
         incorrecypass.setStyle("-fx-focus-color:rgba( 2, 2, 2, 1.0); -fx-text-fill:rgba( 255, 0, 0, 1.0); -fx-faint-focus-color:rgba( 0, 255, 0, 0.0) ; -fx-inner-border:rgba( 255, 0, 0, 1.0); -fx-body-color:rgba( 255, 255, 255, 1.0); -fx-font-size: 20px;");
-        worng.setLayoutX(80);
-        worng.setLayoutY(160 + 48 + 48 + 48 + 48 + 12);
+        incorrecypassPane.setLayoutX(80);
+        incorrecypassPane.setLayoutY(160 + 48 + 48 + 48 + 48 + 12);
         incorrecypass.setMinWidth(600 - 160);
-        worng.getChildren().add(incorrecypass);
-        worng.setVisible(false);
+        incorrecypassPane.getChildren().add(incorrecypass);
+        incorrecypassPane.setVisible(false);
     }
     
-    static public void emailNotAvailable() {
+    static private void emailNotAvailable() {
         Font font = new Font(16);
         emailUsed.setFont(font);
         emailUsed.setStyle("-fx-focus-color:rgba( 2, 2, 2, 1.0); -fx-text-fill:rgba( 255, 0, 0, 1.0); -fx-faint-focus-color:rgba( 0, 255, 0, 0.0) ; -fx-inner-border:rgba( 255, 0, 0, 1.0); -fx-body-color:rgba( 255, 255, 255, 1.0); -fx-font-size: 20px;");
-        worng1.setLayoutX(80);
-        worng1.setLayoutY(160 + 48 + 48 + 48 + 48 + 12);
+        emailUsedPane.setLayoutX(80);
+        emailUsedPane.setLayoutY(160 + 48 + 48 + 48 + 48 + 12);
         emailUsed.setMinWidth(600 - 160);
-        worng1.getChildren().add(emailUsed);
-        worng1.setVisible(false);
+        emailUsedPane.getChildren().add(emailUsed);
+        emailUsedPane.setVisible(false);
     }
     
-    static public void passwordNotSame() {
+    static private void passwordNotSame() {
         Font font = new Font(16);
         passwordNotSame.setFont(font);
         passwordNotSame.setStyle("-fx-focus-color:rgba( 2, 2, 2, 1.0); -fx-text-fill:rgba( 255, 0, 0, 1.0); -fx-faint-focus-color:rgba( 0, 255, 0, 0.0) ; -fx-inner-border:rgba( 255, 0, 0, 1.0); -fx-body-color:rgba( 255, 255, 255, 1.0); -fx-font-size: 20px;");
-        worng2.setLayoutX(80);
-        worng2.setLayoutY(160 + 48 + 48 + 48 + 48 + 12);
+        passwordNotSamePane.setLayoutX(80);
+        passwordNotSamePane.setLayoutY(160 + 48 + 48 + 48 + 48 + 12);
         passwordNotSame.setMinWidth(600 - 160);
-        worng2.getChildren().add(passwordNotSame);
-        worng2.setVisible(false);
+        passwordNotSamePane.getChildren().add(passwordNotSame);
+        passwordNotSamePane.setVisible(false);
     }
 
 
-    static public void createpopUpBackground() {
-        popUpBackground = new Rectangle();
-        popUpBackground.setWidth(600);
-        popUpBackground.setHeight(460);
-        popUpBackground.setFill(Color.web("rgba( 200, 200, 200,1.0)"));
-        popUpBackground.setArcWidth(140);
-        popUpBackground.setArcHeight(140);
+    static private void createpopUpBackground() {
+        popUpRectangleShape = new Rectangle();
+        popUpRectangleShape.setWidth(600);
+        popUpRectangleShape.setHeight(460);
+        popUpRectangleShape.setFill(Color.web("rgba( 200, 200, 200,1.0)"));
+        popUpRectangleShape.setArcWidth(140);
+        popUpRectangleShape.setArcHeight(140);
 
-        fade = new Rectangle();
-        fade.setWidth(1920);
-        fade.setHeight(1080);
-        fade.setFill(Color.web("rgba( 0, 0, 0,0.5)"));
+        popUpFadeBackgroundRectangle = new Rectangle();
+        popUpFadeBackgroundRectangle.setWidth(1920);
+        popUpFadeBackgroundRectangle.setHeight(1080);
+        popUpFadeBackgroundRectangle.setFill(Color.web("rgba( 0, 0, 0,0.5)"));
 
         EventHandler<MouseEvent> mcc = (MouseEvent ActionEvent) -> {
             //Do code here
-            //CreateButton.buttonPopUpLogIn.setVisible(true);
-            //CreateButton.buttonPopUpCreateAccount.setVisible(false);
-            //CreateTextField.email.setVisible(false);
-            //CreateTextField.password.setVisible(false);
-            //CreateTextField.passwordC.setVisible(true);
-            //CreateButton.buttonPopUpLogIn2.setVisible(false);
-            //CreateButton.buttonPopUpSignUp.setVisible(true);
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
-            //setSceneForStage.stageSetHomeAlreadyLogIn();
             System.out.println("Click");
 
         };
-        fade.setOnMouseClicked(mcc);
+        popUpFadeBackgroundRectangle.setOnMouseClicked(mcc);
 
         Font font = new Font(32);
 
-        Text logIn = new Text("LOG IN");
-        logIn.setFont(font);
+        Text logInText = new Text("LOG IN");
+        logInText.setFont(font);
         StackPane paneLogIn = new StackPane();
         paneLogIn.setMinSize(300, 140);
-        paneLogIn.getChildren().add(logIn);
+        paneLogIn.getChildren().add(logInText);
 
-        Text createAccount = new Text("SIGN UP");
-        createAccount.setFont(font);
-        StackPane pane = new StackPane();
-        pane.setMinSize(300, 140);
-        pane.setLayoutX(300);
-        pane.setLayoutY(0);
-        pane.getChildren().add(createAccount);
+        Text signUpText = new Text("SIGN UP");
+        signUpText.setFont(font);
+        StackPane paneSignUp = new StackPane();
+        paneSignUp.setMinSize(300, 140);
+        paneSignUp.setLayoutX(300);
+        paneSignUp.setLayoutY(0);
+        paneSignUp.getChildren().add(signUpText);
 
         Font font2 = new Font(24);
 
-        CreateTextField.username.setFont(font2);
-        CreateTextField.username.setLayoutX(80);
-        CreateTextField.username.setLayoutY(160);
-        CreateTextField.username.setMinWidth(600 - 160);
+        CreateTextField.email.setFont(font2);
+        CreateTextField.email.setLayoutX(80);
+        CreateTextField.email.setLayoutY(160);
+        CreateTextField.email.setMinWidth(600 - 160);
 
         CreateTextField.password.setFont(font2);
         CreateTextField.password.setLayoutX(80);
@@ -142,21 +140,18 @@ public class PopUp {
         CreateTextField.passwordC.setLayoutY(160 + 48 + 48 + 48);
         CreateTextField.passwordC.setMinWidth(600 - 160);
 
-        pane1 = new Pane(popUpBackground, CreateTextField.username, CreateTextField.password, CreateTextField.passwordC, paneLogIn, CreateButton.buttonPopUpLogIn, pane, CreateButton.buttonPopSwitchToSignUp, CreateButton.buttonPopUpSwitchToLogIn, worng, CreateButton.buttonPopUpRegister , worng1, worng2);
+        pane1 = new Pane(popUpRectangleShape, CreateTextField.email, CreateTextField.password, CreateTextField.passwordC, paneLogIn, CreateButton.buttonPopUpLogIn, paneSignUp, CreateButton.buttonPopSwitchToSignUp, CreateButton.buttonPopUpSwitchToLogIn, incorrecypassPane, CreateButton.buttonPopUpRegister , emailUsedPane, passwordNotSamePane);
         pane1.setMaxWidth(600);
         pane1.setMaxHeight(460);
-        //pane1.setMinWidth(600);
-        //pane1.setMinHeight(1000);
-        //pane1.setLayoutY(540);
 
     }
 
-    static public void createStackPaneUpBackground() {
-        stackPane2 = new StackPane(fade);
-        stackPane2.getChildren().addAll(pane1);
+    static private void createStackPaneUpBackground() {
+        containAllStackPane = new StackPane();
+        containAllStackPane.getChildren().addAll(popUpFadeBackgroundRectangle, pane1);
     }
 
     public static StackPane getStackPane() {
-        return stackPane;
+        return containAllStackPane;
     }
 }
