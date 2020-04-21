@@ -6,6 +6,11 @@
 package Scene.Home.MyAccount;
 
 import static Scene.Home.MyAccount.PaneMyAccount.scrollPaneMyObject;
+import com.sun.javafx.logging.PlatformLogger.Level;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.lang.System.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -14,6 +19,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -21,6 +28,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -45,6 +54,8 @@ public class AddProduct {
     static public TextField minimumBid;
     static public TextArea productDescription;
     static public Rectangle pic;
+
+    static private Desktop desktop = Desktop.getDesktop();
 
     static public void makeAddProductPane() {
         title1();
@@ -89,6 +100,24 @@ public class AddProduct {
 
         };
         btnCheck.setOnAction(btnCheckEV);
+
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+
+        EventHandler<MouseEvent> addpicEV = (MouseEvent ActionEvent) -> {
+            System.out.println("btnCheck " + selectText.getText());
+            Stage stage = new Stage();
+            File file = fileChooser.showOpenDialog(stage);
+            System.out.println(file.toString());
+            Image image = new Image(file.toString());
+            ImageView imv = new ImageView(image);
+            pic.setClip(imv);
+            /*if (file != null) {
+                openFile(file);
+            }*/
+
+        };
+        pic.setOnMouseClicked(addpicEV);
 
         EventHandler<MouseEvent> evTitle1 = (MouseEvent ActionEvent) -> {
             if (titleVbox.getChildren().size() == 1) {
