@@ -6,15 +6,14 @@
 package AuctionMain;
 
 import Effect.PopUp;
-import Scene.PaneMyAccount;
 import Scene.Home.PaneTop;
 import Scene.Home.SceneHomeUnLogIn;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import Scene.CategorisePane;
+import Scene.PaneMyAccount;
 import Scene.ProductPaneInVbox;
-import static Scene.PaneMyAccount.paneMyObject;
 
 /**
  *

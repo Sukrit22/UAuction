@@ -8,7 +8,6 @@ package Scene.Home;
 import AuctionMain.CreateButton;
 import static AuctionMain.CreateButton.buttonHelpPaneTop;
 import Scene.CategorisePane;
-import Scene.PaneMyAccount;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;

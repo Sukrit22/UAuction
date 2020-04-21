@@ -5,7 +5,6 @@
  */
 package AuctionMain;
 
-import Effect.PopUp;
 import Function.MyFunction;
 import Stage.SetUpStage;
 import javafx.application.Application;

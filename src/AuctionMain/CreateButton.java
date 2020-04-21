@@ -38,7 +38,7 @@ public class CreateButton {
         buttonCreateAccount();
         buttonHelp();
         buttonLogIn();
-        buttonLogIn3();
+        buttonLogInPaneTopMethod();
         buttonMyAccount();
         buttonPopUpLogIn2();
         buttonPopUpSignUp();
@@ -140,7 +140,7 @@ public class CreateButton {
         buttonSearch = new Group(test, pane);
     }
 
-    static private void buttonLogIn3() {
+    static private void buttonLogInPaneTopMethod() {
         Rectangle test = new Rectangle(150, 50);
         test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
@@ -149,9 +149,11 @@ public class CreateButton {
         logIn.setFont(font);
         StackPane pane = new StackPane();
         pane.setMinSize(150, 50);
+        //pane.setLayoutX(500);
         pane.getChildren().add(logIn);
         logIn.applyCss();
         buttonLogInPaneTop = new Group(test, pane);
+        buttonLogInPaneTop.setLayoutX(1920 - 400 - 150 - 150);
     }
 
     static private void buttonMyAccount() {
@@ -167,6 +169,7 @@ public class CreateButton {
         logIn.applyCss();
 
         buttonMyAccount = new Group(test, pane);
+        buttonMyAccount.setLayoutX(1920 - 400 - 150 - 150);
     }
 
     static private void buttonSignOut() {
@@ -188,6 +191,7 @@ public class CreateButton {
         //
 
         buttonSignOutTopPane = new Group(test, pane);
+        buttonSignOutTopPane.setLayoutX(-150);
     }
 
     static private void buttonTime() {

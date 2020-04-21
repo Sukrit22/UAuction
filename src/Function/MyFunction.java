@@ -6,10 +6,8 @@
 package Function;
 
 import AuctionMain.CreateButton;
-import AuctionMain.CreateTextField;
 import Effect.PopUp;
 import Effect.PopUpProduct;
-import Scene.PaneMyAccount;
 import Scene.Home.PaneTop;
 import Scene.Home.SceneHomeUnLogIn;
 import Stage.SetUpStage;
@@ -30,7 +28,7 @@ public class MyFunction {
         PaneTop.getPane().getChildren().add(CreateButton.buttonTime);
         PaneTop.getPane().getChildren().add(CreateButton.buttonHelpPaneTop);
         PopUp.setUpPopUp();
-        PaneMyAccount.setUpPane();
+        Scene.PaneMyAccount.setUpPane();
     }
 
 }
