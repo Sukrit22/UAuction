@@ -18,20 +18,31 @@ import java.util.logging.Logger;
  */
 public class Client extends Application {
 
-//======================= data field =============================
 
-    //dataField to use in program
 
-//======================= Constructor ============================
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         //start program here
         //in order of loading all local data and open the gui then request the data from server
         //that point on this program is gonna be event driven program, means we put action on ButtonEvent.java
         
-        //load local data
+       
+        Socket s = new Socket("localhost", 1234 );
+        String client = "";
+        String server = null;
+        //Request
+        while(!client.matches("bye")){
+        Scanner input = new Scanner(System.in);
+        PrintWriter writer = new PrintWriter(s.getOutputStream(),true);
+        client = input.nextLine();
+        writer.println(client);
         
+        //Receive
         
+        InputStreamReader reader = new InputStreamReader(s.getInputStream());
+        BufferedReader bfReader = new BufferedReader(reader);
+        server = bfReader.readLine();
+            System.out.println("Server said : " +server);
+        }
         //start gui
         
         

@@ -18,54 +18,73 @@ import java.util.logging.Logger;
  *
  * @author Sukrit22
  */
-public class Server extends Application{
-//======================= data field =============================
-    
-    ServerSocket ss;
+public class Server {
 
-//======================= Constructor ============================
-public void openServer()
-{
+    ServerSocket s;
+
+    public void go() {
+
         try {
-            ss = new ServerSocket(5555);
-            Socket server = ss.accept();
-            
-        } catch (IOException ex) {
-            
+            s = new ServerSocket(1234);
+
+            while (true) {
+
+                Socket incoming = s.accept();
+                Thread t = new Thread(new MyCon(incoming));
+                t.start();
+            }
+        } catch (IOException e) {
+
+            e.printStackTrace();
         }
-}
-   
-public static void main(String[] args) throws Exception {
-        ServerSocket ss = new ServerSocket(5555) ;
-        Socket server = ss.accept();
-          
-        
-                
-                
-        
-        
-        System.out.println("Client coming....");
-        
-        
-        InputStreamReader in = new InputStreamReader (server.getInputStream());
-        BufferedReader reader = new BufferedReader(in);
-        
-        String client = reader.readLine();
-        System.out.println("Client Said : " + client); 
-        
-        PrintStream writer = new PrintStream(server.getOutputStream(),true);
-        writer.println("Server : "+  client+ "YOUR ASS!!!!");
-        
-        
+
     }
 
-//======================= method =================================
+    class MyCon implements Runnable {
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Socket incoming;
+
+        public MyCon(Socket incoming) {
+
+            this.incoming = incoming;
+             System.out.println("Client conncted...");
+        }
+
+        @Override
+        public void run() {
+            try {
+                
+                InputStreamReader reader = new InputStreamReader(incoming.getInputStream());
+                BufferedReader bfReader = new BufferedReader(reader);
+                String clientReq = bfReader.readLine();
+                
+                if(clientReq.matches("Hello"))
+                {
+                    try{
+                        
+                        PrintWriter writer = new PrintWriter(incoming.getOutputStream(),true);
+                        writer.println("Hello boy");
+                    }catch(Exception e){}
+                }
+                
+                
+                
+                
+                
+                
+            } catch (IOException ex) {
+                
+            }
+                
+
+        }
     }
+    public static void main(String[] args) {
 
+        new Server().go();
 
+    }
+    }
+        
+ 
 
-}
