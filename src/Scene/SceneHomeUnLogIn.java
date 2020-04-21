@@ -63,14 +63,6 @@ public class SceneHomeUnLogIn {
         scrollPane.setStyle("-fx-focus-color:rgba( 2, 2, 2, 1.0); -fx-text-fill:rgba( 255, 0, 0, 1.0); -fx-faint-focus-color:rgba( 0, 255, 0, 0.0) ; -fx-inner-border:rgba( 255, 0, 0, 1.0); -fx-body-color:rgba( 255, 255, 255, 1.0); -fx-font-size: 20px;");
         return scrollPane;
     }
-
-    static private Pane createPaneLeft() {       
-        //----------------------------------------------------------------------
-        Pane pane = new Pane(PaneLeft.getPane());
-        pane.setMinSize(220, 1000 - 200);
-        pane.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: red;");
-        return pane;
-    }
     
     static private Pane createPaneCenter() {
         Pane pane = new Pane();
@@ -85,7 +77,6 @@ public class SceneHomeUnLogIn {
         borderPane.setMinSize(1920, 1080);
         borderPane.setTop(createPaneTop());
         borderPane.setRight(createPaneRight());
-        borderPane.setLeft(createPaneLeft());
         //borderPane.setCenter(createPaneCenter());
 
         return borderPane;
