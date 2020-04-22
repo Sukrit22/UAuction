@@ -12,6 +12,7 @@ package uauction;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 
 public class NewClient 
 {
@@ -79,10 +81,45 @@ public class NewClient
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("RegisterProduct"+" "));
         toServer.flush();
-        toServer.writeObject(impr);
+        ObjectOutputStream toServer2 = new ObjectOutputStream(server.getOutputStream());
+        toServer2.writeObject(impr);
+        toServer2.flush();
+        toServer2.close();
+    }
+    
+    public static void reqMarket () throws Exception
+    {
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("Market"+" "));
         toServer.flush();
         toServer.close();
+         
+        ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        ArrayList<ActiveProduct> a = (ArrayList<ActiveProduct>)fromServer.readObject();
+        
+        for(ActiveProduct ap : a)
+        {
+            reqImage(ap.getProduct().getImageName());
+            
+        }
+        
     }
+    
+    public static void reqImage(String imageName) throws Exception
+    {
+        
+        File file =new File (System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName);
+        
+        if(!file.exists())
+        {
+            InputStream is = server.getInputStream();
+            BufferedImage image = ImageIO.read(is);
+            ImageIO.write(image, imageName, file);
+        }
+        
+    }
+    
+    
 }
 /*public class NewClient extends Application
 {

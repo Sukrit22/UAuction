@@ -67,10 +67,10 @@ public NewServer()
          try
         {
            InputStreamReader isr = new InputStreamReader(client.getInputStream());
-           ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
-           ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());
-           PrintWriter stringToClient = new PrintWriter(client.getOutputStream(),true);
            BufferedReader fromClient = new BufferedReader(isr);
+           
+           
+           
            
            while(true){
               String clientInput = fromClient.readLine();
@@ -81,30 +81,47 @@ public NewServer()
                System.out.println("Client : "+clientInput);
               if(keyword[0].matches("Login"))
               {
+                 ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
                  objectToClient.writeObject(Accountant.login(keyword[1],keyword[2]));
                  objectToClient.flush();
               }
               else if(keyword[0].matches("Register"))
               {
+                  ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
                  objectToClient.writeObject(Accountant.register(keyword[1],keyword[2]));
                  objectToClient.flush();
               }
               else if(keyword[0].matches("Market")){
                   
+                 ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
                  objectToClient.writeObject(Database.activeProduct);
                  objectToClient.flush();
                  
               }
+              else if(keyword[0].matches("Image")){
+                  
+                 File file = new File(System.getProperty("user.dir")+"/AuctionDataBase/Image/" + keyword[1]);
+                 BufferedImage image = ImageIO.read(file);
+                 OutputStream os = client.getOutputStream();
+                 ImageIO.write(image, "jpg", os);
+                 os.flush();
+                 os.close();
+                 
+                 
+              }
               else if(keyword[0].matches("RegisterProduct")){
                   
+                  ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());
                   ImPr impr = (ImPr)objectFromClient.readObject();
                   ManageProduct.registerProduct(impr.getProduct());
-                  ManageProduct.registerImage(impr.getImage(),impr.getProduct().getFileName());
+                  ManageProduct.registerImage(impr.getImage(),impr.getProduct().getImageName());
                   
                   
                   
               }
               else if(keyword[0].matches("LoadProduct")){
+                  
+                 ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
                  OutputStream os = client.getOutputStream();
                  Product product =  SaveAndLoad.loadProduct(keyword[1]);
                  objectToClient.writeObject(product);
