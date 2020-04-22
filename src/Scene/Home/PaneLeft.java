@@ -229,7 +229,7 @@ public class PaneLeft {
         rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
-        Text logIn = new Text("All");
+        Text logIn = new Text("All Categorise");
         logIn.setLayoutX(0);
         logIn.setFont(font);
         StackPane pane = new StackPane();
