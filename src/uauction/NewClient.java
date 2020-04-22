@@ -28,11 +28,11 @@ import javafx.stage.Stage;
 public class NewClient 
 {
     
-    
+    static Socket server;
     
     
     public static void main(String[] args) throws Exception {
-         Socket server = new Socket("171.6.209.126",1233);
+        server = new Socket("171.6.209.126",1233);
         while(true)
     {
        
@@ -48,7 +48,15 @@ public class NewClient
     }
     }
     
-    
+    public static User reqLogin(String username,String password) throws IOException, ClassNotFoundException
+    {
+        PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
+        toServer.println("Login"+" "+username+" "+password);
+        
+        ObjectInputStream ois = new ObjectInputStream(server.getInputStream());
+        User user = (User)ois.readObject();
+        return user;
+    }
 }
 /*public class NewClient extends Application
 {
