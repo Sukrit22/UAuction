@@ -40,11 +40,12 @@ public class GreetingClient
             
            BufferedImage image;
            OutputStream os = client.getOutputStream();
-           image = ImageIO.read(new File("C:/TestPic4.png"));
-           ImageIO.write(image,"png", os);
+           //ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());
+           image = ImageIO.read(new File("C:/TestPic4.jpg"));
+           ImageIO.write(image,"jpg", os);
+           
            os.flush();
            os.close();
-           
         } catch(Exception w) {
             w.printStackTrace();
         }

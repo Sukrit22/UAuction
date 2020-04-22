@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package uauction;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 /**
  *
  * @author USER
@@ -92,7 +95,12 @@ public NewServer()
                   
               }
               else if(keyword[0].matches("RegisterProduct")){
-                  objectFromClient.readObject();
+                  ImPr impr = (ImPr)objectFromClient.readObject();
+                  ManageProduct.registerProduct(impr.getProduct());
+                  
+                  BufferedImage pic = ImageIO.read(client.getInputStream());
+                                 
+                  File file = new File(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+impr.getProduct().getFileName()+".txt");
                   
               }
               else if(keyword[0].matches("LoadProduct")){
