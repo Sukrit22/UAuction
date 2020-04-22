@@ -86,6 +86,22 @@ public class NewClient
         toServer2.flush();
         toServer2.close();
     }
+    public static Object reqProduct(String fileName/*product.getFilename()*/)throws Exception
+    {
+        
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("LoadProduct"+" "+fileName));
+        
+        ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        Product product  = (Product)fromServer.readObject();
+        
+        return product;
+    }
+    public static void reqBid(String productName/*product.getName*/,String cost,String bidderName/*User.getName*/) throws Exception
+    {
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("Bid"+" "+cost+" "+bidderName));
+    }
     
     public static void reqMarket () throws Exception
     {
@@ -107,7 +123,8 @@ public class NewClient
     
     public static void reqImage(String imageName) throws Exception
     {
-        
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("Image"+" "+imageName));
         File file =new File (System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName);
         
         if(!file.exists())
