@@ -180,7 +180,7 @@ public class ButtonEvent {
         PaneMyAccount.btnBack.setOnAction(back);
         PaneMyAccount.btnBack2.setOnAction(back);
         
-        EventHandler<MouseEvent> my3 = (MouseEvent ActionEvent) -> {
+        EventHandler<MouseEvent> backMVE = (MouseEvent ActionEvent) -> {
             PaneTop.getPane().getChildren().add(CreateButton.buttonMyAccount);
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PaneMyAccount.getPaneMyAcclayer1());
             System.out.println(CategorisePane.vboxArray.get(0).getChildren().size());
@@ -196,7 +196,8 @@ public class ButtonEvent {
                 }
             }
         };
-        CreateButton.buttonBackOnACC.setOnMouseClicked(my3);
+        CreateButton.buttonBackOnACC.setOnMouseClicked(backMVE);
+        CreateButton.buttonBackOnACC2.setOnMouseClicked(backMVE);
 
     }
 

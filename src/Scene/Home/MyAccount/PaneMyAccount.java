@@ -131,7 +131,8 @@ public class PaneMyAccount {
         paneTop.setLayoutX(0);
         paneTop.setLayoutY(0);
         paneTop.setStyle("-fx-background-color:rgba(240,240,240,1.0) ; ");
-        paneTop.getChildren().add(name);
+        CreateButton.buttonBackOnACC2.setLayoutX(1920-220);
+        paneTop.getChildren().addAll(name, CreateButton.buttonBackOnACC2);
         Font font = new Font(32);
         name.setFont(font);
 
@@ -144,7 +145,7 @@ public class PaneMyAccount {
         Rectangle leftbg = new Rectangle(220, 1080 - 200);
         leftbg.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         paneLeft.getChildren().addAll(leftbg, vbox);
-        vbox.getChildren().addAll(CreateButton.buttonMyProfileOnMyACC, CreateButton.buttonMyProductOnACC, CreateButton.buttonAddProductOnACC, CreateButton.buttonBackOnACC);
+        vbox.getChildren().addAll(CreateButton.buttonMyProfileOnMyACC, CreateButton.buttonMyProductOnACC, CreateButton.buttonAddProductOnACC, CreateButton.buttonBlankOnACC, CreateButton.buttonBackOnACC);
         paneMyAccLayer1.setMinSize(1920, 1080);
         //paneMyAccLayer1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:black ;");
 
