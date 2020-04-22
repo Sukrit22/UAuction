@@ -45,6 +45,14 @@ public class PaneLeft {
     static private Group intitleGroup102;
     static private Group intitleGroup103;
     static private Group intitleGroup104;
+    
+    static private Group intitleGroup201;
+    static private Group intitleGroup202;
+    static private Group intitleGroup203;
+    
+    static private Group intitleGroup301;
+    static private Group intitleGroup302;
+    static private Group intitleGroup303;
 
     static public void setUp() {
         //Button a = new Button();
@@ -58,15 +66,19 @@ public class PaneLeft {
         intitle1_3();
         intitle1_4();
 
+        intitle2_1();
+        intitle2_2();
+        intitle2_3();
+        
+        intitle3_1();
+        intitle3_2();
+        intitle3_3();
+        
         inTitleVbox1.getChildren().addAll(intitleGroup101, intitleGroup102, intitleGroup103, intitleGroup104);
-        Label labelT21 = new Label("labelT21");
-        Label labelT22 = new Label("labelT22");
-        Label labelT23 = new Label("labelT23");
-        inTitleVbox2.getChildren().addAll(labelT21, labelT22, labelT23);
-        Label labelT31 = new Label("labelT31");
-        Label labelT32 = new Label("labelT32");
-        Label labelT33 = new Label("labelT33");
-        inTitleVbox3.getChildren().addAll(labelT31, labelT32, labelT33);
+
+        inTitleVbox2.getChildren().addAll(intitleGroup201, intitleGroup202, intitleGroup203);
+
+        inTitleVbox3.getChildren().addAll(intitleGroup301, intitleGroup302, intitleGroup303);
 
         titleVbox.getChildren().addAll(titleGroup1, titleGroup2, titleGroup3, titleGroup4, titleGroup5);
 
@@ -247,9 +259,9 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
             rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
-            if (CategorisePane.paneArray.get(0).isVisible()) {
+            /*if (CategorisePane.paneArray.get(0).isVisible()) {
                 rect.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
-            }
+            }*/
         };
         titleGroup1.setOnMouseExited(exited);
     }
@@ -278,9 +290,9 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
             rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
-            if (CategorisePane.paneArray.get(1).isVisible()) {
+            /*if (CategorisePane.paneArray.get(1).isVisible()) {
                 rect.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
-            }
+            }*/
         };
         titleGroup2.setOnMouseExited(exited);
     }
@@ -307,9 +319,9 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
             rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
-            if (CategorisePane.paneArray.get(2).isVisible()) {
+            /*if (CategorisePane.paneArray.get(2).isVisible()) {
                 rect.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
-            }
+            }*/
         };
         titleGroup3.setOnMouseExited(exited);
     }
@@ -336,9 +348,9 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
             rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
-            if (CategorisePane.paneArray.get(3).isVisible()) {
+            /*if (CategorisePane.paneArray.get(3).isVisible()) {
                 rect.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
-            }
+            }*/
         };
         titleGroup4.setOnMouseExited(exited);
 
@@ -366,16 +378,16 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
             rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
-            if (CategorisePane.paneArray.get(4).isVisible()) {
+            /*if (CategorisePane.paneArray.get(4).isVisible()) {
                 rect.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
-            }
+            }*/
         };
         titleGroup5.setOnMouseExited(exited);
     }
 
     static private void intitle1_1() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Mobiles & Tablets");
@@ -391,14 +403,14 @@ public class PaneLeft {
         intitleGroup101.setOnMouseEntered(entered);
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
-            rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         };
         intitleGroup101.setOnMouseExited(exited);
     }
 
     static private void intitle1_2() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Laptops & Desktops");
@@ -414,14 +426,14 @@ public class PaneLeft {
         intitleGroup102.setOnMouseEntered(entered);
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
-            rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         };
         intitleGroup102.setOnMouseExited(exited);
     }
 
     static private void intitle1_3() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Camera");
@@ -437,14 +449,14 @@ public class PaneLeft {
         intitleGroup103.setOnMouseEntered(entered);
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
-            rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         };
         intitleGroup103.setOnMouseExited(exited);
     }
 
     static private void intitle1_4() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Else");
@@ -460,11 +472,150 @@ public class PaneLeft {
         intitleGroup104.setOnMouseEntered(entered);
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
-            rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         };
         intitleGroup104.setOnMouseExited(exited);
     }
 
+    static private void intitle2_1() {
+        Rectangle rect = new Rectangle(220, 40);
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(18);
+        Text logIn = new Text("Mobiles & Tablets");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+        logIn.applyCss();
+        intitleGroup201 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        };
+        intitleGroup201.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        };
+        intitleGroup201.setOnMouseExited(exited);
+    }
+    
+    static private void intitle2_2() {
+        Rectangle rect = new Rectangle(220, 40);
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(18);
+        Text logIn = new Text("Mobiles & Tablets");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+        logIn.applyCss();
+        intitleGroup202 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        };
+        intitleGroup202.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        };
+        intitleGroup202.setOnMouseExited(exited);
+    }
+    
+    static private void intitle2_3() {
+        Rectangle rect = new Rectangle(220, 40);
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(18);
+        Text logIn = new Text("Mobiles & Tablets");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+        logIn.applyCss();
+        intitleGroup203 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        };
+        intitleGroup203.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        };
+        intitleGroup203.setOnMouseExited(exited);
+    }
+    
+    static private void intitle3_1() {
+        Rectangle rect = new Rectangle(220, 40);
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(18);
+        Text logIn = new Text("Mobiles & Tablets");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+        logIn.applyCss();
+        intitleGroup301 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        };
+        intitleGroup301.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        };
+        intitleGroup301.setOnMouseExited(exited);
+    }
+    
+    static private void intitle3_2() {
+        Rectangle rect = new Rectangle(220, 40);
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(18);
+        Text logIn = new Text("Mobiles & Tablets");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+        logIn.applyCss();
+        intitleGroup302 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        };
+        intitleGroup302.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        };
+        intitleGroup302.setOnMouseExited(exited);
+    }
+    
+    static private void intitle3_3() {
+        Rectangle rect = new Rectangle(220, 40);
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(18);
+        Text logIn = new Text("Mobiles & Tablets");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+        logIn.applyCss();
+        intitleGroup303 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        };
+        intitleGroup303.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        };
+        intitleGroup303.setOnMouseExited(exited);
+    }
+    
+    
     static public Pane getPane() {
         return pane;
     }
