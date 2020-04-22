@@ -89,11 +89,11 @@ public NewServer()
                  objectToClient.writeObject(Accountant.register(keyword[1],keyword[2]));
                  objectToClient.flush();
               }
-              else if(keyword[0].matches("Account")){
-                  
-              }
               else if(keyword[0].matches("Market")){
                   
+                 objectToClient.writeObject(Database.activeProduct);
+                 objectToClient.flush();
+                 
               }
               else if(keyword[0].matches("RegisterProduct")){
                   
@@ -116,9 +116,10 @@ public NewServer()
                   os.close();
               }
              else if(keyword[0].matches("Bid")){
-                  
+                 int indexOfActiveProduct = Database.activeProduct.indexOf(keyword[1]);
+                 Database.activeProduct.get(indexOfActiveProduct).setCurrentBid(Double.parseDouble(keyword[2]));
+                 Database.activeProduct.get(indexOfActiveProduct).addBiddingHistory(keyword[3]);
               }
-              
            }
         }
         catch (Exception e)
