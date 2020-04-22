@@ -89,7 +89,6 @@ public class PaneLeft {
                 }
             }
 
-
         };
         titleGroup1.setOnMouseClicked(evTitle1);
 
@@ -239,6 +238,15 @@ public class PaneLeft {
         //pane.setLayoutX(1920 - 400 - 150);
         logIn.applyCss();
         titleGroup1 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
+        };
+        titleGroup1.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        };
+        titleGroup1.setOnMouseExited(exited);
     }
 
     static private void title2() {
@@ -256,6 +264,15 @@ public class PaneLeft {
         //pane.setLayoutX(1920 - 400 - 150);
         logIn.applyCss();
         titleGroup2 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
+        };
+        titleGroup2.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        };
+        titleGroup2.setOnMouseExited(exited);
     }
 
     static private void title3() {
@@ -271,6 +288,15 @@ public class PaneLeft {
         pane.setLayoutX(0);
         logIn.applyCss();
         titleGroup3 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
+        };
+        titleGroup3.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        };
+        titleGroup3.setOnMouseExited(exited);
     }
 
     static private void title4() {
@@ -286,6 +312,15 @@ public class PaneLeft {
         pane.setLayoutX(0);
         logIn.applyCss();
         titleGroup4 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
+        };
+        titleGroup4.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        };
+        titleGroup4.setOnMouseExited(exited);
     }
 
     static private void title5() {
@@ -301,11 +336,20 @@ public class PaneLeft {
         pane.setLayoutX(0);
         logIn.applyCss();
         titleGroup5 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
+        };
+        titleGroup5.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        };
+        titleGroup5.setOnMouseExited(exited);
     }
 
     static private void intitle1_1() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Mobiles & Tablets");
@@ -315,11 +359,20 @@ public class PaneLeft {
         pane.getChildren().add(logIn);
         logIn.applyCss();
         intitleGroup101 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        };
+        intitleGroup101.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+        };
+        intitleGroup101.setOnMouseExited(exited);
     }
 
     static private void intitle1_2() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Laptops & Desktops");
@@ -329,11 +382,20 @@ public class PaneLeft {
         pane.getChildren().add(logIn);
         logIn.applyCss();
         intitleGroup102 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        };
+        intitleGroup102.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+        };
+        intitleGroup102.setOnMouseExited(exited);
     }
 
     static private void intitle1_3() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Camera");
@@ -343,11 +405,20 @@ public class PaneLeft {
         pane.getChildren().add(logIn);
         logIn.applyCss();
         intitleGroup103 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        };
+        intitleGroup103.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+        };
+        intitleGroup103.setOnMouseExited(exited);
     }
 
     static private void intitle1_4() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Else");
@@ -357,6 +428,15 @@ public class PaneLeft {
         pane.getChildren().add(logIn);
         logIn.applyCss();
         intitleGroup104 = new Group(rect, pane);
+        EventHandler<MouseEvent> entered = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        };
+        intitleGroup104.setOnMouseEntered(entered);
+
+        EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
+            rect.setFill(Color.web("rgba( 225, 225, 225, 1.0)"));
+        };
+        intitleGroup104.setOnMouseExited(exited);
     }
 
     static public Pane getPane() {
