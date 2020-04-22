@@ -23,7 +23,7 @@ public class Notifications {
         pane.setStyle("-fx-background-color:rgba(0,0,0,0.5);");
         subPane.setMinSize(300, 600);
         subPane.setMaxSize(300, 600);
-        subPane.setStyle("-fx-background-color:rgba(250,0,0,1.0);");
+        subPane.setStyle("-fx-background-color:rgba(80,80,80,1.0);");
         subPane.setLayoutX(1920-300);
         //subPane.setLayoutY(100);
     }
