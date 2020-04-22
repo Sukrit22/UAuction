@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  *
  * @author USER
  */
-public class ImPr {
+public class ImPr  {
     
     Product  product;
     BufferedImage image;

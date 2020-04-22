@@ -38,8 +38,8 @@ public class ClientSendToServer {
             String name = scn.nextLine();
             ObjectOutputStream o =new ObjectOutputStream(client.getOutputStream());
             Image image = new Image("file:///"+System.getProperty("user.dir")+"/AuctionDataBase/Image/"+name+".jpg");
-            Im im = new Im(image);
-            o.writeObject(im);
+            //Im im = new Im(image);
+            //o.writeObject(im);
             o.flush();
             o.close();
             //if(name.equals("exit"))
