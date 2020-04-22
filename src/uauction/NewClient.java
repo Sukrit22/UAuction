@@ -36,7 +36,6 @@ public class NewClient
     
     
     public static void main(String[] args) throws Exception {
-        server = new Socket("auctionoop.myddns.me",1234);
         user = new User();
         AuctionMain.AuctionMain.main(args);
 //        while(true)
@@ -56,6 +55,7 @@ public class NewClient
     
     public static Object reqLogin(String username,String password) throws IOException, ClassNotFoundException
     {
+        server = new Socket("auctionoop.myddns.me",1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Login" + " " + username + " " + password));
         //PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
@@ -67,6 +67,7 @@ public class NewClient
     
     public static Object reqRegister(String username,String password) throws IOException, ClassNotFoundException
     {
+        server = new Socket("auctionoop.myddns.me",1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Register" + " " + username + " " + password));
         toServer.flush();
@@ -77,6 +78,7 @@ public class NewClient
     }
     public static void reqRegisterProduct (Product product,BufferedImage image) throws IOException
     {
+        server = new Socket("auctionoop.myddns.me",1234);
         ImPr impr = new ImPr(product,image);
         
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
@@ -89,6 +91,7 @@ public class NewClient
     }
     public static Object reqProduct(String fileName/*product.getFilename()*/)throws Exception
     {
+        server = new Socket("auctionoop.myddns.me",1234);
         
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("LoadProduct"+" "+fileName));
@@ -100,12 +103,14 @@ public class NewClient
     }
     public static void reqBid(String productName/*product.getName*/,String cost,String bidderName/*User.getName*/) throws Exception
     {
+        server = new Socket("auctionoop.myddns.me",1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Bid"+" "+cost+" "+bidderName));
     }
     
     public static void reqMarket () throws Exception
     {
+        server = new Socket("auctionoop.myddns.me",1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Market"+" "));
         toServer.flush();
@@ -124,6 +129,7 @@ public class NewClient
     
     public static void reqImage(String imageName) throws Exception
     {
+        server = new Socket("auctionoop.myddns.me",1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Image"+" "+imageName));
         File file =new File (System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName);
