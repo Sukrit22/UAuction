@@ -36,8 +36,10 @@ public class WorkerThread implements Runnable {
             serverSocket.setSoTimeout(180000);
             while(true) {
                 Socket server = serverSocket.accept();
-                BufferedImage pic = ImageIO.read(server.getInputStream());
-                Image image = SwingFXUtils.toFXImage(pic, null);
+                ObjectInputStream o = new ObjectInputStream(server.getInputStream());
+                Image image = (Image)o.readObject();
+                //BufferedImage pic = ImageIO.read(server.getInputStream());
+                //Image image = SwingFXUtils.toFXImage(pic, null);
                 //Image im = new Image("file:///"+System.getProperty("user.dir")+"/AuctionDataBase/Image/bed_double.jpg");
                 ServerReceiveAndDisplay.iv.setImage(image);
                 System.out.println("update image from client");
@@ -45,6 +47,8 @@ public class WorkerThread implements Runnable {
         } catch (SocketException ex) {
             Logger.getLogger(WorkerThread.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
+            Logger.getLogger(WorkerThread.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(WorkerThread.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

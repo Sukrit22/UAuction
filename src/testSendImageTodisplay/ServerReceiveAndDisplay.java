@@ -39,7 +39,7 @@ public static WorkerThread wt;
 //======================= Constructor ============================
 
     public static void main(String[] args) throws IOException {
-        
+        wt = new WorkerThread();
         launch(args);
         System.exit(0);
     }
@@ -48,7 +48,8 @@ public static WorkerThread wt;
     @Override
     public void start(Stage stage) {
         //Image a = new Image(new File(""));
-        iv = new ImageView(new Image("file:///"+System.getProperty("user.dir")+"/AuctionDataBase/Image/bed_double.jpg"));
+        iv = new ImageView();
+        //iv = new ImageView(new Image("file:///"+System.getProperty("user.dir")+"/AuctionDataBase/Image/bed_double.jpg"));
         iv.setFitHeight(300);
         iv.setPreserveRatio(true);
         //iv.setSmooth(true);
@@ -61,9 +62,6 @@ public static WorkerThread wt;
         stage.setResizable(true);
         stage.setScene(s);
         stage.show();
-        
-        wt = new WorkerThread();
         wt.run();
-        
     }
 }
