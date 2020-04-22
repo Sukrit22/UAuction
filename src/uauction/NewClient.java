@@ -9,6 +9,7 @@ package uauction;
  *
  * @author USER
  */
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
@@ -48,14 +49,39 @@ public class NewClient
     }
     }
     
-    public static User reqLogin(String username,String password) throws IOException, ClassNotFoundException
+    public static Object reqLogin(String username,String password) throws IOException, ClassNotFoundException
     {
-        PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
-        toServer.println("Login"+" "+username+" "+password);
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("Login" + " " + username + " " + password));
+        //PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
+        //toServer.println("Login"+" "+username+" "+password);
         
-        ObjectInputStream ois = new ObjectInputStream(server.getInputStream());
-        User user = (User)ois.readObject();
+        ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        User user = (User)fromServer.readObject();
         return user;
+    }
+    
+    public static Object reqRegister(String username,String password) throws IOException, ClassNotFoundException
+    {
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("Register" + " " + username + " " + password));
+        toServer.flush();
+        toServer.close();
+        
+        ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        User user = (User)fromServer.readObject();
+        return user;
+    }
+    public static void reqRegisterProduct (Product product,BufferedImage image) throws IOException
+    {
+        ImPr impr = new ImPr(product,image);
+        
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("RegisterProduct"+" "));
+        toServer.flush();
+        toServer.writeObject(impr);
+        toServer.flush();
+        toServer.close();
     }
 }
 /*public class NewClient extends Application

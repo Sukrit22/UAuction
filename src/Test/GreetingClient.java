@@ -43,11 +43,15 @@ public class GreetingClient
           
            //ImageOutputStream os = new ImageOutputStream(client.getOutputStream());
            ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());
-           os.writeObject(new String("Hello"));
+           os.writeObject(new String("Hello")); 
           // BufferedImage image = ImageIO.read(new File("C:/TestPic4.jpg"));
            //ImageIO.write(image,"jpg", os);
-           
+             
            os.flush();
+           ObjectOutputStream os2 = new ObjectOutputStream(client.getOutputStream());
+           os2.writeObject(new String("Hi")); 
+           os2.flush();
+           
            os.close();
            
             
