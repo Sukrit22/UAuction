@@ -32,7 +32,7 @@ public final class Product implements java.io.Serializable {
     private String name;
     private String description;
     private String myFileName;
-    
+    private String catagory;
     private double startingBid;
     private double minimumBid;
     
@@ -42,14 +42,14 @@ public final class Product implements java.io.Serializable {
     private Image image;
             
             
-    public Product(String name, String description, double startingBid, double minimumBid,Date endDate){
+    public Product(String name, String description,String catagory, double startingBid, double minimumBid,Date endDate){
         datePosted = new Date();
         dateEndBid = endDate;
         this.name = name;
         this.description = description;
         this.startingBid = startingBid;
         this.minimumBid = minimumBid;
-        
+        this.catagory = catagory;
         
         //image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+ this.getImageName()+ ".jpg"); บอกว่าไม่เอา
         //ใช้ imageName ไปหา ถ้าไม่เจอจะขอจากเซิฟ
