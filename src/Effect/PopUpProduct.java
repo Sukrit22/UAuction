@@ -7,6 +7,7 @@ package Effect;
 
 import Scene.Home.SceneHomeUnLogIn;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -27,8 +28,14 @@ public class PopUpProduct {
     static private Pane panepane;
     static private Rectangle pic;
     static private Label name;
+    static public Button btnMoreDetail;
 
     static public void createpopUpBackground() {
+        btnMoreDetail = new Button("More Details");
+        btnMoreDetail.setLayoutX(40);
+        btnMoreDetail.setLayoutY(350);
+        btnMoreDetail.setMinSize(400, 30);
+                
         recBGPopUp = new Rectangle();
         recBGPopUp.setWidth(800);
         recBGPopUp.setHeight(600);
@@ -48,17 +55,16 @@ public class PopUpProduct {
 
         };
         recBGFade.setOnMouseClicked(mcc);
-        
-        
+
         panepane = new Pane();
         panepane.setMaxSize(800, 600);
-        pic = new Rectangle(150,150);
+        pic = new Rectangle(40, 40, 400, 300);
         name = new Label("Name");
         name.setLayoutX(200);
         name.setLayoutY(20);
-        
+
         //Pane fadePane = new Pane(recBGFade);
-        panepane.getChildren().addAll(recBGPopUp, pic, name);
+        panepane.getChildren().addAll(recBGPopUp, pic, name, btnMoreDetail);
 
         stackPane = new StackPane();
         stackPane.getChildren().addAll(recBGFade, panepane);
