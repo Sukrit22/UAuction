@@ -131,7 +131,7 @@ public class PaneMyAccount {
         paneTop.setLayoutX(0);
         paneTop.setLayoutY(0);
         paneTop.setStyle("-fx-background-color:rgba(240,240,240,1.0) ; ");
-        CreateButton.buttonBackOnACC2.setLayoutX(1920-220);
+        CreateButton.buttonBackOnACC2.setLayoutX(1920 - 400 - 150);
         paneTop.getChildren().addAll(name, CreateButton.buttonBackOnACC2);
         Font font = new Font(32);
         name.setFont(font);

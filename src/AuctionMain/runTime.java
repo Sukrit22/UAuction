@@ -42,6 +42,7 @@ public class runTime {
                     //SetTextShape.setTextShape(runTime.txtTime.getText(), 20);
                     txtTime.setText(time);
                     CreateButton.timeText.setText(time);
+                    CreateButton.timeText2.setText(time);
                     //MyButton.btnTime1.setText(time);
                     //MyButton.btnTime2.setText(time);
 

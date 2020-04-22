@@ -5,6 +5,7 @@
  */
 package AuctionMain;
 
+import static AuctionMain.CreateButton.buttonHelpPaneTop;
 import Effect.PopUp;
 import Scene.Home.PaneTop;
 import Scene.Home.SceneHomeUnLogIn;
@@ -25,6 +26,7 @@ public class ButtonEvent {
 
         EventHandler<MouseEvent> logInOnPopUp = (MouseEvent ActionEvent) -> {
             // TextField CreateTextField.userName + CreateTextField.password
+            CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
             System.out.println("buttonPopUpLogIn");
             if (true) {
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
@@ -132,6 +134,7 @@ public class ButtonEvent {
 
         EventHandler<MouseEvent> signOut = (MouseEvent ActionEvent) -> {
             //Do code here
+            CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150);
             System.out.println("buttonSignOutTopPane");
             CreateButton.buttonPopUpSwitchToLogIn.setVisible(false);
             CreateButton.buttonPopSwitchToSignUp.setVisible(true);

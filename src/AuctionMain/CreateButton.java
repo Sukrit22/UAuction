@@ -31,6 +31,7 @@ public class CreateButton {
     static public Group buttonMyAccount = new Group();
     static public Group buttonSignOutTopPane = new Group();
     static public Group buttonTime = new Group();
+    static public Group buttonTime2 = new Group();
     static public Group buttonHelpPaneTop = new Group();
     static public Group buttonMyProfileOnMyACC = new Group();
     static public Group buttonMyProductOnACC = new Group();
@@ -40,6 +41,7 @@ public class CreateButton {
     static public Group buttonBlankOnACC = new Group();
 
     static public Text timeText = new Text("dd/mm/yyyy hh:mm:ss a XXX");
+    static public Text timeText2 = new Text("dd/mm/yyyy hh:mm:ss a XXX");
 
     static public void setUpAllButton() {
         buttonCreateAccount();
@@ -52,6 +54,7 @@ public class CreateButton {
         buttonSearch();
         buttonSignOut();
         buttonTime();
+        buttonTime2();
         buttonMyProductOnMyAccount();
         buttonMyProfileOnMyAccount();
         buttonAddProductOnMyAccount();
@@ -182,11 +185,11 @@ public class CreateButton {
         logIn.applyCss();
 
         buttonMyAccount = new Group(test, pane);
-        buttonMyAccount.setLayoutX(1920 - 400 - 150 - 150);
+        buttonMyAccount.setLayoutX(1920 - 400 - 150 - 150 - 150);
     }
 
     static private void buttonSignOut() {
-        Rectangle test = new Rectangle(150, 0, 150, 50);
+        Rectangle test = new Rectangle(0, 0, 150, 50);
         test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         //test.setArcWidth(140);
@@ -196,7 +199,7 @@ public class CreateButton {
         Text logIn = new Text("Sign Out");
         logIn.setFont(font);
         StackPane pane = new StackPane();
-        pane.setLayoutX(150);
+        pane.setLayoutX(0);
         pane.setMinSize(150, 50);
         pane.getChildren().add(logIn);
         logIn.applyCss();
@@ -204,7 +207,7 @@ public class CreateButton {
         //
 
         buttonSignOutTopPane = new Group(test, pane);
-        buttonSignOutTopPane.setLayoutX(-150);
+        buttonSignOutTopPane.setLayoutX(1920 - 400 - 150);
     }
 
     static private void buttonTime() {
@@ -224,9 +227,27 @@ public class CreateButton {
 
         buttonTime = new Group(test, pane);
     }
+    
+    static private void buttonTime2() {
+        Rectangle test = new Rectangle(1920 - 400, 0, 400, 50);
+        test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(24);
+        timeText2.setFont(font);
+        StackPane pane = new StackPane();
+        pane.getChildren().add(timeText2);
+        timeText2.applyCss();
+        //pane.setLayoutX(300);
+        pane.setMinSize(400, 50);
+        timeText2.applyCss();
+        //System.out.println(timeText.getBoundsInParent().getWidth());
+        pane.setLayoutX(1920 - 150 - 250);
+
+        buttonTime2 = new Group(test, pane);
+    }
 
     static private void buttonHelp() {
-        Rectangle test = new Rectangle(1920 - 400 - 150, 0, 150, 50);
+        Rectangle test = new Rectangle(0, 0, 150, 50);
         test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(24);
@@ -235,9 +256,10 @@ public class CreateButton {
         StackPane pane = new StackPane();
         pane.setMinSize(150, 50);
         pane.getChildren().add(logIn);
-        pane.setLayoutX(1920 - 400 - 150);
+        pane.setLayoutX(0);
         logIn.applyCss();
         buttonHelpPaneTop = new Group(test, pane);
+        buttonHelpPaneTop.setLayoutX(1920 - 400 - 150);
     }
     
     static private void buttonMyProductOnMyAccount() {
