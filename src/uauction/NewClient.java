@@ -36,7 +36,7 @@ public class NewClient
     
     
     public static void main(String[] args) throws Exception {
-        server = new Socket("171.6.209.126",1233);
+        
         user = new User();
         AuctionMain.AuctionMain.main(args);
 //        while(true)
@@ -56,6 +56,7 @@ public class NewClient
     
     public static Object reqLogin(String username,String password) throws IOException, ClassNotFoundException
     {
+        server = new Socket("171.6.209.126",1233);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Login" + " " + username + " " + password));
         //PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
@@ -63,11 +64,13 @@ public class NewClient
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
         User user = (User)fromServer.readObject();
+        server.close();
         return user;
     }
     
     public static Object reqRegister(String username,String password) throws IOException, ClassNotFoundException
     {
+        server = new Socket("171.6.209.126",1233);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Register" + " " + username + " " + password));
         toServer.flush();
@@ -75,10 +78,12 @@ public class NewClient
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
         User user = (User)fromServer.readObject();
+        server.close();
         return user;
     }
     public static void reqRegisterProduct (Product product,BufferedImage image) throws IOException
     {
+        server = new Socket("171.6.209.126",1233);
         ImPr impr = new ImPr(product,image);
         
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
@@ -88,26 +93,30 @@ public class NewClient
         toServer2.writeObject(impr);
         toServer2.flush();
         toServer2.close();
+        server.close();
     }
     public static Object reqProduct(String fileName/*product.getFilename()*/)throws Exception
     {
-        
+        server = new Socket("171.6.209.126",1233);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("LoadProduct"+" "+fileName));
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
         Product product  = (Product)fromServer.readObject();
-        
+        server.close();
         return product;
     }
     public static void reqBid(String productName/*product.getName*/,String cost,String bidderName/*User.getName*/) throws Exception
     {
+        server = new Socket("171.6.209.126",1233);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Bid"+" "+cost+" "+bidderName));
+        server.close();
     }
     
     public static void reqMarket () throws Exception
     {
+        server = new Socket("171.6.209.126",1233);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Market"+" "));
         toServer.flush();
@@ -121,11 +130,12 @@ public class NewClient
             reqImage(ap.getProduct().getImageName());
             
         }
-        
+        server.close();
     }
     
     public static void reqImage(String imageName) throws Exception
     {
+        
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Image"+" "+imageName));
         File file =new File (System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName);
