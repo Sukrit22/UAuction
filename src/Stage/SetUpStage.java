@@ -19,15 +19,15 @@ public class SetUpStage {
     }
 
     static public void stageAuction() {
-        StageStorage.Auction.setResizable(false);
+        StageStorage.Auction.setResizable(true);
         StageStorage.Auction.setMaxWidth(1920);
         StageStorage.Auction.setMaxHeight(1080);
         StageStorage.Auction.setMinWidth(1920);
         StageStorage.Auction.setMinHeight(1080);
-        //StageStorage.Auction.setX(100);
-        //StageStorage.Auction.setY(200);
-        StageStorage.Auction.setMaximized(true);
-        StageStorage.Auction.initStyle(StageStyle.UNDECORATED);
+        StageStorage.Auction.setX(100);
+        StageStorage.Auction.setY(200);
+        //StageStorage.Auction.setMaximized(true);
+        //StageStorage.Auction.initStyle(StageStyle.UNDECORATED);
         StageStorage.Auction.setTitle("Auction");
         //StageStorage.Auction.setScene(SceneHomeUnLogIn.sceneHomeUnLogIn());
 

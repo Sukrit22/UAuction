@@ -66,8 +66,7 @@ public class SaveAndLoad {
     }
 
     public static boolean saveUser(User user) {
-        boolean success = false;
-        
+        //save the user to txt file
         File filePath;
         FileOutputStream file;
         ObjectOutputStream out;
@@ -78,12 +77,12 @@ public class SaveAndLoad {
             out.writeObject(user);
             out.close();
             file.close();
-            success = true;
+            return true;
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+            //error with io, saving process
+            return false;
         }
-        
-        return success;
     }
 
     public static User loadUser(String username) {

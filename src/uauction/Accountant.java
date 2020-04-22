@@ -23,8 +23,6 @@ import java.util.logging.Logger;
 public class Accountant {
     
     public static Object login(String username, String password){
-        //Boolean loginStatus = false;
-
         FileInputStream reader = null;
         ObjectInputStream input = null;
         User user = null;
@@ -36,7 +34,7 @@ public class Accountant {
            } 
            catch (IOException ex) {
                System.out.println(ex.getMessage());
-               return "tryagainlater";
+               return "try again later";
            }
         } catch(FileNotFoundException ex) {
             System.out.println(ex.getMessage());
@@ -44,30 +42,32 @@ public class Accountant {
         }
         try {
             user = (User)input.readObject();
+            System.out.println("load user to be checked success");
             if(password.equals(user.password)) {
-                System.out.println("that rigth");
                 return user;
             }
         } catch(IOException ex) {
             System.out.println("can not read the Object");
-            return "tryagainlater";
+            return "try again later";
         } catch(ClassNotFoundException ex) {
             System.out.println("can not find the class");
-            return "tryagainlater";
+            return "try again later";
         }
-        return "error";
+        return "error"; // this line mean unexpected error has occured
     }
     
     public static Object register(String username,String password){
+        //load the path
         File dirPath = new File(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+ username +".txt");
-        //No file occurs
+        //if there already is the file exist there
         if(dirPath.exists())
             return "this username already exit please use forget password to recover your account";
-        Database.userHashMap.put(username, password);
+        //proceed further when the username is not registered
+        Database.usernamePasswordPair.put(username, password);
         User user = new User(username, password);
         boolean a = SaveAndLoad.saveUser(user);
         if (!a)
-            return "";
+            return "try again later";
         return user;
     }
 }
