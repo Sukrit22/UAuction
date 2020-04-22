@@ -11,6 +11,8 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.lang.System.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -38,6 +40,10 @@ import javafx.stage.Stage;
 public class AddProduct {
 
     static private Text selectText = new Text();
+
+    public static Text getSelectText() {
+        return selectText;
+    }
     static public VBox titleVbox = new VBox();
     static private Group titleGroup1;
     static private Group titleGroup2;
@@ -301,28 +307,15 @@ public class AddProduct {
         startBid.setMinWidth(220);
         startBid.setLayoutX(600);
         startBid.setLayoutY(130);
-        startBid.textProperty().addListener(
-  (observable, oldValue, newValue) -> {
-    // Your validation rules, anything you like
-    // (! note 1 !) make sure that empty string (newValue.equals("")) 
-    //   or initial text is always valid
-    //   to prevent inifinity cycle
-    // do whatever you want with newValue
-    if(newValue.endsWith(String.))
-
-    // If newValue is not valid for your rules
-    ((StringProperty)observable).setValue(oldValue);
-    // (! note 2 !) do not bind textProperty (textProperty().bind(someProperty))
-    //   to anything in your code.  TextProperty implementation
-    //   of StringProperty in TextFieldControl
-    //   will throw RuntimeException in this case on setValue(string) call.
-    //   Or catch and handle this exception.
-
-    // If you want to change something in text
-    // When it is valid for you with some changes that can be automated.
-    // For example change it to upper case
-    ((StringProperty)observable).setValue(newValue.toUpperCase());
-  }
+        startBid.textProperty().addListener(new ChangeListener<String>() {
+    @Override
+    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+        String newValue) {
+        if (!newValue.matches("\\d*")) {
+            startBid.setText(newValue.replaceAll("[^\\d]", ""));
+        }
+    }
+}
 );
 
         minimumBid = new TextField();
@@ -331,6 +324,16 @@ public class AddProduct {
         minimumBid.setMinWidth(220);
         minimumBid.setLayoutX(900);
         minimumBid.setLayoutY(130);
+        minimumBid.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                    String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    minimumBid.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        }
+        );
 
         productDescription = new TextArea();
         productDescription.setPromptText("Description");

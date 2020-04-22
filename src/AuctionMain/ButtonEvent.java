@@ -130,9 +130,7 @@ public class ButtonEvent {
             }
             end.setTime((long) (end.getTime()+hour));
             String name = AddProduct.productName.getText();
-            if(true){ //miniBid and StartBid is number
-                Product product = new Product(name, AddProduct.productDescription.getText(), 0, 0, end);
-            }
+                Product product = new Product(name, AddProduct.productDescription.getText(), AddProduct.getSelectText().getText(), Double.parseDouble(AddProduct.startBid.getText()),Double.parseDouble(AddProduct.minimumBid.getText()), end);
 
             //NewClient.reqRegisterProduct(product, image);
             CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1());
