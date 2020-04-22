@@ -220,12 +220,11 @@ public class PaneLeft {
         };
         titleGroup5.setOnMouseClicked(evTitle5);
 
-        
         pane.getChildren().addAll(titleVbox);
     }
 
     static private void title1() {
-        int h  = 50;
+        int h = 50;
         Rectangle rect = new Rectangle(220, h);
         rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
@@ -248,12 +247,15 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
             rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
+            if (CategorisePane.paneArray.get(0).isVisible()) {
+                rect.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
+            }
         };
         titleGroup1.setOnMouseExited(exited);
     }
 
     static private void title2() {
-        int h= 50;
+        int h = 50;
         Rectangle rect = new Rectangle(220, h);
         rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
@@ -276,12 +278,15 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
             rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
+            if (CategorisePane.paneArray.get(1).isVisible()) {
+                rect.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
+            }
         };
         titleGroup2.setOnMouseExited(exited);
     }
 
     static private void title3() {
-        int h= 50;
+        int h = 50;
         Rectangle rect = new Rectangle(220, h);
         rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
@@ -302,12 +307,15 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
             rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
+            if (CategorisePane.paneArray.get(2).isVisible()) {
+                rect.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
+            }
         };
         titleGroup3.setOnMouseExited(exited);
     }
 
     static private void title4() {
-        int h= 50;
+        int h = 50;
         Rectangle rect = new Rectangle(220, h);
         rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
@@ -328,12 +336,16 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
             rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
+            if (CategorisePane.paneArray.get(3).isVisible()) {
+                rect.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
+            }
         };
         titleGroup4.setOnMouseExited(exited);
+
     }
 
     static private void title5() {
-        int h= 50;
+        int h = 50;
         Rectangle rect = new Rectangle(220, h);
         rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
@@ -354,6 +366,9 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> exited = (MouseEvent ActionEvent) -> {
             rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
+            if (CategorisePane.paneArray.get(4).isVisible()) {
+                rect.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
+            }
         };
         titleGroup5.setOnMouseExited(exited);
     }
