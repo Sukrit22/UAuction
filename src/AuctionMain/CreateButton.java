@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -39,6 +40,8 @@ public class CreateButton {
     static public Group buttonBackOnACC = new Group();
     static public Group buttonBackOnACC2 = new Group();
     static public Group buttonBlankOnACC = new Group();
+    static public Group buttonMyAuctionOnACC = new Group();
+    static public Group buttonBellHome = new Group();
 
     static public Text timeText = new Text("dd/mm/yyyy hh:mm:ss a XXX");
     static public Text timeText2 = new Text("dd/mm/yyyy hh:mm:ss a XXX");
@@ -61,6 +64,8 @@ public class CreateButton {
         buttonBackOnMyAccount();
         buttonBackOnMyAccount2();
         buttonBlankMyAccount();
+        buttonMyAuctionMyAccount();
+        buttonBellHome();
     }
 
     static private void buttonCreateAccount() {
@@ -266,6 +271,25 @@ public class CreateButton {
         buttonHelpPaneTop = new Group(test, pane);
         buttonHelpPaneTop.setLayoutX(1920 - 400 - 150);
     }
+    
+    
+    static private void buttonBellHome() {
+        Rectangle test = new Rectangle(220, 50);
+        Circle cir = new Circle(30);
+        cir.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        test.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
+        test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(24);
+        Text logIn = new Text("Bell");
+        logIn.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setLayoutX(0);
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+
+        buttonBellHome = new Group(cir);
+    }
 
     static private void buttonMyProductOnMyAccount() {
         Rectangle test = new Rectangle(220, 50);
@@ -315,6 +339,22 @@ public class CreateButton {
         buttonAddProductOnACC = new Group(test, pane);
     }
 
+    static private void buttonMyAuctionMyAccount() {
+        Rectangle test = new Rectangle(220, 50);
+        test.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
+        test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(18);
+        Text logIn = new Text("My Auction");
+        logIn.setFont(font);
+        logIn.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        StackPane pane = new StackPane();
+        pane.setLayoutX(0);
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+
+        buttonMyAuctionOnACC = new Group(test, pane);
+        
+    }
     static private void buttonBackOnMyAccount() {
         Rectangle test = new Rectangle(220, 50);
         test.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
@@ -357,7 +397,7 @@ public class CreateButton {
         logIn.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         StackPane pane = new StackPane();
         pane.setLayoutX(0);
-        pane.setMinSize(220, 710-40);
+        pane.setMinSize(220, 710-40-50);
         pane.getChildren().add(logIn);
 
         buttonBlankOnACC = new Group(test, pane);

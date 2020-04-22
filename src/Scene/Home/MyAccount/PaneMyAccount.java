@@ -28,6 +28,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import AuctionMain.CreateButton;
+import static AuctionMain.CreateButton.buttonMyAuctionOnACC;
 
 /**
  *
@@ -148,7 +149,7 @@ public class PaneMyAccount {
         Rectangle leftbg = new Rectangle(220, 1080 - 200);
         leftbg.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
         paneLeft.getChildren().addAll(leftbg, vbox);
-        vbox.getChildren().addAll(CreateButton.buttonMyProfileOnMyACC, CreateButton.buttonMyProductOnACC, CreateButton.buttonAddProductOnACC, CreateButton.buttonBlankOnACC, CreateButton.buttonBackOnACC);
+        vbox.getChildren().addAll(CreateButton.buttonMyProfileOnMyACC, CreateButton.buttonMyAuctionOnACC, CreateButton.buttonMyProductOnACC, CreateButton.buttonAddProductOnACC, CreateButton.buttonBlankOnACC, CreateButton.buttonBackOnACC);
         paneMyAccLayer1.setMinSize(1920, 1080);
         //paneMyAccLayer1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:black ;");
 

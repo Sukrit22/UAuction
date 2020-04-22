@@ -24,7 +24,7 @@ public class runTime {
     static Thread timer = new Thread(new Runnable() {
         @Override
         public void run() {
-            SimpleDateFormat dt = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss a XXX");
+            SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a XXX");
             while (!enough) {
                 try {
                     // running "long" operation not on UI thread
