@@ -22,7 +22,7 @@ public class CreateTextField {
 
     static public void createEmailField() {
         //.setText("Email");
-        userName.setPromptText("Email");
+        userName.setPromptText("Username");
     }
 
     static public void createPasswordField() {
