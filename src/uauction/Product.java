@@ -42,14 +42,15 @@ public final class Product implements java.io.Serializable {
     private Image image;
             
             
-    public Product(String name, String description, String imageName, double startingBid, double minimumBid,Date endDate){
+    public Product(String name, String description, double startingBid, double minimumBid,Date endDate){
         datePosted = new Date();
         dateEndBid = endDate;
         this.name = name;
         this.description = description;
         this.startingBid = startingBid;
         this.minimumBid = minimumBid;
-        this.imageName = imageName;
+        this.imageName = name;
+        
         //image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+ this.getImageName()+ ".jpg"); บอกว่าไม่เอา
         //ใช้ imageName ไปหา ถ้าไม่เจอจะขอจากเซิฟ
     }
@@ -99,5 +100,10 @@ public final class Product implements java.io.Serializable {
     }
     public double getMinimumBid() {
         return minimumBid;
+    }
+    public Image getImage()
+    {
+       
+        return image;
     }
 }

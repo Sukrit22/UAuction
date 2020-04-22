@@ -59,24 +59,45 @@ public NewServer()
          try
         {
            InputStreamReader isr = new InputStreamReader(client.getInputStream());
-           PrintWriter toClient = new PrintWriter(client.getOutputStream());
+           ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
+           ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());
+           PrintWriter stringToClient = new PrintWriter(client.getOutputStream(),true);
            BufferedReader fromClient = new BufferedReader(isr);
            
            while(true){
               String clientInput = fromClient.readLine();
+              String[] keyword = clientInput.split("\\s+");
+              for (int i = 0; i < keyword.length; i++) {
+            keyword[i] = keyword[i].replaceAll("[^\\w]", ""); //replace " " with ""
+        }
                System.out.println("Client : "+clientInput);
-              if(clientInput.matches("Login"))
+              if(keyword[0].matches("Login"))
               {
-                  toClient.println("Loging in....");
+                 objectToClient.writeObject(Accountant.login(keyword[1],keyword[2]));
+                 objectToClient.flush();
               }
-              if(clientInput.matches("Register"))
+              else if(keyword[0].matches("Register"))
               {
-                  toClient.println("Registering");
+                 objectToClient.writeObject(Accountant.register(keyword[1],keyword[2]));
+                 objectToClient.flush();
               }
-              else{
-                  toClient.println("Try again");
+              else if(keyword[0].matches("Account")){
+                  
               }
-              toClient.flush();
+              else if(keyword[0].matches("Market")){
+                  
+              }
+              else if(keyword[0].matches("RegisterProduct")){
+                  objectFromClient.readObject();
+                  
+              }
+              else if(keyword[0].matches("LoadProduct")){
+                  
+              }
+             else if(keyword[0].matches("Bid")){
+                  
+              }
+              
            }
         }
         catch (Exception e)

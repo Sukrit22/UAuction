@@ -23,24 +23,31 @@ public class ManageProduct {
         
     }
     
-    /**@Deprecated
+    /**
+     * @param name * @Deprecated
      * register product to database and add product to list that keep all product in server
      * take what AuctionProduct needs and registrant's username
+     * @param description
+     * @param image
+     * @param startingBid
+     * @param minimumBid
+     * @param username
+     * @param endDate
      * 
      * @return whether the register is fail or succeed
      */
-    public static boolean registerProduct(String name, String description, String image, 
-            Double startingBid, Double minimumBid, String username, Date endDate){
+    public static Product registerProduct(String name, String description, String image, 
+            Double startingBid, Double minimumBid, Date endDate){
         //do what you want
-        Product ap = new Product(name,description,image,startingBid,minimumBid,endDate);
-        String fileName = username + "." + ap.getDatePosted().getTime() + ".txt";
+        Product ap = new Product(name,description,startingBid,minimumBid,endDate);
+        String fileName = name + "." + ap.getDatePosted().getTime() + ".txt";
         ap.setFileName(fileName);
         SaveAndLoad.saveProduct(ap);
         if(SaveAndLoad.saveProduct(ap))
             Database.activeProduct.add(new ActiveProduct(ap));
         
         //after registered the product, add it to activeProduct in Database class
-        return SaveAndLoad.saveProduct(ap);
+        return null;
     }
     
     public static void deleteProduct(ActiveProduct ap, Date deleteDate){
@@ -90,7 +97,7 @@ public class ManageProduct {
         }
     }
     
-    public static void writeImportedImageFile(String initPath,String imageName){
+    public static void ImportImageFile(String initPath,String imageName){
         
         File initImage = new File(initPath);
         BufferedImage image = null;
