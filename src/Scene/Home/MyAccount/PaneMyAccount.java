@@ -128,6 +128,7 @@ public class PaneMyAccount {
         paneMyProfile.setVisible(true);
         scrollPaneMyObject.setVisible(false);
         paneAddProduct.setVisible(false);
+        paneMyAuction.setVisible(false);
 
         VBox vbox0 = new VBox();
         //TextField productName = new TextField();

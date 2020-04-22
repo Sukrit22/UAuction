@@ -44,7 +44,7 @@ public class ButtonEvent {
             
             System.out.println("buttonPopUpLogIn");
             Object obj = null;
-            try {
+            /*try {
                 obj =  NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
             } catch (IOException ex) {
                 Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
@@ -58,9 +58,9 @@ public class ButtonEvent {
             }else if(obj.getClass().equals("".getClass())){
                 loginPop = false;
             }else{
-                System.out.println("อะไรกันแน่วะไอสัส");
+                System.out.println(" ???");
                 loginPop = false;
-            }
+            }*/
             
             if (loginPop) {
                 CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
@@ -265,6 +265,7 @@ public class ButtonEvent {
         //=========================== done =======================
         EventHandler<MouseEvent> notifi = (MouseEvent ActionEvent) -> {
             System.out.println("Notifi");
+            CreateButton.buttonBellHomeEff.setVisible(false);
             SceneHomeUnLogIn.getStackPane().getChildren().add(Notifications.pane);
         };
         CreateButton.buttonBellHomeEff.setOnMouseClicked(notifi);
