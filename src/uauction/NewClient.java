@@ -62,8 +62,7 @@ public class NewClient
         //toServer.println("Login"+" "+username+" "+password);
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
-        User user = (User)fromServer.readObject();
-        return user;
+        return fromServer.readObject();
     }
     
     public static Object reqRegister(String username,String password) throws IOException, ClassNotFoundException
@@ -74,8 +73,7 @@ public class NewClient
         toServer.close();
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
-        User user = (User)fromServer.readObject();
-        return user;
+        return fromServer.readObject();
     }
     public static void reqRegisterProduct (Product product,BufferedImage image) throws IOException
     {

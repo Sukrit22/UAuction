@@ -76,7 +76,7 @@ public class AddProduct {
         comboBoxHour = new ComboBox();
         comboBoxAmPm = new ComboBox();
         comboBoxHour.setPromptText("Hour");
-        comboBoxHour.getItems().addAll("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+        comboBoxHour.getItems().addAll("12", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11" );
         comboBoxHour.setMinSize(50, 40);
         comboBoxHour.setLayoutX(900+200+20+5+300);
         comboBoxHour.setLayoutY(50);
@@ -301,6 +301,29 @@ public class AddProduct {
         startBid.setMinWidth(220);
         startBid.setLayoutX(600);
         startBid.setLayoutY(130);
+        startBid.textProperty().addListener(
+  (observable, oldValue, newValue) -> {
+    // Your validation rules, anything you like
+    // (! note 1 !) make sure that empty string (newValue.equals("")) 
+    //   or initial text is always valid
+    //   to prevent inifinity cycle
+    // do whatever you want with newValue
+    if(newValue.endsWith(String.))
+
+    // If newValue is not valid for your rules
+    ((StringProperty)observable).setValue(oldValue);
+    // (! note 2 !) do not bind textProperty (textProperty().bind(someProperty))
+    //   to anything in your code.  TextProperty implementation
+    //   of StringProperty in TextFieldControl
+    //   will throw RuntimeException in this case on setValue(string) call.
+    //   Or catch and handle this exception.
+
+    // If you want to change something in text
+    // When it is valid for you with some changes that can be automated.
+    // For example change it to upper case
+    ((StringProperty)observable).setValue(newValue.toUpperCase());
+  }
+);
 
         minimumBid = new TextField();
         minimumBid.setPromptText("Minimun Bid");

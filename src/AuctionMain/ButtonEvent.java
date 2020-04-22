@@ -19,7 +19,16 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import uauction.NewClient;
+import uauction.Product;
 import uauction.User;
+import Scene.Home.MyAccount.AddProduct;
+import java.awt.Desktop;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.util.Date;
+import Effect.Notifications;
 
 /**
  *
@@ -30,19 +39,31 @@ public class ButtonEvent {
     static public void buttonEventForSceneHomeUnLogIn() {
 
         EventHandler<MouseEvent> logInOnPopUp = (MouseEvent ActionEvent) -> {
+            boolean loginPop = false;
             // TextField CreateTextField.userName + CreateTextField.password
-            CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
-            System.out.println("buttonPopUpLogIn");
             
+            System.out.println("buttonPopUpLogIn");
+            Object obj = null;
             try {
-                NewClient.user = (User) NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
+                obj =  NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
             } catch (IOException ex) {
                 Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            if (true) {
+            if(obj.getClass().equals((new User()).getClass())){
+                NewClient.user = (User)obj;
+                loginPop = true;
+            }else if(obj.getClass().equals("".getClass())){
+                loginPop = false;
+            }else{
+                System.out.println("อะไรกันแน่วะไอสัส");
+                loginPop = false;
+            }
+            
+            if (loginPop) {
+                CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
                 PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
                 SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
@@ -50,40 +71,71 @@ public class ButtonEvent {
                 //Wrong Password
                 PopUp.incorrecypassPane.setVisible(true);
             }
-
         };
         CreateButton.buttonPopUpLogIn.setOnMouseClicked(logInOnPopUp);
-
+//=========================== done =======================
         EventHandler<MouseEvent> registerOnPopUpEV = (MouseEvent ActionEvent) -> {
             // TextField CreateTextField.userName + CreateTextField.password + CreateTextField.passwordC
             System.out.println("Register");
-            if (false) {
-                PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
-                PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
-                SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
-            } else {
-                if (false) {
-                    // UserName Aldread Use
-                    PopUp.emailUsedPane.setVisible(true);
-                } else {
-                    //Password Not Same
-                    PopUp.passwordNotSamePane.setVisible(true);
+            Object obj = null;
+            if(CreateTextField.password.equals(CreateTextField.passwordC)){
+                boolean panHa = false;
+                try {
+                    obj = NewClient.reqRegister(CreateTextField.userName.getText(), CreateTextField.password.getText());
+                } catch (IOException ex) {
+                    Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                    panHa = true;
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                    panHa = true;
                 }
+                 if (panHa){
+                     PopUp.emailUsedPane.setVisible(true);
+                 } else if(obj.getClass().equals("".getClass())){
+                     PopUp.emailUsedPane.setVisible(true);
+                 } else if(obj.getClass().equals((new User()).getClass())){
+                     NewClient.user = (User) obj;
+                     CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
+                     PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                     PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                     SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+                 }
+            } else {
+                //Password Not Same
+                 PopUp.passwordNotSamePane.setVisible(true);
             }
         };
         CreateButton.buttonPopUpRegister.setOnMouseClicked(registerOnPopUpEV);
-
+//=========================== done =======================
         EventHandler<MouseEvent> helpEV = (MouseEvent ActionEvent) -> {
             //Do code here
             System.out.println("buttonHelpPaneTop");
-
+            try {
+                Desktop.getDesktop().browse(new URI("https://google.com"));
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         };
         CreateButton.buttonHelpPaneTop.setOnMouseClicked(helpEV);
-
+//=========================== done =======================
         EventHandler<ActionEvent> add = (ActionEvent ActionEvent) -> {
             System.out.println("Add from MyACC");
-            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1());
+            Date end = Date.from((AddProduct.datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            long hour= (long)AddProduct.comboBoxHour.getItems().indexOf(AddProduct.comboBoxHour.getValue());
+            hour = hour *60 *60*1000;
+            if(AddProduct.comboBoxAmPm.getItems().indexOf(AddProduct.comboBoxAmPm.getValue()) == 1 ){
+                hour += (long)(43200000);
+            }
+            end.setTime((long) (end.getTime()+hour));
+            String name = AddProduct.productName.getText();
+            if(true){ //miniBid and StartBid is number
+                Product product = new Product(name, AddProduct.productDescription.getText(), 0, 0, end);
+            }
 
+            //NewClient.reqRegisterProduct(product, image);
+            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1());
         };
         PaneMyAccount.btnAdd.setOnAction(add);
 
@@ -93,7 +145,7 @@ public class ButtonEvent {
             System.out.println("Delete");
         };
         PaneMyAccount.btnDelete.setOnAction(delete);
-
+//=========================== cancel =======================
         //--------------------------------------------------\\
         EventHandler<MouseEvent> buttonPopSwitchToSignUpEV = (MouseEvent ActionEvent) -> {
             //Do code here
@@ -215,7 +267,14 @@ public class ButtonEvent {
         };
         CreateButton.buttonBackOnACC.setOnMouseClicked(backMVE);
         CreateButton.buttonBackOnACC2.setOnMouseClicked(backMVE);
-
+        
+        EventHandler<MouseEvent> notifi = (MouseEvent ActionEvent) -> {
+            System.out.println("Notifi");
+            SceneHomeUnLogIn.getStackPane().getChildren().add(Notifications.pane);
+        };
+        CreateButton.buttonBellHomeEff.setOnMouseClicked(notifi);
+        CreateButton.buttonBellHome.setOnMouseClicked(notifi);
     }
 
+        
 }
