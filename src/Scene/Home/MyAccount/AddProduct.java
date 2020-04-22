@@ -112,9 +112,6 @@ public class AddProduct {
             //Image image = new Image(file.toString());
             //ImageView imv = new ImageView(image);
             //pic.setClip(imv);
-            /*if (file != null) {
-                openFile(file);
-            }*/
 
         };
         pic.setOnMouseClicked(addpicEV);

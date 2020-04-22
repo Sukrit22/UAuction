@@ -16,6 +16,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -58,6 +59,7 @@ public class SceneHomeUnLogIn {
             CategorisePane.paneArray.get(i).setVisible(false);
         }
         CategorisePane.paneArray.get(0).setVisible(true);
+        //CategorisePane.vboxArray.get(0).getChildren().addAll(itemText, titleText, priceText, timeLeftText);
         scrollPane = new ScrollPane(pane);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);

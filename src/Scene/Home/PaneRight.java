@@ -7,6 +7,7 @@ package Scene.Home;
 
 import Scene.CategorisePane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -17,8 +18,13 @@ public class PaneRight {
     static private Pane pane = new Pane();
 
     static public void setUp() {
-
-        pane.getChildren().add(CategorisePane.paneArray.get(0));
+        Pane paneBar = new Pane();
+        Text itemText = new Text("Item #");
+        Text titleText = new Text("Title");
+        Text priceText = new Text("Price");
+        Text timeLeftText = new Text("Time Left");
+        paneBar.getChildren().addAll(itemText, titleText, priceText, timeLeftText);
+        pane.getChildren().addAll(paneBar, CategorisePane.paneArray.get(0));
 
     }
 }

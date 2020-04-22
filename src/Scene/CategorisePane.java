@@ -6,11 +6,14 @@
 package Scene;
 
 import java.util.ArrayList;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
@@ -26,12 +29,19 @@ public class CategorisePane {
     static public VBox vbox3;
     static public VBox vbox4;
     static public VBox vbox5;
-    
+
     static public StackPane pane1 = new StackPane();
     static public StackPane pane2 = new StackPane();
     static public StackPane pane3 = new StackPane();
     static public StackPane pane4 = new StackPane();
     static public StackPane pane5 = new StackPane();
+
+    static public Text itemText;
+    static public Text titleText;
+    static public Text priceText;
+    static public Text timeLeftText;
+    static public Pane paneBar;
+    static public Group topBar;
 
     static public void setUp() {
 
@@ -39,29 +49,59 @@ public class CategorisePane {
 
         vbox1 = new VBox(noProduct(pane1));
         vbox1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
+        vbox1.setLayoutY(60);
         vboxArray.add(vbox1);
-        
+
         vbox2 = new VBox(noProduct(pane2));
         vbox2.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
+        vbox2.setLayoutY(60);
         vboxArray.add(vbox2);
-        
+
         vbox3 = new VBox(noProduct(pane3));
         vbox3.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
+        vbox3.setLayoutY(60);
         vboxArray.add(vbox3);
-        
+
         vbox4 = new VBox(noProduct(pane4));
         vbox4.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
+        vbox4.setLayoutY(60);
         vboxArray.add(vbox4);
-        
+
         vbox5 = new VBox(noProduct(pane5));
         vbox5.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
+        vbox5.setLayoutY(60);
         vboxArray.add(vbox5);
 
         for (int i = 0; i < page; i++) {
             paneArray.add(new Pane());
             //Rectangle a = new Rectangle(1920-220,1080-200);
             paneArray.get(i).setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:black ;");
-            paneArray.get(i).getChildren().addAll(new Label("label" + (i+1)));
+            Font font = new Font(16);
+            StackPane textSP = new StackPane();
+            StackPane bgSP = new StackPane();
+            Rectangle bgBar = new Rectangle(0, 0, 1920-220, 60);
+            bgBar.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+            itemText = new Text("Item #");
+            itemText.setFont(font);
+            itemText.setLayoutX(0);
+            titleText = new Text("Title");
+            titleText.setFont(font);
+            titleText.setLayoutX(250 + 220);
+            priceText = new Text("Price");
+            priceText.setFont(font);
+            priceText.setLayoutX(100 + 220);
+            timeLeftText = new Text("Time Left");
+            timeLeftText.setFont(font);
+            timeLeftText.setLayoutX(300 + 220);
+            topBar = new Group(itemText, titleText, priceText, timeLeftText);
+            textSP.getChildren().add(topBar);
+            bgSP.getChildren().add(bgBar);
+            paneBar = new StackPane(bgSP, textSP);
+            paneBar.setMinSize(1920-220, 60);
+            //paneBar.getChildren().addAll();
+            
+            paneArray.get(i).getChildren().addAll(paneBar, new Label("label" + (i + 1)));
+
         }
 
         paneArray.get(0).getChildren().add(vbox1);
@@ -69,13 +109,13 @@ public class CategorisePane {
         paneArray.get(2).getChildren().add(vbox3);
         paneArray.get(3).getChildren().add(vbox4);
         paneArray.get(4).getChildren().add(vbox5);
-                
+
     }
-    
-    static private StackPane noProduct(StackPane pane){
+
+    static private StackPane noProduct(StackPane pane) {
         Text text = new Text("No Product");
         pane.getChildren().add(text);
-        pane.setMinSize(1920-220, 200);
+        pane.setMinSize(1920 - 220, 200);
         return pane;
     }
 }
