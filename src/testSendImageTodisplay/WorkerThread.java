@@ -7,7 +7,9 @@
 package testSendImageTodisplay;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -23,9 +25,8 @@ import javax.imageio.ImageIO;
  * @author Sukrit22
  */
 public class WorkerThread implements Runnable {
-    public ImageView iv;
-    WorkerThread(ImageView iv){
-        this.iv = iv;
+    WorkerThread(){
+        
     }
 
     @Override
@@ -37,7 +38,8 @@ public class WorkerThread implements Runnable {
                 Socket server = serverSocket.accept();
                 BufferedImage pic = ImageIO.read(server.getInputStream());
                 Image image = SwingFXUtils.toFXImage(pic, null);
-                iv.setImage(image);
+                //Image im = new Image("file:///"+System.getProperty("user.dir")+"/AuctionDataBase/Image/bed_double.jpg");
+                ServerReceiveAndDisplay.iv.setImage(image);
                 System.out.println("update image from client");
             }
         } catch (SocketException ex) {

@@ -9,6 +9,8 @@ package testSendImageTodisplay;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Scanner;
@@ -33,6 +35,10 @@ public class ClientSendToServer {
         try {
             client = new Socket("auctionoop.myddns.me", 1234);
             String name = scn.nextLine();
+//            ObjectOutputStream o =new ObjectOutputStream(client.getOutputStream());
+//            o.writeObject(name);
+//            o.flush();
+//            o.close();
             if(name.equals("exit"))
                 break;
             BufferedImage image = ImageIO.read(new File(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+name+".jpg"));

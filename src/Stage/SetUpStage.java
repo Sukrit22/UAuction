@@ -24,12 +24,22 @@ public class SetUpStage {
         StageStorage.Auction.setMaxHeight(1080);
         StageStorage.Auction.setMinWidth(1920);
         StageStorage.Auction.setMinHeight(1080);
-        //StageStorage.Auction.setX(100);
-        //StageStorage.Auction.setY(200);
-        StageStorage.Auction.setMaximized(true);
-        StageStorage.Auction.initStyle(StageStyle.UNDECORATED);
-        StageStorage.Auction.setTitle("Auction");
-        //StageStorage.Auction.setScene(SceneHomeUnLogIn.sceneHomeUnLogIn());
+        if(Boolean.TRUE){
+            //StageStorage.Auction.setX(100);
+            //StageStorage.Auction.setY(200);
+            StageStorage.Auction.setMaximized(true);
+            StageStorage.Auction.initStyle(StageStyle.UNDECORATED);
+            StageStorage.Auction.setTitle("Auction");
+            //StageStorage.Auction.setScene(SceneHomeUnLogIn.sceneHomeUnLogIn());
+        }else{
+            StageStorage.Auction.setX(100);
+            StageStorage.Auction.setY(200);
+            //StageStorage.Auction.setMaximized(true);
+            //StageStorage.Auction.initStyle(StageStyle.UNDECORATED);
+            StageStorage.Auction.setTitle("Auction");
+            //StageStorage.Auction.setScene(SceneHomeUnLogIn.sceneHomeUnLogIn());
+        }
+        
 
     }
 }

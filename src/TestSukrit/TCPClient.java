@@ -27,6 +27,7 @@ public class TCPClient {
       outStream.flush();
       serverMessage=inStream.readUTF();
       System.out.println(serverMessage);
+      ObjectOutputStream o = new ObjectOutputStream(socket.getOutputStream());
     }
     outStream.close();
     outStream.close();

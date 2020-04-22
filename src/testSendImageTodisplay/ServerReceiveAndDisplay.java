@@ -33,32 +33,37 @@ public class ServerReceiveAndDisplay extends Application {
 //======================= data field =============================
 private static ServerSocket serverSocket;
 private static Socket server;
-ImageView iv;
+public static ImageView iv;
+public static WorkerThread wt;
 
 //======================= Constructor ============================
 
     public static void main(String[] args) throws IOException {
+        
         launch(args);
+        System.exit(0);
     }
 //======================= method =================================
 
     @Override
     public void start(Stage stage) {
         //Image a = new Image(new File(""));
-        iv = new ImageView();
+        iv = new ImageView(new Image("file:///"+System.getProperty("user.dir")+"/AuctionDataBase/Image/bed_double.jpg"));
         iv.setFitHeight(300);
         iv.setPreserveRatio(true);
-        iv.setSmooth(true);
-        iv.setCache(true);
+        //iv.setSmooth(true);
+        //iv.setCache(true);
         Group g = new Group();
-        Scene s = new Scene(g);
-        s.setFill(Color.WHITE);
+        Pane p = new Pane(g);
+        Scene s = new Scene(p);
+        //s.setFill(Color.WHITE);
         g.getChildren().add(iv);
         stage.setResizable(true);
         stage.setScene(s);
-        
-        WorkerThread t = new WorkerThread(iv);
-        t.run();
         stage.show();
+        
+        wt = new WorkerThread();
+        wt.run();
+        
     }
 }
