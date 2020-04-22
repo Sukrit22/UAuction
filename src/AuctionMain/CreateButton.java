@@ -236,10 +236,10 @@ public class CreateButton {
         timeText2.setFont(font);
         StackPane pane = new StackPane();
         pane.getChildren().add(timeText2);
-        timeText2.applyCss();
+        //timeText2.applyCss();
         //pane.setLayoutX(300);
         pane.setMinSize(400, 50);
-        timeText2.applyCss();
+        //timeText2.applyCss();
         //System.out.println(timeText.getBoundsInParent().getWidth());
         pane.setLayoutX(1920 - 150 - 250);
 
@@ -323,7 +323,7 @@ public class CreateButton {
     }
     
     static private void buttonBackOnMyAccount2() {
-        Rectangle test = new Rectangle(220,40);
+        Rectangle test = new Rectangle(150,50);
         test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(24);
@@ -331,7 +331,7 @@ public class CreateButton {
         logIn.setFont(font);
         StackPane pane = new StackPane();
         pane.setLayoutX(0);
-        pane.setMinSize(220, 40);
+        pane.setMinSize(150, 50);
         pane.getChildren().add(logIn);
 
         buttonBackOnACC2 = new Group(test, pane);
