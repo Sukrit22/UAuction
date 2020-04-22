@@ -48,25 +48,26 @@ public class GreetingServer extends Thread
                { server = serverSocket.accept();
 
                   //-------------------------------------------------------------------
-                  BufferedImage pic = ImageIO.read(server.getInputStream());
-                  File file = new File("C:/TestPic25.jpg");
+                  //BufferedImage pic = ImageIO.read(server.getInputStream());
+                  //File file = new File("C:/TestPic25.jpg");
                   //--------------------------------------------------------------------
                   //InputStreamReader isr = new InputStreamReader(server.getInputStream());
                   //BufferedReader reader = new BufferedReader(isr);
                    //System.out.println(reader.readLine());
                   
                   
-                   //OutputStream os = server.getOutputStream();
+                   ObjectInputStream os = new ObjectInputStream(server.getInputStream());
+                   System.out.println("Client : " + os.readObject().toString() );
                    //BufferedImage bf =  ImageIO.read(new File("C:/TestPic9.jpg"));
                        
-                  try {
+      /*            try {
             
-                           ImageIO.write(pic,"jpg",file);
+                           //ImageIO.write(pic,"jpg",file);
                          //ImageIO.write(bf,"jpg", os);
                          //os.flush();
                 } catch (IOException ex) {
             System.out.println(ex.toString());
-        }
+        }*/
                   
                   /*BufferedImage image;
                   ImageInputStream os = (ImageInputStream) server.getInputStream();

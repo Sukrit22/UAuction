@@ -102,15 +102,18 @@ public NewServer()
                   ManageProduct.registerImage(impr.getImage(),impr.getProduct().getFileName());
                   
                   
+                  
               }
               else if(keyword[0].matches("LoadProduct")){
+                 OutputStream os = client.getOutputStream();
                  Product product =  SaveAndLoad.loadProduct(keyword[1]);
                  objectToClient.writeObject(product);
                  objectToClient.flush();
                  
                  BufferedImage image = ImageIO.read(new File(keyword[2]));
-                 ImageIO.write(image, "jpg", objectToClient);
-                  
+                 ImageIO.write(image, "jpg", os);
+                  os.flush();
+                  os.close();
               }
              else if(keyword[0].matches("Bid")){
                   

@@ -38,13 +38,14 @@ public class GreetingClient
         try
         {
             Socket client = new Socket(serverName, port);
-            OutputStream os = client.getOutputStream();
+            //OutputStream os = client.getOutputStream();
             
           
            //ImageOutputStream os = new ImageOutputStream(client.getOutputStream());
-           //ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());
-           BufferedImage image = ImageIO.read(new File("C:/TestPic4.jpg"));
-           ImageIO.write(image,"jpg", os);
+           ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());
+           os.writeObject(new String("Hello"));
+          // BufferedImage image = ImageIO.read(new File("C:/TestPic4.jpg"));
+           //ImageIO.write(image,"jpg", os);
            
            os.flush();
            os.close();
