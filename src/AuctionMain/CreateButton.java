@@ -7,6 +7,8 @@ package AuctionMain;
 
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -276,7 +278,13 @@ public class CreateButton {
     static private void buttonBellHome() {
         Rectangle test = new Rectangle(220, 50);
         Circle cir = new Circle(30);
-        cir.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        cir.setFill(Color.web("rgba( 255, 255, 0, 1.0)"));
+        Image im = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/bell.png");
+        ImageView iv = new ImageView(im);
+        iv.setFitHeight(30);
+        iv.setFitWidth(30);
+        //iv.setClip(cir);
+        
         test.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
         test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(24);
