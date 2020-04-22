@@ -75,7 +75,7 @@ public class PopUpProduct {
         recBGFade = new Rectangle();
         recBGFade.setWidth(1920);
         recBGFade.setHeight(1080);
-        recBGFade.setFill(Color.web("rgba( 0, 0, 0,0.5)"));
+        recBGFade.setFill(Color.web("rgba( 0, 0, 0,0.9)"));
 
         EventHandler<MouseEvent> mcc = (MouseEvent ActionEvent) -> {
             //Do code here

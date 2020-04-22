@@ -362,7 +362,7 @@ public class PaneLeft {
         rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
-        Text logIn = new Text("Automotive");
+        Text logIn = new Text("Others");
         logIn.setFont(font);
         StackPane pane = new StackPane();
         pane.setMinSize(220, h);
