@@ -6,6 +6,7 @@
 package uauction;
 import java.io.*;
 import java.net.*;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -38,6 +39,9 @@ public NewServer()
     public static void main(String arg[])
     {
         new NewServer();
+        
+        Thread updateThread = new Thread(new Update());
+        updateThread.wait(3_600_000);
     }
 }
 
@@ -136,4 +140,26 @@ class Send implements Runnable
             System.out.println("Exception " + e);
         }
     }
+}
+
+
+class Update implements Runnable{
+    //Constructor
+    public Update(){
+        
+    }
+
+    @Override
+    public void run() {
+        Date now = new Date();
+        //Update ActiveProduct to AuctionedProduct every hour
+        for (ActiveProduct object : Database.activeProduct) {
+            if(object.getProduct().getDateEndBid().getTime() - now.getTime() < 0){
+                Database.activeProduct.remove(object);
+                Database.auctionedProduct.add(new AuctionedProduct(object, object.getCurrentBid(), now));
+            }
+        }
+    }
+    
+    
 }
