@@ -27,6 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import AuctionMain.CreateButton;
 
 /**
  *
@@ -58,47 +59,49 @@ public class PaneMyAccount {
     static private Text selectText = new Text();
     static private VBox titleVbox = new VBox();
 
-
-
-
     static private Rectangle pic;
 
     static public void setUpPane() {
 
         Rectangle bg = new Rectangle();
-        bg.setFill(Color.rgb(155, 155, 255, 1.0));
+        bg.setFill(Color.rgb(250, 250, 250, 1.0));
         bg.setWidth(1700);
         bg.setHeight(880);
         addItem.getChildren().add(bg);
         paneRight.getChildren().addAll(addItem, paneAddProduct, paneMyProfile, scrollPaneMyObject);
-        paneMyAccLayer1.getChildren().addAll(paneRight, paneTop, paneLeft);
-        
-        AddProduct.makeAddProductPane();
-        
+        //Rectangle rectFill = new Rectangle(1920);
+        Pane paneFill = new Pane();
+        paneFill.setStyle("-fx-background-color:rgba(0,0,0,1.0); -fx-stroke:rgba( 10, 10, 10, 0.2);");
+        paneFill.setMinSize(1920-220, 1080-200);
+        paneFill.setLayoutX(220);
+        paneFill.setLayoutY(200);
+        paneMyAccLayer1.getChildren().addAll(paneFill, paneRight, paneTop, paneLeft);
 
-        EventHandler<ActionEvent> my1 = (ActionEvent ActionEvent) -> {
+        AddProduct.makeAddProductPane();
+
+        EventHandler<MouseEvent> my1 = (MouseEvent ActionEvent) -> {
             System.out.println("btnMyProfile");
             paneMyProfile.setVisible(true);
             scrollPaneMyObject.setVisible(false);
             paneAddProduct.setVisible(false);
         };
-        PaneMyAccount.btnMyProfile.setOnAction(my1);
+        CreateButton.buttonMyProfileOnMyACC.setOnMouseClicked(my1);
 
-        EventHandler<ActionEvent> my2 = (ActionEvent ActionEvent) -> {
+        EventHandler<MouseEvent> my2 = (MouseEvent ActionEvent) -> {
             System.out.println("btnMyProduct");
             paneMyProfile.setVisible(false);
             scrollPaneMyObject.setVisible(true);
             paneAddProduct.setVisible(false);
         };
-        PaneMyAccount.btnMyProduct.setOnAction(my2);
+        CreateButton.buttonMyProductOnACC.setOnMouseClicked(my2);
 
-        EventHandler<ActionEvent> my3 = (ActionEvent ActionEvent) -> {
+        EventHandler<MouseEvent> my3 = (MouseEvent ActionEvent) -> {
             System.out.println("btnAddProduct");
             paneMyProfile.setVisible(false);
             scrollPaneMyObject.setVisible(false);
             paneAddProduct.setVisible(true);
         };
-        PaneMyAccount.btnAddProduct.setOnAction(my3);
+        CreateButton.buttonAddProductOnACC.setOnMouseClicked(my3);
 
         scrollPaneMyObject.setContent(paneMyObject);
         scrollPaneMyObject.setMinSize(1700, 1080 - 200);
@@ -115,20 +118,19 @@ public class PaneMyAccount {
         VBox vbox0 = new VBox();
         //TextField productName = new TextField();
 
-
         paneAddProduct.getChildren().addAll(AddProduct.productName, AddProduct.titleVbox, AddProduct.productDescription, AddProduct.minimumBid, AddProduct.startBid, AddProduct.pic, btnAdd, AddProduct.datePicker, AddProduct.comboBoxHour, AddProduct.comboBoxAmPm);
 
         paneRight.setMinWidth(1700);
         paneRight.setMinHeight(1080 - 200);
-        paneRight.setLayoutX(220);
-        paneRight.setLayoutY(200);
-        paneRight.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:yellow ; ");
+        paneRight.setLayoutX(220+5);
+        paneRight.setLayoutY(200+5);
+        //paneRight.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:yellow ; ");
 
         paneTop.setMinWidth(1920);
         paneTop.setMinHeight(200);
         paneTop.setLayoutX(0);
         paneTop.setLayoutY(0);
-        paneTop.setStyle("-fx-background-color:yellow ; ");
+        paneTop.setStyle("-fx-background-color:rgba(240,240,240,1.0) ; ");
         paneTop.getChildren().add(name);
         Font font = new Font(32);
         name.setFont(font);
@@ -137,12 +139,14 @@ public class PaneMyAccount {
         paneLeft.setMinHeight(1080 - 200);
         paneLeft.setLayoutX(0);
         paneLeft.setLayoutY(200);
-        paneLeft.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:yellow ; ");
+        //paneLeft.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:yellow ; ");
         VBox vbox = new VBox();
-        paneLeft.getChildren().add(vbox);
-        vbox.getChildren().addAll(btnMyProfile, btnMyProduct, btnAddProduct);
+        Rectangle leftbg = new Rectangle(220, 1080 - 200);
+        leftbg.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        paneLeft.getChildren().addAll(leftbg, vbox);
+        vbox.getChildren().addAll(CreateButton.buttonMyProfileOnMyACC, CreateButton.buttonMyProductOnACC, CreateButton.buttonAddProductOnACC, CreateButton.buttonBackOnACC);
         paneMyAccLayer1.setMinSize(1920, 1080);
-        paneMyAccLayer1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:black ;");
+        //paneMyAccLayer1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:black ;");
 
         //return paneMyAccLayer1;
     }
@@ -153,7 +157,6 @@ public class PaneMyAccount {
 
     static public void makePane() {
         System.out.println("makePane");
-        
 
     }
 

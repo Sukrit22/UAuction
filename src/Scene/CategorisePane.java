@@ -48,34 +48,34 @@ public class CategorisePane {
         int page = 5;
 
         vbox1 = new VBox(noProduct(pane1));
-        vbox1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
+        //vbox1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vbox1.setLayoutY(60);
         vboxArray.add(vbox1);
 
         vbox2 = new VBox(noProduct(pane2));
-        vbox2.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
+        //vbox2.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vbox2.setLayoutY(60);
         vboxArray.add(vbox2);
 
         vbox3 = new VBox(noProduct(pane3));
-        vbox3.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
+        //vbox3.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vbox3.setLayoutY(60);
         vboxArray.add(vbox3);
 
         vbox4 = new VBox(noProduct(pane4));
-        vbox4.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
+        //vbox4.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vbox4.setLayoutY(60);
         vboxArray.add(vbox4);
 
         vbox5 = new VBox(noProduct(pane5));
-        vbox5.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
+        //vbox5.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vbox5.setLayoutY(60);
         vboxArray.add(vbox5);
 
         for (int i = 0; i < page; i++) {
             paneArray.add(new Pane());
             //Rectangle a = new Rectangle(1920-220,1080-200);
-            paneArray.get(i).setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:black ;");
+            //paneArray.get(i).setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:black ;");
             Font font = new Font(16);
             StackPane textSP = new StackPane();
             StackPane bgSP = new StackPane();

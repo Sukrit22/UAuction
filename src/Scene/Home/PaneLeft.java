@@ -226,7 +226,7 @@ public class PaneLeft {
 
     static private void title1() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("All Categorise");
@@ -243,7 +243,7 @@ public class PaneLeft {
 
     static private void title2() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Electronic");
@@ -260,7 +260,7 @@ public class PaneLeft {
 
     static private void title3() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Health & Beauty");
@@ -275,7 +275,7 @@ public class PaneLeft {
 
     static private void title4() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Home & Lifestyle");
@@ -290,7 +290,7 @@ public class PaneLeft {
 
     static private void title5() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
+        rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         Text logIn = new Text("Automotive");

@@ -32,6 +32,11 @@ public class CreateButton {
     static public Group buttonSignOutTopPane = new Group();
     static public Group buttonTime = new Group();
     static public Group buttonHelpPaneTop = new Group();
+    static public Group buttonMyProfileOnMyACC = new Group();
+    static public Group buttonMyProductOnACC = new Group();
+    static public Group buttonAddProductOnACC = new Group();
+    static public Group buttonBackOnACC = new Group();
+
     static public Text timeText = new Text("dd/mm/yyyy hh:mm:ss a XXX");
 
     static public void setUpAllButton() {
@@ -45,6 +50,10 @@ public class CreateButton {
         buttonSearch();
         buttonSignOut();
         buttonTime();
+        buttonMyProductOnMyAccount();
+        buttonMyProfileOnMyAccount();
+        buttonAddProductOnMyAccount();
+        buttonBackOnMyAccount();
     }
 
     static private void buttonCreateAccount() {
@@ -225,6 +234,66 @@ public class CreateButton {
         pane.setLayoutX(1920 - 400 - 150);
         logIn.applyCss();
         buttonHelpPaneTop = new Group(test, pane);
+    }
+    
+    static private void buttonMyProductOnMyAccount() {
+        Rectangle test = new Rectangle(220,40);
+        test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(24);
+        Text logIn = new Text("My Product");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setLayoutX(0);
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+
+        buttonMyProductOnACC = new Group(test, pane);
+    }
+    
+    static private void buttonMyProfileOnMyAccount() {
+        Rectangle test = new Rectangle(220,40);
+        test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(24);
+        Text logIn = new Text("My Profile");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setLayoutX(0);
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+
+        buttonMyProfileOnMyACC = new Group(test, pane);
+    }
+    
+    static private void buttonAddProductOnMyAccount() {
+        Rectangle test = new Rectangle(220,40);
+        test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(24);
+        Text logIn = new Text("Add Product");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setLayoutX(0);
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+
+        buttonAddProductOnACC = new Group(test, pane);
+    }
+    
+    static private void buttonBackOnMyAccount() {
+        Rectangle test = new Rectangle(220,40);
+        test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(24);
+        Text logIn = new Text("Home");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setLayoutX(0);
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+
+        buttonBackOnACC = new Group(test, pane);
     }
 
 }

@@ -316,7 +316,7 @@ public class AddProduct {
         productDescription.setPrefRowCount(5);
         //productDescription
 
-        pic = new Rectangle(150, 150);
+        pic = new Rectangle(500, 375);
 
     }
 }
