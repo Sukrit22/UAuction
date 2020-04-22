@@ -36,6 +36,8 @@ public class CreateButton {
     static public Group buttonMyProductOnACC = new Group();
     static public Group buttonAddProductOnACC = new Group();
     static public Group buttonBackOnACC = new Group();
+    static public Group buttonBackOnACC2 = new Group();
+    static public Group buttonBlankOnACC = new Group();
 
     static public Text timeText = new Text("dd/mm/yyyy hh:mm:ss a XXX");
 
@@ -54,6 +56,8 @@ public class CreateButton {
         buttonMyProfileOnMyAccount();
         buttonAddProductOnMyAccount();
         buttonBackOnMyAccount();
+        buttonBackOnMyAccount2();
+        buttonBlankMyAccount();
     }
 
     static private void buttonCreateAccount() {
@@ -294,6 +298,36 @@ public class CreateButton {
         pane.getChildren().add(logIn);
 
         buttonBackOnACC = new Group(test, pane);
+    }
+    
+    static private void buttonBackOnMyAccount2() {
+        Rectangle test = new Rectangle(220,40);
+        test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(24);
+        Text logIn = new Text("Home");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setLayoutX(0);
+        pane.setMinSize(220, 40);
+        pane.getChildren().add(logIn);
+
+        buttonBackOnACC2 = new Group(test, pane);
+    }
+    
+    static private void buttonBlankMyAccount() {
+        Rectangle test = new Rectangle(220,710);
+        test.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        test.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Font font = new Font(24);
+        Text logIn = new Text("");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setLayoutX(0);
+        pane.setMinSize(220, 710);
+        pane.getChildren().add(logIn);
+
+        buttonBlankOnACC = new Group(test, pane);
     }
 
 }
