@@ -5,7 +5,9 @@
  */
 package Effect;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -14,9 +16,11 @@ import javafx.scene.layout.Pane;
 public class Notifications {
 
     static public Pane pane;
-    static public Pane subPane = new Pane();
+    static public VBox vboxNoti = new VBox();
+    static public Pane subPane = new Pane(vboxNoti);
 
     static public void setUp() {
+        vboxNoti.getChildren().addAll(new Label("1"), new Label("2"), new Label("3") ,new Label("4"));
         pane = new Pane(subPane);
         pane.setMinSize(1920, 1080);
         pane.setMaxSize(300, 600);
@@ -24,7 +28,7 @@ public class Notifications {
         subPane.setMinSize(300, 600);
         subPane.setMaxSize(300, 600);
         subPane.setStyle("-fx-background-color:rgba(80,80,80,1.0);");
-        subPane.setLayoutX(1920-300);
+        subPane.setLayoutX(1920 - 300);
         //subPane.setLayoutY(100);
     }
 
