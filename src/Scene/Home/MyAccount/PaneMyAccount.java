@@ -44,7 +44,8 @@ public class PaneMyAccount {
     static private Pane paneMyProfile = new Pane();
     static public Pane paneMyObject = new Pane();
     static public ScrollPane scrollPaneMyObject = new ScrollPane();
-    static private Pane paneAddProduct = new Pane();
+    static private Pane paneMyAuction = new Pane(new Label("My Action"));
+    static private Pane paneAddProduct = new Pane(new Label("My Product"));
     //static private Pane r = new Pane();
     static public Label name = new Label("Name");
     static public Button btnAdd = new Button("ADD");
@@ -85,6 +86,7 @@ public class PaneMyAccount {
             paneMyProfile.setVisible(true);
             scrollPaneMyObject.setVisible(false);
             paneAddProduct.setVisible(false);
+            paneMyAuction.setVisible(false);
         };
         CreateButton.buttonMyProfileOnMyACC.setOnMouseClicked(my1);
 
@@ -93,6 +95,7 @@ public class PaneMyAccount {
             paneMyProfile.setVisible(false);
             scrollPaneMyObject.setVisible(true);
             paneAddProduct.setVisible(false);
+            paneMyAuction.setVisible(false);
         };
         CreateButton.buttonMyProductOnACC.setOnMouseClicked(my2);
 
@@ -101,8 +104,18 @@ public class PaneMyAccount {
             paneMyProfile.setVisible(false);
             scrollPaneMyObject.setVisible(false);
             paneAddProduct.setVisible(true);
+            paneMyAuction.setVisible(false);
         };
         CreateButton.buttonAddProductOnACC.setOnMouseClicked(my3);
+        
+        EventHandler<MouseEvent> my4 = (MouseEvent ActionEvent) -> {
+            System.out.println("btnMyAuction");
+            paneMyProfile.setVisible(false);
+            scrollPaneMyObject.setVisible(false);
+            paneAddProduct.setVisible(false);
+            paneMyAuction.setVisible(true);
+        };
+        CreateButton.buttonMyAuctionOnACC.setOnMouseClicked(my4);
 
         scrollPaneMyObject.setContent(paneMyObject);
         scrollPaneMyObject.setMinSize(1700, 1080 - 200);
