@@ -16,7 +16,9 @@ import java.awt.Robot;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -37,19 +39,12 @@ public class GreetingClient
             Socket client = new Socket(serverName, port);
             
            BufferedImage image;
+           OutputStream os = client.getOutputStream();
+           image = ImageIO.read(new File("C:/TestPic4.png"));
+           ImageIO.write(image,"png", os);
+           os.flush();
+           os.close();
            
-           File file=new File("C:/TestPic.jpg");
-            image = ImageIO.read(file);
-            //ImageIO.write(image,"JPG",client.getOutputStream());
-            
-            ImageIcon pic = new ImageIcon(image);
-            
-            ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
-            oos.writeObject(image);
-            
-            oos.flush();
-            oos.close();
-           client.close();
         } catch(Exception w) {
             w.printStackTrace();
         }

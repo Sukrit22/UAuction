@@ -15,12 +15,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,13 +44,17 @@ public class GreetingServer extends Thread
           { 
                try
                {
+                  
                   server = serverSocket.accept();
-                  //BufferedImage img = ImageIO.read(ImageIO.createImageInputStream(server.getInputStream()));
+                  /*BufferedImage image;
+                  ImageInputStream os = (ImageInputStream) server.getInputStream();
+                  image = ImageIO.read(os);*/
+                  
                   BufferedImage pic = ImageIO.read(server.getInputStream());
                   InputStreamReader reader = new InputStreamReader(server.getInputStream()) ;
                   BufferedReader br = new BufferedReader(reader);
                   
-                  File file = new File("C:/TestPic3.jpg");
+                  File file = new File("C:/TestPic5.jpg");
                   
         try {
             
