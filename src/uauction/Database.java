@@ -18,7 +18,7 @@ public class Database implements Serializable {
         this.forSaveProhibitProduct = new java.util.ArrayList<ProhibitProduct>();
     }
 //=========================== product on market here =======================
-    public static java.util.ArrayList<ActiveProduct> activeProduct = new java.util.ArrayList<ActiveProduct>()
+    public static java.util.ArrayList<ActiveProduct> activeProduct = new java.util.ArrayList<ActiveProduct>();
     
  //=========================== product that is auctioned =======================
     public static java.util.ArrayList<AuctionedProduct> auctionedProduct = new java.util.ArrayList<AuctionedProduct>();

@@ -23,6 +23,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import javax.swing.ImageIcon;
 
 public class GreetingClient
@@ -37,17 +38,21 @@ public class GreetingClient
         try
         {
             Socket client = new Socket(serverName, port);
+            OutputStream os = client.getOutputStream();
             
-           BufferedImage image;
-           OutputStream os = client.getOutputStream();
+          
+           //ImageOutputStream os = new ImageOutputStream(client.getOutputStream());
            //ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());
-           image = ImageIO.read(new File("C:/TestPic4.jpg"));
+           BufferedImage image = ImageIO.read(new File("C:/TestPic4.jpg"));
            ImageIO.write(image,"jpg", os);
            
            os.flush();
            os.close();
+           
+            
         } catch(Exception w) {
             w.printStackTrace();
         }
+        
     }
 }

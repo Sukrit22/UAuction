@@ -5,6 +5,7 @@
  */
 package uauction;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.*;
 import java.net.*;
 import java.util.Date;
@@ -39,7 +40,7 @@ public NewServer()
         System.out.println("Exception4 " + e);
     }
 }
-    public static void main(String arg[])
+    public static void main(String arg[]) throws InterruptedException
     {
         new NewServer();
         
@@ -95,15 +96,20 @@ public NewServer()
                   
               }
               else if(keyword[0].matches("RegisterProduct")){
+                  
                   ImPr impr = (ImPr)objectFromClient.readObject();
                   ManageProduct.registerProduct(impr.getProduct());
+                  ManageProduct.registerImage(impr.getImage(),impr.getProduct().getFileName());
                   
-                  BufferedImage pic = ImageIO.read(client.getInputStream());
-                                 
-                  File file = new File(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+impr.getProduct().getFileName()+".txt");
                   
               }
               else if(keyword[0].matches("LoadProduct")){
+                 Product product =  SaveAndLoad.loadProduct(keyword[1]);
+                 objectToClient.writeObject(product);
+                 objectToClient.flush();
+                 
+                 BufferedImage image = ImageIO.read(new File(keyword[2]));
+                 ImageIO.write(image, "jpg", objectToClient);
                   
               }
              else if(keyword[0].matches("Bid")){
@@ -164,7 +170,7 @@ class Update implements Runnable{
         for (ActiveProduct object : Database.activeProduct) {
             if(object.getProduct().getDateEndBid().getTime() - now.getTime() < 0){
                 Database.activeProduct.remove(object);
-                Database.auctionedProduct.add(new AuctionedProduct(object, object.getCurrentBid(), now));
+                Database.auctionedProduct.add(new AuctionedProduct(object, object.getCurrentBid()));
             }
         }
     }

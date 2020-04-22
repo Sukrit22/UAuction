@@ -45,26 +45,40 @@ public class GreetingServer extends Thread
            while(true)
           { 
                try
-               {
+               { server = serverSocket.accept();
+
+                  //-------------------------------------------------------------------
+                  BufferedImage pic = ImageIO.read(server.getInputStream());
+                  File file = new File("C:/TestPic25.jpg");
+                  //--------------------------------------------------------------------
+                  //InputStreamReader isr = new InputStreamReader(server.getInputStream());
+                  //BufferedReader reader = new BufferedReader(isr);
+                   //System.out.println(reader.readLine());
                   
-                  server = serverSocket.accept();
+                  
+                   //OutputStream os = server.getOutputStream();
+                   //BufferedImage bf =  ImageIO.read(new File("C:/TestPic9.jpg"));
+                       
+                  try {
+            
+                           ImageIO.write(pic,"jpg",file);
+                         //ImageIO.write(bf,"jpg", os);
+                         //os.flush();
+                } catch (IOException ex) {
+            System.out.println(ex.toString());
+        }
+                  
                   /*BufferedImage image;
                   ImageInputStream os = (ImageInputStream) server.getInputStream();
                   image = ImageIO.read(os);*/
                   
-                  BufferedImage pic = ImageIO.read(server.getInputStream());
-                  //InputStreamReader reader = new InputStreamReader(server.getInputStream()) ;
-                  //ObjectInputStream  reader = new ObjectInputStream(server.getInputStream());
-                  //BufferedReader br = new BufferedReader(reader);
+                 
+                 
                   
-                  File file = new File("C:/TestPic8.jpg");
                   
-        try {
-            
-            ImageIO.write(pic,"jpg",file);
-        } catch (IOException ex) {
-            System.out.println(ex.toString());
-        }
+                  
+                  
+        
               }
              catch(SocketTimeoutException st)
              {

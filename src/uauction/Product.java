@@ -27,7 +27,7 @@ import javax.swing.ImageIcon;
 public final class Product implements java.io.Serializable {
     //private java.util.ArrayList<javafx.scene.image.Image> additionalImage;
     
-    private String imageName;
+    private String imageName=null;
     
     private String name;
     private String description;
@@ -49,7 +49,7 @@ public final class Product implements java.io.Serializable {
         this.description = description;
         this.startingBid = startingBid;
         this.minimumBid = minimumBid;
-        this.imageName = name;
+        
         
         //image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+ this.getImageName()+ ".jpg"); บอกว่าไม่เอา
         //ใช้ imageName ไปหา ถ้าไม่เจอจะขอจากเซิฟ

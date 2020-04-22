@@ -18,20 +18,22 @@ import javax.imageio.ImageIO;
 public class ImPr {
     
     Product  product;
-    Image image;
-    public ImPr(Product product,Image image)
+    BufferedImage image;
+    public ImPr(Product product,BufferedImage image/*ImportImageFile(String initPath)*/)
     {
         this.product = product;
         this.image = image;
+        
     }
     public Product getProduct()
     {
         return this.product;
     }
-    public Image getImage()
+    public BufferedImage getImage()
     {
         return this.image;
     }
+    
      public static void writeImportedImageFile(String initPath,String imageName){
         
         File initImage = new File(initPath);

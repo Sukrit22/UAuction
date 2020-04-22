@@ -53,8 +53,9 @@ public class ManageProduct {
     public static void registerProduct(Product product)
     {
         String fileName = product.getName() + "." + product.getDatePosted().getTime() + ".txt";
+        String imageName = product.getName() + "." + product.getDatePosted().getTime() + ".jpg";
         product.setFileName(fileName);
-        product.setFileName(fileName);
+        product.setImageName(imageName);
         //SaveAndLoad.saveProduct(product);
         if(SaveAndLoad.saveProduct(product))
             Database.activeProduct.add(new ActiveProduct(product));
@@ -70,7 +71,7 @@ public class ManageProduct {
     
     public static void endBidding(ActiveProduct ap){
         if(ap.getProduct().getDateEndBid().getTime() - ap.getProduct().getDatePosted().getTime() <= 0){
-            AuctionedProduct auctioned = new AuctionedProduct(ap, ap.getCurrentBid(), (new Date()));
+            AuctionedProduct auctioned = new AuctionedProduct(ap, ap.getCurrentBid());
             Database.auctionedProduct.add(auctioned);
             Database.activeProduct.remove(ap);
         }
@@ -109,23 +110,30 @@ public class ManageProduct {
         }
     }
     
-    public static void registerImage(String imageName,Image image) 
+    public static void registerImage(BufferedImage image/*product.getFilename*/,String imageName) throws IOException 
     {
-        File file = new File(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName+ ".jpg");
-        if(!file.exists())
-        {
-            //BufferedImage pic = ImageIO.
-        }
+        File file = new File(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName);
+        ImageIO.write(image,"jpg",file);
     }
-    public static void ImportImageFile(String initPath,String imageName){
+    
+    
+    //called by client----------------------------------------------------------------------
+    //client have to creat BufferedImage instance to recive this method returned object and send to ImPr()
+    public static BufferedImage ImportImageFile(String initPath){
         
         File initImage = new File(initPath);
         BufferedImage image = null;
         try {
             image = ImageIO.read(initImage);
-            ImageIO.write(image,"jpg",new File(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName+ ".jpg"));
+            
         } catch (IOException ex) {
             System.out.println(ex.toString());
         }
+        return image;
     }
 }
+//when user register product 
+//1.call product constructor
+//2.create BufferedImage's instance to reciev ImportImageFile method's returned object
+//3.group 1&2 by calling ImPr clss's constructor
+//4.send to server
