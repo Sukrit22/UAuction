@@ -11,6 +11,8 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.lang.System.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -38,6 +40,10 @@ import javafx.stage.Stage;
 public class AddProduct {
 
     static private Text selectText = new Text();
+
+    public static Text getSelectText() {
+        return selectText;
+    }
     static public VBox titleVbox = new VBox();
     static private Group titleGroup1;
     static private Group titleGroup2;
@@ -76,7 +82,7 @@ public class AddProduct {
         comboBoxHour = new ComboBox();
         comboBoxAmPm = new ComboBox();
         comboBoxHour.setPromptText("Hour");
-        comboBoxHour.getItems().addAll("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+        comboBoxHour.getItems().addAll("12", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11" );
         comboBoxHour.setMinSize(50, 40);
         comboBoxHour.setLayoutX(900+200+20+5+300);
         comboBoxHour.setLayoutY(50);
@@ -301,6 +307,16 @@ public class AddProduct {
         startBid.setMinWidth(220);
         startBid.setLayoutX(600);
         startBid.setLayoutY(130);
+        startBid.textProperty().addListener(new ChangeListener<String>() {
+    @Override
+    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+        String newValue) {
+        if (!newValue.matches("\\d*")) {
+            startBid.setText(newValue.replaceAll("[^\\d]", ""));
+        }
+    }
+}
+);
 
         minimumBid = new TextField();
         minimumBid.setPromptText("Minimun Bid");
@@ -308,6 +324,16 @@ public class AddProduct {
         minimumBid.setMinWidth(220);
         minimumBid.setLayoutX(900);
         minimumBid.setLayoutY(130);
+        minimumBid.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                    String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    minimumBid.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        }
+        );
 
         productDescription = new TextArea();
         productDescription.setPromptText("Description");

@@ -6,6 +6,7 @@
 package Scene.Home;
 
 import AuctionMain.CreateButton;
+import static AuctionMain.CreateButton.buttonBellHomeEff;
 import AuctionMain.CreateTextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,7 +33,9 @@ public class PaneTop {
         CreateTextField.search.setLayoutY(120);
         CreateButton.buttonBellHome.setLayoutX(1920-40);
         CreateButton.buttonBellHome.setLayoutY(50+40);
-        pane.getChildren().addAll(CreateTextField.search, CreateButton.buttonSearch, CreateButton.buttonLogInPaneTop, CreateButton.buttonBellHome);
+        CreateButton.buttonBellHomeEff.setLayoutX(1920-40+10);
+        CreateButton.buttonBellHomeEff.setLayoutY(50+40-10);
+        pane.getChildren().addAll(CreateTextField.search, CreateButton.buttonSearch, CreateButton.buttonLogInPaneTop, CreateButton.buttonBellHome, CreateButton.buttonBellHomeEff);
 
     }
 

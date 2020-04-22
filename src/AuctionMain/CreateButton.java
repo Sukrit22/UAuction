@@ -44,6 +44,7 @@ public class CreateButton {
     static public Group buttonBlankOnACC = new Group();
     static public Group buttonMyAuctionOnACC = new Group();
     static public Group buttonBellHome = new Group();
+    static public Circle buttonBellHomeEff;
 
     static public Text timeText = new Text("dd/mm/yyyy hh:mm:ss a XXX");
     static public Text timeText2 = new Text("dd/mm/yyyy hh:mm:ss a XXX");
@@ -300,6 +301,8 @@ public class CreateButton {
         pane.getChildren().add(logIn);
 
         buttonBellHome = new Group(cir, iv);
+        buttonBellHomeEff = new Circle(10);
+        buttonBellHomeEff.setFill(Color.web("rgba( 255, 0, 0, 1.0)"));
     }
 
     static private void buttonMyProductOnMyAccount() {

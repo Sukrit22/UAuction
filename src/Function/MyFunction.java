@@ -8,6 +8,7 @@ package Function;
 import AuctionMain.CreateButton;
 import Effect.PopUp;
 import Effect.PopUpProduct;
+import Effect.Notifications;
 import Scene.Home.MyAccount.PaneMyAccount;
 import Scene.Home.PaneTop;
 import Scene.Home.SceneHomeUnLogIn;
@@ -21,6 +22,7 @@ import Stage.setSceneForStage;
 public class MyFunction {
 
     static public void inti() {
+        Notifications.setUp();
         PopUpProduct.createpopUpBackground();
         SetUpStage.stageAuction();
         CreateButton.setUpAllButton();
