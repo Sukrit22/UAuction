@@ -20,6 +20,7 @@ import java.util.Date;
  */
 public class User implements Serializable {
 
+    
     /**
      * @param args the command line arguments
      */
@@ -32,6 +33,11 @@ public class User implements Serializable {
     double balance = 0;
     private boolean adminStatus;
     private Permission userPermission;
+    
+    //Guest
+    public User() {
+        this.userPermission = Permission.none;
+    }
 
     public User(String username,String password){
         this.username = username;

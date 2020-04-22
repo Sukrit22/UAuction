@@ -32,23 +32,26 @@ public class NewClient
 {
     
     static Socket server;
+    public static User user;
     
     
     public static void main(String[] args) throws Exception {
         server = new Socket("171.6.209.126",1233);
-        while(true)
-    {
-       
-        Scanner input = new Scanner(System.in);
-        PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
-        InputStreamReader isr = new InputStreamReader(server.getInputStream());
-        BufferedReader fromServer = new BufferedReader(isr);
-        
-        toServer.println(input.nextLine());
-        
-        String rtnFromServer = fromServer.readLine();
-        System.out.println("Server : "+rtnFromServer);
-    }
+        user = new User();
+        AuctionMain.AuctionMain.main(args);
+//        while(true)
+//    {
+//       
+//        Scanner input = new Scanner(System.in);
+//        PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
+//        InputStreamReader isr = new InputStreamReader(server.getInputStream());
+//        BufferedReader fromServer = new BufferedReader(isr);
+//        
+//        toServer.println(input.nextLine());
+//        
+//        String rtnFromServer = fromServer.readLine();
+//        System.out.println("Server : "+rtnFromServer);
+//    }
     }
     
     public static Object reqLogin(String username,String password) throws IOException, ClassNotFoundException
