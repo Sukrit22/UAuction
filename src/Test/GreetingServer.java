@@ -55,9 +55,17 @@ public class GreetingServer extends Thread
                   //BufferedReader reader = new BufferedReader(isr);
                    //System.out.println(reader.readLine());
                   
-                  
+                  String first;
                    ObjectInputStream os = new ObjectInputStream(server.getInputStream());
-                   System.out.println("Client : " + os.readObject().toString() );
+                   //System.out.println("Client : " + (String)os.readObject() );
+                   
+                   first = (String)os.readObject();
+                   
+                   if(first.matches("Hello"))
+                   {
+                       ObjectInputStream os2 = new ObjectInputStream(server.getInputStream());
+                        System.out.println("Client : " + (String)os2.readObject() );
+                   }
                    //BufferedImage bf =  ImageIO.read(new File("C:/TestPic9.jpg"));
                        
       /*            try {

@@ -67,58 +67,77 @@ public NewServer()
          try
         {
            InputStreamReader isr = new InputStreamReader(client.getInputStream());
-           ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
-           ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());
-           PrintWriter stringToClient = new PrintWriter(client.getOutputStream(),true);
            BufferedReader fromClient = new BufferedReader(isr);
+           ObjectInputStream reqFromClient = new ObjectInputStream (client.getInputStream());
+           
+           
            
            while(true){
-              String clientInput = fromClient.readLine();
+              String clientInput = (String)reqFromClient.readObject();
               String[] keyword = clientInput.split("\\s+");
               for (int i = 0; i < keyword.length; i++) {
             keyword[i] = keyword[i].replaceAll("[^\\w]", ""); //replace " " with ""
         }
                System.out.println("Client : "+clientInput);
-              if(keyword[0].matches("Login"))
+              if(keyword[0].matches("Login"))//done
               {
+                 ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
                  objectToClient.writeObject(Accountant.login(keyword[1],keyword[2]));
                  objectToClient.flush();
               }
-              else if(keyword[0].matches("Register"))
+              else if(keyword[0].matches("Register"))//done
               {
+                  ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
                  objectToClient.writeObject(Accountant.register(keyword[1],keyword[2]));
                  objectToClient.flush();
               }
-              else if(keyword[0].matches("Market")){
+              else if(keyword[0].matches("Market"))//done
+              {
                   
+                 ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
                  objectToClient.writeObject(Database.activeProduct);
                  objectToClient.flush();
                  
               }
-              else if(keyword[0].matches("RegisterProduct")){
+              else if(keyword[0].matches("Image"))//done
+              {
                   
+                 File file = new File(System.getProperty("user.dir")+"/AuctionDataBase/Image/" + keyword[1]);
+                 BufferedImage image = ImageIO.read(file);
+                 OutputStream os = client.getOutputStream();
+                 ImageIO.write(image, "jpg", os);
+                 os.flush();
+                 os.close();
+                 
+                 
+              }
+              else if(keyword[0].matches("RegisterProduct"))//done
+              {
+                  
+                  ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());
                   ImPr impr = (ImPr)objectFromClient.readObject();
                   ManageProduct.registerProduct(impr.getProduct());
-                  ManageProduct.registerImage(impr.getImage(),impr.getProduct().getFileName());
+                  ManageProduct.registerImage(impr.getImage(),impr.getProduct().getImageName());
                   
                   
                   
               }
               else if(keyword[0].matches("LoadProduct")){
+                  
+                 ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
                  OutputStream os = client.getOutputStream();
                  Product product =  SaveAndLoad.loadProduct(keyword[1]);
                  objectToClient.writeObject(product);
                  objectToClient.flush();
                  
-                 BufferedImage image = ImageIO.read(new File(keyword[2]));
-                 ImageIO.write(image, "jpg", os);
-                  os.flush();
-                  os.close();
+                
               }
              else if(keyword[0].matches("Bid")){
+                 
                  int indexOfActiveProduct = Database.activeProduct.indexOf(keyword[1]);
                  Database.activeProduct.get(indexOfActiveProduct).setCurrentBid(Double.parseDouble(keyword[2]));
                  Database.activeProduct.get(indexOfActiveProduct).addBiddingHistory(keyword[3]);
+                 
               }
            }
         }

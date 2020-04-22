@@ -122,14 +122,14 @@ public class ManageProduct {
     public static BufferedImage ImportImageFile(String initPath){
         
         File initImage = new File(initPath);
-        BufferedImage image = null;
+        BufferedImage bufferedimage = null;
         try {
-            image = ImageIO.read(initImage);
+            bufferedimage = ImageIO.read(initImage);
             
         } catch (IOException ex) {
             System.out.println(ex.toString());
         }
-        return image;
+        return bufferedimage;
     }
 }
 //when user register product 

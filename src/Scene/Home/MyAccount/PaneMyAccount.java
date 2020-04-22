@@ -118,6 +118,8 @@ public class PaneMyAccount {
         VBox vbox0 = new VBox();
         //TextField productName = new TextField();
 
+        paneAddProduct.setStyle("-fx-background-color:rgba(88,88,88,1.0) ; ");
+        paneAddProduct.setMinSize(1920-220, 1080-200);
         paneAddProduct.getChildren().addAll(AddProduct.productName, AddProduct.titleVbox, AddProduct.productDescription, AddProduct.minimumBid, AddProduct.startBid, AddProduct.pic, btnAdd, AddProduct.datePicker, AddProduct.comboBoxHour, AddProduct.comboBoxAmPm);
 
         paneRight.setMinWidth(1700);
@@ -130,9 +132,9 @@ public class PaneMyAccount {
         paneTop.setMinHeight(200);
         paneTop.setLayoutX(0);
         paneTop.setLayoutY(0);
-        paneTop.setStyle("-fx-background-color:rgba(240,240,240,1.0) ; ");
+        paneTop.setStyle("-fx-background-color:rgba(88,88,88,1.0) ; ");
         CreateButton.buttonBackOnACC2.setLayoutX(1920 - 400 - 150);
-        paneTop.getChildren().addAll(name, CreateButton.buttonBackOnACC2, CreateButton.buttonTime2);
+        paneTop.getChildren().addAll( CreateButton.buttonBackOnACC2, CreateButton.buttonTime2);
         Font font = new Font(32);
         name.setFont(font);
 
@@ -140,10 +142,11 @@ public class PaneMyAccount {
         paneLeft.setMinHeight(1080 - 200);
         paneLeft.setLayoutX(0);
         paneLeft.setLayoutY(200);
+        paneLeft.setStyle("-fx-background-color:rgba(88,88,88,1.0) ; ");
         //paneLeft.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:yellow ; ");
         VBox vbox = new VBox();
         Rectangle leftbg = new Rectangle(220, 1080 - 200);
-        leftbg.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        leftbg.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
         paneLeft.getChildren().addAll(leftbg, vbox);
         vbox.getChildren().addAll(CreateButton.buttonMyProfileOnMyACC, CreateButton.buttonMyProductOnACC, CreateButton.buttonAddProductOnACC, CreateButton.buttonBlankOnACC, CreateButton.buttonBackOnACC);
         paneMyAccLayer1.setMinSize(1920, 1080);

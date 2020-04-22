@@ -79,32 +79,37 @@ public class CategorisePane {
             Font font = new Font(16);
             StackPane textSP = new StackPane();
             StackPane bgSP = new StackPane();
-            Rectangle bgBar = new Rectangle(0, 0, 1920-220, 60);
+            Rectangle bgBar = new Rectangle(0, 0, 1920 - 220, 60);
             Pane pane = new Pane();
-            bgBar.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+            bgBar.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
             itemText = new Text("Item #");
             itemText.setFont(font);
             itemText.setLayoutX(300);
+            itemText.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
             titleText = new Text("Title");
             titleText.setFont(font);
             titleText.setLayoutX(500);
+            titleText.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
             priceText = new Text("Price");
             priceText.setFont(font);
-            priceText.setLayoutX(1500-200);
+            priceText.setLayoutX(1500 - 200);
+            priceText.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
             timeLeftText = new Text("Time Left");
             timeLeftText.setFont(font);
             timeLeftText.setLayoutX(1500);
-            pane.setMinSize(1920-220, 0);
+            timeLeftText.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+            pane.setMinSize(1920 - 220, 0);
             topBar = new Group(pane, itemText, titleText, priceText, timeLeftText);
             //pane.getChildren().addAll(itemText, titleText, priceText, timeLeftText);
-            
+
             textSP.getChildren().add(topBar);
             bgSP.getChildren().add(bgBar);
             paneBar = new StackPane(bgSP, textSP);
-            paneBar.setMinSize(1920-220, 60);
+            paneBar.setMinSize(1920 - 220, 60);
             //paneBar.getChildren().addAll();
-            
-            paneArray.get(i).getChildren().addAll(paneBar, new Label("label" + (i + 1)));
+
+            paneArray.get(i).setStyle("-fx-background-color:rgba(100,100,100,1.0);");
+            paneArray.get(i).getChildren().addAll(paneBar);
 
         }
 
@@ -117,7 +122,10 @@ public class CategorisePane {
     }
 
     static private StackPane noProduct(StackPane pane) {
+        Font font = new Font(32);
         Text text = new Text("No Product");
+        text.setFont(font);
+        text.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         pane.getChildren().add(text);
         pane.setMinSize(1920 - 220, 200);
         return pane;

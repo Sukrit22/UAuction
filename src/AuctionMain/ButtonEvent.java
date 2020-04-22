@@ -15,6 +15,11 @@ import javafx.scene.input.MouseEvent;
 import Scene.CategorisePane;
 import Scene.Home.MyAccount.PaneMyAccount;
 import Scene.ProductPaneInVbox;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import uauction.NewClient;
+import uauction.User;
 
 /**
  *
@@ -28,6 +33,15 @@ public class ButtonEvent {
             // TextField CreateTextField.userName + CreateTextField.password
             CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
             System.out.println("buttonPopUpLogIn");
+            
+            try {
+                NewClient.user = (User) NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
+            } catch (IOException ex) {
+                Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             if (true) {
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
                 PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);

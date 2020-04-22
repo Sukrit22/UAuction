@@ -9,8 +9,10 @@ package uauction;
  *
  * @author USER
  */
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,39 +26,120 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 
 public class NewClient 
 {
     
     static Socket server;
+    public static User user;
     
     
     public static void main(String[] args) throws Exception {
         server = new Socket("171.6.209.126",1233);
-        while(true)
-    {
-       
-        Scanner input = new Scanner(System.in);
-        PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
-        InputStreamReader isr = new InputStreamReader(server.getInputStream());
-        BufferedReader fromServer = new BufferedReader(isr);
-        
-        toServer.println(input.nextLine());
-        
-        String rtnFromServer = fromServer.readLine();
-        System.out.println("Server : "+rtnFromServer);
-    }
+        user = new User();
+        AuctionMain.AuctionMain.main(args);
+//        while(true)
+//    {
+//       
+//        Scanner input = new Scanner(System.in);
+//        PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
+//        InputStreamReader isr = new InputStreamReader(server.getInputStream());
+//        BufferedReader fromServer = new BufferedReader(isr);
+//        
+//        toServer.println(input.nextLine());
+//        
+//        String rtnFromServer = fromServer.readLine();
+//        System.out.println("Server : "+rtnFromServer);
+//    }
     }
     
-    public static User reqLogin(String username,String password) throws IOException, ClassNotFoundException
+    public static Object reqLogin(String username,String password) throws IOException, ClassNotFoundException
     {
-        PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
-        toServer.println("Login"+" "+username+" "+password);
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("Login" + " " + username + " " + password));
+        //PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
+        //toServer.println("Login"+" "+username+" "+password);
         
-        ObjectInputStream ois = new ObjectInputStream(server.getInputStream());
-        User user = (User)ois.readObject();
+        ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        User user = (User)fromServer.readObject();
         return user;
     }
+    
+    public static Object reqRegister(String username,String password) throws IOException, ClassNotFoundException
+    {
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("Register" + " " + username + " " + password));
+        toServer.flush();
+        toServer.close();
+        
+        ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        User user = (User)fromServer.readObject();
+        return user;
+    }
+    public static void reqRegisterProduct (Product product,BufferedImage image) throws IOException
+    {
+        ImPr impr = new ImPr(product,image);
+        
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("RegisterProduct"+" "));
+        toServer.flush();
+        ObjectOutputStream toServer2 = new ObjectOutputStream(server.getOutputStream());
+        toServer2.writeObject(impr);
+        toServer2.flush();
+        toServer2.close();
+    }
+    public static Object reqProduct(String fileName/*product.getFilename()*/)throws Exception
+    {
+        
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("LoadProduct"+" "+fileName));
+        
+        ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        Product product  = (Product)fromServer.readObject();
+        
+        return product;
+    }
+    public static void reqBid(String productName/*product.getName*/,String cost,String bidderName/*User.getName*/) throws Exception
+    {
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("Bid"+" "+cost+" "+bidderName));
+    }
+    
+    public static void reqMarket () throws Exception
+    {
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("Market"+" "));
+        toServer.flush();
+        toServer.close();
+         
+        ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        ArrayList<ActiveProduct> a = (ArrayList<ActiveProduct>)fromServer.readObject();
+        
+        for(ActiveProduct ap : a)
+        {
+            reqImage(ap.getProduct().getImageName());
+            
+        }
+        
+    }
+    
+    public static void reqImage(String imageName) throws Exception
+    {
+        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+        toServer.writeObject(new String("Image"+" "+imageName));
+        File file =new File (System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName);
+        
+        if(!file.exists())
+        {
+            InputStream is = server.getInputStream();
+            BufferedImage image = ImageIO.read(is);
+            ImageIO.write(image, imageName, file);
+        }
+        
+    }
+    
+    
 }
 /*public class NewClient extends Application
 {
