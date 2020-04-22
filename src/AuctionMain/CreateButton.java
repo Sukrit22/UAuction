@@ -278,11 +278,14 @@ public class CreateButton {
     static private void buttonBellHome() {
         Rectangle test = new Rectangle(220, 50);
         Circle cir = new Circle(30);
-        cir.setFill(Color.web("rgba( 255, 255, 0, 1.0)"));
-        Image im = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/bell.png");
+        cir.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
+        cir.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
+        Image im = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/bellWhite.png");
         ImageView iv = new ImageView(im);
-        iv.setFitHeight(30);
-        iv.setFitWidth(30);
+        iv.setFitHeight(40);
+        iv.setFitWidth(40);
+        iv.setLayoutX(-20);
+        iv.setLayoutY(-20);
         //iv.setClip(cir);
         
         test.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
@@ -296,7 +299,7 @@ public class CreateButton {
         pane.setMinSize(220, 40);
         pane.getChildren().add(logIn);
 
-        buttonBellHome = new Group(cir);
+        buttonBellHome = new Group(cir, iv);
     }
 
     static private void buttonMyProductOnMyAccount() {
