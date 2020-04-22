@@ -95,6 +95,10 @@ public final class Product implements java.io.Serializable {
     public void setFileName(String fileName){
         this.myFileName = fileName;
     }
+    public void setImageName(String newImageName)
+    {
+        this.imageName = newImageName;
+    }
     public double getStartingBid() {
         return startingBid;
     }

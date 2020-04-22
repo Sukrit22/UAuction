@@ -8,6 +8,7 @@ package uauction;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -36,8 +37,8 @@ public class ManageProduct {
      * 
      * @return whether the register is fail or succeed
      */
-    public static Product registerProduct(String name, String description, String image, 
-            Double startingBid, Double minimumBid, Date endDate){
+    /*public static void registerProduct(String name, String description, String image, 
+        Double startingBid, Double minimumBid, Date endDate){
         //do what you want
         Product ap = new Product(name,description,startingBid,minimumBid,endDate);
         String fileName = name + "." + ap.getDatePosted().getTime() + ".txt";
@@ -47,7 +48,18 @@ public class ManageProduct {
             Database.activeProduct.add(new ActiveProduct(ap));
         
         //after registered the product, add it to activeProduct in Database class
-        return null;
+        
+    }*/
+    public static void registerProduct(Product product)
+    {
+        String fileName = product.getName() + "." + product.getDatePosted().getTime() + ".txt";
+        product.setFileName(fileName);
+        product.setFileName(fileName);
+        //SaveAndLoad.saveProduct(product);
+        if(SaveAndLoad.saveProduct(product))
+            Database.activeProduct.add(new ActiveProduct(product));
+
+        
     }
     
     public static void deleteProduct(ActiveProduct ap, Date deleteDate){
@@ -97,6 +109,14 @@ public class ManageProduct {
         }
     }
     
+    public static void registerImage(String imageName,Image image) 
+    {
+        File file = new File(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName+ ".jpg");
+        if(!file.exists())
+        {
+            //BufferedImage pic = ImageIO.
+        }
+    }
     public static void ImportImageFile(String initPath,String imageName){
         
         File initImage = new File(initPath);

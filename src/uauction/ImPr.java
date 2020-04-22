@@ -8,6 +8,7 @@ package uauction;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 
 /**
@@ -16,7 +17,21 @@ import javax.imageio.ImageIO;
  */
 public class ImPr {
     
-    
+    Product  product;
+    Image image;
+    public ImPr(Product product,Image image)
+    {
+        this.product = product;
+        this.image = image;
+    }
+    public Product getProduct()
+    {
+        return this.product;
+    }
+    public Image getImage()
+    {
+        return this.image;
+    }
      public static void writeImportedImageFile(String initPath,String imageName){
         
         File initImage = new File(initPath);
