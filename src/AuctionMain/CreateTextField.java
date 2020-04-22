@@ -14,31 +14,33 @@ import javafx.scene.text.Font;
  * @author Sitth
  */
 public class CreateTextField {
+
     static public TextField userName = new TextField();
     static public PasswordField password = new PasswordField();
     static public PasswordField passwordC = new PasswordField();
     static public TextField search = new TextField();
-    
-    static public void createEmailField(){
+
+    static public void createEmailField() {
         //.setText("Email");
         userName.setPromptText("Email");
     }
-    
-    static public void createPasswordField(){
+
+    static public void createPasswordField() {
         //.setText("Email");
         password.setPromptText("Password");
     }
-    
-    static public void createPasswordCField(){
+
+    static public void createPasswordCField() {
         //.setText("Email");
         passwordC.setPromptText("Confirm Password");
     }
-    
-    static public void searchField(){
+
+    static public void searchField() {
         //.setText("Email");
         search.setPromptText("I'm looking for....");
+        search.setStyle("-fx-focus-color:rgba( 2, 2, 2, 1.0);");
         Font font = new Font(24);
         search.setFont(font);
     }
-    
+
 }

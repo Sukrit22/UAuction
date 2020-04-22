@@ -67,9 +67,9 @@ public class AddProduct {
 
         //vbox0.getChildren().addAll(new Label("Add Product"), productName, productCategorise, btncheck, btnAdd, btnBack);
         datePicker = new DatePicker();
-        datePicker.setLayoutX(0);
-        datePicker.setLayoutY(250);
-        datePicker.setMinSize(205, 40);
+        datePicker.setLayoutX(900+300);
+        datePicker.setLayoutY(50);
+        datePicker.setMinSize(220, 40);
         datePicker.applyCss();
         //datePicker.setStyle("-fx-text-inner-color:black; -fx-background-radius:10; -fx-background-color:rgba( 125, 125, 125, 1.0); ");
 
@@ -78,21 +78,21 @@ public class AddProduct {
         comboBoxHour.setPromptText("Hour");
         comboBoxHour.getItems().addAll("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
         comboBoxHour.setMinSize(50, 40);
-        comboBoxHour.setLayoutX(0);
-        comboBoxHour.setLayoutY(200);
+        comboBoxHour.setLayoutX(900+200+20+5+300);
+        comboBoxHour.setLayoutY(50);
         comboBoxHour.applyCss();
 
         comboBoxAmPm = new ComboBox();
         comboBoxAmPm.getItems().addAll("A.M.", "P.M.");
         comboBoxAmPm.setValue("A.M");
         comboBoxAmPm.setMinSize(50, 40);
-        comboBoxAmPm.setLayoutX(70);
-        comboBoxAmPm.setLayoutY(200);
+        comboBoxAmPm.setLayoutX(900+70+200+20+5+300);
+        comboBoxAmPm.setLayoutY(50);
         comboBoxAmPm.applyCss();
 
         Button btnCheck = new Button("Check!");
-        titleVbox.setLayoutX(500);
-        titleVbox.setLayoutY(200);
+        titleVbox.setLayoutX(900);
+        titleVbox.setLayoutY(50);
         titleVbox.getChildren().addAll(titleGroup1);
 
         EventHandler<ActionEvent> btnCheckEV = (ActionEvent ActionEvent) -> {
@@ -114,6 +114,8 @@ public class AddProduct {
             //pic.setClip(imv);
 
         };
+        pic.setLayoutX(40);
+        pic.setLayoutY(40);
         pic.setOnMouseClicked(addpicEV);
 
         EventHandler<MouseEvent> evTitle1 = (MouseEvent ActionEvent) -> {
@@ -204,7 +206,7 @@ public class AddProduct {
 
     static private void title1() {
         Rectangle rect = new Rectangle(220, 40);
-        rect.setFill(Color.web("rgba( 125, 125, 125, 1.0)"));
+        rect.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
         selectText = new Text("Select Categorise");
@@ -287,7 +289,7 @@ public class AddProduct {
         productName.setPromptText("Name");
         productName.setMinHeight(40);
         productName.setMinWidth(220);
-        productName.setLayoutX(500);
+        productName.setLayoutX(600);
         productName.setLayoutY(50);
         productName.applyCss();
         productName.setPromptText("Product's Name");
@@ -297,20 +299,21 @@ public class AddProduct {
         startBid.setPromptText("Start Bid");
         startBid.setMinHeight(40);
         startBid.setMinWidth(220);
-        startBid.setLayoutX(800);
-        startBid.setLayoutY(50);
+        startBid.setLayoutX(600);
+        startBid.setLayoutY(130);
 
         minimumBid = new TextField();
         minimumBid.setPromptText("Minimun Bid");
         minimumBid.setMinHeight(40);
         minimumBid.setMinWidth(220);
-        minimumBid.setLayoutX(500);
+        minimumBid.setLayoutX(900);
         minimumBid.setLayoutY(130);
 
         productDescription = new TextArea();
         productDescription.setPromptText("Description");
-        productDescription.setLayoutX(0);
-        productDescription.setLayoutY(500);
+        productDescription.setLayoutX(600);
+        productDescription.setLayoutY(130+80);
+        productDescription.setMinSize(550, 200);
         productDescription.setScrollTop(0);
         productDescription.setScrollLeft(0);
         productDescription.setPrefRowCount(5);
