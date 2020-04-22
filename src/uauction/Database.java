@@ -16,58 +16,31 @@ public class Database implements Serializable {
         this.forSaveActiveProduct = new java.util.ArrayList<ActiveProduct>();
         this.forSaveAuctionedProduct = new java.util.ArrayList<AuctionedProduct>();
         this.forSaveProhibitProduct = new java.util.ArrayList<ProhibitProduct>();
-        this.forSaveUserHashMap = new java.util.HashMap<String,String>();
     }
-    /** keep registered product
-     *
-     */
-    //public static java.util.Map<String,String> fileNameOfItemId;
+//=========================== product on market here =======================
+    public static java.util.ArrayList<ActiveProduct> activeProduct = new java.util.ArrayList<ActiveProduct>()
     
-    //public static java.util.Map<String,String> fileNameOf;
+ //=========================== product that is auctioned =======================
+    public static java.util.ArrayList<AuctionedProduct> auctionedProduct = new java.util.ArrayList<AuctionedProduct>();
     
-    //not needed this can be scanned from product directory
-    //public static java.util.ArrayList<String> productList;
+//=========================== this one is removed from market =======================
+    public static java.util.ArrayList<ProhibitProduct> prohibitProduct = new java.util.ArrayList<ProhibitProduct>();
     
-    /**
-     * Use to keep track of which product is on the market
-     */
-    public static java.util.ArrayList<ActiveProduct> activeProduct = new java.util.ArrayList<ActiveProduct>();//whenIt'sOnTheMarket
+//=========================== proload username password pair =======================
+    public static java.util.HashMap<String, String> usernamePasswordPair = new java.util.HashMap<String, String>();
     
-    /**
-     * Use to keep track of which product is out of market
-     * by auctioned
-     */
-    public static java.util.ArrayList<AuctionedProduct> auctionedProduct = new java.util.ArrayList<AuctionedProduct>();//whenIt'sPassedItsEndBidDate
-    /**
-     * Use to keep track of which product is delete from market
-     */
-    public static java.util.ArrayList<ProhibitProduct> prohibitProduct = new java.util.ArrayList<ProhibitProduct>();//whenIt'sBeenDelete
-    /**
-     * Use to keep User in cache to avoid loading every time when use
-     */
-    public static java.util.HashMap<String, String> userHashMap = new java.util.HashMap<String, String>();//whenIt'sBeenDelete
-    /**
-     * temporary data field used in saving and loading
-     */
+//=========================== these are for load and save of static =======================
     private java.util.ArrayList<ActiveProduct> forSaveActiveProduct;
-    /**
-     * temporary data field used in saving and loading
-     */            
     private java.util.ArrayList<AuctionedProduct> forSaveAuctionedProduct;
-    /**
-     * temporary data field used in saving and loading
-     */            
     private java.util.ArrayList<ProhibitProduct> forSaveProhibitProduct;
-    /**
-     * temporary data field used in saving and loading
-     */            
-    private java.util.HashMap<String, String> forSaveUserHashMap;
+    
     /**
      * use to load database in one command
      * @return whether load success or not
      */
     public static boolean load(){
-        return SaveAndLoad.loadDatabase();
+        //give the 
+        return (SaveAndLoad.loadDatabase() && true);
     }
     /**
      * use to save database in one command
@@ -83,7 +56,6 @@ public class Database implements Serializable {
         Database.activeProduct = this.forSaveActiveProduct;
         Database.auctionedProduct = this.forSaveAuctionedProduct;
         Database.prohibitProduct = this.forSaveProhibitProduct;
-        Database.userHashMap = this.forSaveUserHashMap;
     }
     /**
      * transfer data in static database to data in object for saving
@@ -92,7 +64,13 @@ public class Database implements Serializable {
         this.forSaveActiveProduct = Database.activeProduct;
         this.forSaveAuctionedProduct = Database.auctionedProduct;
         this.forSaveProhibitProduct = Database.prohibitProduct;
-        this.forSaveUserHashMap = Database.userHashMap;
+    }
+    
+    public void loadUserToArray(){
+        
+    }
+    public void saveArrayToUser(){
+        
     }
     
     

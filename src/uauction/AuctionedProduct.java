@@ -31,11 +31,10 @@ public class AuctionedProduct implements java.io.Serializable {
     
     //=========================== Constructor =======================
     
-    public AuctionedProduct(ActiveProduct activeProduct, double maxBid, Date finishedTime){
+    public AuctionedProduct(ActiveProduct activeProduct, double maxBid){
         this.product = activeProduct.getProduct();
         this.maxBid = maxBid;
         this.username = "";
-        this.finishedTime = finishedTime;
     }
     
     //=========================== method =======================
