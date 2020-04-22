@@ -76,7 +76,7 @@ public class ProductPaneInVbox {
         
         Rectangle pic = new Rectangle(25, 10, 200, 150);
         Rectangle bgRec = new Rectangle(0, 0, 1920 - 220, 200);
-        bgRec.setFill(Color.web("rgba( 200, 200, 255, 1.0)"));
+        bgRec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         //Rectangle pic2 = new Rectangle(0, 0, 150, 150);
         productView1 = new Pane(bgRec);
         productView1.getChildren().addAll(pic, item, title, price, timeLeft, btnView);

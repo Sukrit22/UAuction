@@ -20,6 +20,7 @@ public class PaneRight {
     static public void setUp() {
         Pane paneBar = new Pane();
         Text itemText = new Text("Item #");
+        //itemText.setStyle("-fx-text-color:red");
         Text titleText = new Text("Title");
         Text priceText = new Text("Price");
         Text timeLeftText = new Text("Time Left");
