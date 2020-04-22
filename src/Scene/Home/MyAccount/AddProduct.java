@@ -202,7 +202,7 @@ public class AddProduct {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                     titleVbox.getChildren().remove(i);
                 }
-                selectText.setText("Automotive");
+                selectText.setText("Others");
                 titleVbox.getChildren().addAll(titleGroup1);
             }
 

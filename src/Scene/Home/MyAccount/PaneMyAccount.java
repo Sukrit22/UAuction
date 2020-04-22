@@ -45,7 +45,7 @@ public class PaneMyAccount {
     static public Pane paneMyObject = new Pane();
     static public ScrollPane scrollPaneMyObject = new ScrollPane();
     static private Pane paneMyAuction = new Pane(new Label("My Action"));
-    static private Pane paneAddProduct = new Pane(new Label("My Product"));
+    static private Pane paneAddProduct = new Pane();
     //static private Pane r = new Pane();
     static public Label name = new Label("Name");
     static public Button btnAdd = new Button("ADD");

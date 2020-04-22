@@ -9,6 +9,7 @@ import Scene.Home.SceneHomeUnLogIn;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -30,6 +31,8 @@ public class PopUpProduct {
     static private Rectangle pic;
     static private Label name;
     static public Button btnMoreDetail;
+    static public Button btnBid;
+    static public TextField yourBid;
     static private Text productName;
     static private Text price;
     static private Text timeLeft;

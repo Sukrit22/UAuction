@@ -41,7 +41,7 @@ public class ButtonEvent {
         EventHandler<MouseEvent> logInOnPopUp = (MouseEvent ActionEvent) -> {
             boolean loginPop = false;
             // TextField CreateTextField.userName + CreateTextField.password
-            
+
             System.out.println("buttonPopUpLogIn");
             Object obj = null;
             /*try {
@@ -61,7 +61,7 @@ public class ButtonEvent {
                 System.out.println(" ???");
                 loginPop = false;
             }*/
-            
+            loginPop = true;
             if (loginPop) {
                 CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
@@ -78,7 +78,7 @@ public class ButtonEvent {
             // TextField CreateTextField.userName + CreateTextField.password + CreateTextField.passwordC
             System.out.println("Register");
             Object obj = null;
-            if(CreateTextField.password.equals(CreateTextField.passwordC)){
+            if (CreateTextField.password.equals(CreateTextField.passwordC)) {
                 boolean panHa = false;
                 try {
                     obj = NewClient.reqRegister(CreateTextField.userName.getText(), CreateTextField.password.getText());
@@ -89,20 +89,20 @@ public class ButtonEvent {
                     Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
                     panHa = true;
                 }
-                 if (panHa){
-                     PopUp.emailUsedPane.setVisible(true);
-                 } else if(obj.getClass().equals("".getClass())){
-                     PopUp.emailUsedPane.setVisible(true);
-                 } else if(obj.getClass().equals((new User()).getClass())){
-                     NewClient.user = (User) obj;
-                     CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
-                     PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
-                     PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
-                     SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
-                 }
+                if (panHa) {
+                    PopUp.emailUsedPane.setVisible(true);
+                } else if (obj.getClass().equals("".getClass())) {
+                    PopUp.emailUsedPane.setVisible(true);
+                } else if (obj.getClass().equals((new User()).getClass())) {
+                    NewClient.user = (User) obj;
+                    CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
+                    PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                    PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                    SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+                }
             } else {
                 //Password Not Same
-                 PopUp.passwordNotSamePane.setVisible(true);
+                PopUp.passwordNotSamePane.setVisible(true);
             }
         };
         CreateButton.buttonPopUpRegister.setOnMouseClicked(registerOnPopUpEV);
@@ -122,7 +122,7 @@ public class ButtonEvent {
 //=========================== done =======================
         EventHandler<ActionEvent> add = (ActionEvent ActionEvent) -> {
             System.out.println("Add from MyACC");
-            Date end = Date.from((AddProduct.datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            /*Date end = Date.from((AddProduct.datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             long hour = (long) AddProduct.comboBoxHour.getItems().indexOf(AddProduct.comboBoxHour.getValue());
             hour = hour * 60 * 60 * 1000;
             if (AddProduct.comboBoxAmPm.getItems().indexOf(AddProduct.comboBoxAmPm.getValue()) == 1) {
@@ -131,15 +131,32 @@ public class ButtonEvent {
             end.setTime((long) (end.getTime() + hour));
             String name = AddProduct.productName.getText();
             Product product = new Product(name, AddProduct.productDescription.getText(), AddProduct.getSelectText().getText(), Double.parseDouble(AddProduct.startBid.getText()), Double.parseDouble(AddProduct.minimumBid.getText()), end);
-
+             */
             //NewClient.reqRegisterProduct(product, image);
             CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1());
+            switch (AddProduct.getSelectText().getText()) {
+                case "Eletronic":
+                    CategorisePane.vboxArray.get(1).getChildren().add(ProductPaneInVbox.Pane1());
+                    break;
+                case "Health & Beauty":
+                    CategorisePane.vboxArray.get(2).getChildren().add(ProductPaneInVbox.Pane1());
+                    break;
+                case "Home & Lifestyle":
+                    CategorisePane.vboxArray.get(3).getChildren().add(ProductPaneInVbox.Pane1());
+                    break;
+                case "Others":
+                    CategorisePane.vboxArray.get(4).getChildren().add(ProductPaneInVbox.Pane1());
+                    break;
+                default:
+            }
+
         };
         PaneMyAccount.btnAdd.setOnAction(add);
 //=========================== done =======================
         EventHandler<ActionEvent> delete = (ActionEvent ActionEvent) -> {
-            if(!CategorisePane.vboxArray.get(0).getChildren().isEmpty())
-            CategorisePane.vboxArray.get(0).getChildren().remove(CategorisePane.vboxArray.get(0).getChildren().size()-1);
+            if (!CategorisePane.vboxArray.get(0).getChildren().isEmpty()) {
+                CategorisePane.vboxArray.get(0).getChildren().remove(CategorisePane.vboxArray.get(0).getChildren().size() - 1);
+            }
             System.out.println("Delete");
         };
         PaneMyAccount.btnDelete.setOnAction(delete);
@@ -270,16 +287,13 @@ public class ButtonEvent {
         };
         CreateButton.buttonBellHomeEff.setOnMouseClicked(notifi);
         CreateButton.buttonBellHome.setOnMouseClicked(notifi);
-        
+
         EventHandler<MouseEvent> notifiBack = (MouseEvent ActionEvent) -> {
             System.out.println("Notifi");
             SceneHomeUnLogIn.getStackPane().getChildren().remove(Notifications.pane);
         };
         Notifications.pane.setOnMouseClicked(notifiBack);
-        
-        
-        
+
     }//=========================== end of method =======================
 
-        
 }
