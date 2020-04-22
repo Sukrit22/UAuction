@@ -36,7 +36,7 @@ public class NewClient
     
     
     public static void main(String[] args) throws Exception {
-        server = new Socket("171.6.209.126",1233);
+        server = new Socket("auctionoop.myddns.me",1234);
         user = new User();
         AuctionMain.AuctionMain.main(args);
 //        while(true)
