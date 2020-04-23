@@ -107,7 +107,6 @@ public class SaveAndLoad {
     }
 
     public static boolean saveDatabase() {
-        boolean success = false;
         
         File file;
         FileOutputStream fileOut;
@@ -125,11 +124,11 @@ public class SaveAndLoad {
             objectOutput.writeObject(d);
             objectOutput.close();
             fileOut.close();
-            success = true;
+            return true;
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+            return false;
         }
-        return success;
     }
 
     public static boolean loadDatabase() {

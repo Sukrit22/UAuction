@@ -28,7 +28,11 @@ public final class Product implements java.io.Serializable {
     //private java.util.ArrayList<javafx.scene.image.Image> additionalImage;
     
     private String imageName=null;
-    
+    private String myOwnerName;
+
+    public String getMyOwnerName() {
+        return myOwnerName;
+    }
     private String name;
     private String description;
     private String myFileName;

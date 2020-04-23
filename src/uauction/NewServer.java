@@ -125,10 +125,15 @@ class server implements Runnable {
 
                 } else if (keyword[0].matches("RegisterProduct"))//done
                 {
+                    ServerSocket forImage = new ServerSocket(1235);
                     Object obj = reqFromClient.readObject();
-                    reqFromClient.close();
                     Product product = (Product)obj;
-                    BufferedImage bufIm = ImageIO.read(ois);
+                    reqFromClient.close();
+                    client.close();
+                    
+                    Socket forImageSocket = forImage.accept();
+                    BufferedImage bufIm = ImageIO.read(forImageSocket.getInputStream());
+                    ManageProduct.registerProduct(product, bufIm);
                     
 
 //                    ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());

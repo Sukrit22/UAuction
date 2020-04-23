@@ -12,6 +12,8 @@ import java.nio.file.FileAlreadyExistsException;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 
@@ -50,19 +52,26 @@ public class ManageProduct {
         //after registered the product, add it to activeProduct in Database class
         
     }*/
-    public static void registerProduct(Product product)
+    public static void registerProduct(Product product,BufferedImage image)
     {
-        String fileName = product.getName() + "." + product.getDatePosted().getTime() + ".txt";
-        String imageName = product.getName() + "." + product.getDatePosted().getTime() + ".jpg";
+        String fileName = product.getMyOwnerName()+ "." + product.getDatePosted().getTime() + ".txt";
+        String imageName = product.getMyOwnerName()+ "." + product.getDatePosted().getTime() + ".jpg";
         product.setFileName(fileName);
         product.setImageName(imageName);
         //SaveAndLoad.saveProduct(product);
-        if(SaveAndLoad.saveProduct(product))
+        try {
+            ImageIO.write(image, imageName.substring(imageName.length() - 3, imageName.length() - 1), new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + imageName));
+            SaveAndLoad.saveProduct(product);
             Database.activeProduct.add(new ActiveProduct(product));
 
-        
+        } catch (IOException ex) {
+            System.out.println("save Image fail after saved product");
+            System.out.println(ex.getMessage());
+        }
     }
+
     
+        
     public static void deleteProduct(ActiveProduct ap, Date deleteDate){
         ProhibitProduct pp = new ProhibitProduct(ap, deleteDate);
         Database.prohibitProduct.add(pp);
@@ -110,11 +119,11 @@ public class ManageProduct {
         }
     }
     
-    public static void registerImage(BufferedImage image/*product.getFilename*/,String imageName) throws IOException 
-    {
-        File file = new File(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName);
-        ImageIO.write(image,"jpg",file);
-    }
+//    public static void registerImage(BufferedImage image/*product.getFilename*/,String imageName) throws IOException 
+//    {
+//        File file = new File(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName);
+//        ImageIO.write(image,"jpg",file);
+//    }
     
     
     //called by client----------------------------------------------------------------------
