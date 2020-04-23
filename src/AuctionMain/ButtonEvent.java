@@ -71,6 +71,7 @@ public class ButtonEvent {
         EventHandler<MouseEvent> registerOnPopUpEV = (MouseEvent ActionEvent) -> {
             // TextField CreateTextField.userName + CreateTextField.password + CreateTextField.passwordC
             System.out.println("Register");
+            System.out.println(" GG");
             Object obj = new Object();
             if(CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())){
                 boolean panHa = false;
@@ -79,11 +80,14 @@ public class ButtonEvent {
                 } catch (IOException ex) {
                     Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
                     panHa = true;
+                    System.out.println("IO");
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
                     panHa = true;
+                    System.out.println("ClassNoFound");
                 }
                  if (panHa){
+                     System.out.println("panHa");
                      PopUp.emailUsedPane.setVisible(true);
                  } else if(obj.getClass().equals("".getClass())){
                      PopUp.emailUsedPane.setVisible(true);
