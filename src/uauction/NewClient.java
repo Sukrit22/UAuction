@@ -33,7 +33,8 @@ public class NewClient
     
     static Socket server = null;
     public static User user;
-    ArrayList<ActiveProduct> filteredProduct = new ArrayList<>();
+    public static ArrayList<ActiveProduct> unfilteredProduct = new ArrayList<>();
+    public static ArrayList<ActiveProduct> filteredProduct = new ArrayList<>();
     
     public static void main(String[] args) throws Exception {
        
@@ -135,12 +136,14 @@ public class NewClient
         ArrayList<ActiveProduct> a = (ArrayList<ActiveProduct>)fromServer.readObject();
         fromServer.close();
         
+        unfilteredProduct = a;
         server.close();
         for(ActiveProduct ap : a)
         {
             reqImage(ap.getProduct().getImageName());
             
         }
+        
     }
     
     public static void reqImage(String imageName) throws Exception
