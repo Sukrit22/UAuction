@@ -156,6 +156,7 @@ public class ButtonEvent {
                     break;
                 default:
             }
+            
 
         };
         PaneMyAccount.btnAdd.setOnAction(add);

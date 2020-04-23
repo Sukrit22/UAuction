@@ -5,8 +5,11 @@
  */
 package Effect;
 
+import AuctionMain.runTime;
 import Scene.Home.SceneHomeUnLogIn;
 import Scene.ProductPaneInVbox;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -69,10 +72,25 @@ public class PopUpProduct {
         price.setLayoutX(450 + 40);
         price.setLayoutY(60 + 48 + 48);
 
-        timeLeft = new Text("Time Left\n    ");
+        SimpleDateFormat minDT = new SimpleDateFormat("ddMMyyyyhhmmss");
+        long minI = Long.parseLong(minDT.format(new Date()));
+        System.out.println(minDT.format(new Date()));
+        Label test1 = new Label(minDT.format(new Date()));
+        Label test2 = new Label(minDT.format(new Date()));
+
+        runTime.textArrayforCal.add(test1);
+        runTime.textArray.add(test2);
+        //runTime.textArray.get(0).setLayoutY(20);
+        
+        timeLeft = new Text("Time Left");
         timeLeft.setFont(font);
         timeLeft.setLayoutX(450 + 40);
         timeLeft.setLayoutY(60 + 48 + 48 + 48 + 48);
+        
+
+        runTime.textArray.get(0).setFont(font);
+        runTime.textArray.get(0).setLayoutX(450 + 40);
+        runTime.textArray.get(0).setLayoutY(60 + 48 + 48 + 48 + 48 + 24);
 
         minimumBid = new Text("Minimum Bid\n    ");
         minimumBid.setFont(font);
@@ -113,7 +131,7 @@ public class PopUpProduct {
         name.setLayoutY(20);
 
         //Pane fadePane = new Pane(recBGFade);
-        panepane.getChildren().addAll(recBGPopUp, pic, name, btnMoreDetail, productName, price, timeLeft, minimumBid);
+        panepane.getChildren().addAll(recBGPopUp, pic, name, btnMoreDetail, productName, price, timeLeft, runTime.textArray.get(0), minimumBid);
 
         stackPane = new StackPane();
         stackPane.getChildren().addAll(recBGFade, panepane);

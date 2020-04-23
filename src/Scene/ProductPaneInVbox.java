@@ -59,7 +59,6 @@ public class ProductPaneInVbox {
             System.out.println("buttonLogInPaneTop");
             SceneHomeUnLogIn.getStackPane().getChildren().add(PopUpProduct.createpopUpBackground(str));
             timeUpdate = new Thread(new Runnable() {
-                int count = 0;
                 boolean enough = false;
 
                 @Override
@@ -73,13 +72,8 @@ public class ProductPaneInVbox {
                         }
                         final String time = dt.format(new Date());
                         Platform.runLater(() -> {
-                            System.out.println("Run Ja");
-                            count++;
-                            if (count == 50) {
-                                System.out.println(time);
-                                count = 0;
-                            }
-                            PopUpProduct.getTimeLeft().setText(time);
+                            //System.out.println("Run Ja");
+                            //PopUpProduct.getTimeLeft().setText(time);
                         });
                     }
                 }
