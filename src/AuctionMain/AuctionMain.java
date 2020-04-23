@@ -9,7 +9,6 @@ import Function.MyFunction;
 import Stage.SetUpStage;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import uauction.NewServer;
 
 /**
  *

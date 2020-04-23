@@ -52,11 +52,12 @@ public class ProductPaneInVbox {
         btnView.setLayoutX(25);
         btnView.setLayoutY(200 - 40);
         btnView.setMinSize(200, 25);
+        //PopUpProduct.createpopUpBackground(str);
         EventHandler<ActionEvent> ev = (ActionEvent ActionEvent) -> {
             //Do code here
             System.out.println("buttonLogInPaneTop");
-            SceneHomeUnLogIn.getStackPane().getChildren().add(PopUpProduct.createpopUpBackground(str));
-            timeUpdate = new Thread(new Runnable() {
+            SceneHomeUnLogIn.getStackPane().getChildren().add(PopUpProduct.getStackPane());
+            /*timeUpdate = new Thread(new Runnable() {
                 boolean enough = false;
 
                 @Override
@@ -76,11 +77,13 @@ public class ProductPaneInVbox {
                     }
                 }
             });
-            timeUpdate.start();
+            timeUpdate.start();*/
 
         };
         btnView.setOnAction(ev);
 
+        PopUpProduct.createpopUpBackground(str);
+        
         Font font = new Font(16);
         String itemID;
         SimpleDateFormat dt = new SimpleDateFormat("ddMMyyhhmm");

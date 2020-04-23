@@ -58,7 +58,7 @@ public class PopUpProduct {
     }
     static private Text minimumBid;
 
-    static public StackPane createpopUpBackground(String str) {
+    static public void createpopUpBackground(String str) {
 
         Font font = new Font(24);
 
@@ -79,10 +79,6 @@ public class PopUpProduct {
         timeLeft.setLayoutX(450 + 40);
         timeLeft.setLayoutY(60 + 48 + 48 + 48 + 48);
         
-
-        runTime.textArray.get(0).setFont(font);
-        runTime.textArray.get(0).setLayoutX(450 + 40);
-        runTime.textArray.get(0).setLayoutY(60 + 48 + 48 + 48 + 48 + 12);
 
         minimumBid = new Text("Minimum Bid\n    ");
         minimumBid.setFont(font);
@@ -110,7 +106,7 @@ public class PopUpProduct {
             //Do code here
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUpProduct.getStackPane());
             System.out.println("Click");
-            ProductPaneInVbox.timeUpdate.stop();
+            //ProductPaneInVbox.timeUpdate.stop();
 
         };
         recBGFade.setOnMouseClicked(mcc);
@@ -128,7 +124,6 @@ public class PopUpProduct {
         stackPane = new StackPane();
         stackPane.getChildren().addAll(recBGFade, panepane);
         
-        return stackPane;
 
     }
 

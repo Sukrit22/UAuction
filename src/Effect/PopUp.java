@@ -24,7 +24,6 @@ import javafx.scene.text.Text;
  */
 public class PopUp {
 
-    static private StackPane stackPane;
     static private StackPane containAllStackPane;
     static private Pane pane1;
     static private Rectangle popUpRectangleShape;
