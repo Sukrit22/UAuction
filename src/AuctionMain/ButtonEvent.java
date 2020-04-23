@@ -71,8 +71,8 @@ public class ButtonEvent {
         EventHandler<MouseEvent> registerOnPopUpEV = (MouseEvent ActionEvent) -> {
             // TextField CreateTextField.userName + CreateTextField.password + CreateTextField.passwordC
             System.out.println("Register");
-            Object obj = null;
-            if(CreateTextField.password.equals(CreateTextField.passwordC)){
+            Object obj = new Object();
+            if(CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())){
                 boolean panHa = false;
                 try {
                     obj = NewClient.reqRegister(CreateTextField.userName.getText(), CreateTextField.password.getText());
