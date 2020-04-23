@@ -64,10 +64,11 @@ public class NewClient
        // toServer.println("Login"+" "+username+" "+password);
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        Object a = fromServer.readObject();
         fromServer.close();
         server.close();
        // return null;
-        return fromServer.readObject();
+        return a;
         
     }
     
@@ -80,9 +81,10 @@ public class NewClient
         toServer.close();
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        Object a = fromServer.readObject();
         fromServer.close();
          server.close();
-        return fromServer.readObject();
+        return a;
     }
     public static void reqRegisterProduct (Product product,BufferedImage image) throws IOException
     {
