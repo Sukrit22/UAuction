@@ -41,7 +41,7 @@ public class ProductPaneInVbox {
     static public Text item;
     static public Text title;
     static public Text price;
-    static public Text timeLeft;
+    static public Text timeEnd;
     static public int countIDAllProduct = 1;
 
     static public Thread timeUpdate;
@@ -113,26 +113,26 @@ public class ProductPaneInVbox {
         price.setLayoutX(1300 - 15);
         price.setLayoutY(50);
 
-        runTime.textArrayforCal.add(new Label("30"));
-        runTime.textArray.add(new Label(""));
+        //runTime.textArrayforCal.add(new Label("30"));
+        //runTime.textArray.add(new Label(""));
         
-        runTime.textArray.get(ID-1).setFont(font);
-        runTime.textArray.get(ID-1).setLayoutX(1500 - 20);
-        runTime.textArray.get(ID-1).setLayoutY(50-12);
+        //runTime.textArray.get(ID-1).setFont(font);
+        //runTime.textArray.get(ID-1).setLayoutX(1500 - 20);
+        //runTime.textArray.get(ID-1).setLayoutY(50-12);
 
         
-        timeLeft = new Text("45 Min 33 Sec");
-        timeLeft.setFill(Color.web("rgba( 255, 0, 0, 1.0)"));
-        timeLeft.setFont(font);
-        timeLeft.setLayoutX(1500 - 20);
-        timeLeft.setLayoutY(50);
+        timeEnd = new Text("45 Min 33 Sec");
+        timeEnd.setFill(Color.web("rgba( 255, 0, 0, 1.0)"));
+        timeEnd.setFont(font);
+        timeEnd.setLayoutX(1500 - 20);
+        timeEnd.setLayoutY(50);
 
         Rectangle pic = new Rectangle(25, 10, 200, 150);
         Rectangle bgRec = new Rectangle(0, 0, 1920 - 220, 200);
         bgRec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         //Rectangle pic2 = new Rectangle(0, 0, 150, 150);
         productView1 = new Pane(bgRec);
-        productView1.getChildren().addAll(pic, item, runTime.textArray.get(ID-1), title, price , btnView);
+        productView1.getChildren().addAll(pic, item, timeEnd, title, price , btnView);
         //productView1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: red;");
         productView1.setMinSize(1920 - 220, 200);
         //____ Left
