@@ -140,19 +140,19 @@ public class ButtonEvent {
 
             System.out.println(AddProduct.productName.getText());
             
-            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText()));
+            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText(), ProductPaneInVbox.countID));
             switch (AddProduct.getSelectText().getText()) {
                 case "Eletronic":
-                    CategorisePane.vboxArray.get(1).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText()));
+                    CategorisePane.vboxArray.get(1).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText(), ProductPaneInVbox.countID));
                     break;
                 case "Health & Beauty":
-                    CategorisePane.vboxArray.get(2).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText()));
+                    CategorisePane.vboxArray.get(2).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText(), ProductPaneInVbox.countID));
                     break;
                 case "Home & Lifestyle":
-                    CategorisePane.vboxArray.get(3).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText()));
+                    CategorisePane.vboxArray.get(3).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText(), ProductPaneInVbox.countID));
                     break;
                 case "Others":
-                    CategorisePane.vboxArray.get(4).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText()));
+                    CategorisePane.vboxArray.get(4).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText(), ProductPaneInVbox.countID));
                     break;
                 default:
             }

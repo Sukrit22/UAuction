@@ -5,7 +5,10 @@
  */
 package Scene;
 
+import AuctionMain.runTime;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -94,6 +97,13 @@ public class CategorisePane {
             priceText.setFont(font);
             priceText.setLayoutX(1500 - 200);
             priceText.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+
+            
+            //runTime.textArray.get(1) = new Text("Time Left");
+            //runTime.textArray.get(1).setFont(font);
+            //runTime.textArray.get(1).setLayoutX(1500);
+            //timeLeftText.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+            
             timeLeftText = new Text("Time Left");
             timeLeftText.setFont(font);
             timeLeftText.setLayoutX(1500);

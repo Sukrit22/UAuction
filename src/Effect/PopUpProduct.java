@@ -90,7 +90,7 @@ public class PopUpProduct {
 
         runTime.textArray.get(0).setFont(font);
         runTime.textArray.get(0).setLayoutX(450 + 40);
-        runTime.textArray.get(0).setLayoutY(60 + 48 + 48 + 48 + 48 + 24);
+        runTime.textArray.get(0).setLayoutY(60 + 48 + 48 + 48 + 48 + 12);
 
         minimumBid = new Text("Minimum Bid\n    ");
         minimumBid.setFont(font);
