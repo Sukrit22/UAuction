@@ -5,7 +5,6 @@
  */
 package AuctionMain;
 
-import static AuctionMain.CreateButton.buttonHelpPaneTop;
 import Effect.PopUp;
 import Scene.Home.PaneTop;
 import Scene.Home.SceneHomeUnLogIn;
@@ -19,15 +18,10 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import uauction.NewClient;
-import uauction.Product;
 import uauction.User;
-import Scene.Home.MyAccount.AddProduct;
 import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.util.Date;
 import Effect.Notifications;
 
 /**
