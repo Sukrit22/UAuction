@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javax.imageio.ImageIO;
 import uauction.ActiveProduct;
 import uauction.Database;
@@ -83,6 +85,49 @@ public class ButtonEvent {
 
         };
         CreateButton.buttonPopUpLogIn.setOnMouseClicked(logInOnPopUp);
+
+        CreateTextField.password.setOnKeyPressed(logInOnPopUpEnter -> {
+            if (CreateButton.buttonPopSwitchToSignUp.isVisible()) {
+                if (logInOnPopUpEnter.getCode() == KeyCode.ENTER) {
+                    boolean loginPop = false;
+                    // TextField CreateTextField.userName + CreateTextField.password
+
+                    System.out.println("buttonPopUpLogIn");
+                    Object obj = new Object();
+                    if (CreateTextField.userName.getText().isEmpty() || CreateTextField.password.getText().isEmpty()) {
+                        PopUp.incorrecypassPane.setVisible(true);
+                    } else {
+                        try {
+                            obj = NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
+                        } catch (IOException ex) {
+                            Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        if (obj.getClass().equals((new User()).getClass())) {
+                            NewClient.user = (User) obj;
+                            loginPop = true;
+                        } else if (obj.getClass().equals("".getClass())) {
+                            loginPop = false;
+                        } else {
+                            System.out.println("อะไรกันแน่วะไอสัส");
+                            loginPop = false;
+                        }
+                        if (loginPop) {
+                            CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
+                            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                            SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+                        } else {
+                            //Wrong Password
+                            PopUp.incorrecypassPane.setVisible(true);
+                        }
+                    }
+                }
+            }
+        });
+
 //=========================== done =======================
         EventHandler<MouseEvent> registerOnPopUpEV = (MouseEvent ActionEvent) -> {
             // TextField CreateTextField.userName + CreateTextField.password + CreateTextField.passwordC
@@ -122,10 +167,54 @@ public class ButtonEvent {
                 } else {
                     //Password Not Same
                     PopUp.passwordNotSamePane.setVisible(true);
+
                 }
             }
         };
         CreateButton.buttonPopUpRegister.setOnMouseClicked(registerOnPopUpEV);
+
+        CreateTextField.passwordC.setOnKeyPressed(logInOnPopUpEnter -> {
+            if (logInOnPopUpEnter.getCode() == KeyCode.ENTER) {
+                System.out.println("Register");
+                //System.out.println(" GG");
+                Object obj = new Object();
+                PopUp.passwordNotSamePane.setVisible(false);
+                PopUp.emailUsedPane.setVisible(false);
+                if (!CreateTextField.userName.getText().isEmpty() || !CreateTextField.password.getText().isEmpty() || !CreateTextField.passwordC.getText().isEmpty()) {
+                    PopUp.passwordNotSamePane.setVisible(true);
+                } else {
+                    if (CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())) {
+                        boolean panHa = false;
+                        try {
+                            obj = NewClient.reqRegister(CreateTextField.userName.getText(), CreateTextField.password.getText());
+                        } catch (IOException ex) {
+                            Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                            panHa = true;
+                            System.out.println("IO");
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                            panHa = true;
+                            System.out.println("ClassNoFound");
+                        }
+                        if (panHa) {
+                            System.out.println("panHa");
+                            PopUp.emailUsedPane.setVisible(true);
+                        } else if (obj.getClass().equals("".getClass())) {
+                            PopUp.emailUsedPane.setVisible(true);
+                        } else if (obj.getClass().equals((new User()).getClass())) {
+                            NewClient.user = (User) obj;
+                            CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
+                            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                            SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+                        }
+                    } else {
+                        //Password Not Same
+                        PopUp.passwordNotSamePane.setVisible(true);
+                    }
+                }
+            }
+        });
 //=========================== done =======================
         EventHandler<MouseEvent> helpEV = (MouseEvent ActionEvent) -> {
             //Do code here
@@ -331,7 +420,7 @@ public class ButtonEvent {
             }
             //NewClient.reqMarket();
             //NewClient.showMarket(NewClient.unfilteredProduct, vbox);            
-            
+
             System.out.println(CategorisePane.vboxArray.get(0).getChildren().size());
 
             int i = 0;
