@@ -52,10 +52,11 @@ public class ProductPaneInVbox {
         btnView.setLayoutX(25);
         btnView.setLayoutY(200 - 40);
         btnView.setMinSize(200, 25);
+        PopUpProduct.createpopUpBackground(str);
         EventHandler<ActionEvent> ev = (ActionEvent ActionEvent) -> {
             //Do code here
             System.out.println("buttonLogInPaneTop");
-            SceneHomeUnLogIn.getStackPane().getChildren().add(PopUpProduct.createpopUpBackground(str));
+            SceneHomeUnLogIn.getStackPane().getChildren().add(PopUpProduct.getStackPane());
             timeUpdate = new Thread(new Runnable() {
                 boolean enough = false;
 
