@@ -78,10 +78,11 @@ public class NewClient
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Register" + " " + username + " " + password));
         toServer.flush();
-        toServer.close();
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
         Object a = fromServer.readObject();
+        
+        toServer.close();
         fromServer.close();
          server.close();
         return a;

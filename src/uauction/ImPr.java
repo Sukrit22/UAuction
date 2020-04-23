@@ -19,6 +19,10 @@ public class ImPr  {
     
     Product  product;
     BufferedImage image;
+
+    public ImPr() {
+    }
+    
     public ImPr(Product product,BufferedImage image/*ImportImageFile(String initPath)*/)
     {
         this.product = product;
