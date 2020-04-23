@@ -84,10 +84,13 @@ public class ButtonEvent {
         EventHandler<MouseEvent> registerOnPopUpEV = (MouseEvent ActionEvent) -> {
             // TextField CreateTextField.userName + CreateTextField.password + CreateTextField.passwordC
             System.out.println("Register");
-            System.out.println(" GG");
+            //System.out.println(" GG");
             Object obj = new Object();
             PopUp.passwordNotSamePane.setVisible(false);
             PopUp.emailUsedPane.setVisible(false);
+            if(CreateTextField.userName.getText().isEmpty() || CreateTextField.password.getText().isEmpty()){
+                 PopUp.passwordNotSamePane.setVisible(true);
+            }else{
             if(CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())){
                 boolean panHa = false;
                 try {
@@ -116,6 +119,7 @@ public class ButtonEvent {
             } else {
                 //Password Not Same
                  PopUp.passwordNotSamePane.setVisible(true);
+            }
             }
         };
         CreateButton.buttonPopUpRegister.setOnMouseClicked(registerOnPopUpEV);
