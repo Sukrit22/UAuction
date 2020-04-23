@@ -63,7 +63,7 @@ public class ButtonEvent {
             }else{
                 System.out.println("อะไรกันแน่วะไอสัส");
                 loginPop = false;
-            
+            }
             if (loginPop) {
                 CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
@@ -73,7 +73,7 @@ public class ButtonEvent {
                 //Wrong Password
                 PopUp.incorrecypassPane.setVisible(true);
             }
-            }
+            
         };
         CreateButton.buttonPopUpLogIn.setOnMouseClicked(logInOnPopUp);
 //=========================== done =======================
