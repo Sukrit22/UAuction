@@ -253,7 +253,7 @@ public class ButtonEvent {
                 String name = AddProduct.productName.getText();
                 //miniBid and StartBid is number
                 Product product = new Product(name, AddProduct.productDescription.getText(), AddProduct.getSelectText().getText(), Double.parseDouble(AddProduct.startBid.getText()), Double.parseDouble(AddProduct.minimumBid.getText()), end);
-
+                product.setMyOwnerName(NewClient.user.getUsername());
                 BufferedImage image = SwingFXUtils.fromFXImage(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/noimg.jpg"), null);
                 try {
                     image = ImageIO.read(AddProduct.filePath);

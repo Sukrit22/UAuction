@@ -237,6 +237,7 @@ class server implements Runnable {
 //                    System.out.println("still null");
 //                }
                 reqFromClient.close();
+                client.close();
                 ManageProduct.registerProduct(product, image);
                 //reqFromClient.close();
 //                    ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());
