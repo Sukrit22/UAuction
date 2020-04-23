@@ -42,7 +42,7 @@ public class ProductPaneInVbox {
     static public Text title;
     static public Text price;
     static public Text timeLeft;
-    static public int countID = 1;
+    static public int countIDAllProduct = 1;
 
     static public Thread timeUpdate;
 
@@ -86,7 +86,7 @@ public class ProductPaneInVbox {
         SimpleDateFormat dt = new SimpleDateFormat("ddMMyyhhmm");
         String time = dt.format(new Date());
 
-        String b = String.format("%04d", countID++).substring(0, 4);
+        String b = String.format("%04d", countIDAllProduct++).substring(0, 4);
         item = new Text(time + b);
         item.setFont(font);
         item.setLayoutX(300 - 25);
