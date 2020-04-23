@@ -20,20 +20,68 @@ import java.util.Date;
  */
 public class User implements Serializable {
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public boolean isAdminStatus() {
+        return adminStatus;
+    }
+
+    public void setAdminStatus(boolean adminStatus) {
+        this.adminStatus = adminStatus;
+    }
+
+    public Permission getUserPermission() {
+        return userPermission;
+    }
+
+    public void setUserPermission(Permission userPermission) {
+        this.userPermission = userPermission;
+    }
+
+    public ArrayList<Product> getMyProduct() {
+        return myProduct;
+    }
+
+    public void setMyProduct(ArrayList<Product> myProduct) {
+        this.myProduct = myProduct;
+    }
+
     
     /**
      * @param args the command line arguments
      */
     enum Permission{none, buyer, seller, both};
     
-    String username ;
+    private String username ;
     String password ;
-    String email;
-    Date dateCreated;
+    private String email;
+    private Date dateCreated;
     double balance = 0;
     private boolean adminStatus;
     private Permission userPermission;
-    public ArrayList<Product> myProduct;
+    private ArrayList<Product> myProduct;
     
     //Guest
     public User() {

@@ -71,7 +71,7 @@ public class SaveAndLoad {
         FileOutputStream file;
         ObjectOutputStream out;
         try {
-            filePath = new File(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+ user.username +".txt");
+            filePath = new File(System.getProperty("user.dir")+"/AuctionDataBase/UserDataBase/"+ user.getUsername() +".txt");
             file = new FileOutputStream(filePath);
             out = new ObjectOutputStream(file);
             out.writeObject(user);
