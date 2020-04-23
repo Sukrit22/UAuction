@@ -47,6 +47,9 @@ public class ButtonEvent {
             
             System.out.println("buttonPopUpLogIn");
             Object obj = new Object();
+            if(CreateTextField.userName.getText().isEmpty() || CreateTextField.password.getText().isEmpty()){
+                 PopUp.incorrecypassPane.setVisible(true);
+            }else{
             try {
                 obj =  NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
             } catch (IOException ex) {
@@ -72,6 +75,7 @@ public class ButtonEvent {
             } else {
                 //Wrong Password
                 PopUp.incorrecypassPane.setVisible(true);
+            }
             }
             
         };
