@@ -55,7 +55,7 @@ public class ProductPaneInVbox {
         PopUpProduct.createpopUpBackground(str);
         EventHandler<ActionEvent> ev = (ActionEvent ActionEvent) -> {
             //Do code here
-            System.out.println("buttonLogInPaneTop");
+            System.out.println("popUpItem");
             SceneHomeUnLogIn.getStackPane().getChildren().add(PopUpProduct.getStackPane());
             timeUpdate = new Thread(new Runnable() {
                 boolean enough = false;
@@ -88,19 +88,21 @@ public class ProductPaneInVbox {
         String time = dt.format(new Date());
 
         String b = String.format("%04d", countIDAllProduct++).substring(0, 4);
+        //=========================== ต้องรับเข้ามา =======================
         item = new Text(time + b);
         item.setFont(font);
         item.setLayoutX(300 - 25);
         item.setLayoutY(50);
 
-        title = new Text("Subaru WRX STI GDB 2015");
+        //=========================== ตัวนี้ต้องรับเข้า =======================
+        title = new Text("Subaru WRX STI GDB 2015"); 
         if (!str.isEmpty()) {
             title.setText(str);
         }
         title.setFont(font);
         title.setLayoutX(500 - 15);
         title.setLayoutY(50);
-
+//===========================ตัวนี้ต้องรับเข้ามา =======================
         price = new Text("12300.00 Baht");
         price.setFont(font);
         price.setLayoutX(1300 - 15);
