@@ -14,6 +14,7 @@ import Scene.ProductPaneInVbox;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -34,6 +35,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
+
 public class NewClient {
 
     public static final String destinationIp = "auctionoop.myddns.me";
@@ -42,7 +44,7 @@ public class NewClient {
     public static User user;
     public static ArrayList<ActiveProduct> unfilteredProduct = new ArrayList<>();
     public static ArrayList<ActiveProduct> filteredProduct = new ArrayList<>();
-
+    public static Thread sendImage;
     public static void main(String[] args) throws Exception {
 
         user = new User();
@@ -94,7 +96,7 @@ public class NewClient {
         return a;
     }
 
-    public static void reqRegisterProduct(Product product, BufferedImage image) {
+    public static void reqRegisterProduct(Product product, BufferedImage image) throws InterruptedException {
         try {
             server = new Socket(localhost, 1234);
             //ImPr impr = new ImPr(product, image);
@@ -104,15 +106,50 @@ public class NewClient {
             toServer.flush();
             toServer.writeObject(product);
             toServer.flush();
-            toServer.close();
+//            toServer.close();
+            OutputStream outputStream = server.getOutputStream();
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ImageIO.write(image, "jpg", byteArrayOutputStream);
+
+            byte[] size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
+            outputStream.write(size);
+            outputStream.write(byteArrayOutputStream.toByteArray());
+            outputStream.flush();
+            System.out.println("Flushed: " + System.currentTimeMillis());
+//
+//            Thread.sleep(120000);
+            System.out.println("Closing: " + System.currentTimeMillis());
+
             server.close();
+//            sendImage = new Thread( new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        server = new Socket(localhost, 1235);
+//                        OutputStream os = server.getOutputStream();
+//                        System.out.println(image == null);
+//                        try {
+//                            System.out.println(image == null);
+//                            ImageIO.write(image, "jpg", os);
+//                        } catch (IOException ex) {
+//                            Logger.getLogger(NewClient.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
+//                        Thread.sleep(5000);
+//                        os.flush();
+//                        os.close();
+//                        server.close();
+//                        
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(NewClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(NewClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                    
+//                }
+//            });
+//            System.out.println("start thread to send image");
+//            sendImage.start();
             
-            server = new Socket(localhost,1235);
-            OutputStream os = server.getOutputStream();
-            ImageIO.write(image, "jpg", os);
-            os.flush();
-            os.close();
-            server.close();
             
             //ObjectOutputStream toServer2 = new ObjectOutputStream(server.getOutputStream());
             //toServer2.writeObject(impr);

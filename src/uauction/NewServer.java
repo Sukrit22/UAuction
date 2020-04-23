@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.*;
 import java.net.*;
+import java.nio.ByteBuffer;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,23 +23,36 @@ import javax.imageio.ImageIO;
 public class NewServer {
 
     ServerSocket server;
+    ServerSocket serverImage;
     Socket client;
+    Socket imageClient;
+    public static BufferedImage myImage;
 
     public NewServer() {
 
         try {
+            //        try {
             server = new ServerSocket(1234);
+        } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+        }
             System.out.println("Server Started..........");
             while (true) {
+            try {
                 client = server.accept();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
                 System.out.println("Client connected....");
+//                go();
                 new server(client);
                 //client.close();
+
             }
 
-        } catch (Exception e) {
-            System.out.println("Exception4 " + e);
-        }
+//        } catch (Exception e) {
+//            System.out.println("Exception4 " + e);
+//        }
     }
 
     public static void main(String arg[]) throws InterruptedException {
@@ -47,6 +61,23 @@ public class NewServer {
         //Thread updateThread = new Thread(new Update());
         //updateThread.wait(3_600_000);
         //updateThread.notifyAll();
+    }
+}
+
+class imageServer implements Runnable {
+
+    Socket client;
+
+    public imageServer(Socket client) {
+        this.client = client;
+        Thread trsend = new Thread(this);
+        trsend.start();
+    }
+
+    @Override
+    public void run() {
+        //OutputStream os = client.getOutputStream();
+
     }
 }
 
@@ -61,7 +92,7 @@ class server implements Runnable {
     }
 
     public void run() {
-
+//    void go(){
         try {
             InputStreamReader isr = new InputStreamReader(client.getInputStream());
             BufferedReader fromClient = new BufferedReader(isr);
@@ -71,30 +102,30 @@ class server implements Runnable {
         }
         boolean isClose = false;
         //while (!isClose) {
-            //try {
-                ObjectInputStream reqFromClient = null;
+        //try {
+        ObjectInputStream reqFromClient = null;
         try {
             reqFromClient = new ObjectInputStream(client.getInputStream());
         } catch (IOException ex) {
-            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
         }
-                String clientInput = null;
+        String clientInput = null;
         try {
             clientInput = (String) reqFromClient.readObject();
         } catch (IOException ex) {
-            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
         }
-                //String clientInput = fromClient.readLine();
-                String[] keyword = clientInput.split("\\s+");
-                for (int i = 0; i < keyword.length; i++) {
-                    keyword[i] = keyword[i].replaceAll("[^\\w]", ""); //replace " " with ""
-                }
-                System.out.println("Client : " + clientInput);
-                if (keyword[0].matches("Login"))//done
-                {
-                    ObjectOutputStream objectToClient = null;
+        //String clientInput = fromClient.readLine();
+        String[] keyword = clientInput.split("\\s+");
+        for (int i = 0; i < keyword.length; i++) {
+            keyword[i] = keyword[i].replaceAll("[^\\w]", ""); //replace " " with ""
+        }
+        System.out.println("Client : " + clientInput);
+        if (keyword[0].matches("Login"))//done
+        {
+            ObjectOutputStream objectToClient = null;
             try {
                 objectToClient = new ObjectOutputStream(client.getOutputStream());
                 objectToClient.writeObject(Accountant.login(keyword[1], keyword[2])); //GGGG
@@ -105,17 +136,17 @@ class server implements Runnable {
                 client.close();
                 System.out.println("");
             } catch (IOException ex) {
-                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             } finally {
                 try {
                     objectToClient.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
                 }
             }
-                } else if (keyword[0].matches("Register"))//done
-                {
-                    ObjectOutputStream objectToClient = null;
+        } else if (keyword[0].matches("Register"))//done
+        {
+            ObjectOutputStream objectToClient = null;
             try {
                 objectToClient = new ObjectOutputStream(client.getOutputStream());
                 objectToClient.writeObject(Accountant.register(keyword[1], keyword[2]));
@@ -125,18 +156,18 @@ class server implements Runnable {
                 reqFromClient.close();
                 client.close();
             } catch (IOException ex) {
-                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             } finally {
                 try {
                     objectToClient.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
                 }
             }
-                } else if (keyword[0].matches("Market"))//done
-                {
+        } else if (keyword[0].matches("Market"))//done
+        {
 
-                    ObjectOutputStream objectToClient = null;
+            ObjectOutputStream objectToClient = null;
             try {
                 objectToClient = new ObjectOutputStream(client.getOutputStream());
                 objectToClient.writeObject(Database.activeProduct);
@@ -146,17 +177,17 @@ class server implements Runnable {
                 reqFromClient.close();
                 client.close();
             } catch (IOException ex) {
-                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             } finally {
                 try {
                     objectToClient.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
                 }
             }
 
-                } else if (keyword[0].matches("Image"))//done
-                {
+        } else if (keyword[0].matches("Image"))//done
+        {
 
             try {
                 File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + keyword[1]);
@@ -169,25 +200,43 @@ class server implements Runnable {
                 reqFromClient.close();
                 client.close();
             } catch (IOException ex) {
-                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
 
-                } else if (keyword[0].matches("RegisterProduct"))//done
-                {
+        } else if (keyword[0].matches("RegisterProduct"))//done
+        {
             try {
-                ServerSocket forImage = new ServerSocket(1235);
+
                 Object obj = reqFromClient.readObject();
-                Product product = (Product)obj;
+                Product product = (Product) obj;
+                
+//                client.close();
+//                ServerSocket forImage = new ServerSocket(1235);
+//                System.out.println("close1 and about to accept 2");
+//                Socket forImageSocket = forImage.accept();
+//                System.out.println("accept 2");
+//                BufferedImage bufIm = ImageIO.read(forImageSocket.getInputStream());
+//                System.out.println("ImageIO read");
+//                while(bufIm == null){
+//                    System.out.println("still null");
+//                }
+                InputStream inputStream = client.getInputStream();
+                System.out.println("Reading: " + System.currentTimeMillis());
+
+                byte[] sizeAr = new byte[4];
+                inputStream.read(sizeAr);
+                int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
+
+                byte[] imageAr = new byte[size];
+                inputStream.read(imageAr);
+                BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
+                System.out.println(image == null);
+//                while (image == null) {
+//                    System.out.println("still null");
+//                }
                 reqFromClient.close();
-                client.close();
-                System.out.println("close1 and about to accept 2");
-                Socket forImageSocket = forImage.accept();
-                System.out.println("accept 2");
-                BufferedImage bufIm = ImageIO.read(forImageSocket.getInputStream());
-                System.out.println("ImageIO read");
-                ManageProduct.registerProduct(product, bufIm);
-                
-                
+                ManageProduct.registerProduct(product, image);
+                //reqFromClient.close();
 //                    ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());
 //                    ImPr impr = (ImPr) objectFromClient.readObject();
 //                    ManageProduct.registerProduct(impr.getProduct());
@@ -195,13 +244,13 @@ class server implements Runnable {
 //                    isClose = true;
 //                    client.close();
             } catch (IOException ex) {
-                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
-                } else if (keyword[0].matches("LoadProduct")) {
+        } else if (keyword[0].matches("LoadProduct")) {
 
-                    ObjectOutputStream objectToClient = null;
+            ObjectOutputStream objectToClient = null;
             try {
                 objectToClient = new ObjectOutputStream(client.getOutputStream());
                 OutputStream os = client.getOutputStream();
@@ -213,16 +262,16 @@ class server implements Runnable {
                 reqFromClient.close();
                 client.close();
             } catch (IOException ex) {
-                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             } finally {
                 try {
                     objectToClient.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
                 }
             }
 
-                } else if (keyword[0].matches("Bid")) {
+        } else if (keyword[0].matches("Bid")) {
 
             try {
                 int indexOfActiveProduct = Database.activeProduct.indexOf(keyword[1]);
@@ -233,14 +282,15 @@ class server implements Runnable {
                 reqFromClient.close();
                 client.close();
             } catch (IOException ex) {
-                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
-                }
+        }
 //            } catch (Exception e) {
 //                System.out.println("Exception1 " + e.getMessage());
 //            }
         //}
 
+//    }
     }
 }
 

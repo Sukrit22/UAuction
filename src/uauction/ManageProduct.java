@@ -54,13 +54,14 @@ public class ManageProduct {
     }*/
     public static void registerProduct(Product product,BufferedImage image)
     {
+        System.out.println(image==null);
         String fileName = product.getMyOwnerName()+ "." + product.getDatePosted().getTime() + ".txt";
         String imageName = product.getMyOwnerName()+ "." + product.getDatePosted().getTime() + ".jpg";
         product.setFileName(fileName);
         product.setImageName(imageName);
         //SaveAndLoad.saveProduct(product);
         try {
-            ImageIO.write(image, imageName.substring(imageName.length() - 3, imageName.length() - 1), new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + imageName));
+            ImageIO.write(image, /*imageName.substring(imageName.length() - 3, imageName.length() - 1)*/"jpg", new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + imageName));
             SaveAndLoad.saveProduct(product);
             Database.activeProduct.add(new ActiveProduct(product));
 
