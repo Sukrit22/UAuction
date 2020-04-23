@@ -49,20 +49,28 @@ public class runTime {
                         textArrayforCal.get(i).setText(ssss + "");
 
                         long minI = Long.parseLong(textArrayforCal.get(i).getText());
+                        if (minI < 0) {
+                            textArray.get(i).setLayoutX(1500 + 10);
+                            if (minI % 2 == 0) {
+                                textArray.get(i).setText("-- : --");
+                            } else {
+                                textArray.get(i).setText("Time Up");
+                            }
+                        } else {
+                            int s = (int) (minI % 100);
+                            int m = ((int) (minI % 10000) - (int) (s % 100)) / 100;
+                            int h = ((int) (minI % 100000) - (int) (minI % 10000)) / 10000;
 
-                        int s = (int) (minI % 100);
-                        int m = ((int) (minI % 10000) - (int) (s % 100)) / 100;
-                        int h = ((int) (minI % 100000) - (int) (minI % 10000)) / 10000;
+                            int ms = m * 60;
+                            int hs = h * 60 * 60;
 
-                        int ms = m * 60;
-                        int hs = h * 60 * 60;
+                            //int ssssi = hs + ms + s;
+                            int res = (int) minI % 60;
+                            int rem = (int) (minI / 60) % 60;
+                            int reh = (int) ((int) (minI / 60) / 60);
 
-                        //int ssssi = hs + ms + s;
-                        int res = (int)minI % 60;
-                        int rem = (int) (minI / 60) % 60;
-                        int reh = (int) ((int) (minI / 60) / 60);
-
-                        textArray.get(i).setText("    " + reh + " Hr " + rem + " Min " + res + " Sec ");
+                            textArray.get(i).setText("    " + reh + " Hr " + rem + " Min " + res + " Sec ");
+                        }
                     }
                     // updating live UI object requires JavaFX App Thread
                     //SetTextShape.setTextShape(runTime.txtTime.getText(), 20);

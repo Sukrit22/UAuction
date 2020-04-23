@@ -106,7 +106,7 @@ public class ProductPaneInVbox {
         price.setLayoutX(1300 - 15);
         price.setLayoutY(50);
 
-        runTime.textArrayforCal.add(new Label("120"));
+        runTime.textArrayforCal.add(new Label("30"));
         runTime.textArray.add(new Label(""));
         
         runTime.textArray.get(ID-1).setFont(font);
