@@ -29,6 +29,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import AuctionMain.CreateButton;
 import static AuctionMain.CreateButton.buttonMyAuctionOnACC;
+import Effect.PopUp;
 
 /**
  *
@@ -87,6 +88,7 @@ public class PaneMyAccount {
             scrollPaneMyObject.setVisible(false);
             paneAddProduct.setVisible(false);
             paneMyAuction.setVisible(false);
+            PopUp.incorrecypassPane.setVisible(false);
         };
         CreateButton.buttonMyProfileOnMyACC.setOnMouseClicked(my1);
 
@@ -96,6 +98,7 @@ public class PaneMyAccount {
             scrollPaneMyObject.setVisible(true);
             paneAddProduct.setVisible(false);
             paneMyAuction.setVisible(false);
+            PopUp.incorrecypassPane.setVisible(false);
         };
         CreateButton.buttonMyProductOnACC.setOnMouseClicked(my2);
 
@@ -105,6 +108,7 @@ public class PaneMyAccount {
             scrollPaneMyObject.setVisible(false);
             paneAddProduct.setVisible(true);
             paneMyAuction.setVisible(false);
+            PopUp.incorrecypassPane.setVisible(false);
         };
         CreateButton.buttonAddProductOnACC.setOnMouseClicked(my3);
         
@@ -114,6 +118,7 @@ public class PaneMyAccount {
             scrollPaneMyObject.setVisible(false);
             paneAddProduct.setVisible(false);
             paneMyAuction.setVisible(true);
+            PopUp.incorrecypassPane.setVisible(false);
         };
         CreateButton.buttonMyAuctionOnACC.setOnMouseClicked(my4);
 

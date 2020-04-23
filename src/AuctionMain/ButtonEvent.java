@@ -25,10 +25,13 @@ import java.net.URISyntaxException;
 import Effect.Notifications;
 import Scene.Home.MyAccount.AddProduct;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 import uauction.ActiveProduct;
 import uauction.Database;
 import uauction.Product;
@@ -88,7 +91,7 @@ public class ButtonEvent {
             Object obj = new Object();
             PopUp.passwordNotSamePane.setVisible(false);
             PopUp.emailUsedPane.setVisible(false);
-            if(CreateTextField.userName.getText().isEmpty() || CreateTextField.password.getText().isEmpty()){
+            if(!CreateTextField.userName.getText().isEmpty() || !CreateTextField.password.getText().isEmpty()|| !CreateTextField.passwordC.getText().isEmpty()){
                  PopUp.passwordNotSamePane.setVisible(true);
             }else{
             if(CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())){
@@ -139,25 +142,39 @@ public class ButtonEvent {
 //=========================== done =======================
         EventHandler<ActionEvent> add = (ActionEvent ActionEvent) -> {
             System.out.println("Add from MyACC");
-            Date end = Date.from((AddProduct.datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            long hour = Long.parseLong((String) AddProduct.comboBoxHour.getValue());
-            if(hour == 12)
-                hour = 0;
-            hour = hour * 60 * 60 * 1000; //milliseconds
-            if (AddProduct.comboBoxAmPm.getI) {
-                hour += (long) (43200000);
-            }
-            end.setTime((long) (end.getTime() + hour));
-            String name = AddProduct.productName.getText();
-            //miniBid and StartBid is number
-            Product product = new Product(name, AddProduct.productDescription.getText(), AddProduct.getSelectText().getText(), Double.parseDouble(AddProduct.startBid.getText()), Double.parseDouble(AddProduct.minimumBid.getText()), end);
+            if(!AddProduct.pathAdded&&!(AddProduct.filePath == null)){
+                System.out.println("mee pic path");
+                AddProduct.pathAdded = true;
+                
+                Date end = Date.from((AddProduct.datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                long hour = Long.parseLong((String) AddProduct.comboBoxHour.getValue());
+                if(hour == 12)
+                    hour = 0;
+                hour = hour * 60 * 60 * 1000; //milliseconds
+                if (AddProduct.comboBoxAmPm.getItems().indexOf(AddProduct.comboBoxAmPm.getValue())==1) {
+                    hour += (long) (43200000);
+                }
+                end.setTime((long) (end.getTime() + hour));
+                String name = AddProduct.productName.getText();
+                //miniBid and StartBid is number
+                Product product = new Product(name, AddProduct.productDescription.getText(), AddProduct.getSelectText().getText(), Double.parseDouble(AddProduct.startBid.getText()), Double.parseDouble(AddProduct.minimumBid.getText()), end);
 
-            BufferedImage image = null;
-            try {
-                NewClient.reqRegisterProduct(product, image);
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-                System.out.println("at reqRegis at ButtonEvent");
+                BufferedImage image = SwingFXUtils.fromFXImage(new Image("file:///"+System.getProperty("user.dir")+"/src/Picture/noimg.jpg"), null);
+                try {
+                    image = ImageIO.read(AddProduct.filePath);
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                    System.out.println("อ่านรูปก่อนรีจิสโพรดักไม่ได้ว่ะ");
+                }
+                try {
+                    NewClient.reqRegisterProduct(product, image);
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                    System.out.println("at reqRegis at ButtonEvent");
+                }
+            }
+            else{
+                //บอกว่าเลือก รูปใหม่
             }
 
             //CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1("productName" , "dis", 125.00, ProductPaneInVbox.countIDAllProduct));
@@ -285,18 +302,18 @@ public class ButtonEvent {
             System.out.println(CategorisePane.vboxArray.get(0).getChildren().size());
             
             int i = 0;
-            //=========================== add loop to i =======================
-            CategorisePane.vboxArray.get(i).getChildren().removeAll();
+//            CategorisePane.vboxArray.get(i).getChildren().removeAll();
             try {
                 NewClient.reqMarket();
             } catch (Exception ex) {
                 System.out.println("unsuccessfully request data of market from server");
                 System.out.println(ex.getMessage());
             }
-            NewClient.filteredProduct.forEach(j -> {
-                CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(j.getProduct().getName(), j.getProduct().getDescription(), j.getCurrentBid(), j.getProduct().getItemId()));
-            });
-            CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(NewClient.filteredProduct.get(i).getProduct().getName(), "", 20.d, 1));
+                NewClient.showMarket();
+//            NewClient.filteredProduct.forEach(j -> {
+//                CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(j.getProduct().getName(), j.getProduct().getDescription(), j.getCurrentBid(), j.getProduct().getItemId()));
+//            });
+//            CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(NewClient.filteredProduct.get(i).getProduct().getName(), "", 20.d, 1));
             if (CategorisePane.vboxArray.get(i).getChildren().isEmpty()) {
                 CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane1);
             }

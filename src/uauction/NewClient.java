@@ -9,6 +9,8 @@ package uauction;
  *
  * @author USER
  */
+import Scene.CategorisePane;
+import Scene.ProductPaneInVbox;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
@@ -92,7 +94,7 @@ public class NewClient {
         return a;
     }
 
-    public static Object reqRegisterProduct(Product product, BufferedImage image) throws IOException {
+    public static void reqRegisterProduct(Product product, BufferedImage image) throws IOException {
         server = new Socket(localhost, 1234);
         //ImPr impr = new ImPr(product, image);
 
@@ -102,24 +104,20 @@ public class NewClient {
         toServer.writeObject(product);
         toServer.flush();
         toServer.close();
-        ObjectOutputStream os = new ObjectOutputStream(server.getOutputStream());
+        server.close();
+        
+        server = new Socket(localhost,1234);
+        OutputStream os = server.getOutputStream();
         ImageIO.write(image, "jpg", os);
         os.flush();
         os.close();
-        
-        ObjectInputStream oi = new ObjectInputStream(server.getInputStream());
+        server.close();
         
         //ObjectOutputStream toServer2 = new ObjectOutputStream(server.getOutputStream());
         //toServer2.writeObject(impr);
         //toServer2.flush();
         //toServer2.close();
-        server.close();
-        try {
-            return oi.readObject();
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
-            return "class no found??";
-        }
+
     }
 
     public static Object reqProduct(String fileName/*product.getFilename()*/) throws Exception {
@@ -177,15 +175,15 @@ public class NewClient {
         server.close();
     }
 
-    public static void showMarket(ArrayList<ActiveProduct> product, VBox vbox) {
-        for (ActiveProduct a : product) {
-            Image image = new Image(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + a.getProduct().getImageName());
+    public static void showMarket() {
+        for (ActiveProduct a : filteredProduct) {
+            Image image = new Image("file:///" + System.getProperty("user.dir") + "/AuctionDataBase/Image/" + a.getProduct().getImageName());
             String name = a.getProduct().getName();
             String description = a.getProduct().getDescription();
             Double currentBid = a.getCurrentBid();
-            Pane pane = new Pane(new ImageView(image), new Label(name), new Label(description), new Label(currentBid.toString()));
-
-            vbox.getChildren().add(pane);
+            int itemId = a.getProduct().getItemId();
+//            Pane pane = new Pane(new ImageView(image), new Label(name), new Label(description), new Label(currentBid.toString()));
+            CategorisePane.vboxArray.get(0).getChildren().add( ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId));
 
         }
     }

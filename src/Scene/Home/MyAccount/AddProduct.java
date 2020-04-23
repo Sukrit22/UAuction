@@ -5,6 +5,7 @@
  */
 package Scene.Home.MyAccount;
 
+import Effect.PopUp;
 import static Scene.Home.MyAccount.PaneMyAccount.scrollPaneMyObject;
 import com.sun.javafx.logging.PlatformLogger.Level;
 import java.awt.Desktop;
@@ -38,7 +39,8 @@ import javafx.stage.Stage;
  * @author Sitth
  */
 public class AddProduct {
-
+    static public File filePath = null;
+    static public boolean pathAdded;
     static private Text selectText = new Text();
 
     public static Text getSelectText() {
@@ -114,6 +116,11 @@ public class AddProduct {
             System.out.println("btnCheck " + selectText.getText());
             Stage stage = new Stage();
             File file = fileChooser.showOpenDialog(stage);
+            if(file.exists()&&!file.isDirectory()){
+                filePath = file;
+                pathAdded = false;
+                PopUp.incorrecypassPane.setVisible(false);
+            }
             System.out.println(file.toString());
             //Image image = new Image(file.toString());
             //ImageView imv = new ImageView(image);

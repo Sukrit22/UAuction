@@ -23,6 +23,7 @@ import java.util.Date;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -46,7 +47,8 @@ public class ProductPaneInVbox {
 
     static public Thread timeUpdate;
 
-    static public Pane Pane1(String productName , String dis, double currentPrice, int ID) {
+    static public Pane Pane1(Image image, String productName , String dis, double currentPrice, int ID) {
+        //imageview จำกัดความสูงไว้ที่ 250
         System.out.println("Product Added");
         btnView = new Button("View");
         btnView.setLayoutX(25);
@@ -68,7 +70,7 @@ public class ProductPaneInVbox {
                     while (!enough) {
                         try {
                             // running "long" operation not on UI thread
-                            Thread.sleep(100);
+                            Thread.sleep(1000);
                         } catch (InterruptedException ex) {
                         }
                         final String time = dt.format(new Date());
@@ -85,14 +87,15 @@ public class ProductPaneInVbox {
         btnView.setOnAction(ev);
 
         Font font = new Font(16);
-        String itemID;
+        String itemID;//=========================== here =======================
         SimpleDateFormat dt = new SimpleDateFormat("ddMMyyhhmm");
-        String time = dt.format(new Date());
+        //String time = dt.format(new Date());
 
-        String b = String.format("%04d", countIDAllProduct++).substring(0, 4);
-        //=========================== ต้องรับเข้ามา =======================
+        //String b = String.format("%04d", countIDAllProduct++).substring(0, 4);
+        //=========================== ต้องรับเข้ามา ======================= ID
         //เป้น Item id
-        item = new Text(time + b + " " + ID);
+        //item = new Text(time + b + " " + ID);
+        item = new Text(new Integer(ID).toString());
         item.setFont(font);
         item.setLayoutX(300 - 25);
         item.setLayoutY(50);
