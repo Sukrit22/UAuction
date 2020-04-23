@@ -57,10 +57,10 @@ public class runTime {
                         int ms = m * 60;
                         int hs = h * 60 * 60;
 
-                        int ssssi = hs + ms + s;
-                        int res = ssssi % 60;
-                        int rem = (int) (ssssi / 60) % 60;
-                        int reh = (int) ((int) (ssssi / 60) / 60);
+                        //int ssssi = hs + ms + s;
+                        int res = (int)minI % 60;
+                        int rem = (int) (minI / 60) % 60;
+                        int reh = (int) ((int) (minI / 60) / 60);
 
                         textArray.get(i).setText("    " + reh + " Hr " + rem + " Min " + res + " Sec ");
                     }
