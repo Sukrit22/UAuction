@@ -46,13 +46,13 @@ public class ProductPaneInVbox {
 
     static public Thread timeUpdate;
 
-    static public Pane Pane1(String str, int ID) {
+    static public Pane Pane1(String productName , String dis, double currentPrice, int ID) {
         System.out.println("Product Added");
         btnView = new Button("View");
         btnView.setLayoutX(25);
         btnView.setLayoutY(200 - 40);
         btnView.setMinSize(200, 25);
-        PopUpProduct.createpopUpBackground(str);
+        PopUpProduct.createpopUpBackground(productName);
         //=========================== อาจจะต้องรีเควสไอเทมชิ้นนั้น =======================
         EventHandler<ActionEvent> ev = (ActionEvent ActionEvent) -> {
             //Do code here
@@ -100,8 +100,8 @@ public class ProductPaneInVbox {
         //=========================== ตัวนี้ต้องรับเข้า =======================
         //รับ String มาตั้งเป็น ชื่อสินค้า
         title = new Text("Subaru WRX STI GDB 2015"); 
-        if (!str.isEmpty()) {
-            title.setText(str);
+        if (!productName.isEmpty()) {
+            title.setText(productName);
         }
         title.setFont(font);
         title.setLayoutX(500 - 15);

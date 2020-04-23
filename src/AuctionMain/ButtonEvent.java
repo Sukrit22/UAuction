@@ -76,6 +76,8 @@ public class ButtonEvent {
             System.out.println("Register");
             System.out.println(" GG");
             Object obj = new Object();
+            PopUp.passwordNotSamePane.setVisible(false);
+            PopUp.emailUsedPane.setVisible(false);
             if(CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())){
                 boolean panHa = false;
                 try {
@@ -136,7 +138,8 @@ public class ButtonEvent {
             }*/
 
             //NewClient.reqRegisterProduct(product, image);
-            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1("Fuck", ProductPaneInVbox.countIDAllProduct));
+            
+            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1("productName" , "dis", 125.00, ProductPaneInVbox.countIDAllProduct));
         };
         PaneMyAccount.btnAdd.setOnAction(add);
 
@@ -251,6 +254,11 @@ public class ButtonEvent {
         PaneMyAccount.btnBack2.setOnAction(back);
         
         EventHandler<MouseEvent> backMVE = (MouseEvent ActionEvent) -> {
+            
+            //NewClient.reqMarket();
+            
+            //NewClient.showMarket(NewClient.unfilteredProduct, vbox);
+            
             PaneTop.getPane().getChildren().add(CreateButton.buttonMyAccount);
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PaneMyAccount.getPaneMyAcclayer1());
             System.out.println(CategorisePane.vboxArray.get(0).getChildren().size());
