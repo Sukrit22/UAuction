@@ -80,6 +80,7 @@ public class ButtonEvent {
                     CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
                     PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
                     PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                    NewClient.user.setToBoth();
                     SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
                 } else {
                     //Wrong Password
@@ -123,6 +124,7 @@ public class ButtonEvent {
                             PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
                             PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
                             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+                            NewClient.user.setToBoth();
                         } else {
                             //Wrong Password
                             PopUp.incorrecypassPane.setVisible(true);
@@ -264,7 +266,7 @@ public class ButtonEvent {
                 PopUp.chooseNewPicPane.setVisible(true);
             }
 
-            //CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1("productName" , "dis", 125.00, ProductPaneInVbox.countIDAllProduct));
+            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/TopPane.png"), "productName", "dis", 125.00, ProductPaneInVbox.countIDAllProduct));
         };
         PaneMyAccount.btnAdd.setOnAction(add);
 
@@ -346,6 +348,7 @@ public class ButtonEvent {
             PaneTop.getPane().getChildren().remove(CreateButton.buttonMyAccount);
             PaneTop.getPane().getChildren().remove(CreateButton.buttonSignOutTopPane);
             PaneTop.getPane().getChildren().add(CreateButton.buttonLogInPaneTop);
+            NewClient.user = new User();
 
         };
         CreateButton.buttonSignOutTopPane.setOnMouseClicked(signOut);
