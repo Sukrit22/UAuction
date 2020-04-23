@@ -68,6 +68,14 @@ public final class Product implements java.io.Serializable {
         image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName+ ".jpg");
         
     }*/ //ไม่จำเป็น
+
+    public String getMyFileName() {
+        return myFileName;
+    }
+
+    public String getCatagory() {
+        return catagory;
+    }
     
     
     public void setImage(String imageName)
