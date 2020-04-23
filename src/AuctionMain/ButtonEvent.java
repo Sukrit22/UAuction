@@ -43,7 +43,7 @@ public class ButtonEvent {
             // TextField CreateTextField.userName + CreateTextField.password
             
             System.out.println("buttonPopUpLogIn");
-            Object obj = null;
+            Object obj = new Object();
             
             try {
                 obj =  NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
@@ -81,7 +81,7 @@ public class ButtonEvent {
         EventHandler<MouseEvent> registerOnPopUpEV = (MouseEvent ActionEvent) -> {
             // TextField CreateTextField.userName + CreateTextField.password + CreateTextField.passwordC
             System.out.println("Register");
-            Object obj = null;
+            Object obj = new Object();
             if(CreateTextField.password.equals(CreateTextField.passwordC)){
                 boolean panHa = false;
                 try {
