@@ -25,6 +25,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -172,9 +173,11 @@ public class NewClient
            String name =  a.getProduct().getName();
            String description = a.getProduct().getDescription();
            Double currentBid = a.getCurrentBid();
-           BorderPane pane = new BorderPane();
-           //pane.getChildren().addAll(image,name,description,currentBid);
-           //vbox.getChildren().add(pane);
+           Pane pane = new Pane(new ImageView(image),new Label(name), new Label(description),new Label(currentBid.toString()));
+                
+           
+           vbox.getChildren().add(pane);
+
         }
     }
     public static void filter(String filter)
