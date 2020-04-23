@@ -9,13 +9,18 @@ import AuctionMain.CreateButton;
 import static AuctionMain.CreateButton.buttonBellHomeEff;
 import AuctionMain.CreateTextField;
 import AuctionMain.runTime;
+import Effect.PopUp;
+import Stage.StageStorage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
@@ -42,8 +47,38 @@ public class PaneTop {
         CreateButton.buttonBellHomeEff.setLayoutX(1920 - 40 + 10);
         CreateButton.buttonBellHomeEff.setLayoutY(50 + 40 - 10);
 
+        Image im2 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/exitRed255.png");
+        ImageView iv2 = new ImageView(im2);
+        iv2.setFitHeight(20);
+        iv2.setLayoutX(10+20+10);
+        iv2.setLayoutY(15);
+        iv2.setPreserveRatio(true);
+        
+        EventHandler<MouseEvent> eh = (MouseEvent ActionEvent) -> {
+            //Do code here
+            StageStorage.Auction.close();
+        };
+        
+        iv2.setOnMouseClicked(eh);
+        
+        Image im3 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/minimizeBlack.png");
+        ImageView iv3 = new ImageView(im3);
+        iv3.setFitHeight(20);
+        iv3.setLayoutX(10);
+        iv3.setLayoutY(15);
+        iv3.setPreserveRatio(true);
+        
+        EventHandler<MouseEvent> eh3 = (MouseEvent ActionEvent) -> {
+            //Do code here
+            StageStorage.Auction.setIconified(true);
+        };
+        
+        iv3.setOnMouseClicked(eh3);
+        
+        Rectangle rec = new Rectangle(1920,50);
+        rec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
 
-        pane.getChildren().addAll(CreateTextField.search, CreateButton.buttonSearch, CreateButton.buttonLogInPaneTop, CreateButton.buttonBellHome, CreateButton.buttonBellHomeEff);
+        pane.getChildren().addAll(rec, iv2, iv3, CreateTextField.search, CreateButton.buttonSearch, CreateButton.buttonLogInPaneTop, CreateButton.buttonBellHome, CreateButton.buttonBellHomeEff);
 
     }
 
