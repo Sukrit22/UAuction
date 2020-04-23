@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javax.imageio.ImageIO;
 import uauction.ActiveProduct;
 import uauction.Database;
@@ -47,42 +49,85 @@ public class ButtonEvent {
         EventHandler<MouseEvent> logInOnPopUp = (MouseEvent ActionEvent) -> {
             boolean loginPop = false;
             // TextField CreateTextField.userName + CreateTextField.password
-            
+
             System.out.println("buttonPopUpLogIn");
             Object obj = new Object();
-            if(CreateTextField.userName.getText().isEmpty() || CreateTextField.password.getText().isEmpty()){
-                 PopUp.incorrecypassPane.setVisible(true);
-            }else{
-            try {
-                obj =  NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
-            } catch (IOException ex) {
-                Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            if(obj.getClass().equals((new User()).getClass())){
-                NewClient.user = (User)obj;
-                loginPop = true;
-            }else if(obj.getClass().equals("".getClass())){
-                loginPop = false;
-            }else{
-                System.out.println("อะไรกันแน่วะไอสัส");
-                loginPop = false;
-            }
-            if (loginPop) {
-                CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
-                PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
-                PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
-                SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
-            } else {
-                //Wrong Password
+            if (CreateTextField.userName.getText().isEmpty() || CreateTextField.password.getText().isEmpty()) {
                 PopUp.incorrecypassPane.setVisible(true);
+            } else {
+                try {
+                    obj = NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
+                } catch (IOException ex) {
+                    Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                if (obj.getClass().equals((new User()).getClass())) {
+                    NewClient.user = (User) obj;
+                    loginPop = true;
+                } else if (obj.getClass().equals("".getClass())) {
+                    loginPop = false;
+                } else {
+                    System.out.println("อะไรกันแน่วะไอสัส");
+                    loginPop = false;
+                }
+                if (loginPop) {
+                    CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
+                    PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                    PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                    SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+                } else {
+                    //Wrong Password
+                    PopUp.incorrecypassPane.setVisible(true);
+                }
             }
-            }
-            
+
         };
         CreateButton.buttonPopUpLogIn.setOnMouseClicked(logInOnPopUp);
+
+        CreateTextField.password.setOnKeyPressed(logInOnPopUpEnter -> {
+            if (CreateButton.buttonPopSwitchToSignUp.isVisible()) {
+                if (logInOnPopUpEnter.getCode() == KeyCode.ENTER) {
+                    boolean loginPop = false;
+                    // TextField CreateTextField.userName + CreateTextField.password
+
+                    System.out.println("buttonPopUpLogIn");
+                    Object obj = new Object();
+                    if (CreateTextField.userName.getText().isEmpty() || CreateTextField.password.getText().isEmpty()) {
+                        PopUp.incorrecypassPane.setVisible(true);
+                    } else {
+                        try {
+                            obj = NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
+                        } catch (IOException ex) {
+                            Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        if (obj.getClass().equals((new User()).getClass())) {
+                            NewClient.user = (User) obj;
+                            loginPop = true;
+                        } else if (obj.getClass().equals("".getClass())) {
+                            loginPop = false;
+                        } else {
+                            System.out.println("อะไรกันแน่วะไอสัส");
+                            loginPop = false;
+                        }
+                        if (loginPop) {
+                            CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
+                            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                            SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+                        } else {
+                            //Wrong Password
+                            PopUp.incorrecypassPane.setVisible(true);
+                        }
+                    }
+                }
+            }
+        });
+
 //=========================== done =======================
         EventHandler<MouseEvent> registerOnPopUpEV = (MouseEvent ActionEvent) -> {
             // TextField CreateTextField.userName + CreateTextField.password + CreateTextField.passwordC
@@ -91,41 +136,85 @@ public class ButtonEvent {
             Object obj = new Object();
             PopUp.passwordNotSamePane.setVisible(false);
             PopUp.emailUsedPane.setVisible(false);
-            if(!CreateTextField.userName.getText().isEmpty() || !CreateTextField.password.getText().isEmpty()|| !CreateTextField.passwordC.getText().isEmpty()){
-                 PopUp.passwordNotSamePane.setVisible(true);
-            }else{
-            if(CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())){
-                boolean panHa = false;
-                try {
-                    obj = NewClient.reqRegister(CreateTextField.userName.getText(), CreateTextField.password.getText());
-                } catch (IOException ex) {
-                    Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
-                    panHa = true;
-                    System.out.println("IO");
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
-                    panHa = true;
-                    System.out.println("ClassNoFound");
-                }
-                 if (panHa){
-                     System.out.println("panHa");
-                     PopUp.emailUsedPane.setVisible(true);
-                 } else if(obj.getClass().equals("".getClass())){
-                     PopUp.emailUsedPane.setVisible(true);
-                 } else if(obj.getClass().equals((new User()).getClass())){
-                     NewClient.user = (User) obj;
-                     CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
-                     PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
-                     PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
-                     SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
-                 }
+            if (!CreateTextField.userName.getText().isEmpty() || !CreateTextField.password.getText().isEmpty() || !CreateTextField.passwordC.getText().isEmpty()) {
+                PopUp.passwordNotSamePane.setVisible(true);
             } else {
-                //Password Not Same
-                 PopUp.passwordNotSamePane.setVisible(true);
-            }
+                if (CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())) {
+                    boolean panHa = false;
+                    try {
+                        obj = NewClient.reqRegister(CreateTextField.userName.getText(), CreateTextField.password.getText());
+                    } catch (IOException ex) {
+                        Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                        panHa = true;
+                        System.out.println("IO");
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                        panHa = true;
+                        System.out.println("ClassNoFound");
+                    }
+                    if (panHa) {
+                        System.out.println("panHa");
+                        PopUp.emailUsedPane.setVisible(true);
+                    } else if (obj.getClass().equals("".getClass())) {
+                        PopUp.emailUsedPane.setVisible(true);
+                    } else if (obj.getClass().equals((new User()).getClass())) {
+                        NewClient.user = (User) obj;
+                        CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
+                        PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                        PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                        SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+                    }
+                } else {
+                    //Password Not Same
+                    PopUp.passwordNotSamePane.setVisible(true);
+
+                }
             }
         };
         CreateButton.buttonPopUpRegister.setOnMouseClicked(registerOnPopUpEV);
+
+        CreateTextField.passwordC.setOnKeyPressed(logInOnPopUpEnter -> {
+            if (logInOnPopUpEnter.getCode() == KeyCode.ENTER) {
+                System.out.println("Register");
+                //System.out.println(" GG");
+                Object obj = new Object();
+                PopUp.passwordNotSamePane.setVisible(false);
+                PopUp.emailUsedPane.setVisible(false);
+                if (!CreateTextField.userName.getText().isEmpty() || !CreateTextField.password.getText().isEmpty() || !CreateTextField.passwordC.getText().isEmpty()) {
+                    PopUp.passwordNotSamePane.setVisible(true);
+                } else {
+                    if (CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())) {
+                        boolean panHa = false;
+                        try {
+                            obj = NewClient.reqRegister(CreateTextField.userName.getText(), CreateTextField.password.getText());
+                        } catch (IOException ex) {
+                            Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                            panHa = true;
+                            System.out.println("IO");
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                            panHa = true;
+                            System.out.println("ClassNoFound");
+                        }
+                        if (panHa) {
+                            System.out.println("panHa");
+                            PopUp.emailUsedPane.setVisible(true);
+                        } else if (obj.getClass().equals("".getClass())) {
+                            PopUp.emailUsedPane.setVisible(true);
+                        } else if (obj.getClass().equals((new User()).getClass())) {
+                            NewClient.user = (User) obj;
+                            CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
+                            PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
+                            PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
+                            SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+                        }
+                    } else {
+                        //Password Not Same
+                        PopUp.passwordNotSamePane.setVisible(true);
+                    }
+                }
+            }
+        });
 //=========================== done =======================
         EventHandler<MouseEvent> helpEV = (MouseEvent ActionEvent) -> {
             //Do code here
@@ -142,15 +231,16 @@ public class ButtonEvent {
 //=========================== done =======================
         EventHandler<ActionEvent> add = (ActionEvent ActionEvent) -> {
             System.out.println("Add from MyACC");
-            if(!AddProduct.pathAdded&&!(AddProduct.filePath == null)){
+            if (!AddProduct.pathAdded && !(AddProduct.filePath == null)) {
                 System.out.println("mee pic path");
                 AddProduct.pathAdded = true;
                 Date end = Date.from((AddProduct.datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 long hour = Long.parseLong((String) AddProduct.comboBoxHour.getValue());
-                if(hour == 12)
+                if (hour == 12) {
                     hour = 0;
+                }
                 hour = hour * 60 * 60 * 1000; //milliseconds
-                if (AddProduct.comboBoxAmPm.getItems().indexOf(AddProduct.comboBoxAmPm.getValue())==1) {
+                if (AddProduct.comboBoxAmPm.getItems().indexOf(AddProduct.comboBoxAmPm.getValue()) == 1) {
                     hour += (long) (43200000);
                 }
                 end.setTime((long) (end.getTime() + hour));
@@ -175,8 +265,9 @@ public class ButtonEvent {
         PaneMyAccount.btnAdd.setOnAction(add);
 
         EventHandler<ActionEvent> delete = (ActionEvent ActionEvent) -> {
-            if(!CategorisePane.vboxArray.get(0).getChildren().isEmpty())
-            CategorisePane.vboxArray.get(0).getChildren().remove(CategorisePane.vboxArray.get(0).getChildren().size()-1);
+            if (!CategorisePane.vboxArray.get(0).getChildren().isEmpty()) {
+                CategorisePane.vboxArray.get(0).getChildren().remove(CategorisePane.vboxArray.get(0).getChildren().size() - 1);
+            }
             System.out.println("Delete");
         };
         PaneMyAccount.btnDelete.setOnAction(delete);
@@ -265,8 +356,28 @@ public class ButtonEvent {
         CreateButton.buttonMyAccount.setOnMouseClicked(myAcc);
 
         EventHandler<ActionEvent> back = (ActionEvent ActionEvent) -> {
-            PaneTop.getPane().getChildren().add(CreateButton.buttonMyAccount);
-            SceneHomeUnLogIn.getStackPane().getChildren().remove(PaneMyAccount.getPaneMyAcclayer1());
+
+            boolean addAble1 = true;
+
+            for (int i = 0; i < PaneTop.getPane().getChildren().size(); i++) {
+                if (PaneTop.getPane().getChildren().get(i) == CreateButton.buttonMyAccount) {
+                    addAble1 = false;
+                }
+            }
+            if (addAble1) {
+                PaneTop.getPane().getChildren().add(CreateButton.buttonMyAccount);
+            }
+
+            boolean removeAble1 = false;
+            for (int i = 0; i < SceneHomeUnLogIn.getStackPane().getChildren().size(); i++) {
+                if (SceneHomeUnLogIn.getStackPane().getChildren().get(i) == PaneMyAccount.getPaneMyAcclayer1()) {
+                    removeAble1 = true;
+                }
+            }
+            if (removeAble1) {
+                SceneHomeUnLogIn.getStackPane().getChildren().remove(PaneMyAccount.getPaneMyAcclayer1());
+            }
+
             System.out.println(CategorisePane.vboxArray.get(0).getChildren().size());
             int i = 0;
             if (CategorisePane.vboxArray.get(i).getChildren().isEmpty()) {
@@ -282,18 +393,36 @@ public class ButtonEvent {
 
         };
         PaneMyAccount.btnBack.setOnAction(back);
+
         PaneMyAccount.btnBack2.setOnAction(back);
-        
+
         EventHandler<MouseEvent> backMVE = (MouseEvent ActionEvent) -> {
-            
+
+            boolean addAble1 = true;
+
+            for (int i = 0; i < PaneTop.getPane().getChildren().size(); i++) {
+                if (PaneTop.getPane().getChildren().get(i) == CreateButton.buttonMyAccount) {
+                    addAble1 = false;
+                }
+            }
+            if (addAble1) {
+                PaneTop.getPane().getChildren().add(CreateButton.buttonMyAccount);
+            }
+
+            boolean removeAble1 = false;
+            for (int i = 0; i < SceneHomeUnLogIn.getStackPane().getChildren().size(); i++) {
+                if (SceneHomeUnLogIn.getStackPane().getChildren().get(i) == PaneMyAccount.getPaneMyAcclayer1()) {
+                    removeAble1 = true;
+                }
+            }
+            if (removeAble1) {
+                SceneHomeUnLogIn.getStackPane().getChildren().remove(PaneMyAccount.getPaneMyAcclayer1());
+            }
             //NewClient.reqMarket();
-            
-            //NewClient.showMarket(NewClient.unfilteredProduct, vbox);
-            
-            PaneTop.getPane().getChildren().add(CreateButton.buttonMyAccount);
-            SceneHomeUnLogIn.getStackPane().getChildren().remove(PaneMyAccount.getPaneMyAcclayer1());
+            //NewClient.showMarket(NewClient.unfilteredProduct, vbox);            
+
             System.out.println(CategorisePane.vboxArray.get(0).getChildren().size());
-            
+
             int i = 0;
 //            CategorisePane.vboxArray.get(i).getChildren().removeAll();
             try {
@@ -302,7 +431,7 @@ public class ButtonEvent {
                 System.out.println("unsuccessfully request data of market from server");
                 System.out.println(ex.getMessage());
             }
-                NewClient.showMarket();
+            NewClient.showMarket();
 //            NewClient.filteredProduct.forEach(j -> {
 //                CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(j.getProduct().getName(), j.getProduct().getDescription(), j.getCurrentBid(), j.getProduct().getItemId()));
 //            });
@@ -320,37 +449,39 @@ public class ButtonEvent {
         };
         CreateButton.buttonBackOnACC.setOnMouseClicked(backMVE);
         CreateButton.buttonBackOnACC2.setOnMouseClicked(backMVE);
-        
+
         EventHandler<MouseEvent> notifi = (MouseEvent ActionEvent) -> {
             System.out.println("Notifi");
             SceneHomeUnLogIn.getStackPane().getChildren().add(Notifications.pane);
         };
+
         CreateButton.buttonBellHomeEff.setOnMouseClicked(notifi);
+
         CreateButton.buttonBellHome.setOnMouseClicked(notifi);
-        
+
         EventHandler<MouseEvent> notifiBack = (MouseEvent ActionEvent) -> {
             System.out.println("Notifi");
             SceneHomeUnLogIn.getStackPane().getChildren().remove(Notifications.pane);
             CreateButton.buttonBellHomeEff.setVisible(false);
         };
+
         Notifications.pane.setOnMouseClicked(notifiBack);
-        
-        
-        CreateButton.buttonSearch.setOnMouseClicked((t) -> {
-            System.out.println("Search");
-            ArrayList<ActiveProduct> obj1 = NewClient.unfilteredProduct;
-            ArrayList<ActiveProduct> obj2 = new ArrayList<ActiveProduct>();
-            for (ActiveProduct activeProduct : obj1) {
-                if(activeProduct.getProduct().getName().matches(".*"+ CreateTextField.search +".*")){
-                    obj2.add(activeProduct);
+
+        CreateButton.buttonSearch.setOnMouseClicked(
+                (t) -> {
+                    System.out.println("Search");
+                    ArrayList<ActiveProduct> obj1 = NewClient.unfilteredProduct;
+                    ArrayList<ActiveProduct> obj2 = new ArrayList<ActiveProduct>();
+                    for (ActiveProduct activeProduct : obj1) {
+                        if (activeProduct.getProduct().getName().matches(".*" + CreateTextField.search + ".*")) {
+                            obj2.add(activeProduct);
+                        }
+                    }
+                    NewClient.filteredProduct = obj2;
+
                 }
-            }
-            NewClient.filteredProduct = obj2;
-            
-            
-        });
+        );
 
     }
 
-        
 }
