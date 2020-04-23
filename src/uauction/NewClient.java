@@ -96,7 +96,7 @@ public class NewClient {
         return a;
     }
 
-    public static void reqRegisterProduct(Product product, BufferedImage image) throws InterruptedException {
+    public static void reqRegisterProduct(Product product, BufferedImage image){
         try {
             server = new Socket(localhost, 1234);
             //ImPr impr = new ImPr(product, image);
