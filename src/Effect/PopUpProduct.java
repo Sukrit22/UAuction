@@ -6,6 +6,7 @@
 package Effect;
 
 import Scene.Home.SceneHomeUnLogIn;
+import Scene.ProductPaneInVbox;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,38 +37,53 @@ public class PopUpProduct {
     static private Text productName;
     static private Text price;
     static private Text timeLeft;
+
+    public static Text getProductName() {
+        return productName;
+    }
+
+    public static Text getPrice() {
+        return price;
+    }
+
+    public static Text getTimeLeft() {
+        return timeLeft;
+    }
+
+    public static Text getMinimumBid() {
+        return minimumBid;
+    }
     static private Text minimumBid;
 
-    static public void createpopUpBackground() {
-        
+    static public StackPane createpopUpBackground(String str) {
+
         Font font = new Font(24);
-        
-        productName = new Text("Product Name\n    Hello World");
+
+        productName = new Text("Product Name\n    " + str);
         productName.setFont(font);
-        productName.setLayoutX(450+40);
-        productName.setLayoutY(20+40);
-        
-        price = new Text("Current Price\n    123 Baht");
+        productName.setLayoutX(450 + 40);
+        productName.setLayoutY(20 + 40);
+
+        price = new Text("Current Price\n    ");
         price.setFont(font);
-        price.setLayoutX(450+40);
-        price.setLayoutY(60+48+48);
-                
-        timeLeft = new Text("Time Left\n    12 HR 12 Min");
+        price.setLayoutX(450 + 40);
+        price.setLayoutY(60 + 48 + 48);
+
+        timeLeft = new Text("Time Left\n    ");
         timeLeft.setFont(font);
-        timeLeft.setLayoutX(450+40);
-        timeLeft.setLayoutY(60+48+48+48+48);
-        
-        minimumBid = new Text("Minimum Bid\n    30 Baht");
+        timeLeft.setLayoutX(450 + 40);
+        timeLeft.setLayoutY(60 + 48 + 48 + 48 + 48);
+
+        minimumBid = new Text("Minimum Bid\n    ");
         minimumBid.setFont(font);
-        minimumBid.setLayoutX(450+40);
-        minimumBid.setLayoutY(60+48+48+48+48+48+48);
-        
-        
+        minimumBid.setLayoutX(450 + 40);
+        minimumBid.setLayoutY(60 + 48 + 48 + 48 + 48 + 48 + 48);
+
         btnMoreDetail = new Button("More Details");
         btnMoreDetail.setLayoutX(40);
         btnMoreDetail.setLayoutY(350);
         btnMoreDetail.setMinSize(400, 30);
-                
+
         recBGPopUp = new Rectangle();
         recBGPopUp.setWidth(800);
         recBGPopUp.setHeight(600);
@@ -84,6 +100,7 @@ public class PopUpProduct {
             //Do code here
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUpProduct.getStackPane());
             System.out.println("Click");
+            ProductPaneInVbox.timeUpdate.stop();
 
         };
         recBGFade.setOnMouseClicked(mcc);
@@ -100,6 +117,8 @@ public class PopUpProduct {
 
         stackPane = new StackPane();
         stackPane.getChildren().addAll(recBGFade, panepane);
+        
+        return stackPane;
 
     }
 

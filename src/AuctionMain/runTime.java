@@ -50,5 +50,9 @@ public class runTime {
                 });
             }
         }
+        
+        public void updateText(Text text){
+            text.setText(txtTime.getText());
+        }
     });
 }

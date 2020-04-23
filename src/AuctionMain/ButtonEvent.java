@@ -7,6 +7,7 @@ package AuctionMain;
 
 import static AuctionMain.CreateButton.buttonHelpPaneTop;
 import Effect.PopUp;
+import Effect.PopUpProduct;
 import Scene.Home.PaneTop;
 import Scene.Home.SceneHomeUnLogIn;
 import javafx.event.ActionEvent;
@@ -133,19 +134,25 @@ public class ButtonEvent {
             Product product = new Product(name, AddProduct.productDescription.getText(), AddProduct.getSelectText().getText(), Double.parseDouble(AddProduct.startBid.getText()), Double.parseDouble(AddProduct.minimumBid.getText()), end);
              */
             //NewClient.reqRegisterProduct(product, image);
-            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1());
+            //PopUpProduct.
+            //ProductPaneInVbox.item.setText("00000000");
+            //ProductPaneInVbox.title.setText(AddProduct.productName.getText());
+
+            System.out.println(AddProduct.productName.getText());
+            
+            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText()));
             switch (AddProduct.getSelectText().getText()) {
                 case "Eletronic":
-                    CategorisePane.vboxArray.get(1).getChildren().add(ProductPaneInVbox.Pane1());
+                    CategorisePane.vboxArray.get(1).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText()));
                     break;
                 case "Health & Beauty":
-                    CategorisePane.vboxArray.get(2).getChildren().add(ProductPaneInVbox.Pane1());
+                    CategorisePane.vboxArray.get(2).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText()));
                     break;
                 case "Home & Lifestyle":
-                    CategorisePane.vboxArray.get(3).getChildren().add(ProductPaneInVbox.Pane1());
+                    CategorisePane.vboxArray.get(3).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText()));
                     break;
                 case "Others":
-                    CategorisePane.vboxArray.get(4).getChildren().add(ProductPaneInVbox.Pane1());
+                    CategorisePane.vboxArray.get(4).getChildren().add(ProductPaneInVbox.Pane1(AddProduct.productName.getText() + "\n" + AddProduct.productDescription.getText()));
                     break;
                 default:
             }
