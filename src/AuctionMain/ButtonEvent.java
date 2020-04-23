@@ -263,6 +263,15 @@ public class ButtonEvent {
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PaneMyAccount.getPaneMyAcclayer1());
             System.out.println(CategorisePane.vboxArray.get(0).getChildren().size());
             int i = 0;
+            //=========================== add loop to i =======================
+            CategorisePane.vboxArray.get(i).getChildren().removeAll();
+            try {
+                NewClient.reqMarket();
+            } catch (Exception ex) {
+                System.out.println("unsuccessfully request data of market from server");
+                System.out.println(ex.getMessage());
+            }
+            CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1("", "", 20.d, 1));
             if (CategorisePane.vboxArray.get(i).getChildren().isEmpty()) {
                 CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane1);
             }

@@ -33,6 +33,7 @@ public class User implements Serializable {
     double balance = 0;
     private boolean adminStatus;
     private Permission userPermission;
+    public ArrayList<Product> myProduct;
     
     //Guest
     public User() {

@@ -139,6 +139,7 @@ public class NewClient {
         fromServer.close();
 
         unfilteredProduct = a;
+        filteredProduct = unfilteredProduct;
         server.close();
         for (ActiveProduct ap : a) {
             reqImage(ap.getProduct().getImageName());

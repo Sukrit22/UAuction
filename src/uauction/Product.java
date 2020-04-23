@@ -35,13 +35,16 @@ public final class Product implements java.io.Serializable {
     private String catagory;
     private double startingBid;
     private double minimumBid;
+    private int itemId;
+
+    public int getItemId() {
+        return itemId;
+    }
     
     private java.util.Date datePosted;
     private java.util.Date dateEndBid;
     
     private Image image;
-            
-            
     public Product(String name, String description,String catagory, double startingBid, double minimumBid,Date endDate){
         datePosted = new Date();
         dateEndBid = endDate;
