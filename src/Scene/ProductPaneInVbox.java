@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import uauction.NewClient;
 
 /**
  *
@@ -59,6 +60,7 @@ public class ProductPaneInVbox {
         EventHandler<ActionEvent> ev = (ActionEvent ActionEvent) -> {
             //Do code here
             System.out.println("popUpItem");
+            System.out.println(NewClient.user.canBuy());
             SceneHomeUnLogIn.getStackPane().getChildren().add(PopUpProduct.getStackPane());
             timeUpdate = new Thread(new Runnable() {
                 boolean enough = false;

@@ -104,7 +104,7 @@ public class CategorisePane {
             //runTime.textArray.get(1).setLayoutX(1500);
             //timeLeftText.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
             
-            timeLeftText = new Text("Time Left");
+            timeLeftText = new Text("Time End");
             timeLeftText.setFont(font);
             timeLeftText.setLayoutX(1500);
             timeLeftText.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));

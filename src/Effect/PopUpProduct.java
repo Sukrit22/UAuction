@@ -40,49 +40,73 @@ public class PopUpProduct {
     static private Text productName;
     static private Text price;
     static private Text timeLeft;
+    static private Text minimumBid;
+    static private Text productName2;
+    static private Text price2;
+    static private Text timeLeft2;
+    static private Text minimumBid2;
 
     public static Text getProductName() {
-        return productName;
+        return productName2;
     }
 
     public static Text getPrice() {
-        return price;
+        return price2;
     }
 
     public static Text getTimeLeft() {
-        return timeLeft;
+        return timeLeft2;
     }
 
     public static Text getMinimumBid() {
-        return minimumBid;
+        return minimumBid2;
     }
-    static private Text minimumBid;
+    
 
     static public void createpopUpBackground(String str) {
 
         Font font = new Font(24);
 
-        productName = new Text("Product Name\n    " + str);
+        productName = new Text("Product Name");
         productName.setFont(font);
         productName.setLayoutX(450 + 40);
         productName.setLayoutY(20 + 40);
 
-        price = new Text("Current Price\n    ");
+        productName2 = new Text(str);
+        productName2.setFont(font);
+        productName2.setLayoutX(450 + 40 + 36);
+        productName2.setLayoutY(20 + 40 + 36);
+
+        price = new Text("Current Price");
         price.setFont(font);
         price.setLayoutX(450 + 40);
         price.setLayoutY(60 + 48 + 48);
-        
+
+        price2 = new Text("165 Baht");
+        price2.setFont(font);
+        price2.setLayoutX(450 + 40 + 23);
+        price2.setLayoutY(60 + 48 + 48 + 36);
+
         //runTime.textArray.get(0).setLayoutY(20);
-        
         timeLeft = new Text("Time Left");
         timeLeft.setFont(font);
         timeLeft.setLayoutX(450 + 40);
-        timeLeft.setLayoutY(60 + 48 + 48 + 48 + 48);        
+        timeLeft.setLayoutY(60 + 48 + 48 + 48 + 48);
+        
+        timeLeft2 = new Text("12 h 43 min");
+        timeLeft2.setFont(font);
+        timeLeft2.setLayoutX(450 + 40 + 36);
+        timeLeft2.setLayoutY(60 + 48 + 48 + 48 + 48 + 36);
 
         minimumBid = new Text("Minimum Bid\n    ");
         minimumBid.setFont(font);
         minimumBid.setLayoutX(450 + 40);
         minimumBid.setLayoutY(60 + 48 + 48 + 48 + 48 + 48 + 48);
+        
+        minimumBid2 = new Text("1 Baht");
+        minimumBid2.setFont(font);
+        minimumBid2.setLayoutX(450 + 40 + 36);
+        minimumBid2.setLayoutY(60 + 48 + 48 + 48 + 48 + 48 + 48 + 36);
 
         btnMoreDetail = new Button("More Details");
         btnMoreDetail.setLayoutX(40);
@@ -118,11 +142,10 @@ public class PopUpProduct {
         name.setLayoutY(20);
 
         //Pane fadePane = new Pane(recBGFade);
-        panepane.getChildren().addAll(recBGPopUp, pic, name, btnMoreDetail, productName, price, timeLeft, minimumBid);
+        panepane.getChildren().addAll(recBGPopUp, pic, name, btnMoreDetail, productName, productName2, price, price2, timeLeft, timeLeft2, minimumBid, minimumBid2);
 
         stackPane = new StackPane();
         stackPane.getChildren().addAll(recBGFade, panepane);
-        
 
     }
 

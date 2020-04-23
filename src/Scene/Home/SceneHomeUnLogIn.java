@@ -54,6 +54,7 @@ public class SceneHomeUnLogIn {
 
     static private ScrollPane createPaneRight() {
 
+        //PaneRight.setUp();
         Pane pane = new Pane();
         pane.setStyle("-fx-background-color:rgba(100,100,100,1.0);");
         pane.setMinSize(1920 - 220, 1080 - 200);

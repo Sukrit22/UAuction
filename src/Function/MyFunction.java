@@ -23,7 +23,6 @@ public class MyFunction {
 
     static public void inti() {
         Notifications.setUp();
-        //PopUpProduct.createpopUpBackground();
         SetUpStage.stageAuction();
         CreateButton.setUpAllButton();
         SceneHomeUnLogIn.sceneHomeUnLogIn();
