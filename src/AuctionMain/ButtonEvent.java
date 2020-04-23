@@ -137,10 +137,10 @@ public class ButtonEvent {
             Product product = new Product(name, AddProduct.productDescription.getText(), AddProduct.getSelectText().getText(), Double.parseDouble(AddProduct.startBid.getText()), Double.parseDouble(AddProduct.minimumBid.getText()), end);
 
             //NewClient.reqRegisterProduct(product, image);
-            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1());
+            //CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1());
         };
         PaneMyAccount.btnAdd.setOnAction(add);
-//=========================== done =======================
+//=========================== undone =======================
         EventHandler<ActionEvent> delete = (ActionEvent ActionEvent) -> {
             if(!CategorisePane.vboxArray.get(0).getChildren().isEmpty())
             CategorisePane.vboxArray.get(0).getChildren().remove(CategorisePane.vboxArray.get(0).getChildren().size()-1);
