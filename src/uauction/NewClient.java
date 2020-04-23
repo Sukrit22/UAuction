@@ -132,12 +132,12 @@ public class NewClient
         ArrayList<ActiveProduct> a = (ArrayList<ActiveProduct>)fromServer.readObject();
         fromServer.close();
         
+        server.close();
         for(ActiveProduct ap : a)
         {
             reqImage(ap.getProduct().getImageName());
             
         }
-        server.close();
     }
     
     public static void reqImage(String imageName) throws Exception
