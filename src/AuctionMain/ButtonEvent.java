@@ -23,6 +23,9 @@ import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
 import Effect.Notifications;
+import java.util.ArrayList;
+import uauction.ActiveProduct;
+import uauction.Database;
 
 /**
  *
@@ -279,6 +282,21 @@ public class ButtonEvent {
             CreateButton.buttonBellHomeEff.setVisible(false);
         };
         Notifications.pane.setOnMouseClicked(notifiBack);
+        
+        
+        CreateButton.buttonSearch.setOnMouseClicked((t) -> {
+            System.out.println("Search");
+            ArrayList<ActiveProduct> obj1 = NewClient.unfilteredProduct;
+            ArrayList<ActiveProduct> obj2 = new ArrayList<ActiveProduct>();
+            for (ActiveProduct activeProduct : obj1) {
+                if(activeProduct.getProduct().getName().matches(".*"+ CreateTextField.search +".*")){
+                    obj2.add(activeProduct);
+                }
+            }
+            NewClient.filteredProduct = obj2;
+            
+            
+        });
 
     }
 
