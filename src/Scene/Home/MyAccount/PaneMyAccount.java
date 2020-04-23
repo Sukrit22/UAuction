@@ -75,7 +75,7 @@ public class PaneMyAccount {
         //Rectangle rectFill = new Rectangle(1920);
         Pane paneFill = new Pane();
         paneFill.setStyle("-fx-background-color:rgba(0,0,0,1.0); -fx-stroke:rgba( 10, 10, 10, 0.2);");
-        paneFill.setMinSize(1920-220, 1080-200);
+        paneFill.setMinSize(1920 - 220, 1080 - 200);
         paneFill.setLayoutX(220);
         paneFill.setLayoutY(200);
         paneMyAccLayer1.getChildren().addAll(paneFill, paneRight, paneTop, paneLeft);
@@ -111,7 +111,7 @@ public class PaneMyAccount {
             PopUp.incorrecypassPane.setVisible(false);
         };
         CreateButton.buttonAddProductOnACC.setOnMouseClicked(my3);
-        
+
         EventHandler<MouseEvent> my4 = (MouseEvent ActionEvent) -> {
             System.out.println("btnMyAuction");
             paneMyProfile.setVisible(false);
@@ -128,7 +128,9 @@ public class PaneMyAccount {
         scrollPaneMyObject.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
         vboxPaneMyProfile.getChildren().addAll(new Label("My Profile Pane"), btnBack2);
-        paneMyProfile.getChildren().addAll(vboxPaneMyProfile);
+        paneMyProfile.getChildren().addAll(MyProfliePane.getAndSetPane("Hello"));
+        paneMyProfile.setMinSize(1920-220, 1080-200);
+        paneMyProfile.setStyle("-fx-background-color:rgba(88,88,88,1.0) ; ");
 
         paneMyProfile.setVisible(true);
         scrollPaneMyObject.setVisible(false);
@@ -139,13 +141,13 @@ public class PaneMyAccount {
         //TextField productName = new TextField();
 
         paneAddProduct.setStyle("-fx-background-color:rgba(88,88,88,1.0) ; ");
-        paneAddProduct.setMinSize(1920-220, 1080-200);
+        paneAddProduct.setMinSize(1920 - 220, 1080 - 200);
         paneAddProduct.getChildren().addAll(AddProduct.productName, AddProduct.productDescription, AddProduct.minimumBid, AddProduct.startBid, AddProduct.pic, btnAdd, AddProduct.datePicker, AddProduct.comboBoxHour, AddProduct.comboBoxAmPm, AddProduct.titleVbox);
 
         paneRight.setMinWidth(1700);
         paneRight.setMinHeight(1080 - 200);
-        paneRight.setLayoutX(220+5);
-        paneRight.setLayoutY(200+5);
+        paneRight.setLayoutX(220 + 5);
+        paneRight.setLayoutY(200 + 5);
         //paneRight.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:yellow ; ");
 
         paneTop.setMinWidth(1920);
@@ -154,7 +156,7 @@ public class PaneMyAccount {
         paneTop.setLayoutY(0);
         paneTop.setStyle("-fx-background-color:rgba(88,88,88,1.0) ; ");
         CreateButton.buttonBackOnACC2.setLayoutX(1920 - 400 - 150);
-        paneTop.getChildren().addAll( CreateButton.buttonBackOnACC2, CreateButton.buttonTime2);
+        paneTop.getChildren().addAll(CreateButton.buttonBackOnACC2, CreateButton.buttonTime2);
         Font font = new Font(32);
         name.setFont(font);
 
@@ -204,4 +206,4 @@ public class PaneMyAccount {
         };
         Button btncheck = new Button("Check");
         btncheck.setOnAction(check);
-*/
+ */
