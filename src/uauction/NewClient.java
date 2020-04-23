@@ -173,8 +173,8 @@ public class NewClient
            String description = a.getProduct().getDescription();
            Double currentBid = a.getCurrentBid();
            BorderPane pane = new BorderPane();
-           pane.getChildren().addAll(image,name,description,currentBid);
-           vbox.getChildren().add(pane);
+           //pane.getChildren().addAll(image,name,description,currentBid);
+           //vbox.getChildren().add(pane);
         }
     }
     public static void filter(String filter)
