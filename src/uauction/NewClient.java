@@ -32,16 +32,17 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
-public class NewClient 
-{
-    
+public class NewClient {
+
+    public static final String destinationIp = "auctionoop.myddns.me";
+    public static final String localhost = "127.0.0.1";
     static Socket server = null;
     public static User user;
     public static ArrayList<ActiveProduct> unfilteredProduct = new ArrayList<>();
     public static ArrayList<ActiveProduct> filteredProduct = new ArrayList<>();
-    
+
     public static void main(String[] args) throws Exception {
-       
+
         user = new User();
         AuctionMain.AuctionMain.main(args);
 //        while(true)
@@ -58,47 +59,45 @@ public class NewClient
 //        System.out.println("Server : "+rtnFromServer);
 //    }
     }
-    
-    public static Object reqLogin(String username,String password) throws IOException, ClassNotFoundException
-    { 
+
+    public static Object reqLogin(String username, String password) throws IOException, ClassNotFoundException {
         //server = new Socket("171.6.209.126",1233);
-        server = new Socket("localhost",1234);
+        server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Login" + " " + username + " " + password));
         //PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
-       // toServer.println("Login"+" "+username+" "+password);
-        
+        // toServer.println("Login"+" "+username+" "+password);
+
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
         Object a = fromServer.readObject();
         fromServer.close();
         server.close();
-       // return null;
+        // return null;
         return a;
-        
+
     }
-    
-    public static Object reqRegister(String username,String password) throws IOException, ClassNotFoundException
-    {
-        server = new Socket("localhost",1234);
+
+    public static Object reqRegister(String username, String password) throws IOException, ClassNotFoundException {
+        server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Register" + " " + username + " " + password));
         toServer.flush();
-        
+
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
         Object a = fromServer.readObject();
-        
+
         toServer.close();
         fromServer.close();
-         server.close();
+        server.close();
         return a;
     }
-    public static void reqRegisterProduct (Product product,BufferedImage image) throws IOException
-    {
-        server = new Socket("localhost",1234);
-        ImPr impr = new ImPr(product,image);
-        
+
+    public static void reqRegisterProduct(Product product, BufferedImage image) throws IOException {
+        server = new Socket(localhost, 1234);
+        ImPr impr = new ImPr(product, image);
+
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
-        toServer.writeObject(new String("RegisterProduct"+" "));
+        toServer.writeObject(new String("RegisterProduct" + " "));
         toServer.flush();
         ObjectOutputStream toServer2 = new ObjectOutputStream(server.getOutputStream());
         toServer2.writeObject(impr);
@@ -106,92 +105,83 @@ public class NewClient
         toServer2.close();
         server.close();
     }
-    public static Object reqProduct(String fileName/*product.getFilename()*/)throws Exception
-    {
-        server = new Socket("localhost",1234);
-        
+
+    public static Object reqProduct(String fileName/*product.getFilename()*/) throws Exception {
+        server = new Socket(localhost, 1234);
+
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
-        toServer.writeObject(new String("LoadProduct"+" "+fileName));
-        
+        toServer.writeObject(new String("LoadProduct" + " " + fileName));
+
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
-        Product product  = (Product)fromServer.readObject();
+        Product product = (Product) fromServer.readObject();
         fromServer.close();
         server.close();
         return product;
     }
-    public static void reqBid(String productName/*product.getName*/,String cost,String bidderName/*User.getName*/) throws Exception
-    {
-        server = new Socket("localhost",1234);
+
+    public static void reqBid(String productName/*product.getName*/, String cost, String bidderName/*User.getName*/) throws Exception {
+        server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
-        toServer.writeObject(new String("Bid"+" "+cost+" "+bidderName));
+        toServer.writeObject(new String("Bid" + " " + cost + " " + bidderName));
         toServer.close();
         server.close();
     }
-    
-    public static void reqMarket () throws Exception
-    {
-        server = new Socket("localhost",1234);
+
+    public static void reqMarket() throws Exception {
+        server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
-        toServer.writeObject(new String("Market"+" "));
+        toServer.writeObject(new String("Market" + " "));
         toServer.flush();
         toServer.close();
-         
+
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
-        ArrayList<ActiveProduct> a = (ArrayList<ActiveProduct>)fromServer.readObject();
+        ArrayList<ActiveProduct> a = (ArrayList<ActiveProduct>) fromServer.readObject();
         fromServer.close();
-        
+
         unfilteredProduct = a;
         server.close();
-        for(ActiveProduct ap : a)
-        {
+        for (ActiveProduct ap : a) {
             reqImage(ap.getProduct().getImageName());
-            
+
         }
-        
+
     }
-    
-    public static void reqImage(String imageName) throws Exception
-    {
-        server = new Socket("localhost",1234);
+
+    public static void reqImage(String imageName) throws Exception {
+        server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
-        toServer.writeObject(new String("Image"+" "+imageName));
-        File file =new File (System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName);
+        toServer.writeObject(new String("Image" + " " + imageName));
+        File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + imageName);
         InputStream is = server.getInputStream();
-        if(!file.exists())
-        {
+        if (!file.exists()) {
             BufferedImage image = ImageIO.read(is);
             ImageIO.write(image, imageName, file);
         }
         server.close();
     }
-    
-    public static void showMarket(ArrayList<ActiveProduct> product,VBox vbox)
-    {
-        for(ActiveProduct a : product)
-        {
-           Image image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+a.getProduct().getImageName());
-           String name =  a.getProduct().getName();
-           String description = a.getProduct().getDescription();
-           Double currentBid = a.getCurrentBid();
-           Pane pane = new Pane(new ImageView(image),new Label(name), new Label(description),new Label(currentBid.toString()));
-                
-           
-           vbox.getChildren().add(pane);
+
+    public static void showMarket(ArrayList<ActiveProduct> product, VBox vbox) {
+        for (ActiveProduct a : product) {
+            Image image = new Image(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + a.getProduct().getImageName());
+            String name = a.getProduct().getName();
+            String description = a.getProduct().getDescription();
+            Double currentBid = a.getCurrentBid();
+            Pane pane = new Pane(new ImageView(image), new Label(name), new Label(description), new Label(currentBid.toString()));
+
+            vbox.getChildren().add(pane);
 
         }
     }
-    public static void filter(String filter)
-    {
+
+    public static void filter(String filter) {
         filteredProduct.clear();
-        
-        for(ActiveProduct a : unfilteredProduct)
-        {
-            if(a.getProduct().getCatagory().matches(filter))
-            {
+
+        for (ActiveProduct a : unfilteredProduct) {
+            if (a.getProduct().getCatagory().matches(filter)) {
                 filteredProduct.add(a);
             }
         }
-        
+
     }
 }
 /*public class NewClient extends Application
@@ -251,4 +241,4 @@ public class NewClient
 
 }
 }
-*/
+ */
