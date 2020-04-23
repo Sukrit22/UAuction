@@ -292,7 +292,7 @@ public class ButtonEvent {
                 System.out.println(ex.getMessage());
             }
             NewClient.filteredProduct.forEach(j -> {
-                CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(NewClient.filteredProduct.get(NewClient.filteredProduct.indexOf(j)).getProduct().getName(), NewClient.filteredProduct.get(NewClient.filteredProduct.indexOf(j)).getProduct().getDescription(), NewClient.filteredProduct.get(NewClient.filteredProduct.indexOf(j)).getCurrentBid(), NewClient.filteredProduct.get(NewClient.filteredProduct.indexOf(j)).getProduct().getItemId()));
+                CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(j.getProduct().getName(), j.getProduct().getDescription(), j.getCurrentBid(), j.getProduct().getItemId()));
             });
             CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(NewClient.filteredProduct.get(i).getProduct().getName(), "", 20.d, 1));
             if (CategorisePane.vboxArray.get(i).getChildren().isEmpty()) {
