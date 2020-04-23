@@ -272,6 +272,7 @@ public class ButtonEvent {
         EventHandler<MouseEvent> notifiBack = (MouseEvent ActionEvent) -> {
             System.out.println("Notifi");
             SceneHomeUnLogIn.getStackPane().getChildren().remove(Notifications.pane);
+            CreateButton.buttonBellHomeEff.setVisible(false);
         };
         Notifications.pane.setOnMouseClicked(notifiBack);
 
