@@ -140,9 +140,11 @@ public class ButtonEvent {
         EventHandler<ActionEvent> add = (ActionEvent ActionEvent) -> {
             System.out.println("Add from MyACC");
             Date end = Date.from((AddProduct.datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            long hour = (long) AddProduct.comboBoxHour.getItems().indexOf(AddProduct.comboBoxHour.getValue());
-            hour = hour * 60 * 60 * 1000;
-            if (AddProduct.comboBoxAmPm.getItems().indexOf(AddProduct.comboBoxAmPm.getValue()) == 1) {
+            long hour = Long.parseLong((String) AddProduct.comboBoxHour.getValue());
+            if(hour == 12)
+                hour = 0;
+            hour = hour * 60 * 60 * 1000; //milliseconds
+            if (AddProduct.comboBoxAmPm.getI) {
                 hour += (long) (43200000);
             }
             end.setTime((long) (end.getTime() + hour));

@@ -29,11 +29,11 @@ public class NewServer {
         try {
             server = new ServerSocket(1234);
             System.out.println("Server Started..........");
-            while(true){
-            client = server.accept();
-            System.out.println("Client connected....");
-            new server(client);
-            //client.close();
+            while (true) {
+                client = server.accept();
+                System.out.println("Client connected....");
+                new server(client);
+                //client.close();
             }
 
         } catch (Exception e) {
@@ -61,11 +61,11 @@ class server implements Runnable {
     }
 
     public void run() {
-        
+
         try {
             InputStreamReader isr = new InputStreamReader(client.getInputStream());
             BufferedReader fromClient = new BufferedReader(isr);
-            
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -87,6 +87,7 @@ class server implements Runnable {
                     objectToClient.flush();
                     objectToClient.close();
                     isClose = true;
+                    reqFromClient.close();
                     client.close();
                     System.out.println("");
                 } else if (keyword[0].matches("Register"))//done
@@ -96,6 +97,7 @@ class server implements Runnable {
                     objectToClient.flush();
                     objectToClient.close();
                     isClose = true;
+                    reqFromClient.close();
                     client.close();
                 } else if (keyword[0].matches("Market"))//done
                 {
@@ -105,6 +107,7 @@ class server implements Runnable {
                     objectToClient.flush();
                     objectToClient.close();
                     isClose = true;
+                    reqFromClient.close();
                     client.close();
 
                 } else if (keyword[0].matches("Image"))//done
@@ -117,18 +120,24 @@ class server implements Runnable {
                     os.flush();
                     os.close();
                     isClose = true;
+                    reqFromClient.close();
                     client.close();
 
                 } else if (keyword[0].matches("RegisterProduct"))//done
                 {
+                    reqFromClient.close();
+                    ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
+                    Object obj = ois.readObject();
+                    Product product = (Product)obj;
+                    BufferedImage bufIm = ImageIO.read(ois);
+                    
 
-                    ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());
-                    ImPr impr = (ImPr) objectFromClient.readObject();
-                    ManageProduct.registerProduct(impr.getProduct());
-                    ManageProduct.registerImage(impr.getImage(), impr.getProduct().getImageName());
-                    isClose = true;
-                    client.close();
-
+//                    ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());
+//                    ImPr impr = (ImPr) objectFromClient.readObject();
+//                    ManageProduct.registerProduct(impr.getProduct());
+//                    ManageProduct.registerImage(impr.getImage(), impr.getProduct().getImageName());
+//                    isClose = true;
+//                    client.close();
                 } else if (keyword[0].matches("LoadProduct")) {
 
                     ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
@@ -138,6 +147,7 @@ class server implements Runnable {
                     objectToClient.flush();
                     objectToClient.close();
                     isClose = true;
+                    reqFromClient.close();
                     client.close();
 
                 } else if (keyword[0].matches("Bid")) {
@@ -147,10 +157,11 @@ class server implements Runnable {
                     Database.activeProduct.get(indexOfActiveProduct).addBiddingHistory(keyword[3]);
                     //=========================== undone =======================
                     isClose = true;
+                    reqFromClient.close();
                     client.close();
                 }
             } catch (Exception e) {
-                System.out.println("Exception1 " +e.getMessage());
+                System.out.println("Exception1 " + e.getMessage());
             }
         }
 

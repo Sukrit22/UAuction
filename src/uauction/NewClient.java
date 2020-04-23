@@ -92,18 +92,34 @@ public class NewClient {
         return a;
     }
 
-    public static void reqRegisterProduct(Product product, BufferedImage image) throws IOException {
+    public static Object reqRegisterProduct(Product product, BufferedImage image) throws IOException {
         server = new Socket(localhost, 1234);
-        ImPr impr = new ImPr(product, image);
+        //ImPr impr = new ImPr(product, image);
 
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
-        toServer.writeObject(new String("RegisterProduct" + " "));
+        toServer.writeObject(new String("RegisterProduct"));
         toServer.flush();
-        ObjectOutputStream toServer2 = new ObjectOutputStream(server.getOutputStream());
-        toServer2.writeObject(impr);
-        toServer2.flush();
-        toServer2.close();
+        toServer.writeObject(product);
+        toServer.flush();
+        toServer.close();
+        ObjectOutputStream os = new ObjectOutputStream(server.getOutputStream());
+        ImageIO.write(image, "jpg", os);
+        os.flush();
+        os.close();
+        
+        ObjectInputStream oi = new ObjectInputStream(server.getInputStream());
+        
+        //ObjectOutputStream toServer2 = new ObjectOutputStream(server.getOutputStream());
+        //toServer2.writeObject(impr);
+        //toServer2.flush();
+        //toServer2.close();
         server.close();
+        try {
+            return oi.readObject();
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return "class no found??";
+        }
     }
 
     public static Object reqProduct(String fileName/*product.getFilename()*/) throws Exception {
