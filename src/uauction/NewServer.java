@@ -131,17 +131,19 @@ class server implements Runnable {
                 objectToClient.writeObject(Accountant.login(keyword[1], keyword[2])); //GGGG
                 objectToClient.flush();
                 objectToClient.close();
-                isClose = true;
+//                isClose = true;
                 reqFromClient.close();
                 client.close();
                 System.out.println("");
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
+                System.out.println("IOServerLogin");
             } finally {
                 try {
                     objectToClient.close();
                 } catch (IOException ex) {
                 System.out.println(ex.getMessage());
+                    System.out.println("IOServerLogin2");
                 }
             }
         } else if (keyword[0].matches("Register"))//done

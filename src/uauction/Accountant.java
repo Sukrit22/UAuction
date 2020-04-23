@@ -34,23 +34,30 @@ public class Accountant {
            } 
            catch (IOException ex) {
                System.out.println(ex.getMessage());
+               System.out.println("IO GG Isus");
                return "try again later";
            }
         } catch(FileNotFoundException ex) {
             System.out.println(ex.getMessage());
+            System.out.println("FileNo Account");
             return "there is no username matched";
         }
         try {
             user = (User)input.readObject();
+            reader.close();
+            input.close();
             System.out.println("load user to be checked success");
             if(password.equals(user.password)) {
                 return user;
             }
         } catch(IOException ex) {
+            System.out.println(ex.getMessage());
             System.out.println("can not read the Object");
+            System.out.println("IO Accountant");
             return "try again later";
         } catch(ClassNotFoundException ex) {
             System.out.println("can not find the class");
+            System.out.println("ClassNo Accountant");
             return "try again later";
         }
         return "error"; // this line mean unexpected error has occured

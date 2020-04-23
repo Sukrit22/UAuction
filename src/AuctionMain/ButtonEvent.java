@@ -57,16 +57,20 @@ public class ButtonEvent {
             } else {
                 try {
                     obj = NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
+                    System.out.println("login done");
                 } catch (IOException ex) {
-                    Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex.getMessage());
+                    System.out.println("IOEvnBt");
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex.getMessage());
+                    System.out.println("ClassNot EvnBt");
                 }
 
                 if (obj.getClass().equals((new User()).getClass())) {
                     NewClient.user = (User) obj;
                     loginPop = true;
                 } else if (obj.getClass().equals("".getClass())) {
+                    System.out.println("login get String");
                     loginPop = false;
                 } else {
                     System.out.println("อะไรกันแน่วะไอสัส");
@@ -136,7 +140,7 @@ public class ButtonEvent {
             Object obj = new Object();
             PopUp.passwordNotSamePane.setVisible(false);
             PopUp.emailUsedPane.setVisible(false);
-            if (!CreateTextField.userName.getText().isEmpty() || !CreateTextField.password.getText().isEmpty() || !CreateTextField.passwordC.getText().isEmpty()) {
+            if (CreateTextField.userName.getText().isEmpty() || CreateTextField.password.getText().isEmpty() || CreateTextField.passwordC.getText().isEmpty()) {
                 PopUp.passwordNotSamePane.setVisible(true);
             } else {
                 if (CreateTextField.password.getText().equals(CreateTextField.passwordC.getText())) {

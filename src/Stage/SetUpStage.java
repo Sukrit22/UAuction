@@ -24,7 +24,7 @@ public class SetUpStage {
         StageStorage.Auction.setMaxHeight(1080);
         StageStorage.Auction.setMinWidth(1920);
         StageStorage.Auction.setMinHeight(1080);
-        if(Boolean.TRUE){
+        if(Boolean.FALSE){
             //StageStorage.Auction.setX(100);
             //StageStorage.Auction.setY(200);
             StageStorage.Auction.setMaximized(true);
