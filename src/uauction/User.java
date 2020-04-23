@@ -87,12 +87,12 @@ public class User implements Serializable {
         this.balance -= cash;
     }
     //Methods
-    boolean canBuy(){
+    public boolean canBuy(){
         if (userPermission.equals(Permission.seller)||userPermission.equals(Permission.both))
             return true;
         return false;
     }
-    boolean canSell(){
+    public boolean canSell(){
         if (userPermission.equals(Permission.seller)||userPermission.equals(Permission.both))
             return true;
         return false;
