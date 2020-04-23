@@ -174,8 +174,10 @@ public class NewClient
            String description = a.getProduct().getDescription();
            Double currentBid = a.getCurrentBid();
            Pane pane = new Pane(new ImageView(image),new Label(name), new Label(description),new Label(currentBid.toString()));
-       
+                
+           
            vbox.getChildren().add(pane);
+
         }
     }
     public static void filter(String filter)

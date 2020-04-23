@@ -53,6 +53,7 @@ public class ProductPaneInVbox {
         btnView.setLayoutY(200 - 40);
         btnView.setMinSize(200, 25);
         PopUpProduct.createpopUpBackground(str);
+        //=========================== อาจจะต้องรีเควสไอเทมชิ้นนั้น =======================
         EventHandler<ActionEvent> ev = (ActionEvent ActionEvent) -> {
             //Do code here
             System.out.println("popUpItem");
@@ -60,6 +61,7 @@ public class ProductPaneInVbox {
             timeUpdate = new Thread(new Runnable() {
                 boolean enough = false;
 
+                //=========================== เวลาที่น่าจะยังไม่เสร็จ =======================
                 @Override
                 public void run() {
                     SimpleDateFormat dt = new SimpleDateFormat("hh:mm:ss");
@@ -89,12 +91,14 @@ public class ProductPaneInVbox {
 
         String b = String.format("%04d", countIDAllProduct++).substring(0, 4);
         //=========================== ต้องรับเข้ามา =======================
+        //เป้น Item id
         item = new Text(time + b);
         item.setFont(font);
         item.setLayoutX(300 - 25);
         item.setLayoutY(50);
 
         //=========================== ตัวนี้ต้องรับเข้า =======================
+        //รับ String มาตั้งเป็น ชื่อสินค้า
         title = new Text("Subaru WRX STI GDB 2015"); 
         if (!str.isEmpty()) {
             title.setText(str);
@@ -103,6 +107,7 @@ public class ProductPaneInVbox {
         title.setLayoutX(500 - 15);
         title.setLayoutY(50);
 //===========================ตัวนี้ต้องรับเข้ามา =======================
+    //รับ double เข้ามาตั้งราคา format price+"Baht"
         price = new Text("12300.00 Baht");
         price.setFont(font);
         price.setLayoutX(1300 - 15);
