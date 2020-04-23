@@ -44,14 +44,18 @@ public class ButtonEvent {
             
             System.out.println("buttonPopUpLogIn");
             Object obj = null;
+            
             try {
                 obj =  NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
+                //obj =  NewClient.reqLogin("asdasdasdasd","asdasdasdasd");
             } catch (IOException ex) {
                 Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+            
+           
             if(obj.getClass().equals((new User()).getClass())){
                 NewClient.user = (User)obj;
                 loginPop = true;

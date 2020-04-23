@@ -24,6 +24,7 @@ Socket client;
 
 public NewServer()
 {
+    
     try
     {
         server = new ServerSocket(1234);
@@ -46,6 +47,7 @@ public NewServer()
         
         Thread updateThread = new Thread(new Update());
         updateThread.wait(3_600_000);
+        //updateThread.notifyAll();
     }
 }
 
@@ -74,6 +76,7 @@ public NewServer()
            
            while(true){
               String clientInput = (String)reqFromClient.readObject();
+              //String clientInput = fromClient.readLine();
               String[] keyword = clientInput.split("\\s+");
               for (int i = 0; i < keyword.length; i++) {
             keyword[i] = keyword[i].replaceAll("[^\\w]", ""); //replace " " with ""
@@ -150,7 +153,7 @@ public NewServer()
 
 
 
-
+/*
 class Send implements Runnable
 {
     Socket client;
@@ -166,8 +169,8 @@ class Send implements Runnable
             PrintWriter pw = new PrintWriter(client.getOutputStream(),true);
             pw.println();
         } catch (IOException ex) { }
-        /*InputStreamReader isr=new InputStreamReader(System.in);
-        BufferedReader br=new BufferedReader(isr);*/
+        //InputStreamReader isr=new InputStreamReader(System.in);
+        //BufferedReader br=new BufferedReader(isr);
         try
         {
             
@@ -178,7 +181,7 @@ class Send implements Runnable
         }
     }
 }
-
+*/
 
 class Update implements Runnable{
     //Constructor

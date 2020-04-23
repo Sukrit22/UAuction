@@ -39,20 +39,23 @@ public class GreetingClient
         {
             Socket client = new Socket(serverName, port);
             //OutputStream os = client.getOutputStream();
-            
+             ObjectOutputStream toServer = new ObjectOutputStream(client.getOutputStream());
+        toServer.writeObject(new String("Register" + " " + "hahaha" + " " + "hohoho"));
+        toServer.flush();
+        toServer.close();
           
            //ImageOutputStream os = new ImageOutputStream(client.getOutputStream());
-           ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());
-           os.writeObject(new String("Hello")); 
+           //ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());
+           //os.writeObject(new String("Hello")); 
           // BufferedImage image = ImageIO.read(new File("C:/TestPic4.jpg"));
            //ImageIO.write(image,"jpg", os);
              
-           os.flush();
-           ObjectOutputStream os2 = new ObjectOutputStream(client.getOutputStream());
-           os2.writeObject(new String("Hi")); 
-           os2.flush();
+           //os.flush();
+           //ObjectOutputStream os2 = new ObjectOutputStream(client.getOutputStream());
+           //os2.writeObject(new String("Hi")); 
+          // os2.flush();
            
-           os.close();
+           //os.close();
            
             
         } catch(Exception w) {

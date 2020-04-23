@@ -9,6 +9,7 @@ import Function.MyFunction;
 import Stage.SetUpStage;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import uauction.NewServer;
 
 /**
  *
@@ -22,7 +23,9 @@ public class AuctionMain extends Application {
     public static void main(String[] args) {
         // TODO code application logic here
         runTime.timer.start();
+        
         launch(args);
+       
         System.exit(0);
     }
 
@@ -31,6 +34,8 @@ public class AuctionMain extends Application {
 
         MyFunction.inti();
         SetUpStage.getStage().show();
+        
+        
 
     }
 

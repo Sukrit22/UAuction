@@ -57,14 +57,25 @@ public class GreetingServer extends Thread
                   
                   String first;
                    ObjectInputStream os = new ObjectInputStream(server.getInputStream());
+                   
+                    String clientInput = (String)os.readObject();
+              //String clientInput = fromClient.readLine();
+              String[] keyword = clientInput.split("\\s+");
+              for (int i = 0; i < keyword.length; i++) {
+            keyword[i] = keyword[i].replaceAll("[^\\w]", ""); //replace " " with ""
+        }
+               System.out.println("Client : "+clientInput);
                    //System.out.println("Client : " + (String)os.readObject() );
                    
-                   first = (String)os.readObject();
                    
-                   if(first.matches("Hello"))
+                   
+                   System.out.println(keyword[0]);
+                   System.out.println(keyword[1]);
+                   System.out.println(keyword[2]);
+                   
+                   if(keyword[0].matches("Register"))
                    {
-                       ObjectInputStream os2 = new ObjectInputStream(server.getInputStream());
-                        System.out.println("Client : " + (String)os2.readObject() );
+                       System.out.println("wtf");
                    }
                    //BufferedImage bf =  ImageIO.read(new File("C:/TestPic9.jpg"));
                        

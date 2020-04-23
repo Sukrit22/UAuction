@@ -31,7 +31,7 @@ import javax.imageio.ImageIO;
 public class NewClient 
 {
     
-    static Socket server;
+    static Socket server = null;
     public static User user;
     
     
@@ -56,28 +56,30 @@ public class NewClient
     
     public static Object reqLogin(String username,String password) throws IOException, ClassNotFoundException
     { 
-        server = new Socket("171.6.209.126",1233);
+        //server = new Socket("171.6.209.126",1233);
+        server = new Socket("localhost",1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Login" + " " + username + " " + password));
         //PrintWriter toServer = new PrintWriter(server.getOutputStream(),true);
-        //toServer.println("Login"+" "+username+" "+password);
+       // toServer.println("Login"+" "+username+" "+password);
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
-        server.close();
+        
+       // return null;
         return fromServer.readObject();
         
     }
     
     public static Object reqRegister(String username,String password) throws IOException, ClassNotFoundException
     {
-        server = new Socket("171.6.209.126",1233);
+        
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Register" + " " + username + " " + password));
         toServer.flush();
         toServer.close();
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
-         server.close();
+         
         return fromServer.readObject();
     }
     public static void reqRegisterProduct (Product product,BufferedImage image) throws IOException
