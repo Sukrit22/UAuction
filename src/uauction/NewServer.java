@@ -70,10 +70,22 @@ class server implements Runnable {
             System.out.println(e.getMessage());
         }
         boolean isClose = false;
-        while (!isClose) {
-            try {
-                ObjectInputStream reqFromClient = new ObjectInputStream(client.getInputStream());
-                String clientInput = (String) reqFromClient.readObject();
+        //while (!isClose) {
+            //try {
+                ObjectInputStream reqFromClient = null;
+        try {
+            reqFromClient = new ObjectInputStream(client.getInputStream());
+        } catch (IOException ex) {
+            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                String clientInput = null;
+        try {
+            clientInput = (String) reqFromClient.readObject();
+        } catch (IOException ex) {
+            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 //String clientInput = fromClient.readLine();
                 String[] keyword = clientInput.split("\\s+");
                 for (int i = 0; i < keyword.length; i++) {
@@ -82,92 +94,152 @@ class server implements Runnable {
                 System.out.println("Client : " + clientInput);
                 if (keyword[0].matches("Login"))//done
                 {
-                    ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
-                    objectToClient.writeObject(Accountant.login(keyword[1], keyword[2])); //GGGG
-                    objectToClient.flush();
+                    ObjectOutputStream objectToClient = null;
+            try {
+                objectToClient = new ObjectOutputStream(client.getOutputStream());
+                objectToClient.writeObject(Accountant.login(keyword[1], keyword[2])); //GGGG
+                objectToClient.flush();
+                objectToClient.close();
+                isClose = true;
+                reqFromClient.close();
+                client.close();
+                System.out.println("");
+            } catch (IOException ex) {
+                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
                     objectToClient.close();
-                    isClose = true;
-                    reqFromClient.close();
-                    client.close();
-                    System.out.println("");
+                } catch (IOException ex) {
+                    Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                 } else if (keyword[0].matches("Register"))//done
                 {
-                    ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
-                    objectToClient.writeObject(Accountant.register(keyword[1], keyword[2]));
-                    objectToClient.flush();
+                    ObjectOutputStream objectToClient = null;
+            try {
+                objectToClient = new ObjectOutputStream(client.getOutputStream());
+                objectToClient.writeObject(Accountant.register(keyword[1], keyword[2]));
+                objectToClient.flush();
+                objectToClient.close();
+                isClose = true;
+                reqFromClient.close();
+                client.close();
+            } catch (IOException ex) {
+                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
                     objectToClient.close();
-                    isClose = true;
-                    reqFromClient.close();
-                    client.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                 } else if (keyword[0].matches("Market"))//done
                 {
 
-                    ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
-                    objectToClient.writeObject(Database.activeProduct);
-                    objectToClient.flush();
+                    ObjectOutputStream objectToClient = null;
+            try {
+                objectToClient = new ObjectOutputStream(client.getOutputStream());
+                objectToClient.writeObject(Database.activeProduct);
+                objectToClient.flush();
+                objectToClient.close();
+                isClose = true;
+                reqFromClient.close();
+                client.close();
+            } catch (IOException ex) {
+                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
                     objectToClient.close();
-                    isClose = true;
-                    reqFromClient.close();
-                    client.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
 
                 } else if (keyword[0].matches("Image"))//done
                 {
 
-                    File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + keyword[1]);
-                    BufferedImage image = ImageIO.read(file);
-                    OutputStream os = client.getOutputStream();
-                    ImageIO.write(image, "jpg", os);
-                    os.flush();
-                    os.close();
-                    isClose = true;
-                    reqFromClient.close();
-                    client.close();
+            try {
+                File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + keyword[1]);
+                BufferedImage image = ImageIO.read(file);
+                OutputStream os = client.getOutputStream();
+                ImageIO.write(image, "jpg", os);
+                os.flush();
+                os.close();
+                isClose = true;
+                reqFromClient.close();
+                client.close();
+            } catch (IOException ex) {
+                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
                 } else if (keyword[0].matches("RegisterProduct"))//done
                 {
-                    ServerSocket forImage = new ServerSocket(1235);
-                    Object obj = reqFromClient.readObject();
-                    Product product = (Product)obj;
-                    reqFromClient.close();
-                    client.close();
-                    
-                    Socket forImageSocket = forImage.accept();
-                    BufferedImage bufIm = ImageIO.read(forImageSocket.getInputStream());
-                    ManageProduct.registerProduct(product, bufIm);
-                    
-
+            try {
+                ServerSocket forImage = new ServerSocket(1235);
+                Object obj = reqFromClient.readObject();
+                Product product = (Product)obj;
+                reqFromClient.close();
+                client.close();
+                System.out.println("close1 and about to accept 2");
+                Socket forImageSocket = forImage.accept();
+                System.out.println("accept 2");
+                BufferedImage bufIm = ImageIO.read(forImageSocket.getInputStream());
+                System.out.println("ImageIO read");
+                ManageProduct.registerProduct(product, bufIm);
+                
+                
 //                    ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());
 //                    ImPr impr = (ImPr) objectFromClient.readObject();
 //                    ManageProduct.registerProduct(impr.getProduct());
 //                    ManageProduct.registerImage(impr.getImage(), impr.getProduct().getImageName());
 //                    isClose = true;
 //                    client.close();
+            } catch (IOException ex) {
+                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 } else if (keyword[0].matches("LoadProduct")) {
 
-                    ObjectOutputStream objectToClient = new ObjectOutputStream(client.getOutputStream());
-                    OutputStream os = client.getOutputStream();
-                    Product product = SaveAndLoad.loadProduct(keyword[1]);
-                    objectToClient.writeObject(product);
-                    objectToClient.flush();
+                    ObjectOutputStream objectToClient = null;
+            try {
+                objectToClient = new ObjectOutputStream(client.getOutputStream());
+                OutputStream os = client.getOutputStream();
+                Product product = SaveAndLoad.loadProduct(keyword[1]);
+                objectToClient.writeObject(product);
+                objectToClient.flush();
+                objectToClient.close();
+                isClose = true;
+                reqFromClient.close();
+                client.close();
+            } catch (IOException ex) {
+                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
                     objectToClient.close();
-                    isClose = true;
-                    reqFromClient.close();
-                    client.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
 
                 } else if (keyword[0].matches("Bid")) {
 
-                    int indexOfActiveProduct = Database.activeProduct.indexOf(keyword[1]);
-                    Database.activeProduct.get(indexOfActiveProduct).setCurrentBid(Double.parseDouble(keyword[2]));
-                    Database.activeProduct.get(indexOfActiveProduct).addBiddingHistory(keyword[3]);
-                    //=========================== undone =======================
-                    isClose = true;
-                    reqFromClient.close();
-                    client.close();
-                }
-            } catch (Exception e) {
-                System.out.println("Exception1 " + e.getMessage());
+            try {
+                int indexOfActiveProduct = Database.activeProduct.indexOf(keyword[1]);
+                Database.activeProduct.get(indexOfActiveProduct).setCurrentBid(Double.parseDouble(keyword[2]));
+                Database.activeProduct.get(indexOfActiveProduct).addBiddingHistory(keyword[3]);
+                //=========================== undone =======================
+                isClose = true;
+                reqFromClient.close();
+                client.close();
+            } catch (IOException ex) {
+                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+                }
+//            } catch (Exception e) {
+//                System.out.println("Exception1 " + e.getMessage());
+//            }
+        //}
 
     }
 }

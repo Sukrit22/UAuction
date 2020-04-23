@@ -32,9 +32,11 @@ public class PopUp {
     static public Pane incorrecypassPane = new Pane();
     static public Pane emailUsedPane = new Pane();
     static public Pane passwordNotSamePane = new Pane();
+    static public Pane chooseNewPicPane = new Pane();
     private static final Label incorrecypass = new Label("*Maybe your Username or Password is incorrect*");
     private static final Label emailUsed = new Label("*This Username Alread Used*");
     private static final Label passwordNotSame = new Label("*Your Passwords are not match*");
+    private static final Label chooseNewPic = new Label("*Please choose picture again*");
 
     static public void setUpPopUp(){
         popUp();
@@ -51,6 +53,17 @@ public class PopUp {
 
     }
 
+    static private void chooseNewPic() {
+        Font font = new Font(16);
+        chooseNewPic.setFont(font);
+        chooseNewPic.setStyle("-fx-focus-color:rgba( 2, 2, 2, 1.0); -fx-text-fill:rgba( 255, 0, 0, 1.0); -fx-faint-focus-color:rgba( 0, 255, 0, 0.0) ; -fx-inner-border:rgba( 255, 0, 0, 1.0); -fx-body-color:rgba( 255, 255, 255, 1.0); -fx-font-size: 20px;");
+        chooseNewPicPane.setLayoutX(80);
+        chooseNewPicPane.setLayoutY(160 + 48 + 48 + 48 + 48 + 12);
+        chooseNewPic.setMinWidth(600 - 160);
+        chooseNewPicPane.getChildren().add(chooseNewPic);
+        chooseNewPicPane.setVisible(false);
+    }
+    
     static private void incorrectPasswrod() {
 
         Font font = new Font(16);
@@ -143,7 +156,7 @@ public class PopUp {
         CreateTextField.passwordC.setLayoutY(160 + 48 + 48 + 48);
         CreateTextField.passwordC.setMinWidth(600 - 160);
 
-        pane1 = new Pane(popUpRectangleShape, CreateTextField.userName, CreateTextField.password, CreateTextField.passwordC, paneLogIn, CreateButton.buttonPopUpLogIn, paneSignUp, CreateButton.buttonPopSwitchToSignUp, CreateButton.buttonPopUpSwitchToLogIn, incorrecypassPane, CreateButton.buttonPopUpRegister , emailUsedPane, passwordNotSamePane);
+        pane1 = new Pane(popUpRectangleShape, CreateTextField.userName, CreateTextField.password, CreateTextField.passwordC, paneLogIn, CreateButton.buttonPopUpLogIn, paneSignUp, CreateButton.buttonPopSwitchToSignUp, CreateButton.buttonPopUpSwitchToLogIn, incorrecypassPane, CreateButton.buttonPopUpRegister , emailUsedPane, passwordNotSamePane,chooseNewPicPane);
         pane1.setMaxWidth(600);
         pane1.setMaxHeight(460);
 

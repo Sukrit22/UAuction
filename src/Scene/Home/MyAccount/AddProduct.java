@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.lang.System.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -28,11 +29,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -117,9 +120,15 @@ public class AddProduct {
             Stage stage = new Stage();
             File file = fileChooser.showOpenDialog(stage);
             if(file.exists()&&!file.isDirectory()){
-                filePath = file;
-                pathAdded = false;
-                PopUp.incorrecypassPane.setVisible(false);
+                    filePath = file;
+                    pathAdded = false;
+                PopUp.chooseNewPicPane.setVisible(false);
+                try {
+                    pic.setFill(new ImagePattern(SwingFXUtils.toFXImage(ImageIO.read(file), null)));
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                    System.out.println("fail from AddProduct pic.setFill");
+                }
             }
             System.out.println(file.toString());
             //Image image = new Image(file.toString());

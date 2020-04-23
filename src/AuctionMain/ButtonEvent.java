@@ -158,22 +158,16 @@ public class ButtonEvent {
                 //miniBid and StartBid is number
                 Product product = new Product(name, AddProduct.productDescription.getText(), AddProduct.getSelectText().getText(), Double.parseDouble(AddProduct.startBid.getText()), Double.parseDouble(AddProduct.minimumBid.getText()), end);
 
-                BufferedImage image = SwingFXUtils.fromFXImage(new Image("file:///"+System.getProperty("user.dir")+"/src/Picture/noimg.jpg"), null);
+                BufferedImage image = SwingFXUtils.fromFXImage(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/noimg.jpg"), null);
                 try {
                     image = ImageIO.read(AddProduct.filePath);
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                     System.out.println("อ่านรูปก่อนรีจิสโพรดักไม่ได้ว่ะ");
                 }
-                try {
-                    NewClient.reqRegisterProduct(product, image);
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                    System.out.println("at reqRegis at ButtonEvent");
-                }
-            }
-            else{
-                //บอกว่าเลือก รูปใหม่
+                NewClient.reqRegisterProduct(product, image);
+            } else {
+                PopUp.chooseNewPicPane.setVisible(true);
             }
 
             //CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1("productName" , "dis", 125.00, ProductPaneInVbox.countIDAllProduct));

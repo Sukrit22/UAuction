@@ -94,29 +94,34 @@ public class NewClient {
         return a;
     }
 
-    public static void reqRegisterProduct(Product product, BufferedImage image) throws IOException {
-        server = new Socket(localhost, 1234);
-        //ImPr impr = new ImPr(product, image);
-
-        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
-        toServer.writeObject(new String("RegisterProduct"));
-        toServer.flush();
-        toServer.writeObject(product);
-        toServer.flush();
-        toServer.close();
-        server.close();
-        
-        server = new Socket(localhost,1234);
-        OutputStream os = server.getOutputStream();
-        ImageIO.write(image, "jpg", os);
-        os.flush();
-        os.close();
-        server.close();
-        
-        //ObjectOutputStream toServer2 = new ObjectOutputStream(server.getOutputStream());
-        //toServer2.writeObject(impr);
-        //toServer2.flush();
-        //toServer2.close();
+    public static void reqRegisterProduct(Product product, BufferedImage image) {
+        try {
+            server = new Socket(localhost, 1234);
+            //ImPr impr = new ImPr(product, image);
+            
+            ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+            toServer.writeObject(new String("RegisterProduct"));
+            toServer.flush();
+            toServer.writeObject(product);
+            toServer.flush();
+            toServer.close();
+            server.close();
+            
+            server = new Socket(localhost,1235);
+            OutputStream os = server.getOutputStream();
+            ImageIO.write(image, "jpg", os);
+            os.flush();
+            os.close();
+            server.close();
+            
+            //ObjectOutputStream toServer2 = new ObjectOutputStream(server.getOutputStream());
+            //toServer2.writeObject(impr);
+            //toServer2.flush();
+            //toServer2.close();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("เกิด error ในreq");
+        }
 
     }
 
