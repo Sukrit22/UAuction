@@ -30,6 +30,10 @@ public final class Product implements java.io.Serializable {
     private String imageName=null;
     private String myOwnerName;
 
+    public void setMyOwnerName(String myOwnerName) {
+        this.myOwnerName = myOwnerName;
+    }
+
     public String getMyOwnerName() {
         return myOwnerName;
     }
