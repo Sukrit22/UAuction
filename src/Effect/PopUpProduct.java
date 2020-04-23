@@ -5,10 +5,15 @@
  */
 package Effect;
 
+import AuctionMain.runTime;
 import Scene.Home.SceneHomeUnLogIn;
+import Scene.ProductPaneInVbox;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -30,41 +35,73 @@ public class PopUpProduct {
     static private Rectangle pic;
     static private Label name;
     static public Button btnMoreDetail;
+    static public Button btnBid;
+    static public TextField yourBid;
     static private Text productName;
     static private Text price;
     static private Text timeLeft;
+
+    public static Text getProductName() {
+        return productName;
+    }
+
+    public static Text getPrice() {
+        return price;
+    }
+
+    public static Text getTimeLeft() {
+        return timeLeft;
+    }
+
+    public static Text getMinimumBid() {
+        return minimumBid;
+    }
     static private Text minimumBid;
 
-    static public void createpopUpBackground() {
-        
+    static public StackPane createpopUpBackground(String str) {
+
         Font font = new Font(24);
-        
-        productName = new Text("Product Name\n    Hello World");
+
+        productName = new Text("Product Name\n    " + str);
         productName.setFont(font);
-        productName.setLayoutX(450+40);
-        productName.setLayoutY(20+40);
-        
-        price = new Text("Current Price\n    123 Baht");
+        productName.setLayoutX(450 + 40);
+        productName.setLayoutY(20 + 40);
+
+        price = new Text("Current Price\n    ");
         price.setFont(font);
-        price.setLayoutX(450+40);
-        price.setLayoutY(60+48+48);
-                
-        timeLeft = new Text("Time Left\n    12 HR 12 Min");
+        price.setLayoutX(450 + 40);
+        price.setLayoutY(60 + 48 + 48);
+
+        SimpleDateFormat minDT = new SimpleDateFormat("ddMMyyyyhhmmss");
+        long minI = Long.parseLong(minDT.format(new Date()));
+        System.out.println(minDT.format(new Date()));
+        Label test1 = new Label(minDT.format(new Date()));
+        Label test2 = new Label(minDT.format(new Date()));
+
+        runTime.textArrayforCal.add(test1);
+        runTime.textArray.add(test2);
+        //runTime.textArray.get(0).setLayoutY(20);
+        
+        timeLeft = new Text("Time Left");
         timeLeft.setFont(font);
-        timeLeft.setLayoutX(450+40);
-        timeLeft.setLayoutY(60+48+48+48+48);
+        timeLeft.setLayoutX(450 + 40);
+        timeLeft.setLayoutY(60 + 48 + 48 + 48 + 48);
         
-        minimumBid = new Text("Minimum Bid\n    30 Baht");
+
+        runTime.textArray.get(0).setFont(font);
+        runTime.textArray.get(0).setLayoutX(450 + 40);
+        runTime.textArray.get(0).setLayoutY(60 + 48 + 48 + 48 + 48 + 24);
+
+        minimumBid = new Text("Minimum Bid\n    ");
         minimumBid.setFont(font);
-        minimumBid.setLayoutX(450+40);
-        minimumBid.setLayoutY(60+48+48+48+48+48+48);
-        
-        
+        minimumBid.setLayoutX(450 + 40);
+        minimumBid.setLayoutY(60 + 48 + 48 + 48 + 48 + 48 + 48);
+
         btnMoreDetail = new Button("More Details");
         btnMoreDetail.setLayoutX(40);
         btnMoreDetail.setLayoutY(350);
         btnMoreDetail.setMinSize(400, 30);
-                
+
         recBGPopUp = new Rectangle();
         recBGPopUp.setWidth(800);
         recBGPopUp.setHeight(600);
@@ -75,12 +112,13 @@ public class PopUpProduct {
         recBGFade = new Rectangle();
         recBGFade.setWidth(1920);
         recBGFade.setHeight(1080);
-        recBGFade.setFill(Color.web("rgba( 0, 0, 0,0.5)"));
+        recBGFade.setFill(Color.web("rgba( 0, 0, 0,0.9)"));
 
         EventHandler<MouseEvent> mcc = (MouseEvent ActionEvent) -> {
             //Do code here
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUpProduct.getStackPane());
             System.out.println("Click");
+            ProductPaneInVbox.timeUpdate.stop();
 
         };
         recBGFade.setOnMouseClicked(mcc);
@@ -93,10 +131,12 @@ public class PopUpProduct {
         name.setLayoutY(20);
 
         //Pane fadePane = new Pane(recBGFade);
-        panepane.getChildren().addAll(recBGPopUp, pic, name, btnMoreDetail, productName, price, timeLeft, minimumBid);
+        panepane.getChildren().addAll(recBGPopUp, pic, name, btnMoreDetail, productName, price, timeLeft, runTime.textArray.get(0), minimumBid);
 
         stackPane = new StackPane();
         stackPane.getChildren().addAll(recBGFade, panepane);
+        
+        return stackPane;
 
     }
 

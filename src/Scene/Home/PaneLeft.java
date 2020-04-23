@@ -362,7 +362,7 @@ public class PaneLeft {
         rect.setFill(Color.web("rgba( 88, 88, 88, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
-        Text logIn = new Text("Automotive");
+        Text logIn = new Text("Others");
         logIn.setFont(font);
         StackPane pane = new StackPane();
         pane.setMinSize(220, h);
@@ -482,7 +482,7 @@ public class PaneLeft {
         rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
-        Text logIn = new Text("Mobiles & Tablets");
+        Text logIn = new Text("Skincare");
         logIn.setFont(font);
         StackPane pane = new StackPane();
         pane.setMinSize(220, 40);
@@ -505,7 +505,7 @@ public class PaneLeft {
         rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
-        Text logIn = new Text("Mobiles & Tablets");
+        Text logIn = new Text("Make up");
         logIn.setFont(font);
         StackPane pane = new StackPane();
         pane.setMinSize(220, 40);
@@ -528,7 +528,7 @@ public class PaneLeft {
         rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
-        Text logIn = new Text("Mobiles & Tablets");
+        Text logIn = new Text("Else");
         logIn.setFont(font);
         StackPane pane = new StackPane();
         pane.setMinSize(220, 40);
@@ -551,7 +551,7 @@ public class PaneLeft {
         rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
-        Text logIn = new Text("Mobiles & Tablets");
+        Text logIn = new Text("Furniture");
         logIn.setFont(font);
         StackPane pane = new StackPane();
         pane.setMinSize(220, 40);
@@ -574,7 +574,7 @@ public class PaneLeft {
         rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
-        Text logIn = new Text("Mobiles & Tablets");
+        Text logIn = new Text("Books");
         logIn.setFont(font);
         StackPane pane = new StackPane();
         pane.setMinSize(220, 40);
@@ -597,7 +597,7 @@ public class PaneLeft {
         rect.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         rect.setStyle("-fx-stroke:rgba( 10, 10, 10, 0.2)");
         Font font = new Font(18);
-        Text logIn = new Text("Mobiles & Tablets");
+        Text logIn = new Text("Else");
         logIn.setFont(font);
         StackPane pane = new StackPane();
         pane.setMinSize(220, 40);
