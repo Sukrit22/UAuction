@@ -262,6 +262,7 @@ public class ButtonEvent {
             PaneTop.getPane().getChildren().add(CreateButton.buttonMyAccount);
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PaneMyAccount.getPaneMyAcclayer1());
             System.out.println(CategorisePane.vboxArray.get(0).getChildren().size());
+            
             int i = 0;
             //=========================== add loop to i =======================
             CategorisePane.vboxArray.get(i).getChildren().removeAll();
@@ -271,7 +272,10 @@ public class ButtonEvent {
                 System.out.println("unsuccessfully request data of market from server");
                 System.out.println(ex.getMessage());
             }
-            CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1("", "", 20.d, 1));
+            NewClient.filteredProduct.forEach(j -> {
+                CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(NewClient.filteredProduct.get(NewClient.filteredProduct.indexOf(j)).getProduct().getName(), NewClient.filteredProduct.get(NewClient.filteredProduct.indexOf(j)).getProduct().getDescription(), NewClient.filteredProduct.get(NewClient.filteredProduct.indexOf(j)).getCurrentBid(), NewClient.filteredProduct.get(NewClient.filteredProduct.indexOf(j)).getProduct().getItemId()));
+            });
+            CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(NewClient.filteredProduct.get(i).getProduct().getName(), "", 20.d, 1));
             if (CategorisePane.vboxArray.get(i).getChildren().isEmpty()) {
                 CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane1);
             }
