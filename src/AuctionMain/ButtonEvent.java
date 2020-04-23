@@ -145,7 +145,6 @@ public class ButtonEvent {
             if(!AddProduct.pathAdded&&!(AddProduct.filePath == null)){
                 System.out.println("mee pic path");
                 AddProduct.pathAdded = true;
-                
                 Date end = Date.from((AddProduct.datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 long hour = Long.parseLong((String) AddProduct.comboBoxHour.getValue());
                 if(hour == 12)

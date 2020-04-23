@@ -95,7 +95,7 @@ public class ProductPaneInVbox {
         //=========================== ต้องรับเข้ามา ======================= ID
         //เป้น Item id
         //item = new Text(time + b + " " + ID);
-        item = new Text(new Integer(ID).toString());
+        item = new Text(ID+"");
         item.setFont(font);
         item.setLayoutX(300 - 25);
         item.setLayoutY(50);

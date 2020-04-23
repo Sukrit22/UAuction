@@ -125,9 +125,8 @@ class server implements Runnable {
 
                 } else if (keyword[0].matches("RegisterProduct"))//done
                 {
+                    Object obj = reqFromClient.readObject();
                     reqFromClient.close();
-                    ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
-                    Object obj = ois.readObject();
                     Product product = (Product)obj;
                     BufferedImage bufIm = ImageIO.read(ois);
                     
