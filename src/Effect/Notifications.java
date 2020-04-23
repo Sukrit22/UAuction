@@ -9,6 +9,8 @@ import AuctionMain.CreateButton;
 import Scene.Home.MyAccount.PaneMyAccount;
 import Scene.Home.SceneHomeUnLogIn;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -29,7 +31,7 @@ public class Notifications {
     static public Pane subPane = new Pane(vboxNoti);
 
     static public void setUp() {
-        vboxNoti.getChildren().addAll(addNotifiToUser("WELCOME", true , PaneMyAccount.getPaneMyAcclayer1()));
+        vboxNoti.getChildren().addAll(addNotifiToUser("WELCOME", false , PaneMyAccount.getPaneMyAcclayer1()));
         pane = new Pane(subPane);
         pane.setMinSize(1920, 1080);
         pane.setMaxSize(300, 600);
@@ -44,13 +46,17 @@ public class Notifications {
     static public Pane addNotifiToUser(String message, boolean link, Pane product) {
 
         if (Notifications.vboxNoti.getChildren().size() == 10) {
-            Notifications.vboxNoti.getChildren().remove(0);
+            Notifications.vboxNoti.getChildren().remove(9);
         }
         Pane pane = new Pane();
         pane.setMinSize(300, 60);
         Font font = new Font(16);
-        Label text = new Label(message);
+        Text text = new Text(message);
         text.setFont(font);
+        VBox vbox = new VBox(text);
+        vbox.setPadding(new Insets(10, 0, 0, 10));
+        vbox.setAlignment(Pos.CENTER_LEFT);
+        
         Rectangle bg = new Rectangle(300, 50);
         bg.setFill(Color.web("rgba( 120, 120, 120, 1.0)"));
 
@@ -65,7 +71,7 @@ public class Notifications {
             pane.setOnMouseClicked(gotoPane);
         }
 
-        pane.getChildren().addAll(bg, text);
+        pane.getChildren().addAll(bg, vbox);
 
         return pane;
     }
