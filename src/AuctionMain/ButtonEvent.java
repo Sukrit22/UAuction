@@ -23,9 +23,15 @@ import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
 import Effect.Notifications;
+import Scene.Home.MyAccount.AddProduct;
+import java.awt.image.BufferedImage;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
+import javafx.scene.image.Image;
 import uauction.ActiveProduct;
 import uauction.Database;
+import uauction.Product;
 
 /**
  *
@@ -124,22 +130,27 @@ public class ButtonEvent {
         CreateButton.buttonHelpPaneTop.setOnMouseClicked(helpEV);
 //=========================== done =======================
         EventHandler<ActionEvent> add = (ActionEvent ActionEvent) -> {
-            /*System.out.println("Add from MyACC");
+            System.out.println("Add from MyACC");
             Date end = Date.from((AddProduct.datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            long hour= (long)AddProduct.comboBoxHour.getItems().indexOf(AddProduct.comboBoxHour.getValue());
-            hour = hour *60 *60*1000;
-            if(AddProduct.comboBoxAmPm.getItems().indexOf(AddProduct.comboBoxAmPm.getValue()) == 1 ){
-                hour += (long)(43200000);
+            long hour = (long) AddProduct.comboBoxHour.getItems().indexOf(AddProduct.comboBoxHour.getValue());
+            hour = hour * 60 * 60 * 1000;
+            if (AddProduct.comboBoxAmPm.getItems().indexOf(AddProduct.comboBoxAmPm.getValue()) == 1) {
+                hour += (long) (43200000);
             }
-            end.setTime((long) (end.getTime()+hour));
+            end.setTime((long) (end.getTime() + hour));
             String name = AddProduct.productName.getText();
-            if(true){ //miniBid and StartBid is number
-                Product product = new Product(name, AddProduct.productDescription.getText(), 0, 0, end);
-            }*/
+            //miniBid and StartBid is number
+            Product product = new Product(name, AddProduct.productDescription.getText(), AddProduct.getSelectText().getText(), Double.parseDouble(AddProduct.startBid.getText()), Double.parseDouble(AddProduct.minimumBid.getText()), end);
 
-            //NewClient.reqRegisterProduct(product, image);
-            
-            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1("productName" , "dis", 125.00, ProductPaneInVbox.countIDAllProduct));
+            BufferedImage image = null;
+            try {
+                NewClient.reqRegisterProduct(product, image);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("at reqRegis at ButtonEvent");
+            }
+
+            //CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1("productName" , "dis", 125.00, ProductPaneInVbox.countIDAllProduct));
         };
         PaneMyAccount.btnAdd.setOnAction(add);
 
