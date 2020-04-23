@@ -24,7 +24,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
@@ -161,7 +164,32 @@ public class NewClient
         server.close();
     }
     
-    
+    public static void showMarket(ArrayList<ActiveProduct> product,VBox vbox)
+    {
+        for(ActiveProduct a : product)
+        {
+           Image image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+a.getProduct().getImageName());
+           String name =  a.getProduct().getName();
+           String description = a.getProduct().getDescription();
+           Double currentBid = a.getCurrentBid();
+           BorderPane pane = new BorderPane();
+           pane.getChildren().addAll(image,name,description,currentBid);
+           vbox.getChildren().add(pane);
+        }
+    }
+    public static void filter(String filter)
+    {
+        filteredProduct.clear();
+        
+        for(ActiveProduct a : unfilteredProduct)
+        {
+            if(a.getProduct().getCatagory().matches(filter))
+            {
+                filteredProduct.add(a);
+            }
+        }
+        
+    }
 }
 /*public class NewClient extends Application
 {
