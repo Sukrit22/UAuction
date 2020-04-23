@@ -33,7 +33,7 @@ public class NewClient
     
     static Socket server = null;
     public static User user;
-    
+    ArrayList<ActiveProduct> filteredProduct = new ArrayList<>();
     
     public static void main(String[] args) throws Exception {
        
