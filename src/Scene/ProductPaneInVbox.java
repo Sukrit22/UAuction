@@ -105,17 +105,13 @@ public class ProductPaneInVbox {
         price.setLayoutX(1300 - 15);
         price.setLayoutY(50);
 
-        SimpleDateFormat minDT = new SimpleDateFormat("ddMMyyyyhhmmss");
-        long minI = Long.parseLong(minDT.format(new Date()));
-        System.out.println(minDT.format(new Date()));
-        Label test1 = new Label(minDT.format(new Date()));
-        Label test2 = new Label(minDT.format(new Date()));
-        runTime.textArrayforCal.add(test1);
-        runTime.textArray.add(test2);
-        //timeLeft.setFill(Color.web("rgba( 255, 0, 0, 1.0)"));
-        runTime.textArray.get(ID).setFont(font);
-        runTime.textArray.get(ID).setLayoutX(1500 - 20);
-        runTime.textArray.get(ID).setLayoutY(50);
+        runTime.textArrayforCal.add(new Label("120"));
+        runTime.textArray.add(new Label(""));
+        
+        runTime.textArray.get(ID-1).setFont(font);
+        runTime.textArray.get(ID-1).setLayoutX(1500 - 20);
+        runTime.textArray.get(ID-1).setLayoutY(50-12);
+
         
         timeLeft = new Text("45 Min 33 Sec");
         timeLeft.setFill(Color.web("rgba( 255, 0, 0, 1.0)"));
@@ -128,7 +124,7 @@ public class ProductPaneInVbox {
         bgRec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         //Rectangle pic2 = new Rectangle(0, 0, 150, 150);
         productView1 = new Pane(bgRec);
-        productView1.getChildren().addAll(pic, item, title, price, runTime.textArray.get(ID), btnView);
+        productView1.getChildren().addAll(pic, item, runTime.textArray.get(ID-1), title, price , btnView);
         //productView1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: red;");
         productView1.setMinSize(1920 - 220, 200);
         //____ Left

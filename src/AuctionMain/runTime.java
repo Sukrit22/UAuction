@@ -45,16 +45,11 @@ public class runTime {
 
                     for (int i = 0; i < textArrayforCal.size(); i++) {
                         long ssss = Long.parseLong(textArrayforCal.get(i).getText());
-
-                        /*int s = (int) (minI % 100);
-                        int m = ((int) (minI % 10000) - (int) (s % 100)) / 100;
-                        int h = ((int) (minI % 100000) - (int) (minI % 10000)) / 10000;*/
                         ssss--;
                         textArrayforCal.get(i).setText(ssss + "");
 
-                        
                         long minI = Long.parseLong(textArrayforCal.get(i).getText());
-                        
+
                         int s = (int) (minI % 100);
                         int m = ((int) (minI % 10000) - (int) (s % 100)) / 100;
                         int h = ((int) (minI % 100000) - (int) (minI % 10000)) / 10000;
@@ -63,7 +58,6 @@ public class runTime {
                         int hs = h * 60 * 60;
 
                         int ssssi = hs + ms + s;
-                        ssss--;
                         int res = ssssi % 60;
                         int rem = (int) (ssssi / 60) % 60;
                         int reh = (int) ((int) (ssssi / 60) / 60);

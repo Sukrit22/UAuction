@@ -71,15 +71,7 @@ public class PopUpProduct {
         price.setFont(font);
         price.setLayoutX(450 + 40);
         price.setLayoutY(60 + 48 + 48);
-
-        SimpleDateFormat minDT = new SimpleDateFormat("ddMMyyyyhhmmss");
-        long minI = Long.parseLong(minDT.format(new Date()));
-        System.out.println(minDT.format(new Date()));
-        Label test1 = new Label(minDT.format(new Date()));
-        Label test2 = new Label(minDT.format(new Date()));
-
-        runTime.textArrayforCal.add(test1);
-        runTime.textArray.add(test2);
+        
         //runTime.textArray.get(0).setLayoutY(20);
         
         timeLeft = new Text("Time Left");
@@ -131,7 +123,7 @@ public class PopUpProduct {
         name.setLayoutY(20);
 
         //Pane fadePane = new Pane(recBGFade);
-        panepane.getChildren().addAll(recBGPopUp, pic, name, btnMoreDetail, productName, price, timeLeft, runTime.textArray.get(0), minimumBid);
+        panepane.getChildren().addAll(recBGPopUp, pic, name, btnMoreDetail, productName, price, timeLeft, minimumBid);
 
         stackPane = new StackPane();
         stackPane.getChildren().addAll(recBGFade, panepane);
