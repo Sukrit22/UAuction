@@ -92,7 +92,7 @@ public class ProductPaneInVbox {
         String b = String.format("%04d", countIDAllProduct++).substring(0, 4);
         //=========================== ต้องรับเข้ามา =======================
         //เป้น Item id
-        item = new Text(time + b);
+        item = new Text(time + b + " " + ID);
         item.setFont(font);
         item.setLayoutX(300 - 25);
         item.setLayoutY(50);
@@ -109,6 +109,9 @@ public class ProductPaneInVbox {
 //===========================ตัวนี้ต้องรับเข้ามา =======================
     //รับ double เข้ามาตั้งราคา format price+"Baht"
         price = new Text("12300.00 Baht");
+        if (!productName.isEmpty()) {
+            price.setText(currentPrice + "");
+        }
         price.setFont(font);
         price.setLayoutX(1300 - 15);
         price.setLayoutY(50);
