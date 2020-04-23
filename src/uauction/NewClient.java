@@ -64,9 +64,11 @@ public class NewClient
        // toServer.println("Login"+" "+username+" "+password);
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        Object a = fromServer.readObject();
+        fromServer.close();
         server.close();
        // return null;
-        return fromServer.readObject();
+        return a;
         
     }
     
@@ -79,8 +81,10 @@ public class NewClient
         toServer.close();
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
+        Object a = fromServer.readObject();
+        fromServer.close();
          server.close();
-        return fromServer.readObject();
+        return a;
     }
     public static void reqRegisterProduct (Product product,BufferedImage image) throws IOException
     {
@@ -105,6 +109,7 @@ public class NewClient
         
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
         Product product  = (Product)fromServer.readObject();
+        fromServer.close();
         server.close();
         return product;
     }
@@ -113,6 +118,7 @@ public class NewClient
         server = new Socket("localhost",1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Bid"+" "+cost+" "+bidderName));
+        toServer.close();
         server.close();
     }
     
@@ -126,13 +132,14 @@ public class NewClient
          
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
         ArrayList<ActiveProduct> a = (ArrayList<ActiveProduct>)fromServer.readObject();
+        fromServer.close();
         
+        server.close();
         for(ActiveProduct ap : a)
         {
             reqImage(ap.getProduct().getImageName());
             
         }
-        server.close();
     }
     
     public static void reqImage(String imageName) throws Exception
@@ -141,10 +148,9 @@ public class NewClient
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Image"+" "+imageName));
         File file =new File (System.getProperty("user.dir")+"/AuctionDataBase/Image/"+imageName);
-        
+        InputStream is = server.getInputStream();
         if(!file.exists())
         {
-            InputStream is = server.getInputStream();
             BufferedImage image = ImageIO.read(is);
             ImageIO.write(image, imageName, file);
         }

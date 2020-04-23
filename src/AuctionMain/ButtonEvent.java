@@ -37,8 +37,8 @@ public class ButtonEvent {
             // TextField CreateTextField.userName + CreateTextField.password
             
             System.out.println("buttonPopUpLogIn");
-            Object obj = null;
-            /*try {
+            Object obj = new Object();
+            try {
                 obj =  NewClient.reqLogin(CreateTextField.userName.getText(), CreateTextField.password.getText());
             } catch (IOException ex) {
                 Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,9 +54,8 @@ public class ButtonEvent {
             }else{
                 System.out.println("อะไรกันแน่วะไอสัส");
                 loginPop = false;
-            }*/
             
-            if (true) {
+            if (loginPop) {
                 CreateButton.buttonHelpPaneTop.setLayoutX(1920 - 400 - 150 - 150);
                 PaneTop.getPane().getChildren().addAll(CreateButton.buttonMyAccount, CreateButton.buttonSignOutTopPane);
                 PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
@@ -64,6 +63,7 @@ public class ButtonEvent {
             } else {
                 //Wrong Password
                 PopUp.incorrecypassPane.setVisible(true);
+            }
             }
         };
         CreateButton.buttonPopUpLogIn.setOnMouseClicked(logInOnPopUp);
