@@ -47,7 +47,8 @@ public class NewServer {
 //                go();
                 new server(client);
                 //client.close();
-
+                //Date millis compare toupdate;
+                if((new Date()).getTime())
             }
 
 //        } catch (Exception e) {
@@ -56,6 +57,12 @@ public class NewServer {
     }
 
     public static void main(String arg[]) throws InterruptedException {
+        
+        if(Database.load()){
+            Database.save();
+            Database.load();
+        }
+        
         new NewServer();
 
         //Thread updateThread = new Thread(new Update());

@@ -186,12 +186,12 @@ public class NewClient {
     public static void reqMarket() throws Exception {
         server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
-        toServer.writeObject(new String("Market" + " "));
+        toServer.writeObject(new String("Market"));
         toServer.flush();
-        toServer.close();
 
         ObjectInputStream fromServer = new ObjectInputStream(server.getInputStream());
         ArrayList<ActiveProduct> a = (ArrayList<ActiveProduct>) fromServer.readObject();
+        toServer.close();
         fromServer.close();
 
         unfilteredProduct = a;
