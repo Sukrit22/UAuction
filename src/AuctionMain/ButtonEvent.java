@@ -23,6 +23,7 @@ import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
 import Effect.Notifications;
+import Effect.PopUpProduct;
 import Scene.Home.MyAccount.AddProduct;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -489,6 +490,10 @@ public class ButtonEvent {
 
                 }
         );
+        
+        PopUpProduct.btnBid.setOnAction((t) -> {
+            NewClient.reqBid(PopUpProduct.getProductName(), PopUpProduct.getPrice().toString(), NewClient.user.getUsername());
+        });
 
     }
 
