@@ -268,7 +268,7 @@ public class ButtonEvent {
                 PopUp.chooseNewPicPane.setVisible(true);
             }
 
-            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/TopPane.png"), "productName", "dis", 125.00, ProductPaneInVbox.countIDAllProduct));
+//            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/TopPane.png"), "productName", "dis", 125.00, ProductPaneInVbox.countIDAllProduct));
         };
         PaneMyAccount.btnAdd.setOnAction(add);
 
@@ -435,7 +435,7 @@ public class ButtonEvent {
             int i = 0;
 //            CategorisePane.vboxArray.get(i).getChildren().removeAll();
             try {
-                NewClient.reqMarket();
+                NewClient.reqMarket(0,true);
             } catch (Exception ex) {
                 System.out.println("unsuccessfully request data of market from server");
                 System.out.println(ex.getMessage());
