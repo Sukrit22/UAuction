@@ -213,6 +213,9 @@ public class NewClient {
                         System.out.println(ex.getMessage());
                         System.out.println("interupt thread req image");
                     }
+                    if(ap.equals(a.get(a.size()-1))){ //กรณีที่รับImage มาครบทุกตัว จึงshowMarketใหม่
+                        showMarket();
+                    }
 
         }
             }
@@ -237,16 +240,22 @@ public class NewClient {
         server.close();
     }
 
-    public static void showMarket() {
-        for (ActiveProduct a : filteredProduct) {
-            Image image = new Image("file:///" + System.getProperty("user.dir") + "/AuctionDataBase/Image/" + a.getProduct().getImageName());
+    public static void showMarket(int i) {
+        CategorisePane.vboxArray.get(i).getChildren().removeAll(); //ล้าง vbox
+        for (ActiveProduct a : filteredProduct) { //สร้าง pane in vbox
+            Image image;
+            try{//พยายามโหลดภาพที่มาทัน
+                image = new Image("file:///" + System.getProperty("user.dir") + "/AuctionDataBase/Image/" + a.getProduct().getImageName());
+            } catch (Exception e){ //กรณีภาพมาไม่ทัน
+                image = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/" + "noimg.jpg");
+            }
             String name = a.getProduct().getName();
             String description = a.getProduct().getDescription();
             Double currentBid = a.getCurrentBid();
             int itemId = a.getProduct().getItemId();
             //CategorisePane.vbo
 //            Pane pane = new Pane(new ImageView(image), new Label(name), new Label(description), new Label(currentBid.toString()));
-            CategorisePane.vboxArray.get(0).getChildren().add( ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId));
+            CategorisePane.vboxArray.get(i).getChildren().add( ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId)); 
 
         }
     }
