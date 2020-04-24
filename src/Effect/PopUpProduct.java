@@ -8,8 +8,10 @@ package Effect;
 import AuctionMain.runTime;
 import Scene.Home.SceneHomeUnLogIn;
 import Scene.ProductPaneInVbox;
+import static Scene.ProductPaneInVbox.timeUpdate;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -63,8 +65,31 @@ public class PopUpProduct {
     }
     
 
-    static public void createpopUpBackground(String str) {
+    static public void createpopUpBackground(String nameofProduct,String str,String currentPrice,Date timeEnd,String minBid) {
 
+        timeUpdate = new Thread(new Runnable() {
+            boolean enough = false;
+
+            //=========================== เวลาที่น่าจะยังไม่เสร็จ =======================
+            @Override
+            public void run() {
+                SimpleDateFormat dt = new SimpleDateFormat("hh:mm:ss");
+                while (!enough) {
+                    try {
+                        // running "long" operation not on UI thread
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                    }
+                    final String time = dt.format(new Date());
+                    Platform.runLater(() -> {
+                        //System.out.println("Run Ja");
+                        //PopUpProduct.getTimeLeft().setText(time);
+                    });
+                }
+            }
+        });
+
+        
         Font font = new Font(24);
 
         productName = new Text("Product Name");
@@ -72,7 +97,7 @@ public class PopUpProduct {
         productName.setLayoutX(450 + 40);
         productName.setLayoutY(20 + 40);
 
-        productName2 = new Text(str);
+        productName2 = new Text(nameofProduct);
         productName2.setFont(font);
         productName2.setLayoutX(450 + 40 + 36);
         productName2.setLayoutY(20 + 40 + 36);
@@ -82,18 +107,18 @@ public class PopUpProduct {
         price.setLayoutX(450 + 40);
         price.setLayoutY(60 + 48 + 48);
 
-        price2 = new Text("165 Baht");
+        price2 = new Text(currentPrice);
         price2.setFont(font);
         price2.setLayoutX(450 + 40 + 23);
         price2.setLayoutY(60 + 48 + 48 + 36);
 
         //runTime.textArray.get(0).setLayoutY(20);
-        timeLeft = new Text("Time Left");
+        timeLeft = new Text("timeLeft");
         timeLeft.setFont(font);
         timeLeft.setLayoutX(450 + 40);
         timeLeft.setLayoutY(60 + 48 + 48 + 48 + 48);
         
-        timeLeft2 = new Text("12 h 43 min");
+        timeLeft2 = new Text(timeEnd.toString());
         timeLeft2.setFont(font);
         timeLeft2.setLayoutX(450 + 40 + 36);
         timeLeft2.setLayoutY(60 + 48 + 48 + 48 + 48 + 36);
@@ -103,7 +128,7 @@ public class PopUpProduct {
         minimumBid.setLayoutX(450 + 40);
         minimumBid.setLayoutY(60 + 48 + 48 + 48 + 48 + 48 + 48);
         
-        minimumBid2 = new Text("1 Baht");
+        minimumBid2 = new Text(minBid);
         minimumBid2.setFont(font);
         minimumBid2.setLayoutX(450 + 40 + 36);
         minimumBid2.setLayoutY(60 + 48 + 48 + 48 + 48 + 48 + 48 + 36);

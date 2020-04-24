@@ -26,8 +26,8 @@ import javax.swing.ImageIcon;
  */
 public final class Product implements java.io.Serializable {
     //private java.util.ArrayList<javafx.scene.image.Image> additionalImage;
-    
-    private String imageName=null;
+
+    private String imageName = null;
     private String myOwnerName;
 
     public void setMyOwnerName(String myOwnerName) {
@@ -44,16 +44,17 @@ public final class Product implements java.io.Serializable {
     private double startingBid;
     private double minimumBid;
     private int itemId;
-
+    
     public int getItemId() {
         return itemId;
     }
-    
+
     private java.util.Date datePosted;
     private java.util.Date dateEndBid;
-    
+
     private Image image;
-    public Product(String name, String description,String catagory, double startingBid, double minimumBid,Date endDate){
+
+    public Product(String name, String description, String catagory, double startingBid, double minimumBid, Date endDate) {
         datePosted = new Date();
         dateEndBid = endDate;
         this.name = name;
@@ -61,7 +62,7 @@ public final class Product implements java.io.Serializable {
         this.startingBid = startingBid;
         this.minimumBid = minimumBid;
         this.catagory = catagory;
-        
+
         //image = new Image(System.getProperty("user.dir")+"/AuctionDataBase/Image/"+ this.getImageName()+ ".jpg"); บอกว่าไม่เอา
         //ใช้ imageName ไปหา ถ้าไม่เจอจะขอจากเซิฟ
     }
@@ -87,35 +88,40 @@ public final class Product implements java.io.Serializable {
     public String getCatagory() {
         return catagory;
     }
-    
-    
-    public void setImage(String imageName)
-    {
+
+    public void setImage(String imageName) {
         this.imageName = imageName;
     }
-    public String getImageName(){
+
+    public String getImageName() {
         return this.imageName;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public String getDescription(){
+
+    public String getDescription() {
         return description;
     }
-    public Date getDatePosted(){
+
+    public Date getDatePosted() {
         return datePosted;
     }
-    public Date getDateEndBid(){
+
+    public Date getDateEndBid() {
         return dateEndBid;
     }
-    public String getFileName(){
+
+    public String getFileName() {
         return this.myFileName;
     }
-    public void setFileName(String fileName){
+
+    public void setFileName(String fileName) {
         this.myFileName = fileName;
     }
-    public void setImageName(String newImageName)
-    {
+
+    public void setImageName(String newImageName) {
         this.imageName = newImageName;
     }
     public double getStartingBid() {
@@ -124,9 +130,8 @@ public final class Product implements java.io.Serializable {
     public double getMinimumBid() {
         return minimumBid;
     }
-    public Image getImage()
-    {
-       
+    public Image getImage() {
+
         return image;
     }
 }

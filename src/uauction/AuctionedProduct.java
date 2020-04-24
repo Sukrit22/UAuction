@@ -24,17 +24,13 @@ public class AuctionedProduct implements java.io.Serializable {
      * Who win the auction of this product
      */
     public String username;
-    /**
-     * What the time when the bid is finished
-     */
-    public Date finishedTime;
     
     //=========================== Constructor =======================
     
-    public AuctionedProduct(ActiveProduct activeProduct, double maxBid){
+    public AuctionedProduct(ActiveProduct activeProduct){
         this.product = activeProduct.getProduct();
-        this.maxBid = maxBid;
-        this.username = "";
+        this.maxBid = activeProduct.getCurrentBid();
+        this.username = activeProduct.getBiddingHistory().get(activeProduct.getBiddingHistory().size()-1);
     }
     
     //=========================== method =======================
