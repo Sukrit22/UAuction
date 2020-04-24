@@ -197,20 +197,40 @@ public class NewClient {
         unfilteredProduct = a;
         filteredProduct = unfilteredProduct;
         server.close();
-        for (ActiveProduct ap : a) {
-            reqImage(ap.getProduct().getImageName());
+        Thread reqIm = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (ActiveProduct ap : a) {
+                    try {
+                        reqImage(ap.getProduct().getImageName());
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                        System.out.println("inside Thread reqImage in reqMarket");
+                    }
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException ex) {
+                        System.out.println(ex.getMessage());
+                        System.out.println("interupt thread req image");
+                    }
 
         }
+            }
+        });
+        reqIm.start();
+        
 
     }
 
     public static void reqImage(String imageName) throws Exception {
         server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
-        toServer.writeObject(new String("Image" + " " + imageName));
+        
         File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + imageName);
         InputStream is = server.getInputStream();
         if (!file.exists()) {
+            toServer.writeObject(new String("Image" + " " + imageName));
+            toServer.flush();
             BufferedImage image = ImageIO.read(is);
             ImageIO.write(image, imageName, file);
         }
@@ -224,6 +244,7 @@ public class NewClient {
             String description = a.getProduct().getDescription();
             Double currentBid = a.getCurrentBid();
             int itemId = a.getProduct().getItemId();
+            //CategorisePane.vbo
 //            Pane pane = new Pane(new ImageView(image), new Label(name), new Label(description), new Label(currentBid.toString()));
             CategorisePane.vboxArray.get(0).getChildren().add( ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId));
 

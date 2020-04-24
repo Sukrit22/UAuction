@@ -51,7 +51,7 @@ public class SaveAndLoad {
             FileOutputStream file;
             ObjectOutputStream out;
             try {
-                filePath = new File(System.getProperty("user.dir") + "/AuctionDataBase/UserDataBase/" + ap.getFileName());
+                filePath = new File(System.getProperty("user.dir") + "/AuctionDataBase/ProductsDataBase/" + ap.getFileName());
                 file = new FileOutputStream(filePath);
                 out = new ObjectOutputStream(file);
                 out.writeObject(ap);
@@ -71,7 +71,7 @@ public class SaveAndLoad {
         FileInputStream fileIn;
         ObjectInputStream input;
         try {
-            file = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductDataBase/"+ fileName);
+            file = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductsDataBase/"+ fileName);
             fileIn = new FileInputStream(file);
             input = new ObjectInputStream(fileIn);
             Product ap = (Product) input.readObject();
