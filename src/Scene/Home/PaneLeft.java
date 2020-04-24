@@ -24,6 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import uauction.NewClient;
 
 /**
  *
@@ -85,6 +86,7 @@ public class PaneLeft {
         titleVbox.getChildren().addAll(titleGroup1, titleGroup2, titleGroup3, titleGroup4, titleGroup5);
 
         EventHandler<MouseEvent> evTitle1 = (MouseEvent ActionEvent) -> {
+            NewClient.filteredProduct = NewClient.unfilteredProduct;
             for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                 titleVbox.getChildren().remove(i);
             }
@@ -105,8 +107,9 @@ public class PaneLeft {
 
         };
         titleGroup1.setOnMouseClicked(evTitle1);
-
+            
         EventHandler<MouseEvent> evTitle2 = (MouseEvent ActionEvent) -> {
+            NewClient.filter("Electronic");
             if (titleVbox.getChildren().get(2) != inTitleVbox1) {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                     titleVbox.getChildren().remove(i);
@@ -137,6 +140,7 @@ public class PaneLeft {
         titleGroup2.setOnMouseClicked(evTitle2);
 
         EventHandler<MouseEvent> evTitle3 = (MouseEvent ActionEvent) -> {
+            NewClient.filter("Health & Beauty");
             if (titleVbox.getChildren().get(3) != inTitleVbox2) {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                     titleVbox.getChildren().remove(i);
@@ -167,6 +171,7 @@ public class PaneLeft {
         titleGroup3.setOnMouseClicked(evTitle3);
 
         EventHandler<MouseEvent> evTitle4 = (MouseEvent ActionEvent) -> {
+            NewClient.filter("Home & Lifestyle");
             if (titleVbox.getChildren().get(4) != inTitleVbox3) {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                     titleVbox.getChildren().remove(i);
@@ -197,6 +202,7 @@ public class PaneLeft {
         titleGroup4.setOnMouseClicked(evTitle4);
 
         EventHandler<MouseEvent> evTitle5 = (MouseEvent ActionEvent) -> {
+            NewClient.filter("Others");
             if (titleVbox.getChildren().size() == 6) {
                 if (titleVbox.getChildren().get(5) != inTitleVbox4) {
                     for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
