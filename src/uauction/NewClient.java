@@ -259,7 +259,7 @@ public class NewClient {
                 filteredProduct.add(a);
             }
         }
-
+        System.out.println("Filtered : "+ filter);
     }
 }
 /*public class NewClient extends Application

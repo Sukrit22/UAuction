@@ -82,6 +82,7 @@ public class ButtonEvent {
                     PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
                     NewClient.user.setToBoth();
                     SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
+                    
                 } else {
                     //Wrong Password
                     PopUp.incorrecypassPane.setVisible(true);

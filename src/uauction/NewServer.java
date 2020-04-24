@@ -178,11 +178,13 @@ class server implements Runnable {
 
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
+                System.out.println("fail to return Object to client");
             } finally {
                 try {
                     objectToClient.close();
                 } catch (IOException ex) {
                 System.out.println(ex.getMessage());
+                    System.out.println("cant close the outputstream");
                 }
             }
             try {

@@ -14,6 +14,9 @@ import Scene.Home.PaneTop;
 import Scene.Home.SceneHomeUnLogIn;
 import Stage.SetUpStage;
 import Stage.setSceneForStage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import uauction.NewClient;
 
 /**
  *
@@ -31,6 +34,12 @@ public class MyFunction {
         PaneTop.getPane().getChildren().add(CreateButton.buttonHelpPaneTop);
         PopUp.setUpPopUp();
         PaneMyAccount.setUpPane();
+        try {
+            NewClient.reqMarket();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("Fail reqMarket before login");
+        }
         Scene.Home.MyAccount.PaneMyAccount.getPaneMyAcclayer1();
     }
 
