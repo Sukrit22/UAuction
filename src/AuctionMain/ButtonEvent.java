@@ -29,6 +29,7 @@ import java.io.File;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -82,7 +83,7 @@ public class ButtonEvent {
                     PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
                     NewClient.user.setToBoth();
                     SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
-                    
+
                 } else {
                     //Wrong Password
                     PopUp.incorrecypassPane.setVisible(true);
@@ -489,12 +490,29 @@ public class ButtonEvent {
 
                 }
         );
-        
-                EventHandler<MouseEvent> home = (MouseEvent ActionEvent) -> {
+
+        EventHandler<MouseEvent> home = (MouseEvent ActionEvent) -> {
             //Do code here
             System.out.println("buttonHelpPaneTop");
             try {
-                Desktop.getDesktop().browse(new URI("https://www.instagram.com/loukgolf_maj7/"));
+                int r = getRandomNumberInRange(0, 3);
+                switch (r) {
+                    case 0:
+                        Desktop.getDesktop().browse(new URI("https://www.instagram.com/loukgolf_maj7/"));
+                        break;
+                    case 1:
+                        Desktop.getDesktop().browse(new URI("https://www.instagram.com/real_sukrit22/"));
+                        break;
+                    case 3:
+                        Desktop.getDesktop().browse(new URI("https://www.instagram.com/supakit6199/"));
+                        break;
+                    case 4:
+                        Desktop.getDesktop().browse(new URI("https://www.instagram.com/be_an_ttl/"));
+                        break;
+                    default:
+                    // code block
+                }
+
             } catch (URISyntaxException ex) {
                 Logger.getLogger(ButtonEvent.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -503,6 +521,16 @@ public class ButtonEvent {
         };
         CreateButton.buttonBackOnACC.setOnMouseClicked(home);
 
+    }
+
+    private static int getRandomNumberInRange(int min, int max) {
+
+        if (min >= max) {
+            throw new IllegalArgumentException("max must be greater than min");
+        }
+
+        Random r = new Random();
+        return r.nextInt((max - min) + 1) + min;
     }
 
 }
