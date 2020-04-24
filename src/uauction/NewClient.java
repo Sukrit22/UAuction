@@ -240,8 +240,8 @@ public class NewClient {
         server.close();
     }
 
-    public static void showMarket() {
-        CategorisePane.vboxArray.get(0).getChildren().removeAll(); //ล้าง vbox
+    public static void showMarket(int i) {
+        CategorisePane.vboxArray.get(i).getChildren().removeAll(); //ล้าง vbox
         for (ActiveProduct a : filteredProduct) { //สร้าง pane in vbox
             Image image;
             try{//พยายามโหลดภาพที่มาทัน
@@ -255,7 +255,7 @@ public class NewClient {
             int itemId = a.getProduct().getItemId();
             //CategorisePane.vbo
 //            Pane pane = new Pane(new ImageView(image), new Label(name), new Label(description), new Label(currentBid.toString()));
-            CategorisePane.vboxArray.get(0).getChildren().add( ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId)); 
+            CategorisePane.vboxArray.get(i).getChildren().add( ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId)); 
 
         }
     }
