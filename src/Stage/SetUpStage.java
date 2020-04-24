@@ -31,7 +31,7 @@ public class SetUpStage {
         
         
         StageStorage.Auction.getIcons().add(e);
-        if(Boolean.FALSE){
+        if(Boolean.TRUE){
             //StageStorage.Auction.setX(100);
             //StageStorage.Auction.setY(200);
             StageStorage.Auction.setMaximized(true);
@@ -39,10 +39,10 @@ public class SetUpStage {
             StageStorage.Auction.setTitle("Auction");
             //StageStorage.Auction.setScene(SceneHomeUnLogIn.sceneHomeUnLogIn());
         }else{
-            StageStorage.Auction.setX(100);
-            StageStorage.Auction.setY(200);
+            StageStorage.Auction.setX(0);
+            StageStorage.Auction.setY(0);
             //StageStorage.Auction.setMaximized(true);
-            //StageStorage.Auction.initStyle(StageStyle.UNDECORATED);
+            StageStorage.Auction.initStyle(StageStyle.UNDECORATED);
             StageStorage.Auction.setTitle("Auction");
             //StageStorage.Auction.setScene(SceneHomeUnLogIn.sceneHomeUnLogIn());
         }

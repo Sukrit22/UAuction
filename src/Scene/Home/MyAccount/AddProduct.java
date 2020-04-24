@@ -362,6 +362,7 @@ public class AddProduct {
         //productDescription
 
         pic = new Rectangle(500, 375);
+        pic.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/upload2.png")));
 
     }
 }
