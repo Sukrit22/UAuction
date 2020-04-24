@@ -405,6 +405,7 @@ public class CreateButton {
         pane.getChildren().add(logIn);
 
         buttonBackOnACC2 = new Group(test, pane);
+        buttonBackOnACC2.setLayoutY(+24);
     }
 
     static private void buttonBlankMyAccount() {
