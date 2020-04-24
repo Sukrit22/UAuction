@@ -13,6 +13,8 @@ import Scene.Home.MyAccount.PaneMyAccount;
 import Scene.Home.PaneTop;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -77,8 +79,15 @@ public class SceneHomeUnLogIn {
 
     static private Pane createPaneLeft() {
         //----------------------------------------------------------------------
+        Image im3 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/left.png");
+        ImageView iv3 = new ImageView(im3);
+        iv3.setFitHeight(20);
+        iv3.setLayoutX(2+20+10);
+        iv3.setLayoutY(2);
+        iv3.setPreserveRatio(true);
         PaneLeft.setUp();
-        Pane pane = new Pane(PaneLeft.getPane());
+        Pane pane = new Pane();
+        pane.getChildren().addAll(PaneLeft.getPane());
         pane.setMinSize(220, 1000 - 200);
         //pane.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: red;");
         pane.setStyle("-fx-background-color:rgba(88,88,88,1.0);");

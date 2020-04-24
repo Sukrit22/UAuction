@@ -18,6 +18,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -78,6 +80,15 @@ public class PaneLeft {
         intitle3_1();
         intitle3_2();
         intitle3_3();
+        
+        Image im3 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/left.png");
+        ImageView iv3 = new ImageView(im3);
+        //iv3.setFitHeight(20);
+        //iv3.setLayoutX(2+20+10);
+        //iv3.setLayoutY(2);
+        iv3.setPreserveRatio(true);
+        
+        pane.getChildren().add(iv3);
         
         inTitleVbox1.getChildren().addAll(intitleGroup101, intitleGroup102, intitleGroup103, intitleGroup104);
 
