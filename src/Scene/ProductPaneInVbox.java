@@ -64,6 +64,7 @@ public class ProductPaneInVbox {
             //Do code here
             System.out.println("popUpItem");
             System.out.println(NewClient.user.canBuy());
+            PopUpProduct.yourBid.setText("");
             if (!NewClient.user.canBuy()) {
                 System.out.println("buttonLogInPaneTop");
                 CreateButton.buttonPopUpSwitchToLogIn.setVisible(false);
