@@ -21,6 +21,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
@@ -59,18 +60,22 @@ public class GreetingServer extends Thread
                    //System.out.println(reader.readLine());
                   
                   
-                   ObjectInputStream os = new ObjectInputStream(server.getInputStream());
+                   ObjectInputStream gg = new ObjectInputStream(server.getInputStream());
                    
-                    Product p = (Product)os.readObject();
+                    ArrayList<Product> p = (ArrayList<Product>)gg.readObject();
                     
-                    os.close();
+                    gg.close();
+                    System.out.println("recieved arrayList...");
                     
-                 InputStream is = server.getInputStream();
-                    BufferedImage bi = ImageIO.read(is);
-                    
-                    
-                    ManageProduct.registerProduct(p,bi);
-                    SaveAndLoad.saveProduct(p);
+                    for(Product a : p)
+                    {
+                        System.out.println(a.getName());
+                    }
+//                   InputStream is = server.getInputStream();
+//                   BufferedImage bi = ImageIO.read(is);
+//
+//                   ManageProduct.registerProduct(p, bi);
+//                   SaveAndLoad.saveProduct(p);
               //String clientInput = fromClient.readLine();
 //              String[] keyword = clientInput.split("\\s+");
 //              for (int i = 0; i < keyword.length; i++) {
