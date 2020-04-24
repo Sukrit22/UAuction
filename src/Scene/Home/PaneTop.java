@@ -40,7 +40,7 @@ public class PaneTop {
         iv.setLayoutY(48+12);
         iv.setPreserveRatio(true);
         
-        Image im4 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/a3.png");
+        Image im4 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/letter-a.png");
         ImageView iv4 = new ImageView(im4);
         iv4.setFitHeight(170);
         iv4.setFitWidth(360);
@@ -102,7 +102,7 @@ public class PaneTop {
         rec.setArcWidth(4);
         rec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
 
-        pane.getChildren().addAll(iv5, iv4, iv, rec, iv2, iv3, CreateTextField.search, CreateButton.buttonSearch, CreateButton.buttonLogInPaneTop, CreateButton.buttonBellHome, CreateButton.buttonBellHomeEff);
+        pane.getChildren().addAll(iv5, iv, rec, iv2, iv3, CreateTextField.search, CreateButton.buttonSearch, CreateButton.buttonLogInPaneTop, CreateButton.buttonBellHome, CreateButton.buttonBellHomeEff);
 
     }
 

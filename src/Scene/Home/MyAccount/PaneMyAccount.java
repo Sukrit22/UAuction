@@ -186,16 +186,27 @@ public class PaneMyAccount {
         rec.setArcWidth(4);
         rec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         
+        Image im5 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/topPane4.png");
+        ImageView iv5 = new ImageView(im5);
+        Image im = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/topPane3.png");
+        ImageView iv = new ImageView(im);
+        iv.setFitHeight(200-50-24);
+        //iv.setFitWidth(360);
+        iv.setLayoutX(1920/2);
+        iv.setLayoutY(50+15);
+        iv.setPreserveRatio(true);
         paneTop.setMinWidth(1920);
         paneTop.setMinHeight(200);
         paneTop.setLayoutX(0);
         paneTop.setLayoutY(0);
         paneTop.setStyle("-fx-background-color:rgba(88,88,88,1.0) ; ");
         CreateButton.buttonBackOnACC2.setLayoutX(1920 - 400 - 150);
-        paneTop.getChildren().addAll(rec, iv2, iv3, CreateButton.buttonBackOnACC2, CreateButton.buttonTime2);
+        paneTop.getChildren().addAll(iv5, iv, rec, iv2, iv3, CreateButton.buttonBackOnACC2, CreateButton.buttonTime2);
         Font font = new Font(32);
         name.setFont(font);
 
+        Image im4 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/left.png");
+        ImageView iv4 = new ImageView(im4);
         paneLeft.setMinWidth(220);
         paneLeft.setMinHeight(1080 - 200);
         paneLeft.setLayoutX(0);
@@ -205,7 +216,7 @@ public class PaneMyAccount {
         VBox vbox = new VBox();
         Rectangle leftbg = new Rectangle(220, 1080 - 200);
         leftbg.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
-        paneLeft.getChildren().addAll(leftbg, vbox);
+        paneLeft.getChildren().addAll(iv4, vbox);
         vbox.getChildren().addAll(CreateButton.buttonMyProfileOnMyACC, CreateButton.buttonMyAuctionOnACC, CreateButton.buttonMyProductOnACC, CreateButton.buttonAddProductOnACC, CreateButton.buttonBlankOnACC, CreateButton.buttonBackOnACC);
         paneMyAccLayer1.setMinSize(1920, 1080);
         //paneMyAccLayer1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:black ;");
