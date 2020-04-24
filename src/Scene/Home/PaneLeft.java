@@ -9,6 +9,8 @@ import AuctionMain.CreateButton;
 import static AuctionMain.CreateButton.buttonHelpPaneTop;
 import Scene.CategorisePane;
 import Scene.Home.MyAccount.PaneMyAccount;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -110,6 +112,12 @@ public class PaneLeft {
             
         EventHandler<MouseEvent> evTitle2 = (MouseEvent ActionEvent) -> {
             NewClient.filter("Electronic");
+            try {
+                NewClient.reqMarket();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("Fail reqMarket with electronics filter");
+            }
             if (titleVbox.getChildren().get(2) != inTitleVbox1) {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                     titleVbox.getChildren().remove(i);
@@ -141,6 +149,12 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> evTitle3 = (MouseEvent ActionEvent) -> {
             NewClient.filter("Health & Beauty");
+            try {
+                NewClient.reqMarket();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("Fial reqMarket with Health Beauty filter");
+            }
             if (titleVbox.getChildren().get(3) != inTitleVbox2) {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                     titleVbox.getChildren().remove(i);
@@ -172,6 +186,12 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> evTitle4 = (MouseEvent ActionEvent) -> {
             NewClient.filter("Home & Lifestyle");
+            try {
+                NewClient.reqMarket();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("Fail reqMarket with Home lifestyle filter");
+            }
             if (titleVbox.getChildren().get(4) != inTitleVbox3) {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                     titleVbox.getChildren().remove(i);
@@ -203,6 +223,12 @@ public class PaneLeft {
 
         EventHandler<MouseEvent> evTitle5 = (MouseEvent ActionEvent) -> {
             NewClient.filter("Others");
+            try {
+                NewClient.reqMarket();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("Fail reqMarket with Other filter");
+            }
             if (titleVbox.getChildren().size() == 6) {
                 if (titleVbox.getChildren().get(5) != inTitleVbox4) {
                     for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
