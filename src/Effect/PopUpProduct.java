@@ -8,8 +8,10 @@ package Effect;
 import AuctionMain.runTime;
 import Scene.Home.SceneHomeUnLogIn;
 import Scene.ProductPaneInVbox;
+import static Scene.ProductPaneInVbox.timeUpdate;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -65,6 +67,29 @@ public class PopUpProduct {
 
     static public void createpopUpBackground(String nameofProduct,String str,String currentPrice,Date timeEnd,String minBid) {
 
+        timeUpdate = new Thread(new Runnable() {
+            boolean enough = false;
+
+            //=========================== เวลาที่น่าจะยังไม่เสร็จ =======================
+            @Override
+            public void run() {
+                SimpleDateFormat dt = new SimpleDateFormat("hh:mm:ss");
+                while (!enough) {
+                    try {
+                        // running "long" operation not on UI thread
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                    }
+                    final String time = dt.format(new Date());
+                    Platform.runLater(() -> {
+                        //System.out.println("Run Ja");
+                        //PopUpProduct.getTimeLeft().setText(time);
+                    });
+                }
+            }
+        });
+
+        
         Font font = new Font(24);
 
         productName = new Text("Product Name");

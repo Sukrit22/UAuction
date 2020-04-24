@@ -21,7 +21,7 @@ import javax.imageio.ImageIO;
  * @author USER
  */
 public class NewServer {
-
+    public static Date previousDate;
     ServerSocket server;
     ServerSocket serverImage;
     Socket client;
@@ -48,7 +48,19 @@ public class NewServer {
                 new server(client);
                 //client.close();
                 //Date millis compare toupdate;
-                if((new Date()).getTime())
+                if((new Date()).getTime()-previousDate.getTime()>=15000){
+                    previousDate = new Date();
+                    //do update Task
+                    Database.save();
+                    Database.activeProduct.forEach(a -> {
+                        if (a.getProduct().getDateEndBid().getTime() - previousDate.getTime() < 0) {
+                            Database.activeProduct.remove(a);
+                            Database.auctionedProduct.add(new AuctionedProduct(a));
+                        }
+
+                    });
+                    System.out.println("update Done");
+                }
             }
 
 //        } catch (Exception e) {
@@ -57,7 +69,7 @@ public class NewServer {
     }
 
     public static void main(String arg[]) throws InterruptedException {
-        
+        previousDate = new Date();
         if(Database.load()){
             Database.save();
             Database.load();
@@ -353,7 +365,7 @@ class Update implements Runnable {
         for (ActiveProduct object : Database.activeProduct) {
             if (object.getProduct().getDateEndBid().getTime() - now.getTime() < 0) {
                 Database.activeProduct.remove(object);
-                Database.auctionedProduct.add(new AuctionedProduct(object, object.getCurrentBid()));
+                Database.auctionedProduct.add(new AuctionedProduct(object));
             }
         }
     }

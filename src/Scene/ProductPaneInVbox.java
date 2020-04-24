@@ -58,9 +58,11 @@ public class ProductPaneInVbox {
         btnView.setLayoutX(25);
         btnView.setLayoutY(200 - 40);
         btnView.setMinSize(200, 25);
-        PopUpProduct.createpopUpBackground(productName);
         //=========================== อาจจะต้องรีเควสไอเทมชิ้นนั้น =======================
         EventHandler<ActionEvent> ev = (ActionEvent ActionEvent) -> {
+        PopUpProduct.createpopUpBackground(productName);
+            PopUp.getStackPane().setVisible(true);//แสดงรายละเอียด
+            timeUpdate.start();//เริ่มนับเวลาถอยหลัง แล้วไปอัพเดทใน popupproduct
             //Do code here
             System.out.println("popUpItem");
             System.out.println(NewClient.user.canBuy());
@@ -84,29 +86,6 @@ public class ProductPaneInVbox {
             } else {
                 SceneHomeUnLogIn.getStackPane().getChildren().add(PopUpProduct.getStackPane());
 
-                timeUpdate = new Thread(new Runnable() {
-                    boolean enough = false;
-
-                    //=========================== เวลาที่น่าจะยังไม่เสร็จ =======================
-                    @Override
-                    public void run() {
-                        SimpleDateFormat dt = new SimpleDateFormat("hh:mm:ss");
-                        while (!enough) {
-                            try {
-                                // running "long" operation not on UI thread
-                                Thread.sleep(1000);
-                            } catch (InterruptedException ex) {
-                            }
-                            final String time = dt.format(new Date());
-                            Platform.runLater(() -> {
-                                //System.out.println("Run Ja");
-                                //PopUpProduct.getTimeLeft().setText(time);
-                            });
-                        }
-                    }
-                });
-
-                timeUpdate.start();
             }
 
         };
