@@ -214,7 +214,7 @@ public class NewClient {
                         System.out.println("interupt thread req image");
                     }
                     if(ap.equals(a.get(a.size()-1))){ //กรณีที่รับImage มาครบทุกตัว จึงshowMarketใหม่
-                        showMarket();
+                        showMarket(0);
                     }
 
         }
