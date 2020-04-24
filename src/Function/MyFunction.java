@@ -35,7 +35,7 @@ public class MyFunction {
         PopUp.setUpPopUp();
         PaneMyAccount.setUpPane();
         try {
-            NewClient.reqMarket();
+            NewClient.reqMarket(0,true);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             System.out.println("Fail reqMarket before login");
