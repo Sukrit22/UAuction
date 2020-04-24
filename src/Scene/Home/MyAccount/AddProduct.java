@@ -167,7 +167,7 @@ public class AddProduct {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                     titleVbox.getChildren().remove(i);
                 }
-                selectText.setText("Eletronic");
+                selectText.setText("Electronic");
                 titleVbox.getChildren().addAll(titleGroup1);
             }
 

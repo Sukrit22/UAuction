@@ -50,8 +50,8 @@ public class PaneTop {
         Image im2 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/exitRed255.png");
         ImageView iv2 = new ImageView(im2);
         iv2.setFitHeight(20);
-        iv2.setLayoutX(10+20+10);
-        iv2.setLayoutY(15);
+        iv2.setLayoutX(2);
+        iv2.setLayoutY(2);
         iv2.setPreserveRatio(true);
         
         EventHandler<MouseEvent> eh = (MouseEvent ActionEvent) -> {
@@ -64,8 +64,8 @@ public class PaneTop {
         Image im3 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/minimizeBlack.png");
         ImageView iv3 = new ImageView(im3);
         iv3.setFitHeight(20);
-        iv3.setLayoutX(10);
-        iv3.setLayoutY(15);
+        iv3.setLayoutX(2+20+10);
+        iv3.setLayoutY(2);
         iv3.setPreserveRatio(true);
         
         EventHandler<MouseEvent> eh3 = (MouseEvent ActionEvent) -> {
@@ -75,7 +75,9 @@ public class PaneTop {
         
         iv3.setOnMouseClicked(eh3);
         
-        Rectangle rec = new Rectangle(1920,50);
+        Rectangle rec = new Rectangle(54,24);
+        rec.setArcHeight(8);
+        rec.setArcWidth(4);
         rec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
 
         pane.getChildren().addAll(rec, iv2, iv3, CreateTextField.search, CreateButton.buttonSearch, CreateButton.buttonLogInPaneTop, CreateButton.buttonBellHome, CreateButton.buttonBellHomeEff);

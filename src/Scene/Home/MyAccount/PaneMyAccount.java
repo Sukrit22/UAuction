@@ -30,6 +30,9 @@ import javafx.scene.text.Text;
 import AuctionMain.CreateButton;
 import static AuctionMain.CreateButton.buttonMyAuctionOnACC;
 import Effect.PopUp;
+import Stage.StageStorage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -150,13 +153,46 @@ public class PaneMyAccount {
         paneRight.setLayoutY(200 + 5);
         //paneRight.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:yellow ; ");
 
+        Image im2 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/exitRed255.png");
+        ImageView iv2 = new ImageView(im2);
+        iv2.setFitHeight(20);
+        iv2.setLayoutX(2);
+        iv2.setLayoutY(2);
+        iv2.setPreserveRatio(true);
+        
+        EventHandler<MouseEvent> eh = (MouseEvent ActionEvent) -> {
+            //Do code here
+            StageStorage.Auction.close();
+        };
+        
+        iv2.setOnMouseClicked(eh);
+        
+        Image im3 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/minimizeBlack.png");
+        ImageView iv3 = new ImageView(im3);
+        iv3.setFitHeight(20);
+        iv3.setLayoutX(2+20+10);
+        iv3.setLayoutY(2);
+        iv3.setPreserveRatio(true);
+        
+        EventHandler<MouseEvent> eh3 = (MouseEvent ActionEvent) -> {
+            //Do code here
+            StageStorage.Auction.setIconified(true);
+        };
+        
+        iv3.setOnMouseClicked(eh3);
+        
+        Rectangle rec = new Rectangle(54,24);
+        rec.setArcHeight(8);
+        rec.setArcWidth(4);
+        rec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        
         paneTop.setMinWidth(1920);
         paneTop.setMinHeight(200);
         paneTop.setLayoutX(0);
         paneTop.setLayoutY(0);
         paneTop.setStyle("-fx-background-color:rgba(88,88,88,1.0) ; ");
         CreateButton.buttonBackOnACC2.setLayoutX(1920 - 400 - 150);
-        paneTop.getChildren().addAll(CreateButton.buttonBackOnACC2, CreateButton.buttonTime2);
+        paneTop.getChildren().addAll(rec, iv2, iv3, CreateButton.buttonBackOnACC2, CreateButton.buttonTime2);
         Font font = new Font(32);
         name.setFont(font);
 
