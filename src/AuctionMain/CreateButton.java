@@ -45,6 +45,8 @@ public class CreateButton {
     static public Group buttonMyAuctionOnACC = new Group();
     static public Group buttonBellHome = new Group();
     static public Circle buttonBellHomeEff;
+    static public Group buttonEditProfile = new Group();
+    
 
     static public Text timeText = new Text("dd/mm/yyyy hh:mm:ss a XXX");
     static public Text timeText2 = new Text("dd/mm/yyyy hh:mm:ss a XXX");
@@ -69,6 +71,7 @@ public class CreateButton {
         buttonBlankMyAccount();
         buttonMyAuctionMyAccount();
         buttonBellHome();
+        buttonEditProfile();
     }
 
     static private void buttonCreateAccount() {
@@ -422,6 +425,23 @@ public class CreateButton {
         pane.getChildren().add(logIn);
 
         buttonBlankOnACC = new Group(test, pane);
+    }
+    
+    static private void buttonEditProfile() {
+        Rectangle test = new Rectangle(1920-220-100, 0, 100, 30);
+        test.setFill(Color.web("rgba( 240, 240, 240, 1.0)"));
+        Font font = new Font(16);
+        Text logIn = new Text("Edit Profile");
+        logIn.setFont(font);
+        StackPane pane = new StackPane();
+        pane.setMinSize(100, 30);
+        pane.getChildren().add(logIn);
+        logIn.applyCss();
+        pane.setLayoutX(1920-220-100);
+        pane.setLayoutY(0);
+
+        buttonEditProfile = new Group();
+        buttonEditProfile.getChildren().addAll(test, pane);
     }
 
 }

@@ -5,11 +5,13 @@
  */
 package Scene.Home.MyAccount;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import AuctionMain.CreateButton;
 
 /**
  *
@@ -18,19 +20,30 @@ import javafx.scene.text.Text;
 public class MyProfliePane {
 
     static public Pane pane;
+    static private Text nameText;
 
-    static public Pane getAndSetPane(String name) {
+    static public Pane getAndSetPane() {
         pane = new Pane();
         pane.setMinSize(1920, 1080);
         Font font = new Font(24);
 
-        Label nameLabel = new Label(name);
-        nameLabel.setLayoutX(60);
-        Text nameText = new Text(name);
+        //Label nameLabel = new Label(name);
+        //nameLabel.setLayoutX(60);
+        nameText = new Text(" Name ");
         VBox nameTextPane = new VBox(nameText);
         nameText.setFont(font);
-
-        pane.getChildren().addAll(nameTextPane, nameLabel);
+        
+        
+        
+        Button edit = new Button("Edit Profile");
+        edit.setMinSize(150, 30);
+        edit.setLayoutX(1920-200-150);
+        edit.setLayoutY(0);
+        pane.getChildren().addAll(nameTextPane, CreateButton.buttonEditProfile);
         return pane;
+    }
+    
+    static public void update(String name){
+        nameText.setText(name);
     }
 }

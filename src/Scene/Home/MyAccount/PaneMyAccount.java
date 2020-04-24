@@ -131,7 +131,7 @@ public class PaneMyAccount {
         scrollPaneMyObject.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
         vboxPaneMyProfile.getChildren().addAll(new Label("My Profile Pane"), btnBack2);
-        paneMyProfile.getChildren().addAll(MyProfliePane.getAndSetPane("Hello"));
+        paneMyProfile.getChildren().addAll(MyProfliePane.getAndSetPane());
         paneMyProfile.setMinSize(1920-220, 1080-200);
         paneMyProfile.setStyle("-fx-background-color:rgba(88,88,88,1.0) ; ");
 
