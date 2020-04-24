@@ -179,6 +179,7 @@ public class CreateButton {
         logIn.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         buttonLogInPaneTop = new Group(test, pane);
         buttonLogInPaneTop.setLayoutX(1920 - 400 - 150 - 150);
+        buttonLogInPaneTop.setLayoutY(+24);
     }
 
     static private void buttonMyAccount() {
@@ -195,6 +196,7 @@ public class CreateButton {
         logIn.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         buttonMyAccount = new Group(test, pane);
         buttonMyAccount.setLayoutX(1920 - 400 - 150 - 150 - 150);
+        buttonMyAccount.setLayoutY(+24);
     }
 
     static private void buttonSignOut() {
@@ -218,6 +220,7 @@ public class CreateButton {
 
         buttonSignOutTopPane = new Group(test, pane);
         buttonSignOutTopPane.setLayoutX(1920 - 400 - 150);
+        buttonSignOutTopPane.setLayoutY(+24);
     }
 
     static private void buttonTime() {
@@ -237,6 +240,7 @@ public class CreateButton {
         pane.setLayoutX(1920 - 150 - 250);
 
         buttonTime = new Group(test, pane);
+        buttonTime.setLayoutY(+24);
     }
 
     static private void buttonTime2() {
@@ -256,6 +260,7 @@ public class CreateButton {
         pane.setLayoutX(1920 - 150 - 250);
 
         buttonTime2 = new Group(test, pane);
+        buttonTime2.setLayoutY(+24);
     }
 
     static private void buttonHelp() {
@@ -273,6 +278,7 @@ public class CreateButton {
         logIn.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         buttonHelpPaneTop = new Group(test, pane);
         buttonHelpPaneTop.setLayoutX(1920 - 400 - 150);
+        buttonHelpPaneTop.setLayoutY(+24);
     }
     
     

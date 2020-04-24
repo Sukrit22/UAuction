@@ -43,9 +43,9 @@ public class PaneTop {
         CreateTextField.search.setLayoutX(1920 - 400 - 150 - 300 - 300 - 100);
         CreateTextField.search.setLayoutY(120);
         CreateButton.buttonBellHome.setLayoutX(1920 - 40);
-        CreateButton.buttonBellHome.setLayoutY(50 + 40);
+        CreateButton.buttonBellHome.setLayoutY(50 + 40 + 24);
         CreateButton.buttonBellHomeEff.setLayoutX(1920 - 40 + 10);
-        CreateButton.buttonBellHomeEff.setLayoutY(50 + 40 - 10);
+        CreateButton.buttonBellHomeEff.setLayoutY(50 + 40 - 10 +24);
 
         Image im2 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/exitRed255.png");
         ImageView iv2 = new ImageView(im2);
@@ -75,7 +75,7 @@ public class PaneTop {
         
         iv3.setOnMouseClicked(eh3);
         
-        Rectangle rec = new Rectangle(54,24);
+        Rectangle rec = new Rectangle(1920,24);
         rec.setArcHeight(8);
         rec.setArcWidth(4);
         rec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
