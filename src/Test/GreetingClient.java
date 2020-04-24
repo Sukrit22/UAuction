@@ -21,10 +21,15 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
 import javax.swing.ImageIcon;
+import uauction.ManageProduct;
+import uauction.Product;
+import uauction.SaveAndLoad;
+import uauction.User;
 
 public class GreetingClient
 {
@@ -40,17 +45,24 @@ public class GreetingClient
             Socket client = new Socket(serverName, port);
             //OutputStream os = client.getOutputStream();
              ObjectOutputStream toServer = new ObjectOutputStream(client.getOutputStream());
-        toServer.writeObject(new String("Register" + " " + "hahaha" + " " + "hohoho"));
-        toServer.flush();
-        toServer.close();
+            
+            
+            Product p = new Product("bean","nothing","bomb",20.0,10.0,new Date());
+           // ManageProduct.registerProduct(p, ImageIO.read(new File("C:/TestPic7.jpg")));
+           // SaveAndLoad.saveProduct(p);
+            
           
            //ImageOutputStream os = new ImageOutputStream(client.getOutputStream());
-           //ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());
-           //os.writeObject(new String("Hello")); 
+           ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
+           oos.writeObject(p); 
+           oos.flush();
+           oos.close();
+           OutputStream os = client.getOutputStream();
+           ImageIO.write(ImageIO.read(new File("C:/TestPic7.jpg")), "jpg", os);
           // BufferedImage image = ImageIO.read(new File("C:/TestPic4.jpg"));
            //ImageIO.write(image,"jpg", os);
              
-           //os.flush();
+           os.flush();
            //ObjectOutputStream os2 = new ObjectOutputStream(client.getOutputStream());
            //os2.writeObject(new String("Hi")); 
           // os2.flush();

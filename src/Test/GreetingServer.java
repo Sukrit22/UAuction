@@ -28,6 +28,9 @@ import javax.imageio.stream.ImageInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import uauction.ManageProduct;
+import uauction.Product;
+import uauction.SaveAndLoad;
 
 public class GreetingServer extends Thread
 {
@@ -42,8 +45,8 @@ public class GreetingServer extends Thread
 
        public void run()
        {
-           while(true)
-          { 
+       //  while(true)
+       //{ 
                try
                { server = serverSocket.accept();
 
@@ -55,28 +58,37 @@ public class GreetingServer extends Thread
                   //BufferedReader reader = new BufferedReader(isr);
                    //System.out.println(reader.readLine());
                   
-                  String first;
+                  
                    ObjectInputStream os = new ObjectInputStream(server.getInputStream());
                    
-                    String clientInput = (String)os.readObject();
+                    Product p = (Product)os.readObject();
+                    
+                    os.close();
+                    
+                 InputStream is = server.getInputStream();
+                    BufferedImage bi = ImageIO.read(is);
+                    
+                    
+                    ManageProduct.registerProduct(p,bi);
+                    SaveAndLoad.saveProduct(p);
               //String clientInput = fromClient.readLine();
-              String[] keyword = clientInput.split("\\s+");
-              for (int i = 0; i < keyword.length; i++) {
-            keyword[i] = keyword[i].replaceAll("[^\\w]", ""); //replace " " with ""
-        }
-               System.out.println("Client : "+clientInput);
-                   //System.out.println("Client : " + (String)os.readObject() );
-                   
-                   
-                   
-                   System.out.println(keyword[0]);
-                   System.out.println(keyword[1]);
-                   System.out.println(keyword[2]);
-                   
-                   if(keyword[0].matches("Register"))
-                   {
-                       System.out.println("wtf");
-                   }
+//              String[] keyword = clientInput.split("\\s+");
+//              for (int i = 0; i < keyword.length; i++) {
+//            keyword[i] = keyword[i].replaceAll("[^\\w]", ""); //replace " " with ""
+//        }
+//               System.out.println("Client : "+clientInput);
+//                   //System.out.println("Client : " + (String)os.readObject() );
+//                   
+//                   
+//                   
+//                   System.out.println(keyword[0]);
+//                   System.out.println(keyword[1]);
+//                   System.out.println(keyword[2]);
+//                   
+//                   if(keyword[0].matches("Register"))
+//                   {
+//                       System.out.println("wtf");
+//                   }
                    //BufferedImage bf =  ImageIO.read(new File("C:/TestPic9.jpg"));
                        
       /*            try {
@@ -103,18 +115,18 @@ public class GreetingServer extends Thread
              catch(SocketTimeoutException st)
              {
                    System.out.println("Socket timed out!");
-                  break;
+                 
              }
              catch(IOException e)
              {
                   e.printStackTrace();
-                  break;
+                 
              }
              catch(Exception ex)
             {
                   System.out.println(ex);
             }
-          }
+          //}
        }
 
        public static void main(String [] args) throws IOException, SQLException, ClassNotFoundException, Exception
