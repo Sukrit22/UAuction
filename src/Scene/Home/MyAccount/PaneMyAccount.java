@@ -181,7 +181,7 @@ public class PaneMyAccount {
         
         iv3.setOnMouseClicked(eh3);
         
-        Rectangle rec = new Rectangle(54,24);
+        Rectangle rec = new Rectangle(1920,24);
         rec.setArcHeight(8);
         rec.setArcWidth(4);
         rec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));

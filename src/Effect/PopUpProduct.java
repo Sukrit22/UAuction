@@ -107,6 +107,19 @@ public class PopUpProduct {
         minimumBid2.setFont(font);
         minimumBid2.setLayoutX(450 + 40 + 36);
         minimumBid2.setLayoutY(60 + 48 + 48 + 48 + 48 + 48 + 48 + 36);
+        
+        yourBid = new TextField();
+        yourBid.setPromptText("BID");
+        //yourBid.setFont(font);
+        yourBid.setMinSize(60, 30);
+        yourBid.setMaxSize(60, 30);
+        yourBid.setLayoutX(40);
+        yourBid.setLayoutY(400);
+        
+        btnBid = new Button("Bid");
+        btnBid.setLayoutX(40+60);
+        btnBid.setLayoutY(400);
+        btnBid.setMinSize(40, 30);
 
         btnMoreDetail = new Button("More Details");
         btnMoreDetail.setLayoutX(40);
@@ -142,7 +155,7 @@ public class PopUpProduct {
         name.setLayoutY(20);
 
         //Pane fadePane = new Pane(recBGFade);
-        panepane.getChildren().addAll(recBGPopUp, pic, name, btnMoreDetail, productName, productName2, price, price2, timeLeft, timeLeft2, minimumBid, minimumBid2);
+        panepane.getChildren().addAll(recBGPopUp, pic, name, btnMoreDetail, productName, productName2, price, price2, timeLeft, timeLeft2, minimumBid, minimumBid2, yourBid, btnBid);
 
         stackPane = new StackPane();
         stackPane.getChildren().addAll(recBGFade, panepane);
