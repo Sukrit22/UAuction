@@ -83,7 +83,7 @@ public class ButtonEvent {
                     PaneTop.getPane().getChildren().remove(CreateButton.buttonLogInPaneTop);
                     NewClient.user.setToBoth();
                     SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
-                    
+
                 } else {
                     //Wrong Password
                     PopUp.incorrecypassPane.setVisible(true);
@@ -465,8 +465,43 @@ public class ButtonEvent {
         };
 
         CreateButton.buttonBellHomeEff.setOnMouseClicked(notifi);
-
         CreateButton.buttonBellHome.setOnMouseClicked(notifi);
+
+        EventHandler<MouseEvent> notifi2 = (MouseEvent ActionEvent) -> {
+            System.out.println("Notifi");
+            boolean check = false;
+            for (int i = 0; i < SceneHomeUnLogIn.getStackPane().getChildren().size(); i++) {
+                if (SceneHomeUnLogIn.getStackPane().getChildren().get(i) != Notifications.pane) {
+                    check = true;
+
+                }
+                if (check) {
+                    SceneHomeUnLogIn.getStackPane().getChildren().add(Notifications.pane);
+                    Notifications.pane.setOpacity(0.2);
+                }
+            }
+
+        };
+
+        //CreateButton.buttonBellHomeEff.setOnMouseEntered(notifi2);
+        //CreateButton.buttonBellHome.setOnMouseEntered(notifi2);
+
+        EventHandler<MouseEvent> notifi3 = (MouseEvent ActionEvent) -> {
+            System.out.println("Notifi");
+            boolean check = false;
+            for (int i = 0; i < SceneHomeUnLogIn.getStackPane().getChildren().size(); i++) {
+                if (SceneHomeUnLogIn.getStackPane().getChildren().get(i) == Notifications.pane) {
+                    check = true;
+                }
+                if (check) {
+                    SceneHomeUnLogIn.getStackPane().getChildren().remove(Notifications.pane);
+                    Notifications.pane.setOpacity(1.0);
+                }
+            }
+        };
+
+        //CreateButton.buttonBellHomeEff.setOnMouseExited(notifi3);
+        //CreateButton.buttonBellHome.setOnMouseExited(notifi3);
 
         EventHandler<MouseEvent> notifiBack = (MouseEvent ActionEvent) -> {
             System.out.println("Notifi");
@@ -490,8 +525,8 @@ public class ButtonEvent {
 
                 }
         );
-        
-            EventHandler<MouseEvent> home = (MouseEvent ActionEvent) -> {
+
+        EventHandler<MouseEvent> home = (MouseEvent ActionEvent) -> {
             //Do code here
             System.out.println("buttonHelpPaneTop");
             try {
@@ -522,15 +557,15 @@ public class ButtonEvent {
         CreateButton.buttonBackOnACC.setOnMouseClicked(home);
 
     }
-    
+
     private static int getRandomNumberInRange(int min, int max) {
 
-	if (min >= max) {
-		throw new IllegalArgumentException("max must be greater than min");
-	}
+        if (min >= max) {
+            throw new IllegalArgumentException("max must be greater than min");
+        }
 
-	Random r = new Random();
-	return r.nextInt((max - min) + 1) + min;
-}
+        Random r = new Random();
+        return r.nextInt((max - min) + 1) + min;
+    }
 
 }
