@@ -81,7 +81,7 @@ public class ManageProduct {
     
     public static void endBidding(ActiveProduct ap){
         if(ap.getProduct().getDateEndBid().getTime() - ap.getProduct().getDatePosted().getTime() <= 0){
-            AuctionedProduct auctioned = new AuctionedProduct(ap, ap.getCurrentBid());
+            AuctionedProduct auctioned = new AuctionedProduct(ap);
             Database.auctionedProduct.add(auctioned);
             Database.activeProduct.remove(ap);
         }
@@ -104,21 +104,21 @@ public class ManageProduct {
             }
         }
     }
-    
-    public static void updateAuctionedProductArray(){
-        for (AuctionedProduct ap : Database.auctionedProduct) {
-            if((new Date()).getTime() - ap.finishedTime.getTime() <= 3_600_000){
-                //Remove auctionedProduct form DatabaseArray
-                Database.auctionedProduct.remove(ap);
-                
-                //Delete product file from ProductDatabase
-                File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/ProductDataBase/" + 
-                   ap.getProduct().getFileName());
-                if(file.exists())
-                    file.delete();
-            }
-        }
-    }
+    //=========================== อะไรวะ ภูมิมาดูดิ๊ =======================
+//    public static void updateAuctionedProductArray(){
+//        for (AuctionedProduct ap : Database.auctionedProduct) {
+//            if((new Date()).getTime() - ap.finishedTime.getTime() <= 3_600_000){
+//                //Remove auctionedProduct form DatabaseArray
+//                Database.auctionedProduct.remove(ap);
+//                
+//                //Delete product file from ProductDatabase
+//                File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/ProductDataBase/" + 
+//                   ap.getProduct().getFileName());
+//                if(file.exists())
+//                    file.delete();
+//            }
+//        }
+//    }
     
 //    public static void registerImage(BufferedImage image/*product.getFilename*/,String imageName) throws IOException 
 //    {

@@ -5,12 +5,15 @@
  */
 package Effect;
 
+import uauction.apNode;
 import AuctionMain.runTime;
 import Scene.Home.SceneHomeUnLogIn;
 import Scene.ProductPaneInVbox;
 import static Scene.ProductPaneInVbox.timeUpdate;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -23,6 +26,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import uauction.NewClient;
 
 /**
  *
@@ -65,12 +69,13 @@ public class PopUpProduct {
     }
     
 
-    static public void createpopUpBackground(String nameofProduct,String str,String currentPrice,Date timeEnd,String minBid) {
+    static public void createpopUpBackground(String nameofProduct,String str,String currentPrice,Date timeEnd,String minBid,apNode apnode) {
 
         timeUpdate = new Thread(new Runnable() {
             boolean enough = false;
+            Date endDate = timeEnd;
 
-            //=========================== เวลาที่น่าจะยังไม่เสร็จ =======================
+            //=========================== โอเคแล้ว =======================
             @Override
             public void run() {
                 SimpleDateFormat dt = new SimpleDateFormat("hh:mm:ss");
@@ -80,11 +85,14 @@ public class PopUpProduct {
                         Thread.sleep(1000);
                     } catch (InterruptedException ex) {
                     }
-                    final String time = dt.format(new Date());
-                    Platform.runLater(() -> {
-                        //System.out.println("Run Ja");
-                        //PopUpProduct.getTimeLeft().setText(time);
-                    });
+                    //ทุกๆ1วิ ลด Date endDate ลง 1000 milliseconds
+                    endDate.setTime(endDate.getTime()-1000);
+                    final String timeLeft = dt.format(endDate);
+                    PopUpProduct.getTimeLeft().setText(timeLeft);
+//                    Platform.runLater(() -> {
+//                        //System.out.println("Run Ja");
+//                        //PopUpProduct.getTimeLeft().setText(time);
+//                    });
                 }
             }
         });
@@ -106,12 +114,12 @@ public class PopUpProduct {
         price.setFont(font);
         price.setLayoutX(450 + 40);
         price.setLayoutY(60 + 48 + 48);
-
+//=========================== need to be updatable =======================
         price2 = new Text(currentPrice);
         price2.setFont(font);
         price2.setLayoutX(450 + 40 + 23);
         price2.setLayoutY(60 + 48 + 48 + 36);
-
+//=========================== already updatable =======================
         //runTime.textArray.get(0).setLayoutY(20);
         timeLeft = new Text("timeLeft");
         timeLeft.setFont(font);
@@ -127,12 +135,12 @@ public class PopUpProduct {
         minimumBid.setFont(font);
         minimumBid.setLayoutX(450 + 40);
         minimumBid.setLayoutY(60 + 48 + 48 + 48 + 48 + 48 + 48);
-        
+        //=========================== fixed date =======================
         minimumBid2 = new Text(minBid);
         minimumBid2.setFont(font);
         minimumBid2.setLayoutX(450 + 40 + 36);
         minimumBid2.setLayoutY(60 + 48 + 48 + 48 + 48 + 48 + 48 + 36);
-        
+        //=========================== only number =======================
         yourBid = new TextField();
         yourBid.setPromptText("BID");
         //yourBid.setFont(font);
@@ -140,12 +148,19 @@ public class PopUpProduct {
         yourBid.setMaxSize(60, 30);
         yourBid.setLayoutX(40);
         yourBid.setLayoutY(400);
-        
+        //=========================== need to set event =======================
         btnBid = new Button("Bid");
         btnBid.setLayoutX(40+60);
         btnBid.setLayoutY(400);
         btnBid.setMinSize(40, 30);
-
+        btnBid.setOnAction(eh ->{
+            try {
+                NewClient.reqBid(apnode.ap.getProduct().getFileName(), yourBid.getText(), NewClient.user.getUsername());
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("reqBid in PopUpPro");
+            }
+        });
         btnMoreDetail = new Button("More Details");
         btnMoreDetail.setLayoutX(40);
         btnMoreDetail.setLayoutY(350);

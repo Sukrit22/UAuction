@@ -25,16 +25,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import uauction.ActiveProduct;
 import uauction.NewClient;
+import uauction.apNode;
 
 /**
  *
  * @author Sitth
  */
+
+
 public class ProductPaneInVbox {
 
     static private Pane productView1;
@@ -51,7 +56,9 @@ public class ProductPaneInVbox {
 
     static public Thread timeUpdate;
 
-    static public Pane Pane1(Image image, String productName, String dis, double currentPrice, int ID) {
+    static public Pane Pane1(Image image, String productName, String dis, double currentPrice, int ID,ActiveProduct ap) {
+        apNode apnode = new apNode(ap);
+        
         //imageview จำกัดความสูงไว้ที่ 250
         System.out.println("Product Added");
         btnView = new Button("View");
@@ -60,7 +67,7 @@ public class ProductPaneInVbox {
         btnView.setMinSize(200, 25);
         //=========================== อาจจะต้องรีเควสไอเทมชิ้นนั้น =======================
         EventHandler<ActionEvent> ev = (ActionEvent ActionEvent) -> {
-        PopUpProduct.createpopUpBackground(productName);
+        PopUpProduct.createpopUpBackground(productName,dis,currentPrice+"",ap.getProduct().getDateEndBid(), ap.getProduct().getMinimumBid()+"" , apnode);
             PopUp.getStackPane().setVisible(true);//แสดงรายละเอียด
             timeUpdate.start();//เริ่มนับเวลาถอยหลัง แล้วไปอัพเดทใน popupproduct
             //Do code here
@@ -140,7 +147,7 @@ public class ProductPaneInVbox {
         bgRec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
         //Rectangle pic2 = new Rectangle(0, 0, 150, 150);
         productView1 = new Pane(bgRec);
-        productView1.getChildren().addAll(pic, item, timeEnd, title, price, btnView);
+        productView1.getChildren().addAll(pic, item, timeEnd, title, price, btnView, apnode);
         //productView1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color: red;");
         productView1.setMinSize(1920 - 220, 200);
         //____ Left

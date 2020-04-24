@@ -54,8 +54,8 @@ public class NewServer {
                     Database.save();
                     Database.activeProduct.forEach(a -> {
                         if (a.getProduct().getDateEndBid().getTime() - previousDate.getTime() < 0) {
-                            Database.activeProduct.remove(a);
                             Database.auctionedProduct.add(new AuctionedProduct(a));
+                            Database.activeProduct.remove(a);
                         }
 
                     });

@@ -175,7 +175,7 @@ public class NewClient {
         return product;
     }
 
-    public static void reqBid(String productName/*product.getName*/, String cost, String bidderName/*User.getName*/) throws Exception {
+    public static void reqBid(String fileName/*product.getName*/, String cost, String bidderName/*User.getName*/) throws Exception {
         server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Bid" + " " + cost + " " + bidderName));
@@ -183,7 +183,7 @@ public class NewClient {
         server.close();
     }
 
-    public static void reqMarket() throws Exception {
+    public static void reqMarket(int i,boolean show) throws Exception {
         server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Market"));
@@ -195,7 +195,7 @@ public class NewClient {
         fromServer.close();
 
         unfilteredProduct = a;
-        filteredProduct = unfilteredProduct;
+//        filteredProduct = unfilteredProduct;
         server.close();
         Thread reqIm = new Thread(new Runnable() {
             @Override
@@ -213,8 +213,8 @@ public class NewClient {
                         System.out.println(ex.getMessage());
                         System.out.println("interupt thread req image");
                     }
-                    if(ap.equals(a.get(a.size()-1))){ //กรณีที่รับImage มาครบทุกตัว จึงshowMarketใหม่
-                        showMarket(0);
+                    if(ap.equals(a.get(a.size()-1))&&show){ //กรณีที่รับImage มาครบทุกตัว จึงshowMarketใหม่
+                        showMarket(i);
                     }
 
         }
@@ -255,7 +255,7 @@ public class NewClient {
             int itemId = a.getProduct().getItemId();
             //CategorisePane.vbo
 //            Pane pane = new Pane(new ImageView(image), new Label(name), new Label(description), new Label(currentBid.toString()));
-            CategorisePane.vboxArray.get(i).getChildren().add( ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId)); 
+            CategorisePane.vboxArray.get(i).getChildren().add( ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId,a)); 
 
         }
     }
