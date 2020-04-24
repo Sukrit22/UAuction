@@ -32,8 +32,30 @@ public class PaneTop {
     static private Pane pane = new Pane();
 
     public static void createPane() {
-        Image im = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/TopPane.png");
+        Image im = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/topPane3.png");
         ImageView iv = new ImageView(im);
+        iv.setFitHeight(180);
+        iv.setFitWidth(360);
+        iv.setLayoutX(1920/2-362/2-100);
+        iv.setLayoutY(48+12);
+        iv.setPreserveRatio(true);
+        
+        Image im4 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/letter-a.png");
+        ImageView iv4 = new ImageView(im4);
+        iv4.setFitHeight(170);
+        iv4.setFitWidth(360);
+        iv4.setLayoutX(25);
+        iv4.setLayoutY(24+6);
+        iv4.setPreserveRatio(true);
+        
+        Image im5 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/topPane4.png");
+        ImageView iv5 = new ImageView(im5);
+        //iv5.setFitHeight(170);
+        //iv5.setFitWidth(360);
+        //iv5.setLayoutX(25);
+        //iv5.setLayoutY(24+6);
+        //iv5.setPreserveRatio(true);
+        
         pane.setMinSize(0, 0);
         //pane.setStyle("-fx-stroke:rgba( 88, 88, 88, 1.0)");
         CreateButton.buttonSearch.setLayoutX(440 + 1920 - 400 - 150 - 300 - 300 - 100 - 100);
@@ -80,7 +102,7 @@ public class PaneTop {
         rec.setArcWidth(4);
         rec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
 
-        pane.getChildren().addAll(rec, iv2, iv3, CreateTextField.search, CreateButton.buttonSearch, CreateButton.buttonLogInPaneTop, CreateButton.buttonBellHome, CreateButton.buttonBellHomeEff);
+        pane.getChildren().addAll(iv5, iv, rec, iv2, iv3, CreateTextField.search, CreateButton.buttonSearch, CreateButton.buttonLogInPaneTop, CreateButton.buttonBellHome, CreateButton.buttonBellHomeEff);
 
     }
 
