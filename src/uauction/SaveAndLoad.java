@@ -24,24 +24,46 @@ import javafx.scene.image.Image;
 public class SaveAndLoad {
 
     public static boolean saveProduct(Product ap) {
-        boolean success;
-        File file;
-        FileOutputStream fileOut;
-        ObjectOutputStream output;
-        try {
-            file = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductDataBase/"+ 
-                   ap.getFileName());
-            fileOut = new FileOutputStream(file);
-            output = new ObjectOutputStream(fileOut);
-            output.writeObject(ap);
-            output.close();
-            fileOut.close();
-            success = true;
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-            success = false;
-        }
-        return success;
+//        try {
+            //        boolean success;
+//        File file;
+//        FileOutputStream fileOut;
+//        ObjectOutputStream output;
+//        try {
+//            file = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductDataBase/"+ ap.getFileName());
+//            System.out.println("1");
+//            fileOut = new FileOutputStream(file);
+//            System.out.println("2");
+//            output = new ObjectOutputStream(fileOut);
+//            System.out.println("3");
+//            output.writeObject(ap);
+//            output.close();
+//            fileOut.close();
+//            success = true;
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//            System.out.println("SavePro????");
+//            success = false;
+//        }
+//        return success;
+
+            File filePath;
+            FileOutputStream file;
+            ObjectOutputStream out;
+            try {
+                filePath = new File(System.getProperty("user.dir") + "/AuctionDataBase/ProductsDataBase/" + ap.getFileName());
+                file = new FileOutputStream(filePath);
+                out = new ObjectOutputStream(file);
+                out.writeObject(ap);
+                out.close();
+                file.close();
+                return true;
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+                //error with io, saving process
+                return false;
+            }
+
     }
 
     public static Product loadProduct(String fileName){
@@ -49,7 +71,7 @@ public class SaveAndLoad {
         FileInputStream fileIn;
         ObjectInputStream input;
         try {
-            file = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductDataBase/"+ fileName);
+            file = new File(System.getProperty("user.dir")+"/AuctionDataBase/ProductsDataBase/"+ fileName);
             fileIn = new FileInputStream(file);
             input = new ObjectInputStream(fileIn);
             Product ap = (Product) input.readObject();

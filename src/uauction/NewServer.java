@@ -99,6 +99,7 @@ class server implements Runnable {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println("outside");
         }
         boolean isClose = false;
         //while (!isClose) {
@@ -174,10 +175,7 @@ class server implements Runnable {
                 objectToClient = new ObjectOutputStream(client.getOutputStream());
                 objectToClient.writeObject(Database.activeProduct);
                 objectToClient.flush();
-                objectToClient.close();
-                isClose = true;
-                reqFromClient.close();
-                client.close();
+
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             } finally {
@@ -186,6 +184,11 @@ class server implements Runnable {
                 } catch (IOException ex) {
                 System.out.println(ex.getMessage());
                 }
+            }
+            try {
+                client.close();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage()+"IO close market");
             }
 
         } else if (keyword[0].matches("Image"))//done
@@ -232,11 +235,13 @@ class server implements Runnable {
                 byte[] imageAr = new byte[size];
                 inputStream.read(imageAr);
                 BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
+                System.out.println("DoneRead: " + System.currentTimeMillis());
                 System.out.println(image == null);
 //                while (image == null) {
 //                    System.out.println("still null");
 //                }
                 reqFromClient.close();
+                client.close();
                 ManageProduct.registerProduct(product, image);
                 //reqFromClient.close();
 //                    ObjectInputStream objectFromClient = new ObjectInputStream(client.getInputStream());
