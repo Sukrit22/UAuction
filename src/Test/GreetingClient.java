@@ -53,7 +53,7 @@ public class GreetingClient
             Product p3 = new Product("bean3","nothing","bomb",20.0,10.0,new Date());
            // ManageProduct.registerProduct(p, ImageIO.read(new File("C:/TestPic7.jpg")));
            // SaveAndLoad.saveProduct(p);
-            
+           
           ArrayList<Product> alp = new ArrayList<>();
           alp.add(p);
           alp.add(p2);
