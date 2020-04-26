@@ -57,7 +57,7 @@ public class CategorisePane {
         //vbox1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vbox1.setLayoutY(60);
         vboxArray.add(vbox1);
-        vboxArray.get(0).getChildren().add(new Text ("555 kam mai?"));
+        //vboxArray.get(0).getChildren().add(new Text ("555 kam mai?"));
         
         vbox2 = new VBox(noProduct(pane2));
         //vbox2.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");

@@ -107,6 +107,7 @@ class server implements Runnable {
     public server(Socket client1) {
         client = client1;
         Thread trsend = new Thread(this);
+        System.out.println("newThread");
         trsend.start();
     }
 
@@ -325,6 +326,7 @@ class server implements Runnable {
         //}
 
 //    }
+        System.out.println("Thread End");
     }
 }
 

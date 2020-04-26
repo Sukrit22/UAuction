@@ -24,8 +24,10 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import Effect.Notifications;
 import Scene.Home.MyAccount.AddProduct;
+import static Scene.Home.MyAccount.AddProduct.pic;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,6 +36,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.ImagePattern;
 import javax.imageio.ImageIO;
 import uauction.ActiveProduct;
 import uauction.Database;
@@ -95,7 +98,7 @@ public class ButtonEvent {
 
         CreateTextField.password.setOnKeyPressed(logInOnPopUpEnter -> {
             if (CreateButton.buttonPopSwitchToSignUp.isVisible()) {
-                if (logInOnPopUpEnter.getCode() == KeyCode.ENTER) {
+                if (logInOnPopUpEnter.getCode().equals(KeyCode.ENTER)) {
                     boolean loginPop = false;
                     // TextField CreateTextField.userName + CreateTextField.password
 
@@ -182,7 +185,7 @@ public class ButtonEvent {
         CreateButton.buttonPopUpRegister.setOnMouseClicked(registerOnPopUpEV);
 
         CreateTextField.passwordC.setOnKeyPressed(logInOnPopUpEnter -> {
-            if (logInOnPopUpEnter.getCode() == KeyCode.ENTER) {
+            if (logInOnPopUpEnter.getCode().equals(KeyCode.ENTER)) {
                 System.out.println("Register");
                 //System.out.println(" GG");
                 Object obj = new Object();
@@ -260,10 +263,22 @@ public class ButtonEvent {
                 try {
                     image = ImageIO.read(AddProduct.filePath);
                 } catch (IOException ex) {
+                    image = new Image("file:///"+System.getProperty("user.dir")+"/src/Picture/noimg.jpg");
                     System.out.println(ex.getMessage());
                     System.out.println("อ่านรูปก่อนรีจิสโพรดักไม่ได้ว่ะ");
                 }
                 NewClient.reqRegisterProduct(product, image);
+                //=========================== take data out from the form after added item to server =======================
+                AddProduct.pic.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/upload2.png")));
+                AddProduct.productName.setText("");
+                AddProduct.productDescription.setText("");
+                AddProduct.minimumBid.setText("");
+                AddProduct.startBid.setText("");
+                AddProduct.comboBoxAmPm.setValue("A.M");
+                AddProduct.comboBoxHour.setPromptText("Hour");
+                AddProduct.datePicker.setValue(LocalDate.now());
+                AddProduct.getSelectText().setText("Select Categorise");
+                
             } else {
                 PopUp.chooseNewPicPane.setVisible(true);
             }
@@ -369,7 +384,7 @@ public class ButtonEvent {
             boolean addAble1 = true;
 
             for (int i = 0; i < PaneTop.getPane().getChildren().size(); i++) {
-                if (PaneTop.getPane().getChildren().get(i) == CreateButton.buttonMyAccount) {
+                if (PaneTop.getPane().getChildren().get(i).equals(CreateButton.buttonMyAccount)) {
                     addAble1 = false;
                 }
             }
@@ -379,7 +394,7 @@ public class ButtonEvent {
 
             boolean removeAble1 = false;
             for (int i = 0; i < SceneHomeUnLogIn.getStackPane().getChildren().size(); i++) {
-                if (SceneHomeUnLogIn.getStackPane().getChildren().get(i) == PaneMyAccount.getPaneMyAcclayer1()) {
+                if (SceneHomeUnLogIn.getStackPane().getChildren().get(i).equals(PaneMyAccount.getPaneMyAcclayer1())) {
                     removeAble1 = true;
                 }
             }
@@ -394,7 +409,7 @@ public class ButtonEvent {
             }
             if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
                 //System.out.println("More Than 1" + CategorisePane.vboxArray.get(i).getChildren().get(0));
-                if (CategorisePane.vboxArray.get(i).getChildren().get(0) == CategorisePane.pane1) {
+                if (CategorisePane.vboxArray.get(i).getChildren().get(0).equals(CategorisePane.pane1) ) {
                     //System.out.println("1 is No product");
                     CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane1);
                 }
@@ -410,7 +425,7 @@ public class ButtonEvent {
             boolean addAble1 = true;
 
             for (int i = 0; i < PaneTop.getPane().getChildren().size(); i++) {
-                if (PaneTop.getPane().getChildren().get(i) == CreateButton.buttonMyAccount) {
+                if (PaneTop.getPane().getChildren().get(i).equals(CreateButton.buttonMyAccount)) {
                     addAble1 = false;
                 }
             }
@@ -420,43 +435,43 @@ public class ButtonEvent {
 
             boolean removeAble1 = false;
             for (int i = 0; i < SceneHomeUnLogIn.getStackPane().getChildren().size(); i++) {
-                if (SceneHomeUnLogIn.getStackPane().getChildren().get(i) == PaneMyAccount.getPaneMyAcclayer1()) {
+                if (SceneHomeUnLogIn.getStackPane().getChildren().get(i).equals(PaneMyAccount.getPaneMyAcclayer1())) {
                     removeAble1 = true;
                 }
             }
             if (removeAble1) {
                 SceneHomeUnLogIn.getStackPane().getChildren().remove(PaneMyAccount.getPaneMyAcclayer1());
-            }
-            //NewClient.reqMarket();
-            //NewClient.showMarket(NewClient.unfilteredProduct, vbox);            
+            }    
 
-            System.out.println(CategorisePane.vboxArray.get(0).getChildren().size());
-
-            int i = 0;
+            System.out.println("This is in BTE : "+CategorisePane.vboxArray.get(0).getChildren().size());
+            //ไปเพิ่มใน new client เป็น my viewing ไอสัส แทบที่กูดูอยู่นั่นแหละ
+            NewClient.myViewSelected = 0; //back to all filter
 //            CategorisePane.vboxArray.get(i).getChildren().removeAll();
             try {
-                NewClient.reqMarket(0);
+                NewClient.reqMarket();
             } catch (Exception ex) {
                 System.out.println("unsuccessfully request data of market from server");
                 System.out.println(ex.getMessage());
             }
-            NewClient.showMarket(0);
+            NewClient.showMarket(NewClient.myViewSelected);
 //            NewClient.filteredProduct.forEach(j -> {
 //                CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(j.getProduct().getName(), j.getProduct().getDescription(), j.getCurrentBid(), j.getProduct().getItemId()));
 //            });
 //            CategorisePane.vboxArray.get(i).getChildren().add(ProductPaneInVbox.Pane1(NewClient.filteredProduct.get(i).getProduct().getName(), "", 20.d, 1));
-            if (CategorisePane.vboxArray.get(i).getChildren().isEmpty()) {
-                CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane1);
+            if (CategorisePane.vboxArray.get(NewClient.myViewSelected).getChildren().isEmpty()) {
+                CategorisePane.vboxArray.get(NewClient.myViewSelected).getChildren().add(CategorisePane.pane1);
+                System.out.println("add NoPro");
             }
-            if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
+            if (CategorisePane.vboxArray.get(NewClient.myViewSelected).getChildren().size() > 1) {
                 //System.out.println("More Than 1" + CategorisePane.vboxArray.get(i).getChildren().get(0));
-                if (CategorisePane.vboxArray.get(i).getChildren().get(0) == CategorisePane.pane1) {
+                if (CategorisePane.vboxArray.get(NewClient.myViewSelected).getChildren().get(0).equals(CategorisePane.pane1)) {
                     //System.out.println("1 is No product");
-                    CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane1);
+                    CategorisePane.vboxArray.get(NewClient.myViewSelected).getChildren().remove(CategorisePane.pane1);
+                    System.out.println("remove NoPro");
                 }
             }
         };
-        CreateButton.buttonBackOnACC.setOnMouseClicked(backMVE);
+        //CreateButton.buttonBackOnACC.setOnMouseClicked(backMVE);
         CreateButton.buttonBackOnACC2.setOnMouseClicked(backMVE);
 
         EventHandler<MouseEvent> notifi = (MouseEvent ActionEvent) -> {
@@ -490,7 +505,7 @@ public class ButtonEvent {
             System.out.println("Notifi");
             boolean check = false;
             for (int i = 0; i < SceneHomeUnLogIn.getStackPane().getChildren().size(); i++) {
-                if (SceneHomeUnLogIn.getStackPane().getChildren().get(i) == Notifications.pane) {
+                if (SceneHomeUnLogIn.getStackPane().getChildren().get(i).equals(Notifications.pane)) {
                     check = true;
                 }
                 if (check) {

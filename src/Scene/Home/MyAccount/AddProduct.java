@@ -12,6 +12,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.lang.System.Logger;
+import java.time.LocalDate;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
@@ -20,6 +21,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -66,7 +68,7 @@ public class AddProduct {
     static public TextArea productDescription;
     static public Rectangle pic;
 
-    static private Desktop desktop = Desktop.getDesktop();
+    //static private Desktop desktop = Desktop.getDesktop();
 
     static public void makeAddProductPane() {
         title1();
@@ -82,6 +84,20 @@ public class AddProduct {
         datePicker.setLayoutY(50);
         datePicker.setMinSize(220, 40);
         datePicker.applyCss();
+        datePicker.setValue(LocalDate.now());
+        datePicker.setDayCellFactory(picker -> new DateCell() {
+        public void updateItem(LocalDate date, boolean empty) {
+            super.updateItem(date, empty);
+            LocalDate today = LocalDate.now();
+
+            setDisable(empty || date.compareTo(today) < 0 );
+        }
+    });
+        datePicker.setOnAction(eh -> {
+            if(datePicker.getValue().compareTo(LocalDate.now())<0){
+                datePicker.setValue(LocalDate.now());
+            }
+        });
         //datePicker.setStyle("-fx-text-inner-color:black; -fx-background-radius:10; -fx-background-color:rgba( 125, 125, 125, 1.0); ");
 
         comboBoxHour = new ComboBox();
@@ -119,15 +135,17 @@ public class AddProduct {
             System.out.println("btnCheck " + selectText.getText());
             Stage stage = new Stage();
             File file = fileChooser.showOpenDialog(stage);
-            if(file.exists()&&!file.isDirectory()){
+            if (file != null) {
+                if (file.exists() && !file.isDirectory()) {
                     filePath = file;
                     pathAdded = false;
-                PopUp.chooseNewPicPane.setVisible(false);
-                try {
-                    pic.setFill(new ImagePattern(SwingFXUtils.toFXImage(ImageIO.read(file), null)));
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                    System.out.println("fail from AddProduct pic.setFill");
+                    PopUp.chooseNewPicPane.setVisible(false);
+                    try {
+                        pic.setFill(new ImagePattern(SwingFXUtils.toFXImage(ImageIO.read(file), null)));
+                    } catch (IOException ex) {
+                        System.out.println(ex.getMessage());
+                        System.out.println("fail from AddProduct pic.setFill");
+                    }
                 }
             }
             System.out.println(file.toString());

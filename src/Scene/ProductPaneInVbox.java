@@ -29,6 +29,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
 import uauction.ActiveProduct;
 import uauction.NewClient;
@@ -144,6 +145,7 @@ public class ProductPaneInVbox {
         Rectangle pic = new Rectangle(25, 10, 200, 150);
         Rectangle bgRec = new Rectangle(0, 0, 1920 - 220, 200);
         bgRec.setFill(Color.web("rgba( 200, 200, 200, 1.0)"));
+        pic.setFill(new ImagePattern(image));
         //Rectangle pic2 = new Rectangle(0, 0, 150, 150);
         productView1 = new Pane(bgRec);
         productView1.getChildren().addAll(pic, item, timeEnd, title, price, btnView);

@@ -48,6 +48,8 @@ public class NewClient {
     public static ArrayList<ActiveProduct> unfilteredProduct = new ArrayList<>();
     public static ArrayList<ActiveProduct> filteredProduct = new ArrayList<>();
     public static Thread sendImage;
+    public static boolean oldShowMarketDone;
+    public static int myViewSelected;
     
     //=========================== main is here =======================
     public static void main(String[] args) throws Exception {
@@ -104,14 +106,12 @@ public class NewClient {
     public static void reqRegisterProduct(Product product, BufferedImage image){
         try {
             server = new Socket(localhost, 1234);
-            //ImPr impr = new ImPr(product, image);
             
             ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
             toServer.writeObject(new String("RegisterProduct"));
             toServer.flush();
             toServer.writeObject(product);
             toServer.flush();
-//            toServer.close();
             OutputStream outputStream = server.getOutputStream();
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ImageIO.write(image, "jpg", byteArrayOutputStream);
@@ -121,45 +121,9 @@ public class NewClient {
             outputStream.write(byteArrayOutputStream.toByteArray());
             outputStream.flush();
             System.out.println("Flushed: " + System.currentTimeMillis());
-//
-//            Thread.sleep(120000);
             System.out.println("Closing: " + System.currentTimeMillis());
 
             server.close();
-//            sendImage = new Thread( new Runnable() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        server = new Socket(localhost, 1235);
-//                        OutputStream os = server.getOutputStream();
-//                        System.out.println(image == null);
-//                        try {
-//                            System.out.println(image == null);
-//                            ImageIO.write(image, "jpg", os);
-//                        } catch (IOException ex) {
-//                            Logger.getLogger(NewClient.class.getName()).log(Level.SEVERE, null, ex);
-//                        }
-//                        Thread.sleep(5000);
-//                        os.flush();
-//                        os.close();
-//                        server.close();
-//                        
-//                    } catch (IOException ex) {
-//                        Logger.getLogger(NewClient.class.getName()).log(Level.SEVERE, null, ex);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(NewClient.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                    
-//                }
-//            });
-//            System.out.println("start thread to send image");
-//            sendImage.start();
-            
-            
-            //ObjectOutputStream toServer2 = new ObjectOutputStream(server.getOutputStream());
-            //toServer2.writeObject(impr);
-            //toServer2.flush();
-            //toServer2.close();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             System.out.println("เกิด error ในreq");
@@ -188,7 +152,7 @@ public class NewClient {
         server.close();
     }
 
-    public static void reqMarket(int i) throws Exception {
+    public static void reqMarket() throws Exception { //get unfilter and req Image
         server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Market"));
@@ -216,12 +180,8 @@ public class NewClient {
                         System.out.println("getIm");
                     } catch (Exception ex) {
                         Logger.getLogger(NewClient.class.getName()).log(Level.SEVERE, null, ex);
-                        //ex.printStackTrace();
                     }
-                    /*catch (Exception ex) {
-                        System.out.println(ex.getMessage());
-                        System.out.println("inside Thread reqImage in reqMarket");
-                    }*/
+
                     try {
                         Thread.sleep(200);
                     } catch (InterruptedException ex) {
@@ -230,9 +190,11 @@ public class NewClient {
                     }
 
                 }
-                if (renewMarketBecauseImageJustLoaded) { //กรณีที่รับImage มาครบทุกตัว จึงshowMarketใหม่
-                    showMarket(i);
-                }
+                
+//                if (renewMarketBecauseImageJustLoaded) { //กรณีที่รับImage มาครบทุกตัว จึงshowMarketใหม่
+//                    while(!oldShowMarketDone);
+//                    showMarket(NewClient.myViewSelected);
+//                }
             }
         });
         reqIm.start();
@@ -254,40 +216,29 @@ public class NewClient {
             toServer.flush();
             BufferedImage image = ImageIO.read(is);
             ImageIO.write(image, imageName, file);
+            server.close();
         }//เกิดปัญหาแน่ถ้าเกิดเป็นภาพ HD เพราะ สร้างThreadใหม่ขึ้นมาแล้ว ภาพHD ใช้เวลาส่งนาน ซึ่งให้เวลาก่อนสร้างThreadใหม่ไว้ 0.2 seconds
-        server.close();
+        
     }
 
     public static void showMarket(int i) {
+        if(oldShowMarketDone)
+            oldShowMarketDone = false;
         System.out.println("GG");
-        //CategorisePane.vboxArray.get(i).getChildren().removeAll(); //ล้าง vbox
-        
-        //CategorisePane
-        
-        //CategorisePane.vboxArray.get(i).getChildren().add(new Text ("555 kam mai?"));
-//        for (ActiveProduct a : filteredProduct) { //สร้าง pane in vbox
-//            Image image;
-//            try{//พยายามโหลดภาพที่มาทัน
-//                image = new Image("file:///" + System.getProperty("user.dir") + "/AuctionDataBase/Image/" + a.getProduct().getImageName());
-//            } catch (Exception e){ //กรณีภาพมาไม่ทัน
-//                image = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/" + "noimg.jpg");
-//            }
-//            String name = a.getProduct().getName();
-//            String description = a.getProduct().getDescription();
-//            Double currentBid = a.getCurrentBid();
-//            int itemId = a.getProduct().getItemId();
-//            //CategorisePane.vbo
-////            Pane pane = new Pane(new ImageView(image), new Label(name), new Label(description), new Label(currentBid.toString()));
-//            CategorisePane.vboxArray.get(i).getChildren().add( ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId,a)); 
-//            
-//
-//        }
 //=========================== needFixed =======================
-        //MyFunction.i = i;
-        //MyFunction.damn(/*image, localhost, destinationIp, i, i, a*/i);
+        for(int gg = CategorisePane.vboxArray.get(i).getChildren().size()-1; gg>=0 ;gg--){
+            CategorisePane.vboxArray.get(i).getChildren().remove(gg);
+        }
+        switch(NewClient.myViewSelected){
+            case 0: filteredProduct = unfilteredProduct;
+            break;
+            case 1:filter("Electronic");
+            break;
+            case 2:filter("");
+        }
         for (ActiveProduct a : NewClient.filteredProduct) { //สร้าง pane in vbox
             System.out.println(a.getProduct().getImageName());
-            CategorisePane.vboxArray.get(i).getChildren().remove(NewClient.filteredProduct.indexOf(a));
+            //CategorisePane.vboxArray.get(i).getChildren().remove(0);
             Image image;
             try {//พยายามโหลดภาพที่มาทัน
                 image = new Image("file:///" + System.getProperty("user.dir") + "/AuctionDataBase/Image/" + a.getProduct().getImageName());
@@ -306,6 +257,7 @@ public class NewClient {
         CategorisePane.vboxArray.get(i).setVisible(true);
         CategorisePane.paneArray.get(i).setVisible(true);
         
+        oldShowMarketDone = true;
     }
 
     public static void filter(String filter) {
@@ -319,61 +271,3 @@ public class NewClient {
         System.out.println("Filtered : "+ filter);
     }
 }
-/*public class NewClient extends Application
-{
-    OutputStreamWriter osw = null;
-    
-    InputStreamReader isr = null;
-   
-
-
-    @Override
-    public void start(Stage stage) throws Exception {
-       BorderPane paneForText = new BorderPane();
-       paneForText.setPadding(new Insets(5,5,5,5));
-       paneForText.setLeft(new Label("Enter somthing : "));
-        
-       TextField tf = new TextField();
-       tf.setAlignment(Pos.BOTTOM_RIGHT);
-       paneForText.setCenter(tf);
-       
-       BorderPane mainPane = new BorderPane();
-       TextArea ta = new TextArea();
-       mainPane.setCenter(new ScrollPane(ta));
-       mainPane.setTop(paneForText);
-        
-       
-       Scene scene = new Scene(mainPane,450,200);
-       Stage primaryStage = new Stage();
-       primaryStage.setTitle("Client");
-       primaryStage.setScene(scene);
-       primaryStage.show();
-       
-       Socket server = new Socket("localhost",1234);
-       osw = new OutputStreamWriter(server.getOutputStream());
-       isr = new InputStreamReader(server.getInputStream());
-       BufferedWriter toServer = new BufferedWriter(osw);
-        BufferedReader fromServer = new BufferedReader(isr);
-       tf.setOnAction(e->{
-           
-           try {
-               String output = tf.getText().trim();
-               toServer.write(output);
-               toServer.flush();
-               
-               String input = fromServer.readLine();
-               ta.appendText("Server : " + input);
-               
-           } catch (IOException ex) {
-              
-           }
-       });
-       
-    }
-    public static void main(String arg[])
-{
-    launch(arg);
-
-}
-}
- */

@@ -102,9 +102,9 @@ public class PaneLeft {
         titleVbox.getChildren().addAll(titleGroup1, titleGroup2, titleGroup3, titleGroup4, titleGroup5);
 
         EventHandler<MouseEvent> evTitle1 = (MouseEvent ActionEvent) -> {
-
+            NewClient.myViewSelected = 0;
             try {
-                NewClient.reqMarket(0);
+                NewClient.reqMarket();
             } catch (Exception ex) {
                 System.out.println("exception from reqMarket in paneLeft all catalog");
             }
@@ -123,7 +123,7 @@ public class PaneLeft {
                 CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane1);
             }
             if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
-                if (CategorisePane.vboxArray.get(i).getChildren().get(0) == CategorisePane.pane1) {
+                if (CategorisePane.vboxArray.get(i).getChildren().get(0).equals(CategorisePane.pane1)) {
                     CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane1);
                 }
             }
@@ -132,9 +132,9 @@ public class PaneLeft {
         titleGroup1.setOnMouseClicked(evTitle1);
             
         EventHandler<MouseEvent> evTitle2 = (MouseEvent ActionEvent) -> {
-
+            NewClient.myViewSelected = 1;
             try {
-                NewClient.reqMarket(1);
+                NewClient.reqMarket();
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 System.out.println("Fail reqMarket with electronics filter");
@@ -162,7 +162,7 @@ public class PaneLeft {
                 CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane2);
             }
             if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
-                if (CategorisePane.vboxArray.get(i).getChildren().get(0) == CategorisePane.pane2) {
+                if (CategorisePane.vboxArray.get(i).getChildren().get(0).equals(CategorisePane.pane2)) {
                     CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane2);
                 }
             }
@@ -171,9 +171,9 @@ public class PaneLeft {
         titleGroup2.setOnMouseClicked(evTitle2);
 
         EventHandler<MouseEvent> evTitle3 = (MouseEvent ActionEvent) -> {
-
+            NewClient.myViewSelected = 2;
             try {
-                NewClient.reqMarket(1);
+                NewClient.reqMarket();
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 System.out.println("Fail reqMarket with health and beauty filter");
@@ -201,7 +201,7 @@ public class PaneLeft {
                 CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane3);
             }
             if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
-                if (CategorisePane.vboxArray.get(i).getChildren().get(0) == CategorisePane.pane3) {
+                if (CategorisePane.vboxArray.get(i).getChildren().get(0).equals(CategorisePane.pane3)) {
                     CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane3);
                 }
             }
@@ -210,9 +210,9 @@ public class PaneLeft {
         titleGroup3.setOnMouseClicked(evTitle3);
 
         EventHandler<MouseEvent> evTitle4 = (MouseEvent ActionEvent) -> {
-
+            NewClient.myViewSelected =3;
             try {
-                NewClient.reqMarket(1);
+                NewClient.reqMarket();
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 System.out.println("Fail reqMarket with home and life filter");
@@ -240,7 +240,7 @@ public class PaneLeft {
                 CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane4);
             }
             if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
-                if (CategorisePane.vboxArray.get(i).getChildren().get(0) == CategorisePane.pane4) {
+                if (CategorisePane.vboxArray.get(i).getChildren().get(0).equals(CategorisePane.pane4)) {
                     CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane4);
                 }
             }
@@ -249,9 +249,9 @@ public class PaneLeft {
         titleGroup4.setOnMouseClicked(evTitle4);
 
         EventHandler<MouseEvent> evTitle5 = (MouseEvent ActionEvent) -> {
-
+            NewClient.myViewSelected = 4;
             try {
-                NewClient.reqMarket(5);
+                NewClient.reqMarket();
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 System.out.println("Fail reqMarket with other filter");
@@ -287,7 +287,7 @@ public class PaneLeft {
                 CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane5);
             }
             if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
-                if (CategorisePane.vboxArray.get(i).getChildren().get(0) == CategorisePane.pane5) {
+                if (CategorisePane.vboxArray.get(i).getChildren().get(0).equals(CategorisePane.pane5)) {
                     CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane5);
                 }
             }

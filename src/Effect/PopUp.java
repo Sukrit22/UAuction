@@ -119,7 +119,7 @@ public class PopUp {
             PopUp.passwordNotSamePane.setVisible(false);
             PopUp.emailUsedPane.setVisible(false);
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUp.getStackPane());
-            if(SceneHomeUnLogIn.getStackPane().getChildren().get(SceneHomeUnLogIn.getStackPane().getChildren().size()-1) == PopUpProduct.getStackPane()){
+            if(SceneHomeUnLogIn.getStackPane().getChildren().get(SceneHomeUnLogIn.getStackPane().getChildren().size()-1).equals(PopUpProduct.getStackPane())){
                 if (!NewClient.user.canBuy()){
                     SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUpProduct.getStackPane());
                 }
