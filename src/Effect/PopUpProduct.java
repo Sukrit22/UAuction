@@ -12,6 +12,7 @@ import Scene.ProductPaneInVbox;
 import static Scene.ProductPaneInVbox.timeUpdate;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -19,10 +20,12 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -52,6 +55,7 @@ public class PopUpProduct {
     static private Text price2;
     static private Text timeLeft2;
     static private Text minimumBid2;
+    public static boolean enough;
 
     public static Text getProductName() {
         return productName2;
@@ -73,27 +77,68 @@ public class PopUpProduct {
     static public void createpopUpBackground(String nameofProduct,String str,String currentPrice,Date timeEnd,String minBid,ActiveProduct ap) {
 
         timeUpdate = new Thread(new Runnable() {
-            boolean enough = false;
             Date endDate = timeEnd;
 
             //=========================== โอเคแล้ว =======================
             @Override
             public void run() {
-                SimpleDateFormat dt = new SimpleDateFormat("hh:mm:ss");
+                SimpleDateFormat dt;
+                enough = false;
                 while (!enough) {
-                    try {
-                        // running "long" operation not on UI thread
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {
-                    }
-                    //ทุกๆ1วิ ลด Date endDate ลง 1000 milliseconds
-                    endDate.setTime(endDate.getTime()-1000);
-                    final String timeLeft = dt.format(endDate);
-                    PopUpProduct.getTimeLeft().setText(timeLeft);
+                    
+                    if (timeEnd.getTime() - (new Date()).getTime() >= 86400000) { //ถ้า เวลามากกว่า24 ชั่วโมง แสดงเป็นวัน
+                        dt = new SimpleDateFormat("dd-MM-yyyy");
+                        try {
+                            // running "long" operation not on UI thread
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ex) {
+                        }
+                        PopUpProduct.getTimeLeft().setText(dt.format(timeEnd));
+                    } else if (timeEnd.getTime() - (new Date()).getTime() < 86400000 ) { //ถ้าเวลาน้อยกว่า 24ชม แสดงเป็น ชม
+                        dt = new SimpleDateFormat("hh:mm:ss");
+                        try {
+                            // running "long" operation not on UI thread
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ex) {
+                            
+                        }
+                        
+                        long timeL = timeEnd.getTime() - (new Date()).getTime();
+                        timeL-=25200000;
+                        PopUpProduct.getTimeLeft().setText(dt.format(new Date(timeL)));
+                        
+//                        String Shh = "00",Smm = "00",Sss = "00";
+//                        int ss=0,mm=0,hh=0;
+//                        ss = timeEnd.getSeconds()-(new Date()).getSeconds();
+//                        mm = timeEnd.getMinutes()-(new Date()).getMinutes();
+//                        hh = timeEnd.getHours()-(new Date()).getHours();
+//                        if(ss<0){
+//                            mm-=1;
+//                            ss+=60;
+//                        }
+//                        if(mm<0){
+//                            hh-=1;
+//                            mm+=60;
+//                        }
+//                        if(ss<10)
+//                            Sss = "0"+ss;
+//                        if(ss<10)
+//                            Sss = ss+"";
+//                        if(mm<10)
+//                            Smm = "0"+mm;
+//                        if(mm<10)
+//                            Smm = mm+"";
+//                        if(hh<10)
+//                            Shh = "0"+hh;
+//                        if(hh<10)
+//                            Shh = hh+"";
+//                            
+//                        PopUpProduct.getTimeLeft().setText(Shh+":"+Smm+":"+Sss);
 //                    Platform.runLater(() -> {
 //                        //System.out.println("Run Ja");
 //                        //PopUpProduct.getTimeLeft().setText(time);
 //                    });
+                    }
                 }
             }
         });
@@ -127,7 +172,7 @@ public class PopUpProduct {
         timeLeft.setLayoutX(450 + 40);
         timeLeft.setLayoutY(60 + 48 + 48 + 48 + 48);
         
-        timeLeft2 = new Text(timeEnd.toString());
+        timeLeft2 = new Text("");
         timeLeft2.setFont(font);
         timeLeft2.setLayoutX(450 + 40 + 36);
         timeLeft2.setLayoutY(60 + 48 + 48 + 48 + 48 + 36);
@@ -151,12 +196,18 @@ public class PopUpProduct {
         yourBid.setLayoutY(400);
         //=========================== need to set event =======================
         btnBid = new Button("Bid");
-        btnBid.setLayoutX(40+60);
+        btnBid.setLayoutX(40 + 60);
         btnBid.setLayoutY(400);
         btnBid.setMinSize(40, 30);
-        btnBid.setOnAction(eh ->{
+        btnBid.setOnAction(eh -> {
             try {
                 NewClient.reqBid(ap.getProduct().getFileName(), yourBid.getText(), NewClient.user.getUsername());
+                //ปิด popupProduct
+                SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUpProduct.getStackPane());
+                System.out.println("Click");
+                PopUpProduct.enough = true;
+                NewClient.reqMarket();
+                NewClient.showMarket(NewClient.myViewSelected);
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 System.out.println("reqBid in PopUpPro");
@@ -183,7 +234,7 @@ public class PopUpProduct {
             //Do code here
             SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUpProduct.getStackPane());
             System.out.println("Click");
-            ProductPaneInVbox.timeUpdate.stop();
+            PopUpProduct.enough = true;
 
         };
         recBGFade.setOnMouseClicked(mcc);
@@ -191,7 +242,8 @@ public class PopUpProduct {
         panepane = new Pane();
         panepane.setMaxSize(800, 600);
         pic = new Rectangle(40, 40, 400, 300);
-        name = new Label("Name");
+        pic.setFill(new ImagePattern(new Image("file:///"+System.getProperty("user.dir")+"/AuctionDataBase/Image/"+ap.getProduct().getImageName())));
+        name = new Label("");
         name.setLayoutX(200);
         name.setLayoutY(20);
 

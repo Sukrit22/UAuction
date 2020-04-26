@@ -107,7 +107,7 @@ public class ProductPaneInVbox {
         //=========================== ต้องรับเข้ามา ======================= ID
         //เป้น Item id
         //item = new Text(time + b + " " + ID);
-        item = new Text(ID + "");
+        item = new Text("");
         item.setFont(font);
         item.setLayoutX(300 - 25);
         item.setLayoutY(50);
@@ -136,8 +136,15 @@ public class ProductPaneInVbox {
         //runTime.textArray.get(ID-1).setFont(font);
         //runTime.textArray.get(ID-1).setLayoutX(1500 - 20);
         //runTime.textArray.get(ID-1).setLayoutY(50-12);
-        timeEnd = new Text("45 Min 33 Sec");
-        timeEnd.setFill(Color.web("rgba( 255, 0, 0, 1.0)"));
+        Date d = ap.getProduct().getDateEndBid();
+        String timeEe = (new SimpleDateFormat("dd-MM-yyyy").format(d)) +" at " +(new SimpleDateFormat("HH:mm").format(d));
+        timeEnd = new Text(timeEe);
+        if(d.getTime()-(new Date()).getTime()<3600000){
+            timeEnd.setFill(Color.web("rgba( 255, 0, 0, 1.0)"));
+        }else{
+            timeEnd.setFill(Color.web("rgba( 0, 0, 0, 1.0)"));
+        }
+        
         timeEnd.setFont(font);
         timeEnd.setLayoutX(1500 - 20);
         timeEnd.setLayoutY(50);

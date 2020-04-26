@@ -307,18 +307,23 @@ class server implements Runnable {
             }
 
         } else if (keyword[0].matches("Bid")) {
-
             try {
-                int indexOfActiveProduct = Database.activeProduct.indexOf(keyword[1]);
-                Database.activeProduct.get(indexOfActiveProduct).setCurrentBid(Double.parseDouble(keyword[2]));
-                Database.activeProduct.get(indexOfActiveProduct).addBiddingHistory(keyword[3]);
-                //=========================== undone =======================
-                isClose = true;
+                int indexOfActiveProduct = 0;
+                for (ActiveProduct ap : Database.activeProduct) {
+                    if (ap.getProduct().getFileName().equals(keyword[1])) {
+                        indexOfActiveProduct = Database.activeProduct.indexOf(ap);
+                    }
+                }
+                if (Double.parseDouble(keyword[2]) > Database.activeProduct.get(indexOfActiveProduct).getCurrentBid()) {//cost มากกว่า currentBid
+                    Database.activeProduct.get(indexOfActiveProduct).setCurrentBid(Double.parseDouble(keyword[2]));
+                    Database.activeProduct.get(indexOfActiveProduct).addBiddingHistory(keyword[3] + " " + keyword[2]);
+                }
                 reqFromClient.close();
                 client.close();
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
+
         }
 //            } catch (Exception e) {
 //                System.out.println("Exception1 " + e.getMessage());

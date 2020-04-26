@@ -147,7 +147,7 @@ public class NewClient {
     public static void reqBid(String fileName/*product.getName*/, String cost, String bidderName/*User.getName*/) throws Exception {
         server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
-        toServer.writeObject(new String("Bid" + " " + cost + " " + bidderName));
+        toServer.writeObject(new String("Bid" +" "+fileName+" " + cost + " " + bidderName));
         toServer.close();
         server.close();
     }

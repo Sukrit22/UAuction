@@ -136,19 +136,24 @@ public class AddProduct {
             Stage stage = new Stage();
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
-                if (file.exists() && !file.isDirectory()) {
-                    filePath = file;
-                    pathAdded = false;
-                    PopUp.chooseNewPicPane.setVisible(false);
-                    try {
-                        pic.setFill(new ImagePattern(SwingFXUtils.toFXImage(ImageIO.read(file), null)));
-                    } catch (IOException ex) {
-                        System.out.println(ex.getMessage());
-                        System.out.println("fail from AddProduct pic.setFill");
+                if (file.getPath().substring(file.getPath().length()-4, file.getPath().length()).equals(".jpg")) {
+                    if (file.exists() && !file.isDirectory()) {
+                        filePath = file;
+                        pathAdded = false;
+                        PopUp.chooseNewPicPane.setVisible(false);
+                        try {
+                            pic.setFill(new ImagePattern(SwingFXUtils.toFXImage(ImageIO.read(file), null)));
+                        } catch (IOException ex) {
+                            System.out.println(ex.getMessage());
+                            System.out.println("fail from AddProduct pic.setFill");
+                        }
                     }
+                    System.out.println(file.toString());
+                } else {
+                    PopUp.chooseNewPicPane.setVisible(true);
                 }
             }
-            System.out.println(file.toString());
+            
             //Image image = new Image(file.toString());
             //ImageView imv = new ImageView(image);
             //pic.setClip(imv);

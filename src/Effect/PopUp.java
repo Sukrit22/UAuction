@@ -37,14 +37,14 @@ public class PopUp {
     private static final Label incorrecypass = new Label("*Maybe your Username or Password is incorrect*");
     private static final Label emailUsed = new Label("*This Username Alread Used*");
     private static final Label passwordNotSame = new Label("*Your Passwords are not match*");
-    private static final Label chooseNewPic = new Label("*Please choose picture again*");
+    private static final Label chooseNewPic = new Label("*Please choose only .jpg image*");
 
     static public void setUpPopUp(){
         popUp();
         incorrectPasswrod();
         emailNotAvailable();
         passwordNotSame();
-        
+        chooseNewPic();
     }
     
     static private void popUp() {        

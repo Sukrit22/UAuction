@@ -424,6 +424,7 @@ public class ButtonEvent {
         PaneMyAccount.btnBack2.setOnAction(back);
 
         EventHandler<MouseEvent> backMVE = (MouseEvent ActionEvent) -> {
+            PopUp.chooseNewPicPane.setVisible(false);
 
             boolean addAble1 = true;
 

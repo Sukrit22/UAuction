@@ -89,7 +89,7 @@ public class CategorisePane {
             Rectangle bgBar = new Rectangle(0, 0, 1920 - 220, 60);
             Pane pane = new Pane();
             bgBar.setFill(Color.web("rgba( 80, 80, 80, 1.0)"));
-            itemText = new Text("Item #");
+            itemText = new Text("");
             itemText.setFont(font);
             itemText.setLayoutX(300);
             itemText.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
@@ -140,14 +140,9 @@ public class CategorisePane {
         Font font = new Font(32);
         Text text = new Text("No Product");
         text.setFont(font);
-        text.setFill(Color.web("rgba( 0, 255, 255, 1.0)"));
+        text.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
         pane.getChildren().add(text);
         pane.setMinSize(1920 - 220, 200);
-        Button btnPaneNo = new Button();
-        btnPaneNo.setOnAction(eh->{
-            System.out.println("Kuy I sus Ku kor ha tang nan");
-        });
-        pane.getChildren().add(btnPaneNo);
         return pane;
     }
 }
