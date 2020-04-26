@@ -9,7 +9,9 @@ package uauction;
  *
  * @author USER
  */
+import Function.MyFunction;
 import Scene.CategorisePane;
+import static Scene.CategorisePane.vboxArray;
 import Scene.ProductPaneInVbox;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -32,21 +34,24 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
 
 public class NewClient {
-
+    private static boolean renewMarketBecauseImageJustLoaded;
     public static final String destinationIp = "auctionoop.myddns.me";
     public static final String localhost = "127.0.0.1";
-    static Socket server = null;
+    public static Socket server = null;
     public static User user;
     public static ArrayList<ActiveProduct> unfilteredProduct = new ArrayList<>();
     public static ArrayList<ActiveProduct> filteredProduct = new ArrayList<>();
     public static Thread sendImage;
+    
+    //=========================== main is here =======================
     public static void main(String[] args) throws Exception {
-
+        renewMarketBecauseImageJustLoaded = false;
         user = new User();
         AuctionMain.AuctionMain.main(args);
 //        while(true)
@@ -183,7 +188,7 @@ public class NewClient {
         server.close();
     }
 
-    public static void reqMarket(int i,boolean show) throws Exception {
+    public static void reqMarket(int i) throws Exception {
         server = new Socket(localhost, 1234);
         ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
         toServer.writeObject(new String("Market"));
@@ -195,6 +200,11 @@ public class NewClient {
         fromServer.close();
 
         unfilteredProduct = a;
+        unfilteredProduct.forEach(b->
+        {
+            System.out.println(b.getProduct().getName());
+        }
+        );
 //        filteredProduct = unfilteredProduct;
         server.close();
         Thread reqIm = new Thread(new Runnable() {
@@ -203,21 +213,26 @@ public class NewClient {
                 for (ActiveProduct ap : a) {
                     try {
                         reqImage(ap.getProduct().getImageName());
+                        System.out.println("getIm");
                     } catch (Exception ex) {
+                        Logger.getLogger(NewClient.class.getName()).log(Level.SEVERE, null, ex);
+                        //ex.printStackTrace();
+                    }
+                    /*catch (Exception ex) {
                         System.out.println(ex.getMessage());
                         System.out.println("inside Thread reqImage in reqMarket");
-                    }
+                    }*/
                     try {
                         Thread.sleep(200);
                     } catch (InterruptedException ex) {
                         System.out.println(ex.getMessage());
                         System.out.println("interupt thread req image");
                     }
-                    if(ap.equals(a.get(a.size()-1))&&show){ //กรณีที่รับImage มาครบทุกตัว จึงshowMarketใหม่
-                        showMarket(i);
-                    }
 
-        }
+                }
+                if (renewMarketBecauseImageJustLoaded) { //กรณีที่รับImage มาครบทุกตัว จึงshowMarketใหม่
+                    showMarket(i);
+                }
             }
         });
         reqIm.start();
@@ -226,27 +241,57 @@ public class NewClient {
     }
 
     public static void reqImage(String imageName) throws Exception {
-        server = new Socket(localhost, 1234);
-        ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
-        
+
         File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + imageName);
-        InputStream is = server.getInputStream();
         if (!file.exists()) {
-            toServer.writeObject(new String("Image" + " " + imageName));
+            if(!renewMarketBecauseImageJustLoaded)
+                renewMarketBecauseImageJustLoaded = true;
+            server = new Socket(localhost, 1234);
+            ObjectOutputStream toServer = new ObjectOutputStream(server.getOutputStream());
+            InputStream is = server.getInputStream();
+
+            toServer.writeObject("Image" + " " + imageName);
             toServer.flush();
             BufferedImage image = ImageIO.read(is);
             ImageIO.write(image, imageName, file);
-        }
+        }//เกิดปัญหาแน่ถ้าเกิดเป็นภาพ HD เพราะ สร้างThreadใหม่ขึ้นมาแล้ว ภาพHD ใช้เวลาส่งนาน ซึ่งให้เวลาก่อนสร้างThreadใหม่ไว้ 0.2 seconds
         server.close();
     }
 
     public static void showMarket(int i) {
-        CategorisePane.vboxArray.get(i).getChildren().removeAll(); //ล้าง vbox
-        for (ActiveProduct a : filteredProduct) { //สร้าง pane in vbox
+        System.out.println("GG");
+        //CategorisePane.vboxArray.get(i).getChildren().removeAll(); //ล้าง vbox
+        
+        //CategorisePane
+        
+        //CategorisePane.vboxArray.get(i).getChildren().add(new Text ("555 kam mai?"));
+//        for (ActiveProduct a : filteredProduct) { //สร้าง pane in vbox
+//            Image image;
+//            try{//พยายามโหลดภาพที่มาทัน
+//                image = new Image("file:///" + System.getProperty("user.dir") + "/AuctionDataBase/Image/" + a.getProduct().getImageName());
+//            } catch (Exception e){ //กรณีภาพมาไม่ทัน
+//                image = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/" + "noimg.jpg");
+//            }
+//            String name = a.getProduct().getName();
+//            String description = a.getProduct().getDescription();
+//            Double currentBid = a.getCurrentBid();
+//            int itemId = a.getProduct().getItemId();
+//            //CategorisePane.vbo
+////            Pane pane = new Pane(new ImageView(image), new Label(name), new Label(description), new Label(currentBid.toString()));
+//            CategorisePane.vboxArray.get(i).getChildren().add( ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId,a)); 
+//            
+//
+//        }
+//=========================== needFixed =======================
+        //MyFunction.i = i;
+        //MyFunction.damn(/*image, localhost, destinationIp, i, i, a*/i);
+        for (ActiveProduct a : NewClient.filteredProduct) { //สร้าง pane in vbox
+            System.out.println(a.getProduct().getImageName());
+            CategorisePane.vboxArray.get(i).getChildren().remove(NewClient.filteredProduct.indexOf(a));
             Image image;
-            try{//พยายามโหลดภาพที่มาทัน
+            try {//พยายามโหลดภาพที่มาทัน
                 image = new Image("file:///" + System.getProperty("user.dir") + "/AuctionDataBase/Image/" + a.getProduct().getImageName());
-            } catch (Exception e){ //กรณีภาพมาไม่ทัน
+            } catch (Exception e) { //กรณีภาพมาไม่ทัน
                 image = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/" + "noimg.jpg");
             }
             String name = a.getProduct().getName();
@@ -255,9 +300,12 @@ public class NewClient {
             int itemId = a.getProduct().getItemId();
             //CategorisePane.vbo
 //            Pane pane = new Pane(new ImageView(image), new Label(name), new Label(description), new Label(currentBid.toString()));
-            CategorisePane.vboxArray.get(i).getChildren().add( ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId,a)); 
-
+            CategorisePane.vboxArray.get(i)/*catalogไหน*/.getChildren().add(ProductPaneInVbox.Pane1(image, name, description, currentBid, itemId, a));
+            //CategorisePane.vboxArray.get(i).getChildren()
         }
+        CategorisePane.vboxArray.get(i).setVisible(true);
+        CategorisePane.paneArray.get(i).setVisible(true);
+        
     }
 
     public static void filter(String filter) {

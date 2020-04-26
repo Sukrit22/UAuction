@@ -61,20 +61,10 @@ public class PaneLeft {
     static private Group intitleGroup302;
     static private Group intitleGroup303;
     
-    public static boolean first1;
-    public static boolean first2;
-    public static boolean first3;
-    public static boolean first4;
-    public static boolean first5;
     
 
     static public void setUp() {
         //Button a = new Button();
-        first1 = true;
-        first2 = true;
-        first3 = true;
-        first4 = true;
-        first5 = true;
         
         title1();
         title2();
@@ -112,15 +102,14 @@ public class PaneLeft {
         titleVbox.getChildren().addAll(titleGroup1, titleGroup2, titleGroup3, titleGroup4, titleGroup5);
 
         EventHandler<MouseEvent> evTitle1 = (MouseEvent ActionEvent) -> {
-            if (false) {
-                try {
-                    NewClient.reqMarket(0, first1);
-                } catch (Exception ex) {
-                    System.out.println("exception from reqMarket in paneLeft all catalog");
-                }
-                first1 = false;
-                NewClient.filteredProduct = NewClient.unfilteredProduct;
+
+            try {
+                NewClient.reqMarket(0);
+            } catch (Exception ex) {
+                System.out.println("exception from reqMarket in paneLeft all catalog");
             }
+            NewClient.filteredProduct = NewClient.unfilteredProduct;
+
             for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                 titleVbox.getChildren().remove(i);
             }
@@ -143,15 +132,14 @@ public class PaneLeft {
         titleGroup1.setOnMouseClicked(evTitle1);
             
         EventHandler<MouseEvent> evTitle2 = (MouseEvent ActionEvent) -> {
-            if(first2){
-                try {
-                    NewClient.reqMarket(1,first2);
-                } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
-                    System.out.println("Fail reqMarket with electronics filter");
-                }
-                first2 = false;
+
+            try {
+                NewClient.reqMarket(1);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("Fail reqMarket with electronics filter");
             }
+
             NewClient.filter("Electronic");
             if (titleVbox.getChildren().get(2) != inTitleVbox1) {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
@@ -183,15 +171,14 @@ public class PaneLeft {
         titleGroup2.setOnMouseClicked(evTitle2);
 
         EventHandler<MouseEvent> evTitle3 = (MouseEvent ActionEvent) -> {
-            if(first3){
-                try {
-                    NewClient.reqMarket(1,first3);
-                } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
-                    System.out.println("Fail reqMarket with health and beauty filter");
-                }
-                first3 = false;
+
+            try {
+                NewClient.reqMarket(1);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("Fail reqMarket with health and beauty filter");
             }
+
             NewClient.filter("Health & Beauty");
             if (titleVbox.getChildren().get(3) != inTitleVbox2) {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
@@ -223,14 +210,13 @@ public class PaneLeft {
         titleGroup3.setOnMouseClicked(evTitle3);
 
         EventHandler<MouseEvent> evTitle4 = (MouseEvent ActionEvent) -> {
-            if (first4) {
-                try {
-                    NewClient.reqMarket(1, first4);
-                } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
-                    System.out.println("Fail reqMarket with home and life filter");
-                }
-                first4 = false;
+
+            try {
+                NewClient.reqMarket(1);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("Fail reqMarket with home and life filter");
+
             }
             NewClient.filter("Home & Lifestyle");
             if (titleVbox.getChildren().get(4) != inTitleVbox3) {
@@ -263,15 +249,14 @@ public class PaneLeft {
         titleGroup4.setOnMouseClicked(evTitle4);
 
         EventHandler<MouseEvent> evTitle5 = (MouseEvent ActionEvent) -> {
-            if (first5) {
-                try {
-                    NewClient.reqMarket(1, first5);
-                } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
-                    System.out.println("Fail reqMarket with other filter");
-                }
-                first5 = false;
+
+            try {
+                NewClient.reqMarket(5);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("Fail reqMarket with other filter");
             }
+
             NewClient.filter("Others");
             if (titleVbox.getChildren().size() == 6) {
                 if (titleVbox.getChildren().get(5) != inTitleVbox4) {

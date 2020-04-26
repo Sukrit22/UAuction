@@ -10,7 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -49,12 +52,13 @@ public class CategorisePane {
     static public void setUp() {
 
         int page = 5;
-
-        vbox1 = new VBox(noProduct(pane1));
+        Pane p = new Pane(new Text("Kuy"));
+        vbox1 = new VBox(noProduct(pane1));//คือ Vbox ที่แสดงหน้า market noProduct(pane1)
         //vbox1.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vbox1.setLayoutY(60);
         vboxArray.add(vbox1);
-
+        vboxArray.get(0).getChildren().add(new Text ("555 kam mai?"));
+        
         vbox2 = new VBox(noProduct(pane2));
         //vbox2.setStyle("-fx-padding: 10; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-insets: 5; -fx-border-radius: 5; -fx-border-color:orange ;");
         vbox2.setLayoutY(60);
@@ -122,12 +126,13 @@ public class CategorisePane {
             paneArray.get(i).getChildren().addAll(paneBar);
 
         }
-
+        //VBox testVbox = new VBox( );
         paneArray.get(0).getChildren().add(vbox1);
         paneArray.get(1).getChildren().add(vbox2);
         paneArray.get(2).getChildren().add(vbox3);
         paneArray.get(3).getChildren().add(vbox4);
         paneArray.get(4).getChildren().add(vbox5);
+        
 
     }
 
@@ -135,9 +140,14 @@ public class CategorisePane {
         Font font = new Font(32);
         Text text = new Text("No Product");
         text.setFont(font);
-        text.setFill(Color.web("rgba( 255, 255, 255, 1.0)"));
+        text.setFill(Color.web("rgba( 0, 255, 255, 1.0)"));
         pane.getChildren().add(text);
         pane.setMinSize(1920 - 220, 200);
+        Button btnPaneNo = new Button();
+        btnPaneNo.setOnAction(eh->{
+            System.out.println("Kuy I sus Ku kor ha tang nan");
+        });
+        pane.getChildren().add(btnPaneNo);
         return pane;
     }
 }

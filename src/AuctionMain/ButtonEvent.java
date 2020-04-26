@@ -435,7 +435,7 @@ public class ButtonEvent {
             int i = 0;
 //            CategorisePane.vboxArray.get(i).getChildren().removeAll();
             try {
-                NewClient.reqMarket(0,true);
+                NewClient.reqMarket(0);
             } catch (Exception ex) {
                 System.out.println("unsuccessfully request data of market from server");
                 System.out.println(ex.getMessage());

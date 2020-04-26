@@ -112,14 +112,14 @@ class server implements Runnable {
 
     public void run() {
 //    void go(){
-        try {
-            InputStreamReader isr = new InputStreamReader(client.getInputStream());
-            BufferedReader fromClient = new BufferedReader(isr);
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("outside");
-        }
+//        try {
+//            InputStreamReader isr = new InputStreamReader(client.getInputStream());
+//            BufferedReader fromClient = new BufferedReader(isr);
+//
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            System.out.println("outside");
+//        }
         boolean isClose = false;
         //while (!isClose) {
         //try {
@@ -128,14 +128,20 @@ class server implements Runnable {
             reqFromClient = new ObjectInputStream(client.getInputStream());
         } catch (IOException ex) {
                 System.out.println(ex.getMessage());
+                System.out.println("io before reqFromClient = getInputStream");
         }
         String clientInput = null;
         try {
-            clientInput = (String) reqFromClient.readObject();
+            clientInput = (String) reqFromClient.readObject(); //ส่งมาเป็น null
+        } /*catch (IOException ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("io readObject from reqFromClient to clientInput");
+        } */catch (ClassNotFoundException ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("classNotFound readObject from reqFromClient to clientInput");
         } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-        } catch (ClassNotFoundException ex) {
-                System.out.println(ex.getMessage());
+            System.out.println("IOExc");
+            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
         }
         //String clientInput = fromClient.readLine();
         String[] keyword = clientInput.split("\\s+");

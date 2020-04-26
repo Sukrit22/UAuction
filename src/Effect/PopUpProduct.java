@@ -26,6 +26,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import uauction.ActiveProduct;
 import uauction.NewClient;
 
 /**
@@ -69,7 +70,7 @@ public class PopUpProduct {
     }
     
 
-    static public void createpopUpBackground(String nameofProduct,String str,String currentPrice,Date timeEnd,String minBid,apNode apnode) {
+    static public void createpopUpBackground(String nameofProduct,String str,String currentPrice,Date timeEnd,String minBid,ActiveProduct ap) {
 
         timeUpdate = new Thread(new Runnable() {
             boolean enough = false;
@@ -155,7 +156,7 @@ public class PopUpProduct {
         btnBid.setMinSize(40, 30);
         btnBid.setOnAction(eh ->{
             try {
-                NewClient.reqBid(apnode.ap.getProduct().getFileName(), yourBid.getText(), NewClient.user.getUsername());
+                NewClient.reqBid(ap.getProduct().getFileName(), yourBid.getText(), NewClient.user.getUsername());
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 System.out.println("reqBid in PopUpPro");
