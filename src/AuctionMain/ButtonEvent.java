@@ -240,50 +240,53 @@ public class ButtonEvent {
         };
         CreateButton.buttonHelpPaneTop.setOnMouseClicked(helpEV);
 //=========================== done =======================
-        EventHandler<ActionEvent> add = (ActionEvent ActionEvent) -> {
-            System.out.println("Add from MyACC");
-            if (!AddProduct.pathAdded && !(AddProduct.filePath == null)) {
-                System.out.println("mee pic path");
-                AddProduct.pathAdded = true;
-                Date end = Date.from((AddProduct.datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-                long hour = Long.parseLong((String) AddProduct.comboBoxHour.getValue());
-                if (hour == 12) {
-                    hour = 0;
+        EventHandler<ActionEvent> add = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent ActionEvent) {
+                System.out.println("Add from MyACC");
+                if (!AddProduct.pathAdded && !(AddProduct.filePath == null)) {
+                    System.out.println("mee pic path");
+                    AddProduct.pathAdded = true;
+                    Date end = Date.from((AddProduct.datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                    long hour = Long.parseLong((String) AddProduct.comboBoxHour.getValue());
+                    if (hour == 12) {
+                        hour = 0;
+                    }
+                    hour = hour * 60 * 60 * 1000; //milliseconds
+                    if (AddProduct.comboBoxAmPm.getItems().indexOf(AddProduct.comboBoxAmPm.getValue()) == 1) {
+                        hour += (long) (43200000);
+                    }
+                    end.setTime((long) (end.getTime() + hour));
+                    String name = AddProduct.productName.getText();
+                    //miniBid and StartBid is number
+                    Product product = new Product(name, AddProduct.productDescription.getText(), AddProduct.getSelectText().getText(), Double.parseDouble(AddProduct.startBid.getText()), Double.parseDouble(AddProduct.minimumBid.getText()), end);
+                    product.setMyOwnerName(NewClient.user.getUsername());
+                    BufferedImage image = SwingFXUtils.fromFXImage(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/noimg.jpg"), null);
+                    try {
+                        image = ImageIO.read(AddProduct.filePath);
+                    } catch (IOException ex) {
+                        image = SwingFXUtils.fromFXImage(new Image("file:///"+System.getProperty("user.dir")+"/src/Picture/noimg.jpg"), null);
+                        System.out.println(ex.getMessage());
+                        System.out.println("อ่านรูปก่อนรีจิสโพรดักไม่ได้ว่ะ");
+                    }
+                    NewClient.reqRegisterProduct(product, image);
+                    //=========================== take data out from the form after added item to server =======================
+                    AddProduct.pic.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/upload2.png")));
+                    AddProduct.productName.setText("");
+                    AddProduct.productDescription.setText("");
+                    AddProduct.minimumBid.setText("");
+                    AddProduct.startBid.setText("");
+                    AddProduct.comboBoxAmPm.setValue("A.M");
+                    AddProduct.comboBoxHour.setPromptText("Hour");
+                    AddProduct.datePicker.setValue(LocalDate.now());
+                    AddProduct.getSelectText().setText("Select Categorise");
+                    
+                } else {
+                    PopUp.chooseNewPicPane.setVisible(true);
                 }
-                hour = hour * 60 * 60 * 1000; //milliseconds
-                if (AddProduct.comboBoxAmPm.getItems().indexOf(AddProduct.comboBoxAmPm.getValue()) == 1) {
-                    hour += (long) (43200000);
-                }
-                end.setTime((long) (end.getTime() + hour));
-                String name = AddProduct.productName.getText();
-                //miniBid and StartBid is number
-                Product product = new Product(name, AddProduct.productDescription.getText(), AddProduct.getSelectText().getText(), Double.parseDouble(AddProduct.startBid.getText()), Double.parseDouble(AddProduct.minimumBid.getText()), end);
-                product.setMyOwnerName(NewClient.user.getUsername());
-                BufferedImage image = SwingFXUtils.fromFXImage(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/noimg.jpg"), null);
-                try {
-                    image = ImageIO.read(AddProduct.filePath);
-                } catch (IOException ex) {
-                    image = new Image("file:///"+System.getProperty("user.dir")+"/src/Picture/noimg.jpg");
-                    System.out.println(ex.getMessage());
-                    System.out.println("อ่านรูปก่อนรีจิสโพรดักไม่ได้ว่ะ");
-                }
-                NewClient.reqRegisterProduct(product, image);
-                //=========================== take data out from the form after added item to server =======================
-                AddProduct.pic.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/upload2.png")));
-                AddProduct.productName.setText("");
-                AddProduct.productDescription.setText("");
-                AddProduct.minimumBid.setText("");
-                AddProduct.startBid.setText("");
-                AddProduct.comboBoxAmPm.setValue("A.M");
-                AddProduct.comboBoxHour.setPromptText("Hour");
-                AddProduct.datePicker.setValue(LocalDate.now());
-                AddProduct.getSelectText().setText("Select Categorise");
                 
-            } else {
-                PopUp.chooseNewPicPane.setVisible(true);
-            }
-
 //            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/TopPane.png"), "productName", "dis", 125.00, ProductPaneInVbox.countIDAllProduct));
+            }
         };
         PaneMyAccount.btnAdd.setOnAction(add);
 

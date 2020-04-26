@@ -109,6 +109,8 @@ public class PaneLeft {
                 System.out.println("exception from reqMarket in paneLeft all catalog");
             }
             NewClient.filteredProduct = NewClient.unfilteredProduct;
+            
+            NewClient.showMarket(NewClient.myViewSelected);
 
             for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                 titleVbox.getChildren().remove(i);
@@ -141,6 +143,7 @@ public class PaneLeft {
             }
 
             NewClient.filter("Electronic");
+            NewClient.showMarket(NewClient.myViewSelected);
             if (titleVbox.getChildren().get(2) != inTitleVbox1) {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                     titleVbox.getChildren().remove(i);
@@ -180,6 +183,7 @@ public class PaneLeft {
             }
 
             NewClient.filter("Health & Beauty");
+            NewClient.showMarket(NewClient.myViewSelected);
             if (titleVbox.getChildren().get(3) != inTitleVbox2) {
                 for (int i = titleVbox.getChildren().size() - 1; i > -1; i--) {
                     titleVbox.getChildren().remove(i);
