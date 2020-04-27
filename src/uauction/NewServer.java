@@ -13,6 +13,7 @@ import java.nio.ByteBuffer;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 
@@ -59,6 +60,8 @@ public class NewServer {
                         }
 
                     });
+                    
+                    
                     System.out.println("update Done");
                 }
             }
@@ -70,9 +73,13 @@ public class NewServer {
 
     public static void main(String arg[]) throws InterruptedException {
         previousDate = new Date();
+        try{
         if(Database.load()){
             Database.save();
             Database.load();
+        }
+        } catch(Exception e){
+            
         }
         
         new NewServer();
@@ -221,10 +228,10 @@ class server implements Runnable {
 
         } else if (keyword[0].matches("Image"))//done
         {
-
+            
             try {
-                File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + keyword[1]);
-                BufferedImage image = ImageIO.read(file);
+                //File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + keyword[1]);
+                BufferedImage image = ImageIO.read(new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + keyword[1]));
                 OutputStream os = client.getOutputStream();
                 ImageIO.write(image, "jpg", os);
                 os.flush();
@@ -233,9 +240,31 @@ class server implements Runnable {
                 reqFromClient.close();
                 client.close();
             } catch (IOException ex) {
+                Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println(ex.getMessage());
-            }
+                System.out.println("switchto swingUtil fx");
+                //File file = new File(System.getProperty("user.dir") + "/AuctionDataBase/Image/" + keyword[1]);
+                Image img = new Image("file:///" + System.getProperty("user.dir") + "/AuctionDataBase/Image/" + keyword[1]);
+                BufferedImage image = SwingFXUtils.fromFXImage(img, null);
+                OutputStream os;
+                try {
+                    os = client.getOutputStream();
+                    ImageIO.write(image, "jpg", os);
+                    os.flush();
+                    os.close();
+                    isClose = true;
+                    reqFromClient.close();
+                    client.close();
+                } catch (IOException ex1) {
+                    Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex1);
+                    System.out.println("อันนี้ก็ไม่ได้ พอและ");
 
+                }
+
+            } finally {
+                System.out.println("ส่งรูปภาพเสร็จ สักวิธีอะ");
+            }
+            System.out.println("end of image sending");
         } else if (keyword[0].matches("RegisterProduct"))//done
         {
             try {
