@@ -77,11 +77,11 @@ public class PaneMyAccount {
         addItem.getChildren().add(bg);
         
         Rectangle r = new Rectangle(1920-220,1080-200);
-        r.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/myProduct.png")));
+        r.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/auctiond.png")));
         paneMyAuction.getChildren().add(r);
         
         Rectangle r2 = new Rectangle(1920-220,1080-200);
-        r.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/auctiond.png")));
+        r.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/myProduct.png")));
         paneMyObject.getChildren().add(r2);
         
         paneRight.getChildren().addAll(addItem, paneAddProduct, paneMyAuction, paneMyProfile, scrollPaneMyObject);
