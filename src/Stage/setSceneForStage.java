@@ -12,7 +12,7 @@ import Scene.Home.SceneHomeUnLogIn;
  * @author Sitth
  */
 public class setSceneForStage {
-    static public void stageSetHomeUnLogIn(){
+    static public void stageSetHomeUnLogIn(){        
         SetUpStage.getStage().setScene(SceneHomeUnLogIn.getScene());
     }
 }

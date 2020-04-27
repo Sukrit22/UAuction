@@ -31,6 +31,7 @@ public class SceneHomeUnLogIn {
     public static ScrollPane scrollPane;
 
     static public void sceneHomeUnLogIn() {
+        Welcome.setup();
         CreateTextField.searchField();
         CreateTextField.createEmailField();
         CreateTextField.createPasswordField();
@@ -38,7 +39,7 @@ public class SceneHomeUnLogIn {
         CategorisePane.setUp();
 
         buttonEventForSceneHomeUnLogIn();
-        stackPane.getChildren().add(createBorderPane());
+        stackPane.getChildren().addAll(createBorderPane(), Welcome.stp);
     }
 
     public static Scene getScene() {
