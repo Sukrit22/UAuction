@@ -241,9 +241,12 @@ public class ButtonEvent {
         CreateButton.buttonHelpPaneTop.setOnMouseClicked(helpEV);
 //=========================== done =======================
         EventHandler<ActionEvent> add = new EventHandler<ActionEvent>() {
+            
+            
             @Override
             public void handle(ActionEvent ActionEvent) {
                 System.out.println("Add from MyACC");
+                if(!AddProduct.productName.getText().isEmpty() && !AddProduct.productDescription.getText().isEmpty() && !AddProduct.minimumBid.getText().isEmpty()){
                 if (!AddProduct.pathAdded && !(AddProduct.filePath == null)) {
                     System.out.println("mee pic path");
                     AddProduct.pathAdded = true;
@@ -287,6 +290,7 @@ public class ButtonEvent {
                 
 //            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/TopPane.png"), "productName", "dis", 125.00, ProductPaneInVbox.countIDAllProduct));
             }
+        }
         };
         PaneMyAccount.btnAdd.setOnAction(add);
 
