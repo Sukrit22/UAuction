@@ -7,21 +7,13 @@ package Function;
 
 import AuctionMain.CreateButton;
 import Effect.PopUp;
-import Effect.PopUpProduct;
 import Effect.Notifications;
-import Scene.CategorisePane;
 import Scene.Home.MyAccount.PaneMyAccount;
 import Scene.Home.PaneTop;
 import Scene.Home.SceneHomeUnLogIn;
-import Scene.ProductPaneInVbox;
 import Stage.SetUpStage;
 import Stage.setSceneForStage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import uauction.ActiveProduct;
 import uauction.NewClient;
-import javafx.scene.image.Image;
-import static uauction.NewClient.filteredProduct;
 
 /**
  *

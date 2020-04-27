@@ -86,9 +86,6 @@ public class PaneLeft {
         
         Image im3 = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/left.png");
         ImageView iv3 = new ImageView(im3);
-        //iv3.setFitHeight(20);
-        //iv3.setLayoutX(2+20+10);
-        //iv3.setLayoutY(2);
         iv3.setPreserveRatio(true);
         
         pane.getChildren().add(iv3);

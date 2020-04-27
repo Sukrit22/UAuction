@@ -5,10 +5,8 @@
  */
 package Scene.Home;
 
-import Effect.Notifications;
 import Scene.CategorisePane;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -40,7 +38,6 @@ public class Welcome {
         vbox.setSpacing(50);
         Rectangle r = new Rectangle(1920,1080);
         r.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/welcome2.png")));
-        //stp.setStyle("-fx-background-color:rgba(125,125,125,0.9);");
         stp.getChildren().addAll(r);
         EventHandler<MouseEvent> eh = (MouseEvent ActionEvent) -> {
             System.out.println("Close Welcome");

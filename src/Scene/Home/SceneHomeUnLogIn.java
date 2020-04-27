@@ -8,9 +8,6 @@ package Scene.Home;
 import static AuctionMain.ButtonEvent.buttonEventForSceneHomeUnLogIn;
 import AuctionMain.CreateTextField;
 import Scene.CategorisePane;
-import Scene.Home.PaneLeft;
-import Scene.Home.MyAccount.PaneMyAccount;
-import Scene.Home.PaneTop;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -18,8 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
-
 /**
  *
  * @author Sitth

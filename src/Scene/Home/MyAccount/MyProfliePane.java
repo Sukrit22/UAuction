@@ -6,7 +6,6 @@
 package Scene.Home.MyAccount;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -26,9 +25,6 @@ public class MyProfliePane {
         pane = new Pane();
         pane.setMinSize(1920, 1080);
         Font font = new Font(24);
-
-        //Label nameLabel = new Label(name);
-        //nameLabel.setLayoutX(60);
         nameText = new Text(" Name ");
         VBox nameTextPane = new VBox(nameText);
         nameText.setFont(font);

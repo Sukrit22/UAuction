@@ -5,30 +5,18 @@
  */
 package Scene.Home.MyAccount;
 
-import AuctionMain.CreateTextField;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import AuctionMain.CreateButton;
-import static AuctionMain.CreateButton.buttonMyAuctionOnACC;
 import Effect.PopUp;
 import Stage.StageStorage;
 import javafx.scene.image.Image;
@@ -41,16 +29,16 @@ import javafx.scene.paint.ImagePattern;
  */
 public class PaneMyAccount {
 
-    static private Pane paneMyAccLayer1 = new Pane();
-    static private Pane paneRight = new Pane();
-    static private Pane paneLeft = new Pane();
-    static private Pane paneTop = new Pane();
-    static private Pane addItem = new Pane();
-    static private Pane paneMyProfile = new Pane();
+    private static final Pane paneMyAccLayer1 = new Pane();
+    private static final Pane paneRight = new Pane();
+    private static final Pane paneLeft = new Pane();
+    private static final Pane paneTop = new Pane();
+    private static final Pane addItem = new Pane();
+    private static final Pane paneMyProfile = new Pane();
     static public Pane paneMyObject = new Pane();
     static public ScrollPane scrollPaneMyObject = new ScrollPane();
-    static private Pane paneMyAuction = new Pane(new Label("My Action"));
-    static private Pane paneAddProduct = new Pane();
+    private static final Pane paneMyAuction = new Pane(new Label("My Action"));
+    private static final Pane paneAddProduct = new Pane();
     //static private Pane r = new Pane();
     static public Label name = new Label("Name");
     static public Button btnAdd = new Button("ADD");
@@ -60,13 +48,9 @@ public class PaneMyAccount {
     static public Button btnMyProfile = new Button("My Profile");
     static public Button btnMyProduct = new Button("My Product");
     static public Button btnAddProduct = new Button("Add Product");
-    static private VBox v1 = new VBox();
-    static private VBox vboxPaneMyProfile = new VBox();
+    private static final VBox vboxPaneMyProfile = new VBox();
 
-    static private Text selectText = new Text();
-    static private VBox titleVbox = new VBox();
-
-    static private Rectangle pic;
+    private static final Text selectText = new Text();
 
     static public void setUpPane() {
 
@@ -152,7 +136,6 @@ public class PaneMyAccount {
         
         
 
-        VBox vbox0 = new VBox();
         //TextField productName = new TextField();
 
         paneAddProduct.setStyle("-fx-background-color:rgba(88,88,88,1.0) ; ");
@@ -253,20 +236,3 @@ public class PaneMyAccount {
         return selectText;
     }
 }
-
-/*       ObservableList<String> cat = FXCollections.observableArrayList("Categorise 1", "Categorise 2", "Categorise 3", "Categorise 4");
-        ChoiceBox productCategorise = new ChoiceBox();
-        Rectangle shape = new Rectangle(500, 40);
-        //productCategorise.setStyle();
-        shape.setFill(Color.web("rgba( 255, 0, 0, 1.0)"));
-        productCategorise.setStyle("-fx-backgroud-color:rgba( 10, 10, 10, 0.2)");
-        //productCategorise.setShape(shape);
-        productCategorise.setItems(cat);
-        productCategorise.setValue(cat);
-        EventHandler<ActionEvent> check = (ActionEvent ActionEvent) -> {
-            System.out.println("btncheck");
-            System.out.println(productCategorise.getValue().toString());
-        };
-        Button btncheck = new Button("Check");
-        btncheck.setOnAction(check);
- */

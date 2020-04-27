@@ -5,16 +5,11 @@
  */
 package Effect;
 
-import AuctionMain.runTime;
+
 import Scene.Home.SceneHomeUnLogIn;
-import Scene.ProductPaneInVbox;
 import static Scene.ProductPaneInVbox.timeUpdate;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

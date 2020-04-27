@@ -6,12 +6,8 @@
 package Scene.Home.MyAccount;
 
 import Effect.PopUp;
-import static Scene.Home.MyAccount.PaneMyAccount.scrollPaneMyObject;
-import com.sun.javafx.logging.PlatformLogger.Level;
-import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.lang.System.Logger;
 import java.time.LocalDate;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -23,11 +19,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -88,9 +82,6 @@ public class AddProduct {
         Font sad = new Font(48);
         fillText.setFont(sad);
         fillText.setFill(Color.web("rgba( 255, 0, 0, 1.0)"));
-        //fillText.setVisible(false);
-        
-        //vbox0.getChildren().addAll(new Label("Add Product"), productName, productCategorise, btncheck, btnAdd, btnBack);
         datePicker = new DatePicker();
         datePicker.setLayoutX(900+300);
         datePicker.setLayoutY(50);
@@ -165,10 +156,6 @@ public class AddProduct {
                     PopUp.chooseNewPicPane.setVisible(true);
                 }
             }
-            
-            //Image image = new Image(file.toString());
-            //ImageView imv = new ImageView(image);
-            //pic.setClip(imv);
 
         };
         pic.setLayoutX(40);

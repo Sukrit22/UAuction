@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
