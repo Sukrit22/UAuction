@@ -6,6 +6,7 @@
 package Scene.Home;
 
 import Effect.Notifications;
+import Scene.CategorisePane;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import uauction.NewClient;
 
 /**
  *
@@ -38,7 +40,24 @@ public class Welcome {
         EventHandler<MouseEvent> eh = (MouseEvent ActionEvent) -> {
             System.out.println("Close Welcome");
             SceneHomeUnLogIn.getStackPane().getChildren().remove(Welcome.stp);
-            
+            NewClient.myViewSelected = 0;
+        try {
+            NewClient.reqMarket();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("Fail reqMarket before login");
+        }
+        NewClient.showMarket(NewClient.myViewSelected);
+
+            int i = 0;
+            if (CategorisePane.vboxArray.get(i).getChildren().isEmpty()) {
+                CategorisePane.vboxArray.get(i).getChildren().add(CategorisePane.pane1);
+            }
+            if (CategorisePane.vboxArray.get(i).getChildren().size() > 1) {
+                if (CategorisePane.vboxArray.get(i).getChildren().get(0).equals(CategorisePane.pane1)) {
+                    CategorisePane.vboxArray.get(i).getChildren().remove(CategorisePane.pane1);
+                }
+            }
             
         };        
                 
