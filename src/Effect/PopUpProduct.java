@@ -96,6 +96,9 @@ public class PopUpProduct {
                         PopUpProduct.getTimeLeft().setText(dt.format(timeEnd));
                     } else if (timeEnd.getTime() - (new Date()).getTime() < 86400000 ) { //ถ้าเวลาน้อยกว่า 24ชม แสดงเป็น ชม
                         dt = new SimpleDateFormat("hh:mm:ss");
+                        if(timeEnd.getTime() - (new Date()).getTime()<3600000) {
+                            dt = new SimpleDateFormat("mm:ss");
+                        }
                         try {
                             // running "long" operation not on UI thread
                             Thread.sleep(1000);
