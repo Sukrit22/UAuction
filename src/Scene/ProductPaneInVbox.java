@@ -33,7 +33,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
 import uauction.ActiveProduct;
 import uauction.NewClient;
-import uauction.apNode;
 
 /**
  *

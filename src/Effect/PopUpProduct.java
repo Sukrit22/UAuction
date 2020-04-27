@@ -5,7 +5,6 @@
  */
 package Effect;
 
-import uauction.apNode;
 import AuctionMain.runTime;
 import Scene.Home.SceneHomeUnLogIn;
 import Scene.ProductPaneInVbox;
