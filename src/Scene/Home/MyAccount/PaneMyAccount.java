@@ -76,9 +76,19 @@ public class PaneMyAccount {
         bg.setHeight(880);
         addItem.getChildren().add(bg);
         
-        Rectangle r = new Rectangle(1920-220,1080-200);
+        Rectangle r = new Rectangle(1920-220,1080-200); 
         r.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/auctiond.png")));
         paneMyAuction.getChildren().add(r);
+        r.setOnMouseClicked(eh -> {
+            paneMyProfile.setVisible(false);
+            scrollPaneMyObject.setVisible(false);
+            paneAddProduct.setVisible(true);
+            paneMyAuction.setVisible(false);
+            PopUp.incorrecypassPane.setVisible(false);
+            
+        
+        });
+       
         
         Rectangle r2 = new Rectangle(1920-220,1080-200);
         r.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/myProduct.png")));
