@@ -42,7 +42,7 @@ import javax.imageio.ImageIO;
 public class NewClient {
     private static boolean renewMarketBecauseImageJustLoaded;
     public static final String destinationIp = "auctionoop.myddns.me";
-    public static final String localhost = "127.0.0.1";
+    public static final String localhost = "auctionoop.myddns.me";
     public static Socket server = null;
     public static User user;
     public static ArrayList<ActiveProduct> unfilteredProduct = new ArrayList<>();

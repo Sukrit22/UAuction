@@ -203,17 +203,21 @@ public class PopUpProduct {
         btnBid.setLayoutY(400);
         btnBid.setMinSize(40, 30);
         btnBid.setOnAction(eh -> {
-            try {
-                NewClient.reqBid(ap.getProduct().getFileName(), yourBid.getText(), NewClient.user.getUsername());
-                //ปิด popupProduct
-                SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUpProduct.getStackPane());
-                System.out.println("Click");
-                PopUpProduct.enough = true;
-                NewClient.reqMarket();
-                NewClient.showMarket(NewClient.myViewSelected);
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-                System.out.println("reqBid in PopUpPro");
+            if (Double.parseDouble(yourBid.getText())>ap.getProduct().getMinimumBid()+ap.getCurrentBid()) {//เงินบิดห้ามต่ำกว่า currentBid+minimunBid
+                try {
+                    NewClient.reqBid(ap.getProduct().getFileName(), yourBid.getText(), NewClient.user.getUsername());
+                    //ปิด popupProduct
+                    SceneHomeUnLogIn.getStackPane().getChildren().remove(PopUpProduct.getStackPane());
+                    System.out.println("Click");
+                    PopUpProduct.enough = true;
+                    NewClient.reqMarket();
+                    NewClient.showMarket(NewClient.myViewSelected);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    System.out.println("reqBid in PopUpPro");
+                }
+            }else{
+                System.out.println("your bid is less than current+minimun");
             }
         });
         btnMoreDetail = new Button("More Details");
