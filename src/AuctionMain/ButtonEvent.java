@@ -72,7 +72,6 @@ public class ButtonEvent {
                     System.out.println("login get String");
                     loginPop = false;
                 } else {
-                    System.out.println("อะไรกันแน่วะไอสัส");
                     loginPop = false;
                 }
                 if (loginPop) {
@@ -116,7 +115,6 @@ public class ButtonEvent {
                         } else if (obj.getClass().equals("".getClass())) {
                             loginPop = false;
                         } else {
-                            System.out.println("อะไรกันแน่วะไอสัส");
                             loginPop = false;
                         }
                         if (loginPop) {

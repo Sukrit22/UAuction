@@ -5,24 +5,16 @@
  */
 package Scene.Home;
 
-import AuctionMain.CreateButton;
-import static AuctionMain.CreateButton.buttonHelpPaneTop;
+
 import Scene.CategorisePane;
-import Scene.Home.MyAccount.PaneMyAccount;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -36,12 +28,12 @@ import uauction.NewClient;
  */
 public class PaneLeft {
 
-    static private Pane pane = new Pane();
-    static private VBox titleVbox = new VBox();
-    static private VBox inTitleVbox1 = new VBox();
-    static private VBox inTitleVbox2 = new VBox();
-    static private VBox inTitleVbox3 = new VBox();
-    static private VBox inTitleVbox4 = new VBox();
+    private static final Pane pane = new Pane();
+    private static final VBox titleVbox = new VBox();
+    private static final VBox inTitleVbox1 = new VBox();
+    private static final VBox inTitleVbox2 = new VBox();
+    private static final VBox inTitleVbox3 = new VBox();
+    private static final VBox inTitleVbox4 = new VBox();
     static private Group titleGroup1;
     static private Group titleGroup2;
     static private Group titleGroup3;

@@ -22,7 +22,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class PaneTop {
 
-    static private Pane pane = new Pane();
+    private static final Pane pane = new Pane();
 
     public static void createPane() {
         Image im = new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/topPane3.png");
