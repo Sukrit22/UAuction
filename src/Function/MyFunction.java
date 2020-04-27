@@ -39,6 +39,7 @@ public class MyFunction {
         PaneTop.getPane().getChildren().add(CreateButton.buttonHelpPaneTop);
         PopUp.setUpPopUp();
         PaneMyAccount.setUpPane();
+        Scene.Home.MyAccount.PaneMyAccount.getPaneMyAcclayer1();
         NewClient.myViewSelected = 0;
         try {
             NewClient.reqMarket();
@@ -47,7 +48,6 @@ public class MyFunction {
             System.out.println("Fail reqMarket before login");
         }
         NewClient.showMarket(NewClient.myViewSelected);
-        Scene.Home.MyAccount.PaneMyAccount.getPaneMyAcclayer1();
     }
 
 }

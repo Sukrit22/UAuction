@@ -314,9 +314,10 @@ class server implements Runnable {
                         indexOfActiveProduct = Database.activeProduct.indexOf(ap);
                     }
                 }
-                Database.activeProduct.get(indexOfActiveProduct).setCurrentBid(Double.parseDouble(keyword[2]));
-                Database.activeProduct.get(indexOfActiveProduct).addBiddingHistory(keyword[3] + " " + keyword[2]);
-
+                if(Double.parseDouble(keyword[2])>Database.activeProduct.get(indexOfActiveProduct).getCurrentBid()){
+                    Database.activeProduct.get(indexOfActiveProduct).setCurrentBid(Double.parseDouble(keyword[2]));
+                    Database.activeProduct.get(indexOfActiveProduct).addBiddingHistory(keyword[3] + " " + keyword[2]);
+                }
                 reqFromClient.close();
                 client.close();
             } catch (IOException ex) {

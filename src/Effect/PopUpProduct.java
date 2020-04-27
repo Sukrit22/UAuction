@@ -203,7 +203,7 @@ public class PopUpProduct {
         btnBid.setLayoutY(400);
         btnBid.setMinSize(40, 30);
         btnBid.setOnAction(eh -> {
-            if (Double.parseDouble(yourBid.getText())>ap.getProduct().getMinimumBid()+ap.getCurrentBid()) {//เงินบิดห้ามต่ำกว่า currentBid+minimunBid
+            if (Double.parseDouble(yourBid.getText())>=ap.getProduct().getMinimumBid()+ap.getCurrentBid()) {//เงินบิดห้ามต่ำกว่า currentBid+minimunBid
                 try {
                     NewClient.reqBid(ap.getProduct().getFileName(), yourBid.getText(), NewClient.user.getUsername());
                     //ปิด popupProduct
