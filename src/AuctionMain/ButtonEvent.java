@@ -289,7 +289,9 @@ public class ButtonEvent {
                 }
                 
 //            CategorisePane.vboxArray.get(0).getChildren().add(ProductPaneInVbox.Pane1(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/TopPane.png"), "productName", "dis", 125.00, ProductPaneInVbox.countIDAllProduct));
-            }
+            }else{
+                    AddProduct.riri.setVisible(true);
+                }
         }
         };
         PaneMyAccount.btnAdd.setOnAction(add);

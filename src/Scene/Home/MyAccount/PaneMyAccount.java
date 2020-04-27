@@ -157,7 +157,10 @@ public class PaneMyAccount {
 
         paneAddProduct.setStyle("-fx-background-color:rgba(88,88,88,1.0) ; ");
         paneAddProduct.setMinSize(1920 - 220, 1080 - 200);
-        paneAddProduct.getChildren().addAll(AddProduct.productName, AddProduct.productDescription, AddProduct.minimumBid, AddProduct.startBid, AddProduct.pic, btnAdd, AddProduct.datePicker, AddProduct.comboBoxHour, AddProduct.comboBoxAmPm, AddProduct.titleVbox);
+        AddProduct.riri.setLayoutX(220);
+        AddProduct.riri.setLayoutY(1080/2);
+        AddProduct.riri.setVisible(false);
+        paneAddProduct.getChildren().addAll(AddProduct.productName, AddProduct.productDescription, AddProduct.minimumBid, AddProduct.startBid, AddProduct.pic, btnAdd, AddProduct.datePicker, AddProduct.comboBoxHour, AddProduct.comboBoxAmPm, AddProduct.titleVbox, AddProduct.riri);
 
         paneRight.setMinWidth(1700);
         paneRight.setMinHeight(1080 - 200);

@@ -23,11 +23,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -67,6 +69,10 @@ public class AddProduct {
     static public TextField minimumBid;
     static public TextArea productDescription;
     static public Rectangle pic;
+    
+    static public Rectangle pic2;
+    private static final Text fillText = new Text("Please check your information");
+    public static Pane riri = new Pane(fillText);
 
     //static private Desktop desktop = Desktop.getDesktop();
 
@@ -77,7 +83,13 @@ public class AddProduct {
         title4();
         title5();
         makeAllTextField();
-
+        
+        
+        Font sad = new Font(48);
+        fillText.setFont(sad);
+        fillText.setFill(Color.web("rgba( 255, 0, 0, 1.0)"));
+        //fillText.setVisible(false);
+        
         //vbox0.getChildren().addAll(new Label("Add Product"), productName, productCategorise, btncheck, btnAdd, btnBack);
         datePicker = new DatePicker();
         datePicker.setLayoutX(900+300);
