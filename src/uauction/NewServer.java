@@ -373,12 +373,14 @@ class Update implements Runnable {
 
     @Override
     public void run() {
-        Date now = new Date();
-        //Update ActiveProduct to AuctionedProduct every hour
-        for (ActiveProduct object : Database.activeProduct) {
-            if (object.getProduct().getDateEndBid().getTime() - now.getTime() < 0) {
-                Database.activeProduct.remove(object);
-                Database.auctionedProduct.add(new AuctionedProduct(object));
+        while (true) {
+            Date now = new Date();
+            //Update ActiveProduct to AuctionedProduct every hour
+            for (ActiveProduct object : Database.activeProduct) {
+                if (object.getProduct().getDateEndBid().getTime() - now.getTime() < 0) {
+                    Database.activeProduct.remove(object);
+                    Database.auctionedProduct.add(new AuctionedProduct(object));
+                }
             }
         }
     }
