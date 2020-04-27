@@ -33,6 +33,7 @@ import Effect.PopUp;
 import Stage.StageStorage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
 
 /**
  *
@@ -74,7 +75,16 @@ public class PaneMyAccount {
         bg.setWidth(1700);
         bg.setHeight(880);
         addItem.getChildren().add(bg);
-        paneRight.getChildren().addAll(addItem, paneAddProduct, paneMyProfile, scrollPaneMyObject);
+        
+        Rectangle r = new Rectangle(1920-220,1080-200);
+        r.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/auctiond.png")));
+        paneMyAuction.getChildren().add(r);
+        
+        Rectangle r2 = new Rectangle(1920-220,1080-200);
+        r.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/myProduct.png")));
+        paneMyObject.getChildren().add(r2);
+        
+        paneRight.getChildren().addAll(addItem, paneAddProduct, paneMyAuction, paneMyProfile, scrollPaneMyObject);
         //Rectangle rectFill = new Rectangle(1920);
         Pane paneFill = new Pane();
         paneFill.setStyle("-fx-background-color:rgba(0,0,0,1.0); -fx-stroke:rgba( 10, 10, 10, 0.2);");
@@ -139,6 +149,8 @@ public class PaneMyAccount {
         scrollPaneMyObject.setVisible(false);
         paneAddProduct.setVisible(false);
         paneMyAuction.setVisible(false);
+        
+        
 
         VBox vbox0 = new VBox();
         //TextField productName = new TextField();

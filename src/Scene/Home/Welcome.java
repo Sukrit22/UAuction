@@ -10,9 +10,12 @@ import Scene.CategorisePane;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import uauction.NewClient;
@@ -35,8 +38,10 @@ public class Welcome {
         vbox.setAlignment(Pos.CENTER);
         vbox.setMinSize(1920, 1080);
         vbox.setSpacing(50);
-        stp.setStyle("-fx-background-color:rgba(125,125,125,0.9);");
-        stp.getChildren().add(vbox);
+        Rectangle r = new Rectangle(1920,1080);
+        r.setFill(new ImagePattern(new Image("file:///" + System.getProperty("user.dir") + "/src/Picture/welcome2.png")));
+        //stp.setStyle("-fx-background-color:rgba(125,125,125,0.9);");
+        stp.getChildren().addAll(r);
         EventHandler<MouseEvent> eh = (MouseEvent ActionEvent) -> {
             System.out.println("Close Welcome");
             SceneHomeUnLogIn.getStackPane().getChildren().remove(Welcome.stp);
